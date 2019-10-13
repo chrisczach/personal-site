@@ -1,4 +1,7 @@
 @import './custom-properties.css';
+@import 'primereact/resources/themes/nova-light/theme.css';
+@import 'primereact/resources/primereact.min.css';
+@import 'primeicons/primeicons.css';
 
 html {
   font-family: var(--font-family-sans);
@@ -19,3 +22,4 @@ body > div,
 body > div > div {
   height: 100%;
 }
+
