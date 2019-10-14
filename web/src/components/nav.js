@@ -42,17 +42,17 @@ const nav = ({portrait}) => {
             </ListItemIcon>
             <ListItemText primary={'About'} />
           </ListItem>
-          <ListItem button autoFocus onClick={ handleOpen( !open ) }>
+          <ListItem button autoFocus onClick={handleOpen(!open)}>
             <ListItemIcon>
-              <MenuRounded fontSize={ size } />
+              <MenuRounded fontSize={size} />
             </ListItemIcon>
-            <ListItemText primary={ 'Experience' } />
+            <ListItemText primary={'Experience'} />
           </ListItem>
-          <ListItem button autoFocus onClick={ handleOpen( !open ) }>
+          <ListItem button autoFocus onClick={handleOpen(!open)}>
             <ListItemIcon>
-              <MenuRounded fontSize={ size } />
+              <MenuRounded fontSize={size} />
             </ListItemIcon>
-            <ListItemText primary={ 'Portfolio' } />
+            <ListItemText primary={'Portfolio'} />
           </ListItem>
           <ListItem button autoFocus onClick={handleOpen(!open)}>
             <ListItemIcon>
@@ -67,8 +67,8 @@ const nav = ({portrait}) => {
 }
 
 const StyledDrawer = styled(({portrait, ...others}) => <SwipeableDrawer {...others} />)({})
-const StyledList = styled(({portrait, ...others}) => <List {...others} />)({
-  minHeight: ({portrait}) => ({portrait} ? '50vh' : 'auto'),
+const StyledList = styled(List)({
+  minHeight: '50vh',
   minWidth: '25vw'
 })
 

@@ -23,7 +23,15 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
   }, [])
   return (
     <>
-      <StyledAppBar color='primary' portrait={portrait}>
+      <StyledAppBar
+        color='primary'
+        portrait={portrait}
+        style={{
+          position: portrait ? 'fixed' : 'sticky',
+          bottom: portrait ? 0 : 'auto',
+          top: portrait ? 'auto' : 0
+        }}
+      >
         Header {menuButton}
       </StyledAppBar>
       {menuDrawer}
@@ -31,14 +39,11 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
   )
 }
 
-const StyledAppBar = styled(({portrait, ...others}) => <AppBar {...others} />)({
+const StyledAppBar = styled(AppBar)({
   display: 'flex',
-  position: ({portrait}) => (portrait ? 'fixed' : 'sticky'),
   flexDirection: 'row',
   justifyContent: 'space-between',
-  alignItems: 'center',
-  bottom: ({portrait}) => (portrait ? 0 : 'auto'),
-  top: ({portrait}) => (portrait ? 'auto' : 0)
+  alignItems: 'center'
 })
 
 export default Header
