@@ -1,6 +1,6 @@
 import {Link} from 'gatsby'
 import React, {useState, useEffect} from 'react'
-import {AppBar, Typography, Toolbar, Slide} from '@material-ui/core'
+import {AppBar, Typography, Toolbar, Fade} from '@material-ui/core'
 import {styled} from '@material-ui/core/styles'
 import nav from './nav'
 
@@ -24,22 +24,24 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle, menuItems, location: 
   }, [])
   return (
     <>
-      <AppBar
-        color='primary'
-        portrait={portrait}
-        style={{
-          position: portrait ? 'fixed' : 'sticky',
-          bottom: portrait ? 0 : 'auto',
-          top: portrait ? 'auto' : 0
-        }}
-      >
-        <StyledToolbar>
-          <Slide direction='right' in mountOnEnter unmountOnExit timeout={500}>
-            <Typography variant='h6'>{currentPage.text}</Typography>
-          </Slide>
-          {menuButton}
-        </StyledToolbar>
-      </AppBar>
+      <Fade in style={{transformOrigin: '0 0 0'}} timeout={500}>
+        <AppBar
+          color='primary'
+          portrait={portrait}
+          style={{
+            position: portrait ? 'fixed' : 'sticky',
+            bottom: portrait ? 0 : 'auto',
+            top: portrait ? 'auto' : 0
+          }}
+        >
+          <StyledToolbar>
+            <Fade in mountOnEnter unmountOnExit timeout={500}>
+              <Typography variant='h6'>{currentPage.text}</Typography>
+            </Fade>
+            {menuButton}
+          </StyledToolbar>
+        </AppBar>
+      </Fade>
       {menuDrawer}
     </>
   )

@@ -51,16 +51,27 @@ const nav = ({portrait, menuItems}) => {
 const toMenu = (open, handleOpen, size) => ({text, Icon, route}, index) => {
   return (
     <>
-      <Grow in={open} style={{transformOrigin: '0 0 0'}} {...(open ? {timeout: index * 350} : {})}>
-        <Link to={route}>
+      <Link to={route}>
+        <Grow
+          in={open}
+          style={{transformOrigin: '0 0 0'}}
+          {...(open ? {timeout: index * 150} : {})}
+        >
           <ListItem button autoFocus onClick={handleOpen(!open)}>
             <ListItemIcon>
               <Icon fontSize={size} />
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <Slide
+              direction='left'
+              in={open}
+              style={{transformOrigin: '0 0 0'}}
+              {...(open ? {timeout: index * 150 + 50} : {})}
+            >
+              <ListItemText primary={text} />
+            </Slide>
           </ListItem>
-        </Link>
-      </Grow>
+        </Grow>
+      </Link>
       <Divider variant='inset' component='li' />
     </>
   )
