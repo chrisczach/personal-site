@@ -15,8 +15,10 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
   useEffect(() => {
     updateOrientation()
     window.addEventListener('resize', updateOrientation)
+    window.addEventListener('orientationchange', updateOrientation)
     return () => {
       window.removeEventListener('resize', updateOrientation)
+      window.removeEventListener('orientationchange', updateOrientation)
     }
   }, [])
   return (
@@ -36,7 +38,7 @@ const StyledAppBar = styled(({portrait, ...others}) => <AppBar {...others} />)({
   justifyContent: 'space-between',
   alignItems: 'center',
   bottom: ({portrait}) => (portrait ? 0 : 'auto'),
-  top: ({portrait}) => (portrait ? 'auto' : 0),
+  top: ({portrait}) => (portrait ? 'auto' : 0)
 })
 
 export default Header

@@ -18,7 +18,7 @@ const nav = ({portrait}) => {
   const size = (() => (portrait ? 'large' : 'default'))()
   return {
     menuButton: (
-      <Button variant='text' onClick={handleOpen(!open)} fullWidth={false}>
+      <Button variant='text' onClick={handleOpen(!open)} fullWidth={false} endIcon>
         <MenuRounded fontSize='large' />
       </Button>
     ),
@@ -30,24 +30,35 @@ const nav = ({portrait}) => {
         onClose={handleOpen(false)}
         portrait={portrait}
       >
-        <div>
-          Close
-          <Button variant='text' onClick={handleOpen(!open)} fullWidth>
-            <CloseRounded fontSize='large' />
-          </Button>
-        </div>
         <StyledList>
           <ListItem button autoFocus onClick={handleOpen(!open)}>
-            <ListItemIcon>
-              <MenuRounded fontSize={size} />
-            </ListItemIcon>
-            <ListItemText primary={'text'} />
+            <ListItemText primary='Chris Czach ' secondary='Front End Developer' />
+
+            <CloseRounded disableGutters fontSize='large' />
           </ListItem>
           <ListItem button autoFocus onClick={handleOpen(!open)}>
             <ListItemIcon>
               <MenuRounded fontSize={size} />
             </ListItemIcon>
-            <ListItemText primary={'text'} />
+            <ListItemText primary={'About'} />
+          </ListItem>
+          <ListItem button autoFocus onClick={ handleOpen( !open ) }>
+            <ListItemIcon>
+              <MenuRounded fontSize={ size } />
+            </ListItemIcon>
+            <ListItemText primary={ 'Experience' } />
+          </ListItem>
+          <ListItem button autoFocus onClick={ handleOpen( !open ) }>
+            <ListItemIcon>
+              <MenuRounded fontSize={ size } />
+            </ListItemIcon>
+            <ListItemText primary={ 'Portfolio' } />
+          </ListItem>
+          <ListItem button autoFocus onClick={handleOpen(!open)}>
+            <ListItemIcon>
+              <MenuRounded fontSize={size} />
+            </ListItemIcon>
+            <ListItemText primary={'Contact'} />
           </ListItem>
         </StyledList>
       </StyledDrawer>
@@ -57,7 +68,8 @@ const nav = ({portrait}) => {
 
 const StyledDrawer = styled(({portrait, ...others}) => <SwipeableDrawer {...others} />)({})
 const StyledList = styled(({portrait, ...others}) => <List {...others} />)({
-  minHeight: ({portrait}) => ({portrait} ? '50vh' : 'auto')
+  minHeight: ({portrait}) => ({portrait} ? '50vh' : 'auto'),
+  minWidth: '25vw'
 })
 
 export default nav
