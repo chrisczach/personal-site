@@ -72,7 +72,14 @@ const toMenu = (open, handleOpen, size) => ({text, Icon, route}, index) => {
           </StyledListItem>
         </Grow>
       </Link>
-      <Divider variant='inset' component='li' />
+      <Slide
+        direction='left'
+        in={open}
+        style={{transformOrigin: '0 0 0'}}
+        {...(open ? {timeout: index * 150 + 150} : {})}
+      >
+        <Divider variant='inset' component='li' />
+      </Slide>
     </>
   )
 }
