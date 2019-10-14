@@ -24,26 +24,24 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle, menuItems, location: 
   }, [])
   return (
     <>
-      <Fade in style={{transformOrigin: '0 0 0'}} timeout={500}>
-        <AppBar
-          color='secondary'
-          portrait={portrait}
-          style={{
-            position: portrait ? 'fixed' : 'sticky',
-            bottom: portrait ? 0 : 'auto',
-            top: portrait ? 'auto' : 0
-          }}
-        >
-          <StyledToolbar>
-            <Fade in mountOnEnter unmountOnExit timeout={500}>
-              <Typography variant='h6'>
-                {(currentPage && currentPage.text) || 'Missing Title'}
-              </Typography>
-            </Fade>
-            {menuButton}
-          </StyledToolbar>
-        </AppBar>
-      </Fade>
+      <AppBar
+        color='secondary'
+        portrait={portrait}
+        style={{
+          position: portrait ? 'fixed' : 'sticky',
+          bottom: portrait ? 0 : 'auto',
+          top: portrait ? 'auto' : 0
+        }}
+      >
+        <StyledToolbar>
+          <Fade in mountOnEnter unmountOnExit timeout={500}>
+            <Typography variant='h6'>
+              {(currentPage && currentPage.text) || 'Missing Title'}
+            </Typography>
+          </Fade>
+          {menuButton}
+        </StyledToolbar>
+      </AppBar>
       {menuDrawer}
     </>
   )

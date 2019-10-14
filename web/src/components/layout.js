@@ -12,7 +12,7 @@ import {
 import styles from './layout.module.css'
 
 import {ThemeProvider} from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import {CssBaseline, Box, Grow} from '@material-ui/core'
 import theme from '../styles/theme'
 
 const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle, location}) => (
@@ -26,8 +26,12 @@ const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle, location}) 
       onShowNav={onShowNav}
       showNav={showNav}
     />
-    {children}
-    <Footer />
+    <Grow in style={{transformOrigin: '0 0 0'}} timeout={200}>
+      <Box component='div'>
+        {children}
+        <Footer />
+      </Box>
+    </Grow>
   </ThemeProvider>
 )
 

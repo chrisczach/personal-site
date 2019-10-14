@@ -5,13 +5,10 @@ const rawTheme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      light: 'E8DB9D',
-      main: '#1D231E',
-      dark: '#1D1018'
+      main: '#836678'
     },
     secondary: {
-      light: '#9A9196',
-      main: '#201134'
+      main: '#2C2E3D'
     },
     warning: {
       main: '#ffc071',
@@ -30,10 +27,10 @@ const rawTheme = createMuiTheme({
   typography: {
     fontFamily: "'Roboto', sans-serif",
     fontSize: 14,
-    fontWeightLight: 300, // Work Sans
-    fontWeightRegular: 400, // Work Sans
-    fontWeightMedium: 700, // Roboto Condensed
-    fontFamilySecondary: "'Roboto Condensed', sans-serif"
+    fontWeightLight: 100, // Work Sans
+    fontWeightRegular: 300, // Work Sans
+    fontWeightMedium: 400, // Playfair Display Condensed
+    fontFamilySecondary: "'Open+Sans', sans-serif"
   }
 })
 
@@ -50,7 +47,7 @@ const theme = {
     ...rawTheme.palette,
     background: {
       ...rawTheme.palette.background,
-      default: rawTheme.palette.primary.main,
+      default: rawTheme.palette.primary.light,
       placeholder: grey[200]
     }
   },
