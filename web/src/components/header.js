@@ -2,6 +2,7 @@ import {Link} from 'gatsby'
 import React, {useState, useEffect} from 'react'
 import {AppBar} from '@material-ui/core'
 import {styled} from '@material-ui/core/styles'
+import Nav from './nav'
 
 const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
   const [portrait, setPortrait] = useState(false)
@@ -10,6 +11,7 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
   }
 
   useEffect(() => {
+    updateOrientation()
     window.addEventListener('resize', updateOrientation)
     return () => {
       window.removeEventListener('resize', updateOrientation)
@@ -17,7 +19,7 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
   }, [])
   return (
     <StyledAppBar position='fixed' color='primary' portrait={portrait}>
-      Header
+      Header <Nav portrait={portrait} />
     </StyledAppBar>
   )
 }
