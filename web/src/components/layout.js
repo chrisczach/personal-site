@@ -11,19 +11,24 @@ import {
 } from '@material-ui/icons/'
 import styles from './layout.module.css'
 
-const Layout = ( { children, onHideNav, onShowNav, showNav, siteTitle, location }) => (
-  <>
+import {ThemeProvider} from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import theme from '../styles/theme'
+
+const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle, location}) => (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
     <Header
-      location={ location}
+      location={location}
       menuItems={menuItems}
       siteTitle={siteTitle}
       onHideNav={onHideNav}
       onShowNav={onShowNav}
       showNav={showNav}
     />
-    <div>{children}</div>
+    {children}
     <Footer />
-  </>
+  </ThemeProvider>
 )
 
 const menuItems = [

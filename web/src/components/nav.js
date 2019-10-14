@@ -57,7 +57,7 @@ const toMenu = (open, handleOpen, size) => ({text, Icon, route}, index) => {
           style={{transformOrigin: '0 0 0'}}
           {...(open ? {timeout: index * 150} : {})}
         >
-          <ListItem button autoFocus onClick={handleOpen(!open)}>
+          <StyledListItem button autoFocus onClick={handleOpen(!open)}>
             <ListItemIcon>
               <Icon fontSize={size} />
             </ListItemIcon>
@@ -69,7 +69,7 @@ const toMenu = (open, handleOpen, size) => ({text, Icon, route}, index) => {
             >
               <ListItemText primary={text} />
             </Slide>
-          </ListItem>
+          </StyledListItem>
         </Grow>
       </Link>
       <Divider variant='inset' component='li' />
@@ -83,4 +83,5 @@ const StyledList = styled(List)({
   minWidth: '25vw'
 })
 
+const StyledListItem = styled(ListItem)({overflow: 'hidden'})
 export default nav
