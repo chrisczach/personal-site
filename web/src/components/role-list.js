@@ -7,13 +7,13 @@ import styles from './role-list.module.css'
 
 function RoleList ({items, title}) {
   return (
-    <div className={styles.root}>
-      <h2 className={styles.headline}>{title}</h2>
-      <ul className={styles.list}>
+    <div >
+      <h2 >{title}</h2>
+      <ul >
         {items.map(item => (
-          <li key={item._key} className={styles.listItem}>
+          <li key={item._key} >
             <div>
-              <div className={styles.avatar}>
+              <div >
                 {item.person && item.person.image && item.person.image.asset && (
                   <img
                     src={imageUrlFor(buildImageObj(item.person.image))

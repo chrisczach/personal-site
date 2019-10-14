@@ -6,9 +6,9 @@ import styles from './project-preview-grid.module.css'
 
 function ProjectPreviewGrid (props) {
   return (
-    <div className={styles.root}>
-      {props.title && <h2 className={styles.headline}>{props.title}</h2>}
-      <ul className={styles.grid}>
+    <div>
+      {props.title && <h2 >{props.title}</h2>}
+      <ul>
         {props.nodes &&
           props.nodes.map(node => (
             <li key={node.id}>
@@ -17,7 +17,7 @@ function ProjectPreviewGrid (props) {
           ))}
       </ul>
       {props.browseMoreHref && (
-        <div className={styles.browseMoreNav}>
+        <div>
           <Link to={props.browseMoreHref}>Browse more</Link>
         </div>
       )}
