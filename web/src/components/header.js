@@ -1,16 +1,17 @@
 import {Link} from 'gatsby'
 import React, {useState, useEffect} from 'react'
-import {AppBar, Typography, Toolbar} from '@material-ui/core'
+import {AppBar, Typography, Toolbar, Slide} from '@material-ui/core'
 import {styled} from '@material-ui/core/styles'
 import nav from './nav'
 
-const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
+const Header = ({onHideNav, onShowNav, showNav, siteTitle, menuItems, location: {pathname}}) => {
   const [portrait, setPortrait] = useState(false)
+  console.log()
   const updateOrientation = () => {
     setPortrait(window.innerWidth < window.innerHeight)
   }
-
-  const {menuButton, menuDrawer} = nav({portrait})
+  const currentPage = menuItems.find(({route}) => route === pathname)
+  const {menuButton, menuDrawer} = nav({portrait, menuItems})
 
   useEffect(() => {
     updateOrientation()
@@ -32,8 +33,10 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
           top: portrait ? 'auto' : 0
         }}
       >
-        <StyledToolbar disableGutters>
-          <Typography variant='h6'>Header</Typography>
+        <StyledToolbar>
+          <Slide direction='right' in mountOnEnter unmountOnExit timeout={500}>
+            <Typography variant='h6'>{currentPage.text}</Typography>
+          </Slide>
           {menuButton}
         </StyledToolbar>
       </AppBar>

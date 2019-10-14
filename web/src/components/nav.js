@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Link} from 'gatsby'
 import {
   SwipeableDrawer,
   Button,
@@ -8,12 +9,14 @@ import {
   ListItemText,
   ListSubheader,
   Typography,
-  Grow
+  Divider,
+  Grow,
+  Slide
 } from '@material-ui/core'
 import {styled} from '@material-ui/core/styles'
 import {MenuRounded, CloseRounded} from '@material-ui/icons/'
 
-const nav = ({portrait}) => {
+const nav = ({portrait, menuItems}) => {
   const [open, setOpen] = useState(false)
   const handleOpen = setTo => () => setOpen(setTo)
   const size = (() => (portrait ? 'large' : 'default'))()
@@ -32,47 +35,35 @@ const nav = ({portrait}) => {
         portrait={portrait}
       >
         <StyledList>
-          <ListItem button autoFocus onClick={handleOpen(!open)}>
+          <ListItem divider button autoFocus onClick={handleOpen(!open)}>
             <ListItemText primary='Chris Czach ' secondary='Front End Developer' />
-
-            <CloseRounded disableGutters fontSize='large' />
+            <ListItemIcon>
+              <CloseRounded fontSize='large' endIcon />
+            </ListItemIcon>
           </ListItem>
-          <Grow in={open}>
-            <ListItem button autoFocus onClick={handleOpen(!open)}>
-              <ListItemIcon>
-                <MenuRounded fontSize={size} />
-              </ListItemIcon>
-              <ListItemText primary={'About'} />
-            </ListItem>
-          </Grow>
-          <Grow in={open} style={{transformOrigin: '0 0 0'}} {...(open ? {timeout: 500} : {})}>
-            <ListItem button autoFocus onClick={handleOpen(!open)}>
-              <ListItemIcon>
-                <MenuRounded fontSize={size} />
-              </ListItemIcon>
-              <ListItemText primary={'Experience'} />
-            </ListItem>
-          </Grow>
-          <Grow in={open} style={{transformOrigin: '0 0 0'}} {...(open ? {timeout: 1000} : {})}>
-            <ListItem button autoFocus onClick={handleOpen(!open)}>
-              <ListItemIcon>
-                <MenuRounded fontSize={size} />
-              </ListItemIcon>
-              <ListItemText primary={'Portfolio'} />
-            </ListItem>
-          </Grow>
-          <Grow in={open} style={{transformOrigin: '0 0 0'}} {...(open ? {timeout: 1500} : {})}>
-            <ListItem button autoFocus onClick={handleOpen(!open)}>
-              <ListItemIcon>
-                <MenuRounded fontSize={size} />
-              </ListItemIcon>
-              <ListItemText primary={'Contact'} />
-            </ListItem>
-          </Grow>
+          {menuItems.map(toMenu(open, handleOpen, size))}
         </StyledList>
       </StyledDrawer>
     )
   }
+}
+
+const toMenu = (open, handleOpen, size) => ({text, Icon, route}, index) => {
+  return (
+    <>
+      <Grow in={open} style={{transformOrigin: '0 0 0'}} {...(open ? {timeout: index * 350} : {})}>
+        <Link to={route}>
+          <ListItem button autoFocus onClick={handleOpen(!open)}>
+            <ListItemIcon>
+              <Icon fontSize={size} />
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        </Link>
+      </Grow>
+      <Divider variant='inset' component='li' />
+    </>
+  )
 }
 
 const StyledDrawer = styled(({portrait, ...others}) => <SwipeableDrawer {...others} />)({})
