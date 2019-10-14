@@ -7,7 +7,8 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
-  Typography
+  Typography,
+  Grow
 } from '@material-ui/core'
 import {styled} from '@material-ui/core/styles'
 import {MenuRounded, CloseRounded} from '@material-ui/icons/'
@@ -36,30 +37,38 @@ const nav = ({portrait}) => {
 
             <CloseRounded disableGutters fontSize='large' />
           </ListItem>
-          <ListItem button autoFocus onClick={handleOpen(!open)}>
-            <ListItemIcon>
-              <MenuRounded fontSize={size} />
-            </ListItemIcon>
-            <ListItemText primary={'About'} />
-          </ListItem>
-          <ListItem button autoFocus onClick={handleOpen(!open)}>
-            <ListItemIcon>
-              <MenuRounded fontSize={size} />
-            </ListItemIcon>
-            <ListItemText primary={'Experience'} />
-          </ListItem>
-          <ListItem button autoFocus onClick={handleOpen(!open)}>
-            <ListItemIcon>
-              <MenuRounded fontSize={size} />
-            </ListItemIcon>
-            <ListItemText primary={'Portfolio'} />
-          </ListItem>
-          <ListItem button autoFocus onClick={handleOpen(!open)}>
-            <ListItemIcon>
-              <MenuRounded fontSize={size} />
-            </ListItemIcon>
-            <ListItemText primary={'Contact'} />
-          </ListItem>
+          <Grow in={open}>
+            <ListItem button autoFocus onClick={handleOpen(!open)}>
+              <ListItemIcon>
+                <MenuRounded fontSize={size} />
+              </ListItemIcon>
+              <ListItemText primary={'About'} />
+            </ListItem>
+          </Grow>
+          <Grow in={open} style={{transformOrigin: '0 0 0'}} {...(open ? {timeout: 500} : {})}>
+            <ListItem button autoFocus onClick={handleOpen(!open)}>
+              <ListItemIcon>
+                <MenuRounded fontSize={size} />
+              </ListItemIcon>
+              <ListItemText primary={'Experience'} />
+            </ListItem>
+          </Grow>
+          <Grow in={open} style={{transformOrigin: '0 0 0'}} {...(open ? {timeout: 1000} : {})}>
+            <ListItem button autoFocus onClick={handleOpen(!open)}>
+              <ListItemIcon>
+                <MenuRounded fontSize={size} />
+              </ListItemIcon>
+              <ListItemText primary={'Portfolio'} />
+            </ListItem>
+          </Grow>
+          <Grow in={open} style={{transformOrigin: '0 0 0'}} {...(open ? {timeout: 1500} : {})}>
+            <ListItem button autoFocus onClick={handleOpen(!open)}>
+              <ListItemIcon>
+                <MenuRounded fontSize={size} />
+              </ListItemIcon>
+              <ListItemText primary={'Contact'} />
+            </ListItem>
+          </Grow>
         </StyledList>
       </StyledDrawer>
     )

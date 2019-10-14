@@ -1,6 +1,6 @@
 import {Link} from 'gatsby'
 import React, {useState, useEffect} from 'react'
-import {AppBar} from '@material-ui/core'
+import {AppBar, Typography, Toolbar} from '@material-ui/core'
 import {styled} from '@material-ui/core/styles'
 import nav from './nav'
 
@@ -23,7 +23,7 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
   }, [])
   return (
     <>
-      <StyledAppBar
+      <AppBar
         color='primary'
         portrait={portrait}
         style={{
@@ -32,14 +32,17 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
           top: portrait ? 'auto' : 0
         }}
       >
-        Header {menuButton}
-      </StyledAppBar>
+        <StyledToolbar disableGutters>
+          <Typography variant='h6'>Header</Typography>
+          {menuButton}
+        </StyledToolbar>
+      </AppBar>
       {menuDrawer}
     </>
   )
 }
 
-const StyledAppBar = styled(AppBar)({
+const StyledToolbar = styled(Toolbar)({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
