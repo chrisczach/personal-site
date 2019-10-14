@@ -9,6 +9,7 @@ import Container from '../components/container'
 import ProjectPreviewGrid from '../components/project-preview-grid'
 import SEO from '../components/seo'
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL'
+import Button from '@material-ui/core/Button'
 
 const IndexPage = ({data}) => {
   const site = (data || {}).site
@@ -29,6 +30,9 @@ const IndexPage = ({data}) => {
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container>
         <h1 hidden>Welcome to {site.title}</h1>
+        <Button variant='contained' color='primary'>
+          Test MUI
+        </Button>
         {projectNodes && (
           <ProjectPreviewGrid
             title='Latest projects'
