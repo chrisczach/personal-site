@@ -1,27 +1,63 @@
 import React, {useState} from 'react'
-import {SwipeableDrawer, Button} from '@material-ui/core'
+import {
+  SwipeableDrawer,
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+  Typography
+} from '@material-ui/core'
 import {styled} from '@material-ui/core/styles'
+import {MenuRounded, CloseRounded} from '@material-ui/icons/'
 
-const Nav = ({portrait}) => {
+const nav = ({portrait}) => {
   const [open, setOpen] = useState(false)
   const handleOpen = setTo => () => setOpen(setTo)
-  return (
-    <>
-      <Button variant='contained' onClick={handleOpen(!open)}>
-        Menu
+  const size = (() => (portrait ? 'large' : 'default'))()
+  return {
+    menuButton: (
+      <Button variant='text' onClick={handleOpen(!open)} fullWidth={false}>
+        <MenuRounded fontSize='large' />
       </Button>
+    ),
+    menuDrawer: (
       <StyledDrawer
         anchor={portrait ? 'bottom' : 'right'}
         open={open}
         onOpen={handleOpen(true)}
         onClose={handleOpen(false)}
+        portrait={portrait}
       >
-        <div>Test</div>
+        <div>
+          Close
+          <Button variant='text' onClick={handleOpen(!open)} fullWidth>
+            <CloseRounded fontSize='large' />
+          </Button>
+        </div>
+        <StyledList>
+          <ListItem button autoFocus onClick={handleOpen(!open)}>
+            <ListItemIcon>
+              <MenuRounded fontSize={size} />
+            </ListItemIcon>
+            <ListItemText primary={'text'} />
+          </ListItem>
+          <ListItem button autoFocus onClick={handleOpen(!open)}>
+            <ListItemIcon>
+              <MenuRounded fontSize={size} />
+            </ListItemIcon>
+            <ListItemText primary={'text'} />
+          </ListItem>
+        </StyledList>
       </StyledDrawer>
-    </>
-  )
+    )
+  }
 }
 
-const StyledDrawer = styled(SwipeableDrawer)({})
+const StyledDrawer = styled(({portrait, ...others}) => <SwipeableDrawer {...others} />)({})
+const StyledList = styled(({portrait, ...others}) => <List {...others} />)({
+  minHeight: ({portrait}) => ({portrait} ? '50vh' : 'auto')
+})
 
-export default Nav
+export default nav

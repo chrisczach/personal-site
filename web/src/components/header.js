@@ -2,13 +2,15 @@ import {Link} from 'gatsby'
 import React, {useState, useEffect} from 'react'
 import {AppBar} from '@material-ui/core'
 import {styled} from '@material-ui/core/styles'
-import Nav from './nav'
+import nav from './nav'
 
 const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
   const [portrait, setPortrait] = useState(false)
   const updateOrientation = () => {
     setPortrait(window.innerWidth < window.innerHeight)
   }
+
+  const {menuButton, menuDrawer} = nav({portrait})
 
   useEffect(() => {
     updateOrientation()
@@ -18,15 +20,23 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle}) => {
     }
   }, [])
   return (
-    <StyledAppBar position='fixed' color='primary' portrait={portrait}>
-      Header <Nav portrait={portrait} />
-    </StyledAppBar>
+    <>
+      <StyledAppBar color='primary' portrait={portrait}>
+        Header {menuButton}
+      </StyledAppBar>
+      {menuDrawer}
+    </>
   )
 }
 
 const StyledAppBar = styled(({portrait, ...others}) => <AppBar {...others} />)({
+  display: 'flex',
+  position: ({portrait}) => (portrait ? 'fixed' : 'sticky'),
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
   bottom: ({portrait}) => (portrait ? 0 : 'auto'),
-  top: ({portrait}) => (portrait ? 'auto' : 0)
+  top: ({portrait}) => (portrait ? 'auto' : 0),
 })
 
 export default Header
