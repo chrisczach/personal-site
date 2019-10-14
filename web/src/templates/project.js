@@ -1,6 +1,5 @@
 import React from 'react'
 import {graphql} from 'gatsby'
-import Project from '../components/project'
 import SEO from '../components/seo'
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL'
 
@@ -10,7 +9,7 @@ const ProjectTemplate = ({data}) => {
   return (
     <>
       <SEO title={project.title || 'Untitled'} />
-      <Project {...project} />
+      {project.title}
     </>
   )
 }
