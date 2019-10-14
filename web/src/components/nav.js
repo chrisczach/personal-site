@@ -76,7 +76,7 @@ const toMenu = (open, handleOpen, size) => ({text, Icon, route}, index) => {
         direction='left'
         in={open}
         style={{transformOrigin: '0 0 0'}}
-        {...(open ? {timeout: index * 150 + 150} : {})}
+        {...(open ? {timeout: index * 200 + 150} : {})}
       >
         <Divider variant='inset' component='li' />
       </Slide>
@@ -84,11 +84,15 @@ const toMenu = (open, handleOpen, size) => ({text, Icon, route}, index) => {
   )
 }
 
-const StyledDrawer = styled(({portrait, ...others}) => <SwipeableDrawer {...others} />)({})
+const StyledDrawer = styled(({portrait, ...others}) => <SwipeableDrawer {...others} />)({
+  overflow: 'hidden'
+})
 const StyledList = styled(List)({
   minHeight: '50vh',
-  minWidth: '25vw'
+  minWidth: '25vw',
+  overflow: 'hidden'
 })
 
 const StyledListItem = styled(ListItem)({overflow: 'hidden'})
+
 export default nav

@@ -5,14 +5,14 @@ const rawTheme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      light: '#69696a',
-      main: '#28282a',
-      dark: '#1e1e1f'
+      light: '#F5F5F4',
+      main: '#B09FA1',
+      dark: '#4F4E58'
     },
     secondary: {
-      light: '#fff5f8',
-      main: '#ff3366',
-      dark: '#e62958'
+      light: '#F5F5F4',
+      main: '#90807C',
+      dark: '#4E5375'
     },
     warning: {
       main: '#ffc071',
@@ -51,7 +51,7 @@ const theme = {
     ...rawTheme.palette,
     background: {
       ...rawTheme.palette.background,
-      default: rawTheme.palette.common.white,
+      default: rawTheme.palette.primary.dark,
       placeholder: grey[200]
     }
   },

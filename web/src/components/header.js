@@ -26,7 +26,7 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle, menuItems, location: 
     <>
       <Fade in style={{transformOrigin: '0 0 0'}} timeout={500}>
         <AppBar
-          color='primary'
+          color='secondary'
           portrait={portrait}
           style={{
             position: portrait ? 'fixed' : 'sticky',
