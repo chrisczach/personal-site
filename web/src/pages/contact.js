@@ -52,7 +52,6 @@ const Contact = ({data, ...props}) => {
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     )
   }
-  const [rerender, setRerender] = useState(false)
   return (
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
@@ -60,7 +59,7 @@ const Contact = ({data, ...props}) => {
         <Fade in timeout={300}>
           <Slide in direction='right' timeout={600}>
             <Typography variant='h2' color='secondary' className={classes.heading}>
-              Contact Me {rerender ? 'rerendered' : 'not rerendered'}
+              Contact Me
             </Typography>
           </Slide>
         </Fade>
@@ -71,14 +70,14 @@ const Contact = ({data, ...props}) => {
           </Typography>
         </Fade>
         <Paper component='form' className={classes.paper}>
-          {formElements().map((element, index) => (
-            <Fade in timeout={index * 600 + 1000}>
-              {element}
-            </Fade>
-          ))}
+          {typeof window === undefined ||
+            formElements().map((element, index) => (
+              <Fade in timeout={index * 600 + 1000}>
+                {element}
+              </Fade>
+            ))}
         </Paper>
       </Container>
-      {rerender || setTimeout(() => setRerender(true), 2000)}
     </>
   )
 }
