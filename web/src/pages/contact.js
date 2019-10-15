@@ -27,7 +27,7 @@ const Contact = props => {
   const classes = useStyles(props)
   return (
     <Container maxWidth='md' className={classes.container}>
-      <Typography variant='h2' color='primary' className={classes.heading}>
+      <Typography variant='h2' color='secondary' className={classes.heading}>
         Contact Me
       </Typography>
       <Paper component='form' className={classes.paper} autocomplete='off'>

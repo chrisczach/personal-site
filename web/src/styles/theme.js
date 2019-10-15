@@ -47,7 +47,7 @@ const theme = {
     ...rawTheme.palette,
     background: {
       ...rawTheme.palette.background,
-      default: grey[200],
+      default: rawTheme.palette.primary.main,
       placeholder: grey[200]
     }
   },
