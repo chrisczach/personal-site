@@ -26,12 +26,10 @@ const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle, location}) 
       onShowNav={onShowNav}
       showNav={showNav}
     />
-    <Grow in style={{transformOrigin: '0 0 0'}} timeout={250}>
-      <Box component='div'>
-        {children}
-        <Footer />
-      </Box>
+    <Grow in style={{transformOrigin: '0 0 0'}} timeout={150}>
+      <Box component='div'>{children}</Box>
     </Grow>
+    <Footer />
   </ThemeProvider>
 )
 

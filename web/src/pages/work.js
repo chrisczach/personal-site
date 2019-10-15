@@ -25,7 +25,7 @@ const Work = ({data, ...props}) => {
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <ContainerWithHeading
-        heading='Portfolio / Projects'
+        heading='Work and Experience'
         subHeading='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam deserunt ullam
             blanditiis illo culpa saepe voluptate, reiciendis nisi tempore'
       />

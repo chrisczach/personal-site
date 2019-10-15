@@ -1,12 +1,11 @@
 import {Link} from 'gatsby'
 import React, {useState, useEffect} from 'react'
-import {AppBar, Typography, Toolbar, Fade} from '@material-ui/core'
+import {AppBar, Typography, Toolbar, Fade, Slide} from '@material-ui/core'
 import {styled} from '@material-ui/core/styles'
 import nav from './nav'
 
 const Header = ({onHideNav, onShowNav, showNav, siteTitle, menuItems, location: {pathname}}) => {
   const [portrait, setPortrait] = useState(false)
-  console.log()
   const updateOrientation = () => {
     setPortrait(window.innerWidth < window.innerHeight)
   }
@@ -24,24 +23,27 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle, menuItems, location: 
   }, [])
   return (
     <>
-      <AppBar
-        color='secondary'
-        portrait={portrait}
-        style={{
-          position: portrait ? 'fixed' : 'sticky',
-          bottom: portrait ? 0 : 'auto',
-          top: portrait ? 'auto' : 0
-        }}
-      >
-        <StyledToolbar>
-          <Fade in mountOnEnter unmountOnExit timeout={500}>
-            <Typography variant='h6'>
-              Chris Czach {!portrait && <span style={{opacity: 0.5}}>Front End Developer</span>}
-            </Typography>
-          </Fade>
-          {menuButton}
-        </StyledToolbar>
-      </AppBar>
+      <Slide in direction='down' timeout={500}>
+        <Fade in timeout={250}>
+          <AppBar
+            color='secondary'
+            style={{
+              position: portrait ? 'fixed' : 'sticky',
+              bottom: portrait ? 0 : 'auto',
+              top: portrait ? 'auto' : 0
+            }}
+          >
+            <StyledToolbar>
+              <Fade in mountOnEnter unmountOnExit timeout={500}>
+                <Typography variant='h6'>
+                  Chris Czach {!portrait && <span style={{opacity: 0.5}}>Front End Developer</span>}
+                </Typography>
+              </Fade>
+              {menuButton}
+            </StyledToolbar>
+          </AppBar>
+        </Fade>
+      </Slide>
       {menuDrawer}
     </>
   )
