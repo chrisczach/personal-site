@@ -37,14 +37,14 @@ const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle, location}) 
 
 const menuItems = [
   {link: 'Home', Icon: HomeRounded, route: '/', title: 'Chris Czach'},
-  {link: 'About', Icon: FormatListBulletedRounded, route: '/about', title: 'About Me'},
-  {link: 'Experience', Icon: WorkRounded, route: '/work', title: 'Work Experience'},
+  {link: 'About', Icon: FormatListBulletedRounded, route: '/about/', title: 'About Me'},
+  {link: 'Experience', Icon: WorkRounded, route: '/work/', title: 'Work Experience'},
   {
     link: 'Portfolio',
     Icon: DeveloperModeRounded,
-    route: '/portfolio',
+    route: '/portfolio/',
     title: 'Portfolio / Projects'
   },
-  {link: 'Contact', Icon: ContactMailRounded, route: '/contact', title: 'Contact Me'}
+  {link: 'Contact', Icon: ContactMailRounded, route: '/contact/', title: 'Contact Me'}
 ]
 export default Layout

@@ -16,6 +16,7 @@ module.exports = {
         component: require.resolve(`./src/containers/layout.js`)
       }
     },
+    `gatsby-plugin-force-trailing-slashes`,
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
     {
