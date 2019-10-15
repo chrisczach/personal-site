@@ -26,7 +26,7 @@ const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle, location}) 
       onShowNav={onShowNav}
       showNav={showNav}
     />
-    <Grow in style={{transformOrigin: '0 0 0'}} timeout={200}>
+    <Grow in style={{transformOrigin: '0 0 0'}} timeout={5000}>
       <Box component='div'>
         {children}
         <Footer />
