@@ -60,7 +60,7 @@ const Contact = ({data, ...props}) => {
         <Fade in timeout={300}>
           <Slide in direction='right' timeout={600}>
             <Typography variant='h2' color='secondary' className={classes.heading}>
-              Contact Me {rerender ? 'not rerendered' : 'rerendered'}
+              Contact Me {rerender ? 'rerendered' : 'not rerendered'}
             </Typography>
           </Slide>
         </Fade>
@@ -78,7 +78,7 @@ const Contact = ({data, ...props}) => {
           ))}
         </Paper>
       </Container>
-      {rerender || setRerender(true)}
+      {rerender || setTimeout(() => setRerender(true), 2000)}
     </>
   )
 }
