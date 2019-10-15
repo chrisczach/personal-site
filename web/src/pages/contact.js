@@ -1,6 +1,15 @@
 import React from 'react'
 import {SendRounded, CloseRounded} from '@material-ui/icons/'
-import {Container, Paper, Typography, TextField, Button, Fade, Slide} from '@material-ui/core'
+import {
+  Container,
+  Paper,
+  Typography,
+  TextField,
+  Button,
+  Fade,
+  Slide,
+  NoSsr
+} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import {graphql} from 'gatsby'
 import {
@@ -54,18 +63,20 @@ const Contact = ({data, ...props}) => {
             </Typography>
           </Slide>
         </Fade>
-        <Fade in timeout={ 900 }>
-        <Typography variant='subtitle1' color='primary' className={classes.subHeading}>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam deserunt ullam
+        <Fade in timeout={900}>
+          <Typography variant='subtitle1' color='primary' className={classes.subHeading}>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam deserunt ullam
             blanditiis illo culpa saepe voluptate, reiciendis nisi tempore
-        </Typography>
-          </Fade>
+          </Typography>
+        </Fade>
         <Paper component='form' className={classes.paper}>
-          {formElements(classes).map((element, index) => (
-            <Fade in timeout={index * 600 + 1000}>
-              {element}
-            </Fade>
-          ))}
+          <NoSsr>
+            {formElements(classes).map((element, index) => (
+              <Fade in timeout={index * 600 + 1000}>
+                {element}
+              </Fade>
+            ))}
+          </NoSsr>
         </Paper>
       </Container>
     </>
