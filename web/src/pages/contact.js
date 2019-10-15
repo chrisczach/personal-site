@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {SendRounded, CloseRounded} from '@material-ui/icons/'
 import {
   Container,
@@ -52,13 +52,21 @@ const Contact = ({data, ...props}) => {
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     )
   }
+
+  const [defer, setDefer] = useState(true)
+
   return (
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container maxWidth='md' className={classes.container}>
         <Fade in timeout={300}>
           <Slide in direction='right' timeout={600}>
-            <Typography variant='h2' color='secondary' className={classes.heading}>
+            <Typography
+              variant='h2'
+              color='secondary'
+              className={classes.heading}
+              onClick={() => setDefer(false)}
+            >
               Contact Me
             </Typography>
           </Slide>
@@ -70,13 +78,13 @@ const Contact = ({data, ...props}) => {
           </Typography>
         </Fade>
         <Paper component='form' className={classes.paper}>
-          {formElements(classes).map((element, index) => (
-            <NoSsr defer>
-              <Fade defer in timeout={index * 600 + 1000}>
+          <NoSsr defer={defer}>
+            {formElements(classes).map((element, index) => (
+              <Fade in timeout={index * 600 + 1000}>
                 {element}
               </Fade>
-            </NoSsr>
-          ))}
+            ))}
+          </NoSsr>
         </Paper>
       </Container>
     </>
