@@ -11,23 +11,7 @@ import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL'
 import {SendRounded, CloseRounded} from '@material-ui/icons/'
 import {Container, Paper, Typography, TextField, Button, Slide, Fade} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
-
-const useStyles = makeStyles(theme => ({
-  container: {
-    padding: theme.spacing(2)
-  },
-  heading: {
-    padding: theme.spacing(2, 2, 1, 2)
-  },
-  subHeading: {
-    padding: theme.spacing(2, 2)
-  },
-  paper: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: theme.spacing(3, 2)
-  }
-}))
+import {ContainerWithHeading} from '../components/containerWithHeading'
 
 const IndexPage = ({data, ...props}) => {
   const site = (data || {}).site
@@ -36,25 +20,15 @@ const IndexPage = ({data, ...props}) => {
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     )
   }
-  const classes = useStyles(props)
+
   return (
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
-      <Container maxWidth='md' className={classes.container}>
-        <Fade in timeout={300}>
-          <Slide in direction='right' timeout={600}>
-            <Typography variant='h2' color='secondary' className={classes.heading}>
-              Home Page
-            </Typography>
-          </Slide>
-        </Fade>
-        <Fade in timeout={ 900 }>
-        <Typography variant='subtitle1' color='primary' className={classes.subHeading}>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam deserunt ullam
-          blanditiis illo culpa saepe voluptate, reiciendis nisi tempore
-        </Typography>
-        </Fade>
-      </Container>
+      <ContainerWithHeading
+        heading='Home'
+        subHeading='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam deserunt ullam
+            blanditiis illo culpa saepe voluptate, reiciendis nisi tempore'
+      />
     </>
   )
 }
