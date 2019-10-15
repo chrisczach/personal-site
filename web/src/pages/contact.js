@@ -53,20 +53,13 @@ const Contact = ({data, ...props}) => {
     )
   }
 
-  const [defer, setDefer] = useState(true)
-
   return (
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container maxWidth='md' className={classes.container}>
         <Fade in timeout={300}>
           <Slide in direction='right' timeout={600}>
-            <Typography
-              variant='h2'
-              color='secondary'
-              className={classes.heading}
-              onClick={() => setDefer(false)}
-            >
+            <Typography variant='h2' color='secondary' className={classes.heading}>
               Contact Me
             </Typography>
           </Slide>
@@ -78,13 +71,11 @@ const Contact = ({data, ...props}) => {
           </Typography>
         </Fade>
         <Paper component='form' className={classes.paper}>
-          <NoSsr defer={defer}>
-            {formElements(classes).map((element, index) => (
-              <Fade in timeout={index * 600 + 1000}>
-                {element}
-              </Fade>
-            ))}
-          </NoSsr>
+          {formElements(classes).map((element, index) => (
+            <Fade in timeout={index * 600 + 1000}>
+              {element}
+            </Fade>
+          ))}
         </Paper>
       </Container>
     </>
