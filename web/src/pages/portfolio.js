@@ -9,7 +9,7 @@ import {
 import SEO from '../components/seo'
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL'
 import {SendRounded, CloseRounded} from '@material-ui/icons/'
-import {Container, Paper, Typography, TextField, Button} from '@material-ui/core'
+import {Container, Paper, Typography, TextField, Button, Fade, Slide} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
@@ -41,13 +41,19 @@ const Portfolio = ({data, ...props}) => {
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container maxWidth='md' className={classes.container}>
-        <Typography variant='h2' color='secondary' className={classes.heading}>
-          Portfolio and Projects
-        </Typography>
+        <Fade in timeout={300}>
+          <Slide in direction='right' timeout={600}>
+            <Typography variant='h2' color='secondary' className={classes.heading}>
+              Portfolio and Projects
+            </Typography>
+          </Slide>
+        </Fade>
+        <Fade in timeout={ 900 }>
         <Typography variant='subtitle1' color='primary' className={classes.subHeading}>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam deserunt ullam
-          blanditiis illo culpa saepe voluptate, reiciendis nisi tempore
+            blanditiis illo culpa saepe voluptate, reiciendis nisi tempore
         </Typography>
+        </Fade>
       </Container>
     </>
   )
