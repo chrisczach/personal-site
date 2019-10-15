@@ -1,6 +1,6 @@
 import React from 'react'
 import {SendRounded, CloseRounded} from '@material-ui/icons/'
-import {Container, Paper, Typography, TextField, Button} from '@material-ui/core'
+import {Container, Paper, Typography, TextField, Button, Fade} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import {graphql} from 'gatsby'
 import {
@@ -55,65 +55,73 @@ const Contact = ({data, ...props}) => {
           blanditiis illo culpa saepe voluptate, reiciendis nisi tempore
         </Typography>
         <Paper component='form' className={classes.paper}>
-          <TextField
-            margin='normal'
-            required
-            variant='outlined'
-            label='Full Name'
-            placeholder='Enter Name Here'
-            className={classes.input}
-            inputProps={{
-              'aria-label': 'Full Name'
-            }}
-          />
-          <TextField
-            variant='outlined'
-            required
-            margin='normal'
-            className={classes.input}
-            label='Email Address'
-            placeholder='Enter Email Here'
-            inputProps={{
-              'aria-label': 'Email'
-            }}
-          />
-          <TextField
-            variant='outlined'
-            margin='normal'
-            label='Subject'
-            className={classes.input}
-            placeholder='End Subject Here'
-            inputProps={{
-              'aria-label': 'Subject'
-            }}
-          />
-          <TextField
-            rows={6}
-            variant='outlined'
-            margin='normal'
-            required
-            label='Message Body'
-            multiline
-            className={classes.input}
-            placeholder='Message Body Here'
-            inputProps={{
-              'aria-label': 'Body'
-            }}
-          />
-          <Button
-            className={classes.submit}
-            color='primary'
-            size='large'
-            variant='contained'
-            startIcon={<SendRounded />}
-          >
-            Send Message
-          </Button>
+          {formElements(classes).map((element, index) => (
+            <Fade in timeout={index * 500 + 250}>
+              {element}
+            </Fade>
+          ))}
         </Paper>
       </Container>
     </>
   )
 }
+
+const formElements = classes => [
+  <TextField
+    margin='normal'
+    required
+    variant='outlined'
+    label='Full Name'
+    placeholder='Enter Name Here'
+    className={classes.input}
+    inputProps={{
+      'aria-label': 'Full Name'
+    }}
+  />,
+  <TextField
+    variant='outlined'
+    required
+    margin='normal'
+    className={classes.input}
+    label='Email Address'
+    placeholder='Enter Email Here'
+    inputProps={{
+      'aria-label': 'Email'
+    }}
+  />,
+  <TextField
+    variant='outlined'
+    margin='normal'
+    label='Subject'
+    className={classes.input}
+    placeholder='End Subject Here'
+    inputProps={{
+      'aria-label': 'Subject'
+    }}
+  />,
+  <TextField
+    rows={6}
+    variant='outlined'
+    margin='normal'
+    required
+    label='Message Body'
+    multiline
+    className={classes.input}
+    placeholder='Message Body Here'
+    inputProps={{
+      'aria-label': 'Body'
+    }}
+  />,
+  <Button
+    className={classes.submit}
+    color='primary'
+    size='large'
+    variant='contained'
+    startIcon={<SendRounded />}
+  >
+    Send Message
+  </Button>
+]
 
 export const query = graphql`
   query ContactPageQuery {
