@@ -54,7 +54,7 @@ const Contact = ({data, ...props}) => {
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam deserunt ullam
           blanditiis illo culpa saepe voluptate, reiciendis nisi tempore
         </Typography>
-        <Paper component='form' className={classes.paper} autocomplete='off'>
+        <Paper component='form' className={classes.paper}>
           <TextField
             margin='normal'
             required
