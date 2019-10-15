@@ -8,31 +8,47 @@ import {
 
 import SEO from '../components/seo'
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL'
-import {Button, Typography} from '@material-ui/core/'
+import {SendRounded, CloseRounded} from '@material-ui/icons/'
+import {Container, Paper, Typography, TextField, Button} from '@material-ui/core'
+import {makeStyles} from '@material-ui/core/styles'
 
-const IndexPage = ({data}) => {
+const useStyles = makeStyles(theme => ({
+  container: {
+    padding: theme.spacing(2)
+  },
+  heading: {
+    padding: theme.spacing(2, 2, 1, 2)
+  },
+  subHeading: {
+    padding: theme.spacing(2, 2)
+  },
+  paper: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: theme.spacing(3, 2)
+  }
+}))
+
+const IndexPage = ({data, ...props}) => {
   const site = (data || {}).site
-  const projectNodes = (data || {}).projects
-    ? mapEdgesToNodes(data.projects)
-      .filter(filterOutDocsWithoutSlugs)
-      .filter(filterOutDocsPublishedInTheFuture)
-    : []
-
   if (!site) {
     throw new Error(
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     )
   }
-
+  const classes = useStyles(props)
   return (
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
-      <Typography variant='h1' gutterBottom>
-        Title
-      </Typography>
-      <Button variant='contained' color='primary'>
-        Button
-      </Button>
+      <Container maxWidth='md' className={classes.container}>
+        <Typography variant='h2' color='secondary' className={classes.heading}>
+          Home Page
+        </Typography>
+        <Typography variant='subtitle1' color='primary' className={classes.subHeading}>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam deserunt ullam
+          blanditiis illo culpa saepe voluptate, reiciendis nisi tempore
+        </Typography>
+      </Container>
     </>
   )
 }
