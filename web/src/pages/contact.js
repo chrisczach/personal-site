@@ -70,15 +70,11 @@ const Contact = ({data, ...props}) => {
           </Typography>
         </Fade>
         <Paper component='form' className={classes.paper}>
-          
-          { formElements( classes ).map( ( element, index ) => (
-            <NoSsr>
-              <Fade defer in timeout={index * 600 + 1000}>
-                {element}
-              </Fade>
-            </NoSsr>
-            ))}
-          
+          {formElements(classes).map((element, index) => (
+            <Fade defer in timeout={index * 600 + 1000}>
+              {element}
+            </Fade>
+          ))}
         </Paper>
       </Container>
     </>
