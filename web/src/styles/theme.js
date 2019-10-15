@@ -30,7 +30,7 @@ const rawTheme = createMuiTheme({
     fontWeightLight: 100, // Work Sans
     fontWeightRegular: 300, // Work Sans
     fontWeightMedium: 400, // Playfair Display Condensed
-    fontFamilySecondary: "'Open+Sans', sans-serif"
+    fontFamilySecondary: "'Open Sans', sans-serif"
   }
 })
 
@@ -47,7 +47,7 @@ const theme = {
     ...rawTheme.palette,
     background: {
       ...rawTheme.palette.background,
-      default: rawTheme.palette.primary.light,
+      default: grey[200],
       placeholder: grey[200]
     }
   },

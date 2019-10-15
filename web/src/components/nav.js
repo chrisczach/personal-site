@@ -13,13 +13,14 @@ import {
   Grow,
   Slide
 } from '@material-ui/core'
-import {styled} from '@material-ui/core/styles'
+import {styled, useTheme, makeStyles} from '@material-ui/core/styles'
 import {MenuRounded, CloseRounded} from '@material-ui/icons/'
 
 const nav = ({portrait, menuItems}) => {
   const [open, setOpen] = useState(false)
   const handleOpen = setTo => () => setOpen(setTo)
   const size = (() => (portrait ? 'large' : 'default'))()
+  const theme = useTheme()
   return {
     menuButton: (
       <Button variant='text' onClick={handleOpen(!open)} fullWidth={false} endIcon>
@@ -33,14 +34,21 @@ const nav = ({portrait, menuItems}) => {
         onOpen={handleOpen(true)}
         onClose={handleOpen(false)}
         portrait={portrait}
+        swipeAreaWidth={50}
       >
-        <StyledList>
-          <ListItem divider button autoFocus onClick={handleOpen(!open)}>
+        <StyledList disablePadding>
+          <FirstItem
+            divider
+            button
+            autoFocus
+            onClick={handleOpen(!open)}
+            background={theme.palette.primary.dark}
+          >
             <ListItemText primary='Chris Czach ' secondary='Front End Developer' />
             <ListItemIcon>
-              <CloseRounded fontSize='large' endIcon />
+              <CloseRounded fontSize='large' />
             </ListItemIcon>
-          </ListItem>
+          </FirstItem>
           {menuItems.map(toMenu(open, handleOpen, size))}
         </StyledList>
       </StyledDrawer>
@@ -48,7 +56,7 @@ const nav = ({portrait, menuItems}) => {
   }
 }
 
-const toMenu = (open, handleOpen, size) => ({text, Icon, route}, index) => {
+const toMenu = (open, handleOpen, size) => ({link, Icon, route}, index) => {
   return (
     <>
       <Link to={route}>
@@ -67,7 +75,7 @@ const toMenu = (open, handleOpen, size) => ({text, Icon, route}, index) => {
               style={{transformOrigin: '0 0 0'}}
               {...(open ? {timeout: index * 150 + 50} : {})}
             >
-              <ListItemText primary={text} />
+              <ListItemText primary={link} />
             </Slide>
           </StyledListItem>
         </Grow>
@@ -93,6 +101,10 @@ const StyledList = styled(List)({
   overflow: 'hidden'
 })
 
+const FirstItem = styled(({background, ...otherProps}) => <ListItem {...otherProps} />)({
+  overflow: 'hidden',
+  background: ({background}) => background
+})
 const StyledListItem = styled(ListItem)({overflow: 'hidden'})
 
 export default nav

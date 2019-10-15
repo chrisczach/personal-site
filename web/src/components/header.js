@@ -36,7 +36,7 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle, menuItems, location: 
         <StyledToolbar>
           <Fade in mountOnEnter unmountOnExit timeout={500}>
             <Typography variant='h6'>
-              {(currentPage && currentPage.text) || 'Missing Title'}
+              {(currentPage && currentPage.title) || 'Missing Title'}
             </Typography>
           </Fade>
           {menuButton}
