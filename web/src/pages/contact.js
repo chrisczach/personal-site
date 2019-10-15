@@ -71,7 +71,7 @@ const Contact = ({data, ...props}) => {
         </Fade>
         <Paper component='form' className={classes.paper}>
           {typeof window === undefined ||
-            formElements().map((element, index) => (
+            formElements(classes).map((element, index) => (
               <Fade in timeout={index * 600 + 1000}>
                 {element}
               </Fade>
@@ -82,65 +82,62 @@ const Contact = ({data, ...props}) => {
   )
 }
 
-const formElements = props => {
-  const {input, submit} = useStyles(props)
-  return [
-    <TextField
-      margin='normal'
-      required
-      variant='outlined'
-      label='Full Name'
-      placeholder='Enter Name Here'
-      className={input}
-      inputProps={{
-        'aria-label': 'Full Name'
-      }}
-    />,
-    <TextField
-      variant='outlined'
-      required
-      margin='normal'
-      className={input}
-      label='Email Address'
-      placeholder='Enter Email Here'
-      inputProps={{
-        'aria-label': 'Email'
-      }}
-    />,
-    <TextField
-      variant='outlined'
-      margin='normal'
-      label='Subject'
-      className={input}
-      placeholder='End Subject Here'
-      inputProps={{
-        'aria-label': 'Subject'
-      }}
-    />,
-    <TextField
-      rows={6}
-      variant='outlined'
-      margin='normal'
-      required
-      label='Message Body'
-      multiline
-      className={input}
-      placeholder='Message Body Here'
-      inputProps={{
-        'aria-label': 'Body'
-      }}
-    />,
-    <Button
-      className={submit}
-      color='primary'
-      size='large'
-      variant='contained'
-      startIcon={<SendRounded />}
-    >
-      Send Message
-    </Button>
-  ]
-}
+const formElements = ({input, submit}) => [
+  <TextField
+    margin='normal'
+    required
+    variant='outlined'
+    label='Full Name'
+    placeholder='Enter Name Here'
+    className={input}
+    inputProps={{
+      'aria-label': 'Full Name'
+    }}
+  />,
+  <TextField
+    variant='outlined'
+    required
+    margin='normal'
+    className={input}
+    label='Email Address'
+    placeholder='Enter Email Here'
+    inputProps={{
+      'aria-label': 'Email'
+    }}
+  />,
+  <TextField
+    variant='outlined'
+    margin='normal'
+    label='Subject'
+    className={input}
+    placeholder='End Subject Here'
+    inputProps={{
+      'aria-label': 'Subject'
+    }}
+  />,
+  <TextField
+    rows={6}
+    variant='outlined'
+    margin='normal'
+    required
+    label='Message Body'
+    multiline
+    className={input}
+    placeholder='Message Body Here'
+    inputProps={{
+      'aria-label': 'Body'
+    }}
+  />,
+  <Button
+    className={submit}
+    color='primary'
+    size='large'
+    variant='contained'
+    startIcon={<SendRounded />}
+  >
+    Send Message
+  </Button>
+]
 
 export const query = graphql`
   query ContactPageQuery {
