@@ -35,13 +35,13 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     padding: theme.spacing(3, 2)
-  }
+  },
   // input: {
   //   margin: theme.spacing(2)
   // },
-  // submit: {
-  //   margin: theme.spacing(2, 2, 1, 2)
-  // }
+  submit: {
+    margin: theme.spacing(2, 0, 1, 0)
+  }
 }))
 
 const Contact = ({data, ...props}) => {
@@ -70,22 +70,31 @@ const Contact = ({data, ...props}) => {
           </Typography>
         </Fade>
         <Paper component='form' className={classes.paper}>
-          {inputFields.map(({label, placeholder, required, rows}) => (
-            <TextField
-              {...{label, placeholder, required}}
-              inputProps={{
-                'aria-label': label
-              }}
-              margin='normal'
-              {...{multiline: rows !== 0}}
-            />
-          ))
-          /* {formElements(classes).map((element, index) => (
-            <Fade in timeout={index * 600 + 1000}>
-              {element}
+          {inputFields.map(({label, placeholder, required, rows}, index) => (
+            <Fade in timeout={900 * index} mountOnEnter unmountOnExit>
+              <Slide in direction='up' timeout={index * 300}>
+                <TextField
+                  variant='outlined'
+                  {...{label, placeholder, required}}
+                  inputProps={{
+                    'aria-label': label
+                  }}
+                  margin='normal'
+                  {...{multiline: rows !== 0}}
+                />
+              </Slide>
             </Fade>
-          ))} */
-          }
+          ))}
+          <Button
+            margin='normal'
+            variant='contained'
+            color='primary'
+            size='large'
+            className={classes.submit}
+            endIcon={<SendRounded />}
+          >
+            Send
+          </Button>
         </Paper>
       </Container>
     </>
