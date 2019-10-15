@@ -72,7 +72,6 @@ const Contact = ({data, ...props}) => {
         <Paper component='form' className={classes.paper}>
           {inputFields.map(({label, placeholder, required, rows}) => (
             <TextField
-              variant='outlined'
               {...{label, placeholder, required}}
               inputProps={{
                 'aria-label': label
@@ -96,6 +95,7 @@ const Contact = ({data, ...props}) => {
 const inputFields = [
   {label: 'Full Name', placeholder: 'Enter Name Here', required: true},
   {label: 'Email Address', placeholder: 'Enter Email Here', required: true},
+  {label: 'Phone Number', placeholder: 'Enter Phone Number Here', required: false},
   {label: 'Subject', placeholder: 'Enter Message Subject Here', required: false},
   {label: 'Message', placeholder: 'Enter Mesage Body Here', required: true, rows: 4}
 ]
