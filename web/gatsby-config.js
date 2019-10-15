@@ -20,7 +20,16 @@ module.exports = {
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
     {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        stylesProvider: {
+          injectFirst: true
+        }
+      }
+    },
+    {
       resolve: 'gatsby-source-sanity',
+
       options: {
         ...clientConfig.sanity,
         token,
