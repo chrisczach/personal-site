@@ -1,6 +1,19 @@
 import React, {useEffect, useState} from 'react'
-import {AppBar, Typography, Toolbar, Fade, Slide} from '@material-ui/core'
+import {
+  AppBar,
+  Typography,
+  Toolbar,
+  Fade,
+  Slide,
+  ListItemText,
+  Divider,
+  Grow,
+  ListItemIcon,
+  ListItem,
+  List
+} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
+import {Link} from 'gatsby'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -9,12 +22,16 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    padding: theme.spacing( 1, 2 ),
+    position: 'fixed',
+    padding: theme.spacing(1, 2),
     top: 'auto'
+  },
+  bottomNavItem: {
+    fontSize: '1em'
   }
 }))
 
-const footer = props => {
+const footer = ({menuItems, ...props}) => {
   const classes = useStyles(props)
   const [portrait, setPortrait] = useState(true)
   const updateOrientation = () => {
@@ -35,13 +52,30 @@ const footer = props => {
       {!portrait && (
         <Slide in={!portrait} direction='up' timeout={500}>
           <Fade in={!portrait} timeout={250}>
-            <AppBar fixed color='secondary' className={classes.appBar}>
-              <Typography variant='body1'> Footer Here</Typography>
+            <AppBar color='secondary' className={classes.appBar}>
+              {menuItems.map(toBottomNav)}
             </AppBar>
           </Fade>
         </Slide>
       )}
     </>
+  )
+}
+
+const toBottomNav = ({link, Icon, route}, index) => {
+  return (
+    <Link to={route}>
+      <Grow in style={{transformOrigin: '0 0 0'}} timeout={index * 150}>
+        <ListItem button autoFocus>
+          <ListItemIcon>
+            <Icon />
+          </ListItemIcon>
+          <Slide direction='up' in style={{transformOrigin: '0 0 0'}} timeout={index * 150 + 50}>
+            <ListItemText primary={link} />
+          </Slide>
+        </ListItem>
+      </Grow>
+    </Link>
   )
 }
 

@@ -29,7 +29,7 @@ const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle, location}) 
     <Grow in style={{transformOrigin: '0 0 0'}} timeout={150}>
       <Box component='div'>{children}</Box>
     </Grow>
-    <Footer />
+    <Footer menuItems={menuItems} />
   </ThemeProvider>
 )
 

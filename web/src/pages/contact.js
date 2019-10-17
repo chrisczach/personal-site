@@ -11,13 +11,11 @@ import {
 
 import SEO from '../components/seo'
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL'
-import {formInputComponents} from '../components/inputFields'
+import ContactForm from '../components/contact-form'
 import {ContainerWithHeading} from '../components/containerWithHeading'
 const useStyles = makeStyles(theme => ({
   paper: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: theme.spacing(3, 2)
+    margin: theme.spacing(3, 2, 8, 2)
   },
   submit: {
     margin: theme.spacing(2, 0, 1, 0)
@@ -32,35 +30,13 @@ const Contact = ({data, ...props}) => {
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
     )
   }
-  const [showSubmit, setShowSubmit] = useState(false)
-  useEffect(
-    showSubmit => {
-      if (!showSubmit) setTimeout(() => setShowSubmit(true), 1000)
-    },
-    [showSubmit]
-  )
+
   return (
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
-      <ContainerWithHeading
-        heading='Contact'
-        subHeading='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam deserunt ullam
-            blanditiis illo culpa saepe voluptate, reiciendis nisi tempore'
-      >
-        <Paper component='form' className={classes.paper}>
-          {formInputComponents}
-          <Fade in={showSubmit} timeout={1000}>
-            <Button
-              margin='normal'
-              variant='contained'
-              color='primary'
-              size='large'
-              className={classes.submit}
-              endIcon={<SendRounded />}
-            >
-              Send
-            </Button>
-          </Fade>
+      <ContainerWithHeading heading='Contact' subHeading='Send a message!'>
+        <Paper className={classes.paper}>
+          <ContactForm />
         </Paper>
       </ContainerWithHeading>
     </>

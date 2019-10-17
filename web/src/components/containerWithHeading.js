@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export const ContainerWithHeading = ({heading, subHeading, children, ...props}) => {
+export const ContainerWithHeading = ({heading, subHeading, children = null, ...props}) => {
   const classes = useStyles(props)
   return (
     <Container maxWidth='md' className={classes.container}>
