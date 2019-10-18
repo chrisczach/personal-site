@@ -16,11 +16,22 @@ import {
 import {styled, useTheme, makeStyles} from '@material-ui/core/styles'
 import {MenuRounded, CloseRounded} from '@material-ui/icons/'
 
-const nav = ({portrait, menuItems}) => {
+const useStyles = makeStyles(theme => ({
+  navBar: {
+    overflow: 'hidden',
+    padding: theme.spacing(0, 0, 18, 0)
+  },
+  close: {
+    justifyContent: 'flex-end'
+  }
+}))
+
+const nav = ({portrait, menuItems, ...props}) => {
   const [open, setOpen] = useState(false)
   const handleOpen = setTo => () => setOpen(setTo)
   const size = (() => (portrait ? 'large' : 'default'))()
   const theme = useTheme()
+  const classes = useStyles(props)
   return {
     menuButton: (
       <Button variant='text' onClick={handleOpen(!open)} fullWidth={false} endIcon>
@@ -36,7 +47,7 @@ const nav = ({portrait, menuItems}) => {
         portrait={portrait}
         swipeAreaWidth={50}
       >
-        <StyledList disablePadding>
+        <List className={classes.navBar}>
           <FirstItem
             divider
             button
@@ -45,12 +56,12 @@ const nav = ({portrait, menuItems}) => {
             background={theme.palette.primary.dark}
           >
             <ListItemText primary='Chris Czach ' secondary='Front End Developer' />
-            <ListItemIcon>
+            <ListItemIcon className={classes.close}>
               <CloseRounded fontSize='large' />
             </ListItemIcon>
           </FirstItem>
           {menuItems.map(toMenu(open, handleOpen, size))}
-        </StyledList>
+        </List>
       </StyledDrawer>
     )
   }
@@ -65,7 +76,7 @@ const toMenu = (open, handleOpen, size) => ({link, Icon, route}, index) => {
           style={{transformOrigin: '0 0 0'}}
           {...(open ? {timeout: index * 150} : {})}
         >
-          <StyledListItem button autoFocus onClick={handleOpen(!open)}>
+          <ListItem button autoFocus onClick={handleOpen(!open)}>
             <ListItemIcon>
               <Icon fontSize={size} />
             </ListItemIcon>
@@ -77,7 +88,7 @@ const toMenu = (open, handleOpen, size) => ({link, Icon, route}, index) => {
             >
               <ListItemText primary={link} />
             </Slide>
-          </StyledListItem>
+          </ListItem>
         </Grow>
       </Link>
       <Slide
@@ -93,11 +104,6 @@ const toMenu = (open, handleOpen, size) => ({link, Icon, route}, index) => {
 }
 
 const StyledDrawer = styled(({portrait, ...others}) => <SwipeableDrawer {...others} />)({
-  overflow: 'hidden'
-})
-const StyledList = styled(List)({
-  minHeight: '50vh',
-  minWidth: '25vw',
   overflow: 'hidden'
 })
 

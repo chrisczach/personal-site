@@ -23,11 +23,15 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-end',
     alignItems: 'center',
     position: 'fixed',
-    padding: theme.spacing(1, 2),
+    padding: theme.spacing(0, 2),
     top: 'auto'
   },
   bottomNavItem: {
     fontSize: '1em'
+  },
+  listItem: {
+    padding: theme.spacing(1, 2),
+    fontSize: '0.5em'
   }
 }))
 
@@ -53,7 +57,7 @@ const footer = ({menuItems, ...props}) => {
         <Slide in={!portrait} direction='up' timeout={500}>
           <Fade in={!portrait} timeout={250}>
             <AppBar color='secondary' className={classes.appBar}>
-              {menuItems.map(toBottomNav)}
+              {menuItems.map(toBottomNav(classes))}
             </AppBar>
           </Fade>
         </Slide>
@@ -62,11 +66,11 @@ const footer = ({menuItems, ...props}) => {
   )
 }
 
-const toBottomNav = ({link, Icon, route}, index) => {
+const toBottomNav = classes => ({link, Icon, route, ...props}, index) => {
   return (
     <Link to={route}>
       <Grow in style={{transformOrigin: '0 0 0'}} timeout={index * 150}>
-        <ListItem button autoFocus>
+        <ListItem button className={classes.listItem}>
           <ListItemIcon>
             <Icon />
           </ListItemIcon>
