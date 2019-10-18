@@ -7,7 +7,8 @@ import {
   ContactMailRounded,
   WorkRounded,
   DeveloperModeRounded,
-  HomeRounded
+  HomeRounded,
+  GitHub
 } from '@material-ui/icons/'
 import styles from './layout.module.css'
 
@@ -42,6 +43,12 @@ const menuItems = [
     Icon: DeveloperModeRounded,
     route: '/portfolio/',
     title: 'Portfolio / Projects'
+  },
+  {
+    link: 'GitHub',
+    Icon: GitHub,
+    route: 'https://github.com/chrisczach',
+    title: 'GitHub'
   },
   {link: 'Contact', Icon: ContactMailRounded, route: '/contact/', title: 'Contact Me'}
 ]

@@ -68,9 +68,17 @@ const nav = ({portrait, menuItems, ...props}) => {
 }
 
 const toMenu = (open, handleOpen, size) => ({link, Icon, route}, index) => {
+  const LinkComponent = ({children}) =>
+    route[0] === '/' ? (
+      <Link to={route}>{children}</Link>
+    ) : (
+      <a href={route} target='_blank'>
+        {children}
+      </a>
+    )
   return (
     <>
-      <Link to={route}>
+      <LinkComponent>
         <Grow
           in={open}
           style={{transformOrigin: '0 0 0'}}
@@ -90,7 +98,7 @@ const toMenu = (open, handleOpen, size) => ({link, Icon, route}, index) => {
             </Slide>
           </ListItem>
         </Grow>
-      </Link>
+      </LinkComponent>
       <Slide
         direction='left'
         in={open}

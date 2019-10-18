@@ -55,9 +55,9 @@ const footer = ({menuItems, ...props}) => {
     <>
       {!portrait && (
         <Slide in={!portrait} direction='up' timeout={500}>
-          <Fade in={!portrait} timeout={250}>
+          <Fade in={!portrait} timeout={300}>
             <AppBar color='secondary' className={classes.appBar}>
-              {menuItems.map(toBottomNav(classes))}
+              {menuItems.map(toBottomNav)}
             </AppBar>
           </Fade>
         </Slide>
@@ -66,20 +66,30 @@ const footer = ({menuItems, ...props}) => {
   )
 }
 
-const toBottomNav = classes => ({link, Icon, route, ...props}, index) => {
+const toBottomNav = ({link, Icon, route, ...props}, index) => {
+  const LinkComponent = ({children}) =>
+    route[0] === '/' ? (
+      <Link to={route}>{children}</Link>
+    ) : (
+      <a href={route} target='_blank'>
+        {children}
+      </a>
+    )
   return (
-    <Link to={route}>
-      <Grow in style={{transformOrigin: '0 0 0'}} timeout={index * 150}>
-        <ListItem button className={classes.listItem}>
-          <ListItemIcon>
-            <Icon />
-          </ListItemIcon>
-          <Slide direction='up' in style={{transformOrigin: '0 0 0'}} timeout={index * 150 + 50}>
-            <ListItemText primary={link} />
-          </Slide>
-        </ListItem>
+    <LinkComponent>
+      <Grow in style={{transformOrigin: '0 0 0'}} timeout={(index + 1) * 200}>
+        <Slide direction='up' in style={{transformOrigin: '0 0 0'}} timeout={(index + 1) * 400}>
+          <ListItem button>
+            <ListItemIcon>
+              <Icon fontSize='small' />
+            </ListItemIcon>
+            <Slide direction='up' in style={{transformOrigin: '0 0 0'}} timeout={(index + 1) * 200}>
+              <ListItemText primary={link} />
+            </Slide>
+          </ListItem>
+        </Slide>
       </Grow>
-    </Link>
+    </LinkComponent>
   )
 }
 
