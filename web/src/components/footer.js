@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {
   AppBar,
   Typography,
@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import {Link} from 'gatsby'
+import {PortraitContext} from './layout'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -30,34 +31,23 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1em'
   },
   listItem: {
-    padding: theme.spacing(1, 2),
-    fontSize: '0.5em'
+    padding: theme.spacing(0,1,0,0),
+  },
+    listIcon: {
+    padding: theme.spacing(0,0,0,1),
   }
 }))
 
 const footer = ({menuItems, ...props}) => {
   const classes = useStyles(props)
-  const [portrait, setPortrait] = useState(true)
-  const updateOrientation = () => {
-    setPortrait(window.innerWidth < window.innerHeight)
-  }
-
-  useEffect(() => {
-    updateOrientation()
-    window.addEventListener('resize', updateOrientation)
-    window.addEventListener('orientationchange', updateOrientation)
-    return () => {
-      window.removeEventListener('resize', updateOrientation)
-      window.removeEventListener('orientationchange', updateOrientation)
-    }
-  }, [])
+  const portrait = useContext(PortraitContext)
   return (
     <>
       {!portrait && (
         <Slide in={!portrait} direction='up' timeout={500}>
           <Fade in={!portrait} timeout={300}>
             <AppBar color='secondary' className={classes.appBar}>
-              {menuItems.map(toBottomNav)}
+              {menuItems.map(toBottomNav(classes))}
             </AppBar>
           </Fade>
         </Slide>
@@ -66,7 +56,7 @@ const footer = ({menuItems, ...props}) => {
   )
 }
 
-const toBottomNav = ({link, Icon, route, ...props}, index) => {
+const toBottomNav =(classes)=> ({link, Icon, route, ...props}, index) => {
   const LinkComponent = ({children}) =>
     route[0] === '/' ? (
       <Link to={route}>{children}</Link>
@@ -80,11 +70,11 @@ const toBottomNav = ({link, Icon, route, ...props}, index) => {
       <Grow in style={{transformOrigin: '0 0 0'}} timeout={(index + 1) * 200}>
         <Slide direction='up' in style={{transformOrigin: '0 0 0'}} timeout={(index + 1) * 400}>
           <ListItem button>
-            <ListItemIcon>
+            <ListItemIcon className={classes.listIcon}>
               <Icon fontSize='small' />
             </ListItemIcon>
             <Slide direction='up' in style={{transformOrigin: '0 0 0'}} timeout={(index + 1) * 200}>
-              <ListItemText primary={link} />
+              <ListItemText primary={link} className={classes.listItem}/>
             </Slide>
           </ListItem>
         </Slide>

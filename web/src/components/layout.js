@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState, useEffect, createContext} from 'react'
 import Header from './header'
 import Footer from './footer'
+
 import '../styles/globals.css'
 import {
   FormatListBulletedRounded,
@@ -15,24 +16,47 @@ import styles from './layout.module.css'
 import {ThemeProvider} from '@material-ui/core/styles'
 import {CssBaseline, Box, Grow} from '@material-ui/core'
 import theme from '../styles/theme'
+import Background from './background'
 
-const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle, location}) => (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <Header
-      location={location}
-      menuItems={menuItems}
-      siteTitle={siteTitle}
-      onHideNav={onHideNav}
-      onShowNav={onShowNav}
-      showNav={showNav}
-    />
-    <Grow in style={{transformOrigin: '0 0 0'}} timeout={150}>
-      <Box component='div'>{children}</Box>
-    </Grow>
-    <Footer menuItems={menuItems} />
-  </ThemeProvider>
-)
+export const PortraitContext = createContext(false)
+
+const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle, location}) => {
+  const [portrait, setPortrait] = useState(false)
+  const updateOrientation = () => {
+    setPortrait(window.innerWidth < window.innerHeight)
+  }
+
+  useEffect(() => {
+    updateOrientation()
+    window.addEventListener('resize', updateOrientation)
+    window.addEventListener('orientationchange', updateOrientation)
+    return () => {
+      window.removeEventListener('resize', updateOrientation)
+      window.removeEventListener('orientationchange', updateOrientation)
+    }
+  }, [])
+  return (
+    <ThemeProvider theme={theme}>
+      <PortraitContext.Provider value={portrait}>
+        <CssBaseline />
+        <Header
+          location={location}
+          menuItems={menuItems}
+          siteTitle={siteTitle}
+          onHideNav={onHideNav}
+          onShowNav={onShowNav}
+          showNav={showNav}
+        />
+        <Background>
+          <Grow in style={{transformOrigin: '0 0 0'}} timeout={150}>
+            <Box component='div'>{children}</Box>
+          </Grow>
+        </Background>
+        <Footer menuItems={menuItems} />
+      </PortraitContext.Provider>
+    </ThemeProvider>
+  )
+}
 
 const menuItems = [
   {link: 'Home', Icon: HomeRounded, route: '/', title: 'Chris Czach'},

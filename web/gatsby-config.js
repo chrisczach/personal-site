@@ -19,6 +19,8 @@ module.exports = {
     `gatsby-plugin-force-trailing-slashes`,
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-material-ui`,
       options: {
@@ -35,6 +37,14 @@ module.exports = {
         token,
         watchMode: !isProd,
         overlayDrafts: !isProd && token
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+        ignore: [`**/\.*`] // ignore files starting with a dot
       }
     }
   ]

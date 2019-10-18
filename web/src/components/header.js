@@ -1,26 +1,14 @@
 import {Link} from 'gatsby'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {AppBar, Typography, Toolbar, Fade, Slide} from '@material-ui/core'
 import {styled} from '@material-ui/core/styles'
 import nav from './nav'
-
+import {PortraitContext} from './layout'
 const Header = ({onHideNav, onShowNav, showNav, siteTitle, menuItems, location: {pathname}}) => {
-  const [portrait, setPortrait] = useState(false)
-  const updateOrientation = () => {
-    setPortrait(window.innerWidth < window.innerHeight)
-  }
+  const portrait = useContext( PortraitContext )
   const currentPage = menuItems.find(({route}) => route === pathname)
   const {menuButton, menuDrawer} = nav({portrait, menuItems})
-
-  useEffect(() => {
-    updateOrientation()
-    window.addEventListener('resize', updateOrientation)
-    window.addEventListener('orientationchange', updateOrientation)
-    return () => {
-      window.removeEventListener('resize', updateOrientation)
-      window.removeEventListener('orientationchange', updateOrientation)
-    }
-  }, [])
+  
   return (
     <>
       <Slide in direction='down' timeout={500}>
@@ -28,7 +16,7 @@ const Header = ({onHideNav, onShowNav, showNav, siteTitle, menuItems, location: 
           <AppBar
             color='secondary'
             style={{
-              position: portrait ? 'fixed' : 'sticky',
+              position: 'fixed',
               bottom: portrait ? 0 : 'auto',
               top: portrait ? 'auto' : 0
             }}
