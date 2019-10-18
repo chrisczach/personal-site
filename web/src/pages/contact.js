@@ -16,8 +16,11 @@ import {ContainerWithHeading} from '../components/containerWithHeading'
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    background: theme.palette.secondary.dark,
-    margin: theme.spacing(3, 2, 8, 2)
+    background: `linear-gradient(${theme.palette.primary.main}aa, ${theme.palette.secondary.dark}aa)`,
+    margin: theme.spacing(3, 2, 8, 2),
+    overflow: 'hidden',
+    backdropFilter: 'blur(5px)',
+    webkitBackdropFilter: 'blur(5px)'
   },
   submit: {
     margin: theme.spacing(2, 0, 1, 0)
@@ -37,7 +40,7 @@ const Contact = ({data, ...props}) => {
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <ContainerWithHeading heading='Contact' subHeading='Send a message!'>
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} elevation={24}>
           <ContactForm />
         </Paper>
       </ContainerWithHeading>

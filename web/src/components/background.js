@@ -12,11 +12,11 @@ const useStyles = makeStyles(theme => ({
     backgroundSize: 'cover'
   },
   fade: {
-    height: '100%', 
-    width: '100%', 
+    height: '100%',
+    width: '100%',
     background: `radial-gradient(ellipse at top center, transparent 50%, ${theme.palette.primary.dark} 100%), linear-gradient(to bottom, transparent 50%, ${theme.palette.primary.dark}dd 85%, ${theme.palette.primary.dark} 100%)`,
-    position: 'absolute', 
-    bottom: 0, 
+    position: 'absolute',
+    bottom: 0,
     zIndex: -100
   }
 }))
@@ -29,7 +29,7 @@ const Background = ({children, ...props}) => {
         query {
           background: file(relativePath: {eq: "background-1.jpg"}) {
             childImageSharp {
-              fluid(quality: 100) {
+              fluid(quality: 100, maxWidth: 3840) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
@@ -39,16 +39,16 @@ const Background = ({children, ...props}) => {
       render={data => {
         // Set ImageData.
         const imageData = data.background.childImageSharp.fluid
+        console.log(imageData)
         return (
           <BackgroundImage
             Tag='section'
             className={classes.background}
             fluid={imageData}
-            backgroundColor={`#040e18`}
+            backgroundColor={`#322A38`}
           >
             <div className={classes.fade} />
             {children}
-            
           </BackgroundImage>
         )
       }}

@@ -25,16 +25,24 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     position: 'fixed',
     padding: theme.spacing(0, 2),
-    top: 'auto'
+    top: 'auto',
+    background: `linear-gradient(to bottom right, ${theme.palette.primary.main}99, ${theme.palette.secondary.main}99) !important`,
+    backdropFilter: 'blur(5px)',
+    webkitBackdropFilter: 'blur(5px)',
+    transition: 'all  3s ease !important',
+    '&:hover': {
+      background: `linear-gradient(to bottom right, ${theme.palette.primary.main}99, ${theme.palette.secondary.main}aa) !important`,
+      transition: 'all  3s ease !important'
+    }
   },
   bottomNavItem: {
     fontSize: '1em'
   },
   listItem: {
-    padding: theme.spacing(0,1,0,0),
+    padding: theme.spacing(0, 1, 0, 0)
   },
-    listIcon: {
-    padding: theme.spacing(0,0,0,1),
+  listIcon: {
+    padding: theme.spacing(0, 0, 0, 1)
   }
 }))
 
@@ -56,7 +64,7 @@ const footer = ({menuItems, ...props}) => {
   )
 }
 
-const toBottomNav =(classes)=> ({link, Icon, route, ...props}, index) => {
+const toBottomNav = classes => ({link, Icon, route, ...props}, index) => {
   const LinkComponent = ({children}) =>
     route[0] === '/' ? (
       <Link to={route}>{children}</Link>
@@ -74,7 +82,7 @@ const toBottomNav =(classes)=> ({link, Icon, route, ...props}, index) => {
               <Icon fontSize='small' />
             </ListItemIcon>
             <Slide direction='up' in style={{transformOrigin: '0 0 0'}} timeout={(index + 1) * 200}>
-              <ListItemText primary={link} className={classes.listItem}/>
+              <ListItemText primary={link} className={classes.listItem} />
             </Slide>
           </ListItem>
         </Slide>

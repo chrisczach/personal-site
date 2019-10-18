@@ -123,6 +123,5 @@ const FirstItem = styled(({background, ...otherProps}) => <ListItem {...otherPro
   overflow: 'hidden',
   background: ({background}) => background
 })
-const StyledListItem = styled(ListItem)({overflow: 'hidden'})
 
 export default nav
