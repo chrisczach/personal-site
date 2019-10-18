@@ -14,7 +14,7 @@ import {
 import styles from './layout.module.css'
 
 import {ThemeProvider} from '@material-ui/core/styles'
-import {CssBaseline, Box, Grow} from '@material-ui/core'
+import {CssBaseline, Box, Fade} from '@material-ui/core'
 import theme from '../styles/theme'
 import Background from './background'
 
@@ -47,9 +47,9 @@ const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle}) => {
           showNav={showNav}
         />
         <Background>
-          <Grow in style={{transformOrigin: '0 0 0'}} timeout={150}>
+          <Fade in timeout={150}>
             <Box component='div'>{children}</Box>
-          </Grow>
+          </Fade>
         </Background>
         <Footer menuItems={menuItems} />
       </PortraitContext.Provider>

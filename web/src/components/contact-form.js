@@ -56,7 +56,7 @@ const ContactForm = props => {
     <ValidatorForm className={classes.form} onSubmit={handleSubmit}>
       <>
         {inputFields.map(toFields({formValues, handleChange, sending}))}
-        <Fade in style={{transitionDelay: 1000}} timeout={{appear: 1000, enter: 1000, exit: 0}}>
+        <Fade in style={{transitionDelay: 550}} timeout={{appear: 600, enter: 600, exit: 200}}>
           <Button
             type='submit'
             variant='contained'
@@ -83,7 +83,7 @@ const toFields = ({formValues, handleChange, sending}) => (
 ) => (
   <Fade
     style={{
-      transitionDelay: 500,
+      transitionDelay: 250,
       opacity: sending ? 0.5 : 1,
       pointerEvents: sending ? 'none' : 'inherit'
     }}
@@ -91,7 +91,7 @@ const toFields = ({formValues, handleChange, sending}) => (
     timeout={900 * index}
     mountOnEnter
   >
-    <Slide in direction='up' timeout={index * 300 + 300}>
+    <Slide in direction='up' timeout={index * 150 + 150}>
       <TextValidator
         // autoComplete={false}
         onChange={handleChange}

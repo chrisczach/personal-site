@@ -22,7 +22,7 @@ const useStyles = ({portrait}) =>
     }
   }))
 
-export const ContainerWithHeading = ({heading, subHeading, children = null, ...props}) => {
+export const ContainerWithHeading = ({heading, subHeading, avatar= null, children = null, ...props}) => {
   const portrait = useContext(PortraitContext)
   const classes = useStyles({portrait})(props)
   return (
