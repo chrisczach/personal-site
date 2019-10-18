@@ -44,9 +44,9 @@ const ContactForm = props => {
   const handleSubmit = () => {
     setSending(true)
     setTimeout(() => {
-      const {name, email} = {...formValues}
+      const {name, email, phone} = {...formValues}
       setFormValues({})
-      navigate('/contact/thanks/', {state: {name, email}})
+      navigate('/contact/thanks/', {state: {name, email, phone}})
       console.log(JSON.stringify(formValues, null, 2))
       setSending(false)
     }, 5000)
