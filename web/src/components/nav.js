@@ -19,7 +19,9 @@ import {MenuRounded, CloseRounded} from '@material-ui/icons/'
 const useStyles = makeStyles(theme => ({
   drawer: {
     overflow: 'hidden',
-    background: `${theme.palette.secondary.dark}88`
+    background: `${ theme.palette.secondary.dark }88`,
+    backdropFilter: 'blur(3px)',
+    webkitBackdropFilter: 'blur(3px)'
   },
   navBar: {
     overflow: 'hidden',
