@@ -43,7 +43,7 @@ const Header = ({
             <StyledToolbar>
               <Fade in mountOnEnter unmountOnExit timeout={500}>
                 <Typography variant='h6'>
-                  Chris Czach {!portrait && <span style={{opacity: 0.5}}>Front End Developer</span>}
+                  Chris Czach {!portrait && <TransitionedTitle title={'Front End Developer'} />}
                 </Typography>
               </Fade>
               {menuButton}
@@ -53,6 +53,21 @@ const Header = ({
       </Slide>
       {menuDrawer}
     </>
+  )
+}
+
+const TransitionedTitle = ({title, ...props}) => {
+  const characters = title.split('')
+  return (
+    <span style={{opacity: 0.5}}>
+      {characters.map((char, index) => (
+        <Fade in timeout={500 * (index + 1)} style={{transitionDelay: 1500}}>
+          <Typography style={{display: 'inline'}} variant='inherit'>
+            {char}
+          </Typography>
+        </Fade>
+      ))}
+    </span>
   )
 }
 
