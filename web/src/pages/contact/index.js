@@ -7,12 +7,12 @@ import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
   filterOutDocsPublishedInTheFuture
-} from '../lib/helpers'
+} from '../../lib/helpers'
 
-import SEO from '../components/seo'
-import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL'
-import ContactForm from '../components/contact-form'
-import {ContainerWithHeading} from '../components/containerWithHeading'
+import SEO from '../../components/seo'
+import ErrorHandlerGraphQL from '../../HOF/errorHandlerGraphQL'
+import ContactForm from '../../components/contact-form'
+import {ContainerWithHeading} from '../../components/containerWithHeading'
 
 const useStyles = makeStyles(theme => ({
   paper: {

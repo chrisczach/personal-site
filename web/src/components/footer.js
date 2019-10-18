@@ -52,8 +52,8 @@ const footer = ({menuItems, ...props}) => {
   return (
     <>
       {!portrait && (
-        <Slide in={!portrait} direction='up' timeout={500}>
-          <Fade in={!portrait} timeout={300}>
+        <Slide in direction='up' timeout={500}>
+          <Fade in timeout={300}>
             <AppBar color='secondary' className={classes.appBar}>
               {menuItems.map(toBottomNav(classes))}
             </AppBar>

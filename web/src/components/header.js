@@ -28,11 +28,9 @@ const Header = ({
   showNav,
   siteTitle,
   menuItems,
-  location: {pathname},
   ...props
 }) => {
   const portrait = useContext(PortraitContext)
-  const currentPage = menuItems.find(({route}) => route === pathname)
   const {menuButton, menuDrawer} = nav({portrait, menuItems})
   const classes = useStyles(portrait)(props)
   return (

@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import {TextField, Fade, Slide, makeStyles, Button} from '@material-ui/core'
+import {TextField, Fade, Slide, makeStyles, Button, Typography, Box} from '@material-ui/core'
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator'
 import {SendRounded} from '@material-ui/icons'
+import {navigate} from 'gatsby'
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -11,12 +12,14 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(2, 0, 1, 0)
+  },
+  submitted: {
+    margin: theme.spacing(2, 4, 8, 4)
   }
 }))
 
 const ContactForm = props => {
   const classes = useStyles(props)
-  const [showSubmit, setShowSubmit] = useState(false)
   const [formValues, setFormValues] = useState({})
   const handleChange = ({target: {name, value}}) => {
     setFormValues(state => {
@@ -26,28 +29,28 @@ const ContactForm = props => {
     })
   }
 
-  const handleSubmit = () => console.log(JSON.stringify(formValues, null, 2))
-  useEffect(
-    showSubmit => {
-      if (!showSubmit) setTimeout(() => setShowSubmit(true), 1000)
-    },
-    [showSubmit]
-  )
+  const handleSubmit = () => {
+    navigate('/contact/thanks/', {state: formValues})
+    console.log(JSON.stringify(formValues, null, 2))
+  }
+
   return (
     <ValidatorForm className={classes.form} onSubmit={handleSubmit}>
-      {inputFields.map(toFields({formValues, handleChange}))}
-      <Fade in={showSubmit} timeout={1000}>
-        <Button
-          type='submit'
-          variant='contained'
-          color='primary'
-          size='large'
-          className={classes.submit}
-          endIcon={<SendRounded />}
-        >
-          Send
-        </Button>
-      </Fade>
+      <>
+        {inputFields.map(toFields({formValues, handleChange}))}
+        <Fade in style={{transitionDelay: 1000}} timeout={{appear: 1000, enter: 1000, exit: 0}}>
+          <Button
+            type='submit'
+            variant='contained'
+            color='primary'
+            size='large'
+            className={classes.submit}
+            endIcon={<SendRounded />}
+          >
+            Send
+          </Button>
+        </Fade>
+      </>
     </ValidatorForm>
   )
 }
@@ -56,7 +59,7 @@ const toFields = ({formValues, handleChange}) => (
   {label, name, placeholder, rows, validators = [], errorMessages = []},
   index
 ) => (
-  <Fade in timeout={900 * index} mountOnEnter unmountOnExit>
+  <Fade style={{transitionDelay: 500}} in timeout={900 * index} mountOnEnter>
     <Slide in direction='up' timeout={index * 300 + 300}>
       <TextValidator
         // autoComplete={false}
@@ -110,5 +113,8 @@ const inputFields = [
     rows: 4
   }
 ]
+
+const toTitleCase = str =>
+  str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
 
 export default ContactForm

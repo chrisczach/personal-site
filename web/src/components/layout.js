@@ -20,7 +20,7 @@ import Background from './background'
 
 export const PortraitContext = createContext(false)
 
-const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle, location}) => {
+const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle}) => {
   const [portrait, setPortrait] = useState(false)
   const updateOrientation = () => {
     setPortrait(window.innerWidth < window.innerHeight)
@@ -40,7 +40,6 @@ const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle, location}) 
       <PortraitContext.Provider value={portrait}>
         <CssBaseline />
         <Header
-          location={location}
           menuItems={menuItems}
           siteTitle={siteTitle}
           onHideNav={onHideNav}
