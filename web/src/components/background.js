@@ -1,5 +1,5 @@
-import React from 'react'
-import {graphql, StaticQuery} from 'gatsby'
+import React, {useState} from 'react'
+import {graphql, StaticQuery, useStaticQuery} from 'gatsby'
 import {makeStyles} from '@material-ui/core/styles'
 
 import BackgroundImage from 'gatsby-background-image'
@@ -23,11 +23,13 @@ const useStyles = makeStyles(theme => ({
 
 const Background = ({children, ...props}) => {
   const classes = useStyles(props)
-  return (
-    <StaticQuery
-      query={graphql`
-        query {
-          background: file(relativePath: {eq: "background-1.jpg"}) {
+  const {
+    allFile: {edges}
+  } = useStaticQuery(graphql`
+    query {
+      allFile {
+        edges {
+          node {
             childImageSharp {
               fluid(quality: 100, maxWidth: 3840) {
                 ...GatsbyImageSharpFluid_withWebp
@@ -35,24 +37,23 @@ const Background = ({children, ...props}) => {
             }
           }
         }
-      `}
-      render={data => {
-        // Set ImageData.
-        const imageData = data.background.childImageSharp.fluid
-        console.log(imageData)
-        return (
-          <BackgroundImage
-            Tag='section'
-            className={classes.background}
-            fluid={imageData}
-            backgroundColor={`#322A38`}
-          >
-            <div className={classes.fade} />
-            {children}
-          </BackgroundImage>
-        )
-      }}
-    />
+      }
+    }
+  `)
+  // Set ImageData.
+  // maybe implement image selector?
+  const [background, setBackground] = useState(0)
+  const imageData = edges[background].node.childImageSharp.fluid
+  return (
+    <BackgroundImage
+      Tag='section'
+      className={classes.background}
+      fluid={imageData}
+      backgroundColor={`#322A38`}
+    >
+      <div className={classes.fade} />
+      {children}
+    </BackgroundImage>
   )
 }
 
