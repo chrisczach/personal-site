@@ -17,9 +17,15 @@ import {styled, useTheme, makeStyles} from '@material-ui/core/styles'
 import {MenuRounded, CloseRounded} from '@material-ui/icons/'
 
 const useStyles = makeStyles(theme => ({
+  drawer: {
+    overflow: 'hidden',
+    background: `${theme.palette.secondary.dark}88`
+  },
   navBar: {
     overflow: 'hidden',
-    padding: theme.spacing(0, 0, 18, 0)
+    padding: theme.spacing(0, 0, 18, 0),
+    background: theme.palette.secondary.dark,
+    height: '100%'
   },
   close: {
     justifyContent: 'flex-end'
@@ -39,12 +45,12 @@ const nav = ({portrait, menuItems, ...props}) => {
       </Button>
     ),
     menuDrawer: (
-      <StyledDrawer
+      <SwipeableDrawer
+        className={classes.drawer}
         anchor={portrait ? 'bottom' : 'right'}
         open={open}
         onOpen={handleOpen(true)}
         onClose={handleOpen(false)}
-        portrait={portrait}
         swipeAreaWidth={50}
       >
         <List className={classes.navBar}>
@@ -53,7 +59,7 @@ const nav = ({portrait, menuItems, ...props}) => {
             button
             autoFocus
             onClick={handleOpen(!open)}
-            background={theme.palette.primary.dark}
+            background={theme.palette.secondary.dark}
           >
             <ListItemText primary='Chris Czach ' secondary='Front End Developer' />
             <ListItemIcon className={classes.close}>
@@ -62,7 +68,7 @@ const nav = ({portrait, menuItems, ...props}) => {
           </FirstItem>
           {menuItems.map(toMenu(open, handleOpen, size))}
         </List>
-      </StyledDrawer>
+      </SwipeableDrawer>
     )
   }
 }
@@ -110,10 +116,6 @@ const toMenu = (open, handleOpen, size) => ({link, Icon, route}, index) => {
     </>
   )
 }
-
-const StyledDrawer = styled(({portrait, ...others}) => <SwipeableDrawer {...others} />)({
-  overflow: 'hidden'
-})
 
 const FirstItem = styled(({background, ...otherProps}) => <ListItem {...otherProps} />)({
   overflow: 'hidden',

@@ -13,8 +13,10 @@ import SEO from '../components/seo'
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL'
 import ContactForm from '../components/contact-form'
 import {ContainerWithHeading} from '../components/containerWithHeading'
+
 const useStyles = makeStyles(theme => ({
   paper: {
+    background: theme.palette.secondary.dark,
     margin: theme.spacing(3, 2, 8, 2)
   },
   submit: {

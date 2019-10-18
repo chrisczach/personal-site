@@ -5,16 +5,16 @@ import {styled} from '@material-ui/core/styles'
 import nav from './nav'
 import {PortraitContext} from './layout'
 const Header = ({onHideNav, onShowNav, showNav, siteTitle, menuItems, location: {pathname}}) => {
-  const portrait = useContext( PortraitContext )
+  const portrait = useContext(PortraitContext)
   const currentPage = menuItems.find(({route}) => route === pathname)
   const {menuButton, menuDrawer} = nav({portrait, menuItems})
-  
+
   return (
     <>
       <Slide in direction='down' timeout={500}>
         <Fade in timeout={250}>
           <AppBar
-            color='secondary'
+            color='primary'
             style={{
               position: 'fixed',
               bottom: portrait ? 0 : 'auto',
