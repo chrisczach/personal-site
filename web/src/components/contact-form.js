@@ -1,5 +1,14 @@
 import React, {useEffect, useState} from 'react'
-import {TextField, Fade, Slide, makeStyles, Button, Typography, Box} from '@material-ui/core'
+import {
+  TextField,
+  Fade,
+  Slide,
+  makeStyles,
+  Button,
+  Typography,
+  Box,
+  LinearProgress
+} from '@material-ui/core'
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator'
 import {SendRounded} from '@material-ui/icons'
 import {navigate} from 'gatsby'
@@ -14,13 +23,16 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(2, 0, 1, 0)
   },
   submitted: {
-    margin: theme.spacing(2, 4, 8, 4)
-  }
+    margin: theme.spacing(2, 0, 1, 0),
+    background: 'transparent'
+  },
+  progress: {position: 'absolute', bottom: 0, width: '100%', height: '100%', zIndex: -100}
 }))
 
 const ContactForm = props => {
   const classes = useStyles(props)
   const [formValues, setFormValues] = useState({})
+  const [sending, setSending] = useState(false)
   const handleChange = ({target: {name, value}}) => {
     setFormValues(state => {
       const newState = {...state}
@@ -30,24 +42,34 @@ const ContactForm = props => {
   }
 
   const handleSubmit = () => {
-    navigate('/contact/thanks/', {state: formValues})
-    console.log(JSON.stringify(formValues, null, 2))
+    setSending(true)
+    setTimeout(() => {
+      const {name, email} = {...formValues}
+      setFormValues({})
+      navigate('/contact/thanks/', {state: {name, email}})
+      console.log(JSON.stringify(formValues, null, 2))
+      setSending(false)
+    }, 5000)
   }
 
   return (
     <ValidatorForm className={classes.form} onSubmit={handleSubmit}>
       <>
-        {inputFields.map(toFields({formValues, handleChange}))}
+        {inputFields.map(toFields({formValues, handleChange, sending}))}
         <Fade in style={{transitionDelay: 1000}} timeout={{appear: 1000, enter: 1000, exit: 0}}>
           <Button
             type='submit'
             variant='contained'
             color='primary'
             size='large'
-            className={classes.submit}
+            className={sending ? classes.submitted : classes.submit}
+            style={sending ? {pointerEvents: 'none'} : {}}
             endIcon={<SendRounded />}
           >
-            Send
+            <Fade in={sending} style={{transitionDelay: 150}} timeout={300}>
+              <LinearProgress color='secondary' className={classes.progress} />
+            </Fade>
+            {sending ? 'Message Sending' : 'Send Message'}
           </Button>
         </Fade>
       </>
@@ -55,11 +77,20 @@ const ContactForm = props => {
   )
 }
 
-const toFields = ({formValues, handleChange}) => (
+const toFields = ({formValues, handleChange, sending}) => (
   {label, name, placeholder, rows, validators = [], errorMessages = []},
   index
 ) => (
-  <Fade style={{transitionDelay: 500}} in timeout={900 * index} mountOnEnter>
+  <Fade
+    style={{
+      transitionDelay: 500,
+      opacity: sending ? 0.5 : 1,
+      pointerEvents: sending ? 'none' : 'inherit'
+    }}
+    in
+    timeout={900 * index}
+    mountOnEnter
+  >
     <Slide in direction='up' timeout={index * 300 + 300}>
       <TextValidator
         // autoComplete={false}

@@ -8,6 +8,7 @@ import ErrorHandlerGraphQL from '../../HOF/errorHandlerGraphQL'
 import ThanksSuccess from '../../components/thanks'
 import {ContainerWithHeading} from '../../components/containerWithHeading'
 import {navigate} from '@reach/router'
+import ContactForm from '../../components/contact-form'
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -23,7 +24,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Thanks = ({data, location, ...props}) => {
-  if (!location || !location.state) {
+  const hideThanks = !location || !location.state || !location.state.name
+  if (hideThanks) {
     navigate('/contact/')
   }
   const classes = useStyles(props)
@@ -37,9 +39,12 @@ const Thanks = ({data, location, ...props}) => {
   return (
     <>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
-      <ContainerWithHeading heading='Contact' subHeading='Send a message!'>
+      <ContainerWithHeading
+        heading={hideThanks ? 'Contact Us!' : 'Message Sent!'}
+        subHeading={hideThanks ? 'send us a message' : ''}
+      >
         <Paper className={classes.paper} elevation={24}>
-          {location && location.state && <ThanksSuccess formValues={location.state} />}
+          {hideThanks ? <ContactForm /> : <ThanksSuccess formValues={location.state} />}
         </Paper>
       </ContainerWithHeading>
     </>
