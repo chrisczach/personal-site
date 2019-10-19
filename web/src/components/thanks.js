@@ -1,35 +1,37 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {TextField, Fade, Slide, makeStyles, Button, Typography, Box, Paper} from '@material-ui/core'
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator'
 import {SendRounded} from '@material-ui/icons'
 import {navigate} from 'gatsby'
+import {PortraitContext} from './layout'
 
-const useStyles = makeStyles(theme => ({
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: theme.spacing(3, 2)
-  },
-  submitted: {
-    margin: theme.spacing(2, 4, 12, 4)
-  },
-  firstLine: {
-    margin: theme.spacing(2, 4),
-    fontSize: '2em'
-  },
-  body: {
-    margin: theme.spacing(2, 4),
-    fontSize: '1.5em'
-  },
-  thanks: {
-    margin: theme.spacing(3, 4),
-    fontSize: '1.5em'
-  }
-}))
+const useStyles = portrait =>
+  makeStyles(theme => ({
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: theme.spacing(3, portrait ? 1 : 2)
+    },
+    submitted: {
+      margin: theme.spacing(2, portrait ? 1 : 4, 12, portrait ? 1 : 4)
+    },
+    firstLine: {
+      margin: theme.spacing(2, portrait ? 1 : 4),
+      fontSize: portrait ? '1.5em' : '2em'
+    },
+    body: {
+      margin: theme.spacing(2, portrait ? 1 : 4),
+      fontSize: portrait ? '1.25em' : '1.5em'
+    },
+    thanks: {
+      margin: theme.spacing(3, portrait ? 1 : 4),
+      fontSize: portrait ? '1.25em' : '1.5em'
+    }
+  }))
 
 const ThanksSuccess = ({formValues, ...props}) => {
-  const classes = useStyles(props)
-
+  const portrait = useContext(PortraitContext)
+  const classes = useStyles(portrait)(props)
   return (
     <Box className={classes.form}>
       <Fade in timeout={1000}>

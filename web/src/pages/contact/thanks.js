@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {Paper} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import {graphql} from 'gatsby'
@@ -9,26 +9,29 @@ import ThanksSuccess from '../../components/thanks'
 import {ContainerWithHeading} from '../../components/containerWithHeading'
 import {navigate} from '@reach/router'
 import ContactForm from '../../components/contact-form'
+import { PortraitContext } from '../../components/layout';
 
-const useStyles = makeStyles(theme => ({
-  paper: {
-    background: `linear-gradient(${theme.palette.primary.main}aa, ${theme.palette.secondary.dark}aa)`,
-    margin: theme.spacing(3, 2, 8, 2),
-    overflow: 'hidden',
-    backdropFilter: 'blur(5px)',
-    webkitBackdropFilter: 'blur(5px)'
-  },
-  submit: {
-    margin: theme.spacing(2, 0, 1, 0)
-  }
-}))
+const useStyles = portrait =>
+  makeStyles(theme => ({
+    paper: {
+      background: `linear-gradient(${theme.palette.primary.main}aa, ${theme.palette.secondary.dark}aa)`,
+      margin: theme.spacing(3, portrait ? 1 : 2, 8, portrait ? 1 : 2),
+      overflow: 'hidden',
+      backdropFilter: 'blur(5px)',
+      webkitBackdropFilter: 'blur(5px)'
+    },
+    submit: {
+      margin: theme.spacing(2, 0, 1, 0)
+    }
+  }))
 
 const Thanks = ({data, location, ...props}) => {
+  const portrait = useContext(PortraitContext)
   const hideThanks = !location || !location.state || !location.state.name
   if (hideThanks) {
     navigate('/contact/')
   }
-  const classes = useStyles(props)
+  const classes = useStyles(portrait)(props)
   const site = (data || {}).site
   if (!site) {
     throw new Error(
