@@ -4,12 +4,13 @@
   "version": "1.0.0",
   "author": "Sanity <hello@sanity.io>",
   "scripts": {
-    "build": "gatsby build",
-    "clean-cache": "gatsby clean",
-    "dev": "npm run clean-cache && gatsby develop",
-    "lint": "eslint .",
-    "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
-    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+    "develop": "gatsby develop",
+    "start": "run-p start:**",
+    "start:app": "npm run develop",
+    "start:lambda": "netlify-lambda serve src/lambda",
+    "build": "gatsby build && netlify-lambda build src/lambda",
+    "build:app": "gatsby build",
+    "build:lambda": "netlify-lambda build src/lambda"
   },
   "dependencies": {
     "@material-ui/core": "^4.5.1",
@@ -47,6 +48,9 @@
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-standard": "^4.0.0",
     "gatsby-plugin-force-trailing-slashes": "^1.0.4",
+    "http-proxy-middleware": "^0.20.0",
+    "netlify-lambda": "^1.6.3",
+    "npm-run-all": "^4.1.5",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.6.0",
     "prettier-eslint-cli": "^4.7.1",

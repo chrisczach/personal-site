@@ -29,6 +29,24 @@ const useStyles = makeStyles(theme => ({
   progress: {position: 'absolute', bottom: 0, width: '100%', height: '100%', zIndex: -100}
 }))
 
+const sendMessage = (message, successCB, errorCB) => {
+  fetch('/.netlify/functions/send-message', {
+    method: 'POST',
+    mode: 'same-origin',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    redirect: 'follow',
+    referrer: 'no-referrer',
+    body: JSON.stringify(message)
+  })
+    .then(response => response.json())
+    .then(successCB)
+    .catch(errorCB)
+}
+
 const ContactForm = props => {
   const classes = useStyles(props)
   const [formValues, setFormValues] = useState({})
@@ -43,13 +61,19 @@ const ContactForm = props => {
 
   const handleSubmit = () => {
     setSending(true)
-    setTimeout(() => {
-      const {name, email, phone} = {...formValues}
-      setFormValues({})
-      navigate('/contact/thanks/', {state: {name, email, phone}})
-      console.log(JSON.stringify(formValues, null, 2))
-      setSending(false)
-    }, 5000)
+    sendMessage(
+      formValues,
+      body => {
+        console.log(body)
+        navigate( '/contact/thanks/', { state: body } )
+        console.log( JSON.stringify( formValues, null, 2 ) )
+        setSending(false)
+        setFormValues({})
+      },
+      () => {
+        setSending(false)
+      }
+    )
   }
 
   return (
