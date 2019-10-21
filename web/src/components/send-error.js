@@ -72,7 +72,7 @@ const SendError = ({open, onClose, formValues, retrySend, ...props}) => {
           size='large'
           endIcon={<EmailRounded />}
           href={`mailto:contact@chrisczach.com?subject=${formValues.subject ||
-            'Form Submit'}&body=${formValues.message}`}
+            'Chris Czach - Contact Form Submission'}&body=${formValues.message}`}
         >
           Send Via Email
         </Button>
