@@ -12,7 +12,7 @@ import {
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator'
 import {SendRounded} from '@material-ui/icons'
 import {navigate} from 'gatsby'
-
+import SendError from './send-error'
 const useStyles = makeStyles(theme => ({
   form: {
     display: 'flex',
@@ -51,6 +51,7 @@ const ContactForm = props => {
   const classes = useStyles(props)
   const [formValues, setFormValues] = useState({})
   const [sending, setSending] = useState(false)
+  const [error, setError] = useState(false)
   const handleChange = ({target: {name, value}}) => {
     setFormValues(state => {
       const newState = {...state}
@@ -65,13 +66,14 @@ const ContactForm = props => {
       formValues,
       body => {
         console.log(body)
-        navigate( '/contact/thanks/', { state: body } )
-        console.log( JSON.stringify( formValues, null, 2 ) )
+        navigate('/contact/thanks/', {state: body})
+        console.log(JSON.stringify(formValues, null, 2))
         setSending(false)
         setFormValues({})
       },
       () => {
         setSending(false)
+        setError(true)
       }
     )
   }
@@ -96,6 +98,12 @@ const ContactForm = props => {
             {sending ? 'Message Sending' : 'Send Message'}
           </Button>
         </Fade>
+        <SendError
+          open={!sending && error}
+          onClose={() => setError(false)}
+          retrySend={handleSubmit}
+          {...{formValues}}
+        />
       </>
     </ValidatorForm>
   )
@@ -169,7 +177,7 @@ const inputFields = [
   }
 ]
 
-const toTitleCase = str =>
+const toTitleCase = (str='') =>
   str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
 
 export default ContactForm
