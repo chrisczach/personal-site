@@ -76,18 +76,13 @@ const toBottomNav = classes => ({link, Icon, route, ...props}, index) => {
     )
   return (
     <LinkComponent>
-      <Grow in style={{transformOrigin: '0 0 0'}} timeout={(index + 1) * 200}>
-        <Slide direction='up' in style={{transformOrigin: '0 0 0'}} timeout={(index + 1) * 400}>
-          <ListItem button>
-            <ListItemIcon className={classes.listIcon}>
-              <Icon fontSize='small' />
-            </ListItemIcon>
-            <Slide direction='up' in style={{transformOrigin: '0 0 0'}} timeout={(index + 1) * 200}>
-              <ListItemText primary={link} className={classes.listItem} />
-            </Slide>
-          </ListItem>
-        </Slide>
-      </Grow>
+      <ListItem button>
+        <ListItemIcon className={classes.listIcon}>
+          <Icon fontSize='small' />
+        </ListItemIcon>
+
+        <ListItemText primary={link} className={classes.listItem} />
+      </ListItem>
     </LinkComponent>
   )
 }
