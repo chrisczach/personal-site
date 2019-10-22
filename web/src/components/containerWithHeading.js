@@ -12,10 +12,11 @@ const useStyles = ({portrait}) =>
       minHeight: '100vh'
     },
     heading: {
-      padding: theme.spacing(2, 2, 1, 2)
+      padding: theme.spacing(2, 2, 0, 2)
     },
     subHeading: {
-      padding: theme.spacing(0, 2, 1, 2)
+      padding: theme.spacing(0, 2, 1, portrait ? 2 : 4),
+      fontSize: '1.5em'
     },
     paper: {
       display: 'flex',
@@ -34,7 +35,7 @@ export const ContainerWithHeading = ({
   const portrait = useContext(PortraitContext)
   const classes = useStyles({portrait})(props)
   return (
-    <Container maxWidth='md' className={classes.container}>
+    <Container maxWidth='lg' className={classes.container}>
       <Fade in timeout={150}>
         <Slide in direction='down' timeout={300}>
           <Typography variant='h2' color='textSecondary' className={classes.heading}>

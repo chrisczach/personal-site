@@ -1,15 +1,20 @@
 import React from 'react'
 import {graphql} from 'gatsby'
 import SEO from '../components/seo'
+
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL'
+import {ContainerWithHeading} from '../components/containerWithHeading'
+import ProjectLinks from '../components/project-links'
 
 const ProjectTemplate = ({data}) => {
   const project = data && data.project
-
+  console.log(project)
   return (
     <>
-      <SEO title={project.title || 'Untitled'} />
-      {project.title}
+      <SEO title={project.title} />
+      <ContainerWithHeading heading={project.title} subHeading={project._rawExcerpt}>
+        <ProjectLinks link={project.link} repo={project.repo} />
+      </ContainerWithHeading>
     </>
   )
 }
@@ -18,17 +23,11 @@ export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
     project: sanityProject(id: {eq: $id}) {
       id
-      publishedAt
+      link
+      repo
       categories {
         _id
         title
-      }
-      relatedProjects {
-        title
-        _id
-        slug {
-          current
-        }
       }
       mainImage {
         crop {
@@ -57,34 +56,7 @@ export const query = graphql`
         current
       }
       _rawBody
-      members {
-        _key
-        person {
-          image {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-            }
-          }
-          name
-        }
-        roles
-      }
+      _rawExcerpt
     }
   }
 `

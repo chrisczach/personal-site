@@ -9,7 +9,7 @@ import ThanksSuccess from '../../components/thanks'
 import {ContainerWithHeading} from '../../components/containerWithHeading'
 import {navigate} from '@reach/router'
 import ContactForm from '../../components/contact-form'
-import { PortraitContext } from '../../components/layout';
+import {PortraitContext} from '../../components/layout'
 
 const useStyles = portrait =>
   makeStyles(theme => ({
@@ -60,44 +60,6 @@ export const query = graphql`
       title
       description
       keywords
-    }
-    projects: allSanityProject(
-      limit: 6
-      sort: {fields: [publishedAt], order: DESC}
-      filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}}
-    ) {
-      edges {
-        node {
-          id
-          mainImage {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-            }
-            alt
-          }
-          title
-          _rawExcerpt
-          slug {
-            current
-          }
-        }
-      }
     }
   }
 `

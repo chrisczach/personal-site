@@ -76,9 +76,9 @@ const menuItems = [
   {link: 'About', Icon: FormatListBulletedRounded, route: '/about/', title: 'About Me'},
   {link: 'Experience', Icon: WorkRounded, route: '/work/', title: 'Work Experience'},
   {
-    link: 'Portfolio',
+    link: 'Projects',
     Icon: DeveloperModeRounded,
-    route: '/portfolio/',
+    route: '/projects/',
     title: 'Portfolio / Projects'
   },
   {
