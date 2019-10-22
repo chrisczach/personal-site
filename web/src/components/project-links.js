@@ -26,7 +26,7 @@ const useStyles = portrait =>
       display: 'flex',
       flexDirection: 'row',
       justifyContent: portrait ? 'center' : 'flex-end',
-      margin: portrait ? 0 : theme.spacing(-8, 0)
+      margin: portrait ? 0 : theme.spacing(-8, 0, 0, 0)
     },
     listItem: {
       padding: theme.spacing(0, 1, 0, 0)

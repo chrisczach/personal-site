@@ -13,7 +13,8 @@ const ProjectTemplate = ({data}) => {
     <>
       <SEO title={project.title} />
       <ContainerWithHeading heading={project.title} subHeading={project._rawExcerpt}>
-        <ProjectLinks link={project.link} repo={project.repo} />
+        <ProjectLinks link={ project.link } repo={ project.repo } />
+        <div>Next Thing</div>
       </ContainerWithHeading>
     </>
   )
