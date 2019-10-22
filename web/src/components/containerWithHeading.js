@@ -45,7 +45,7 @@ export const ContainerWithHeading = ({
       <Fade in timeout={600}>
         <Zoom in timeout={1200}>
           <Typography variant='subtitle1' color='textPrimary' className={classes.subHeading}>
-            <BlockContent blocks={subHeading} />
+            {typeof subHeading === 'string' ? subHeading : <BlockContent blocks={subHeading} />}
           </Typography>
         </Zoom>
       </Fade>
