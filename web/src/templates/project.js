@@ -1,6 +1,17 @@
 import React, {useContext} from 'react'
 import {graphql} from 'gatsby'
-import {Container, Paper, Typography, TextField, Zoom, Grow, Slide, Box} from '@material-ui/core'
+import {
+  Container,
+  Paper,
+  Typography,
+  TextField,
+  Zoom,
+  Fade,
+  Grow,
+  Slide,
+  Box,
+  Button
+} from '@material-ui/core'
 import SEO from '../components/seo'
 import {PortraitContext} from '../components/layout'
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL'
@@ -8,6 +19,7 @@ import {ContainerWithHeading} from '../components/containerWithHeading'
 import ProjectLinks from '../components/project-links'
 import Img from 'gatsby-image'
 import {makeStyles} from '@material-ui/core/styles'
+import {LaunchRounded, CodeRounded} from '@material-ui/icons/'
 
 const useStyles = ({portrait}) =>
   makeStyles(theme => ({
@@ -35,7 +47,33 @@ const useStyles = ({portrait}) =>
       padding: theme.spacing(2)
     },
     image: {
+      position: 'relative',
       width: '100%'
+    },
+    hoverOpen: {
+      zIndex: 2,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: `100%`,
+      height: `100%`,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    button: {
+      transition: 'all  .3s ease',
+      width: `100%`,
+      height: `100%`,
+      borderRadius: 0,
+      fontSize: '1.25em',
+      opacity: 0,
+      '&:hover': {
+        opacity: 1,
+        background: `linear-gradient(to bottom right, ${theme.palette.primary.main}99, ${theme.palette.secondary.main}66) !important`,
+        backdropFilter: 'blur(8px)',
+        webkitBackdropFilter: 'blur(8px)'
+      }
     }
   }))
 
@@ -48,6 +86,7 @@ const ProjectTemplate = ({data, ...props}) => {
       <SEO title={project.title} />
       <ContainerWithHeading heading={project.title} subHeading={project._rawExcerpt}>
         <ProjectLinks link={project.link} repo={project.repo} />
+
         <Paper className={classes.paper}>
           <Box className={classes.content}>
             <Typography variant='h4' className={classes.heading}>
@@ -63,8 +102,14 @@ const ProjectTemplate = ({data, ...props}) => {
           </Box>
           <Box className={classes.image}>
             <Img fluid={project.mainImage.asset.fluid} />
+            <a href={project.link} target='_blank' className={classes.hoverOpen}>
+              <Button endIcon={<LaunchRounded />} className={classes.button}>
+                Open Site
+              </Button>
+            </a>
           </Box>
         </Paper>
+
         <div>Body Text</div>
       </ContainerWithHeading>
     </>
