@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 
-import {WebRounded, GitHub} from '@material-ui/icons/'
+import {LaunchRounded, CodeRounded} from '@material-ui/icons/'
 import {
   AppBar,
   Typography,
@@ -25,7 +25,7 @@ const useStyles = portrait =>
     wrapper: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: portrait ? 'center' : 'flex-end',
+      justifyContent: portrait ? 'space-around' : 'flex-end',
       margin: portrait ? 0 : theme.spacing(-8, 0, 0, 0)
     },
     listItem: {
@@ -44,16 +44,16 @@ const ProjectLinks = ({link, repo}) => {
       <a href={link} target='_blank'>
         <ListItem button href={link} target='_blank'>
           <ListItemIcon className={classes.listIcon}>
-            <WebRounded fontSize='default' />
+            <LaunchRounded fontSize='default' />
           </ListItemIcon>
 
-          <ListItemText primary={'Project'} className={classes.listItem} />
+          <ListItemText primary={'Project Site'} className={classes.listItem} />
         </ListItem>
       </a>
       <a href={repo} target='_blank'>
         <ListItem button>
           <ListItemIcon className={classes.listIcon}>
-            <GitHub fontSize='default' />
+            <CodeRounded fontSize='default' />
           </ListItemIcon>
 
           <ListItemText primary={'Repository'} className={classes.listItem} />
