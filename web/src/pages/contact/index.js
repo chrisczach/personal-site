@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 const Contact = ({data, ...props}) => {
   const classes = useStyles(props)
   const site = (data || {}).site
+  const page = (data || {}).page
   if (!site) {
     throw new Error(
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
@@ -38,8 +39,8 @@ const Contact = ({data, ...props}) => {
 
   return (
     <>
-      <SEO title={site.title} description={site.description} keywords={site.keywords} />
-      <ContainerWithHeading heading='Contact' subHeading='Send a message!'>
+      <SEO title={page.title} description={site.description} keywords={site.keywords} />
+      <ContainerWithHeading heading={page.title} subHeading={page._rawBody}>
         <Paper className={classes.paper} elevation={24}>
           <ContactForm />
         </Paper>
@@ -55,43 +56,10 @@ export const query = graphql`
       description
       keywords
     }
-    projects: allSanityProject(
-      limit: 6
-      sort: {fields: [publishedAt], order: DESC}
-      filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}}
-    ) {
-      edges {
-        node {
-          id
-          mainImage {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-            }
-            alt
-          }
-          title
-          _rawExcerpt
-          slug {
-            current
-          }
-        }
-      }
+    page: sanityPage(slug: {current: {eq: "contact"}}) {
+      id
+      title
+      _rawBody
     }
   }
 `

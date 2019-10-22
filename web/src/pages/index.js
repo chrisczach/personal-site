@@ -15,6 +15,7 @@ import {ContainerWithHeading} from '../components/containerWithHeading'
 
 const IndexPage = ({data, ...props}) => {
   const site = (data || {}).site
+  const page = (data || {}).page
   if (!site) {
     throw new Error(
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.'
@@ -23,12 +24,8 @@ const IndexPage = ({data, ...props}) => {
 
   return (
     <>
-      <SEO title={site.title} description={site.description} keywords={site.keywords} />
-      <ContainerWithHeading
-        heading='Home'
-        subHeading='Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam deserunt ullam
-            blanditiis illo culpa saepe voluptate, reiciendis nisi tempore'
-      />
+      <SEO title={page.title} description={site.description} keywords={site.keywords} />
+      <ContainerWithHeading heading={page.title} subHeading={page._rawBody} />
     </>
   )
 }
@@ -40,43 +37,10 @@ export const query = graphql`
       description
       keywords
     }
-    projects: allSanityProject(
-      limit: 6
-      sort: {fields: [publishedAt], order: DESC}
-      filter: {slug: {current: {ne: null}}, publishedAt: {ne: null}}
-    ) {
-      edges {
-        node {
-          id
-          mainImage {
-            crop {
-              _key
-              _type
-              top
-              bottom
-              left
-              right
-            }
-            hotspot {
-              _key
-              _type
-              x
-              y
-              height
-              width
-            }
-            asset {
-              _id
-            }
-            alt
-          }
-          title
-          _rawExcerpt
-          slug {
-            current
-          }
-        }
-      }
+    page: sanityPage(slug: {current: {eq: "index"}}) {
+      id
+      title
+      _rawBody
     }
   }
 `
