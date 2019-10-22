@@ -27,6 +27,9 @@ const useStyles = ({portrait}) =>
       //   transition: 'all  3s ease !important'
       // }
     },
+    heading: {
+      color: theme.palette.secondary.light
+    },
     content: {
       width: '100%',
       padding: theme.spacing(2)
@@ -47,6 +50,9 @@ const ProjectTemplate = ({data, ...props}) => {
         <ProjectLinks link={project.link} repo={project.repo} />
         <Paper className={classes.paper}>
           <Box className={classes.content}>
+            <Typography variant='h4' className={classes.heading}>
+              Tech Stack Used
+            </Typography>
             <ul>
               <li>Test</li>
               <li>Test</li>
@@ -59,6 +65,7 @@ const ProjectTemplate = ({data, ...props}) => {
             <Img fluid={project.mainImage.asset.fluid} />
           </Box>
         </Paper>
+        <div>Body Text</div>
       </ContainerWithHeading>
     </>
   )
