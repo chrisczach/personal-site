@@ -129,7 +129,7 @@ export const query = graphql`
         category
         tech {
           title
-          description
+          description: _rawDescription
           experience
           logo {
             asset {
