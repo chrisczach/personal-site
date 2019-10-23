@@ -1,34 +1,34 @@
 require('dotenv').config({
-  path: `../../.env.${process.env.NODE_ENV || 'development'}`
-})
+  path: `../../.env.${process.env.NODE_ENV || 'development'}`,
+});
 
 const mailgun = require('mailgun-js')({
   apiKey: process.env.API_KEY,
-  domain: process.env.DOMAIN
-})
+  domain: process.env.DOMAIN,
+});
 
-export const handler = ({body}, context, callback) => {
-  const data = createMessage(body)
+export const handler = ({ body }, context, callback) => {
+  const data = createMessage(body);
   mailgun.messages().send(data, (error, responseBody) => {
-    console.log(responseBody)
+    console.log(responseBody);
     if (error) {
-      console.log(error)
+      console.log(error);
       return callback(null, {
         // return null to show no errors
         statusCode: 500, // http status code
-        body: 'some error'
-      })
+        body: 'some error',
+      });
     }
     callback(null, {
       // return null to show no errors
       statusCode: 200, // http status code
-      body: body
-    })
-  })
-}
+      body,
+    });
+  });
+};
 
 const createMessage = body => {
-  const {name, email, phone, subject, message} = JSON.parse(body)
+  const { name, email, phone, subject, message } = JSON.parse(body);
 
   return {
     from: `Chris Czach <contact@chrisczach.com>`,
@@ -170,8 +170,8 @@ const createMessage = body => {
 <div style="color:#E5E9EA;font-family:'Roboto', Tahoma, Verdana, Segoe, sans-serif;line-height:1.2;padding-top:60px;padding-right:30px;padding-bottom:30px;padding-left:30px;">
 <div style="font-family: 'Roboto', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; line-height: 1.2; color: #E5E9EA; mso-line-height-alt: 14px;">
 <p style="font-size: 14px; line-height: 1.2; mso-line-height-alt: 17px; margin: 0;"><strong><span style="font-size: 18px;"><span style="font-size: 18px;">Hello ${toTitleCase(
-    name
-  )},</span></span></strong></p>
+      name,
+    )},</span></span></strong></p>
 </div>
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
@@ -207,20 +207,20 @@ const createMessage = body => {
 <div style="color:#E5E9EA;font-family:'Roboto', Tahoma, Verdana, Segoe, sans-serif;line-height:1.2;padding-top:30px;padding-right:30px;padding-bottom:60px;padding-left:30px;">
 <div style="font-family: 'Roboto', Tahoma, Verdana, Segoe, sans-serif; font-size: 12px; line-height: 1.2; color: #E5E9EA; mso-line-height-alt: 14px;">
 <p style="font-size: 14px; line-height: 1.2; mso-line-height-alt: 17px; margin: 0;">From: ${toTitleCase(
-    name
-  )} <${email.replace(/\s/g, '').toLowerCase()}}></p>
+      name,
+    )} <${email.replace(/\s/g, '').toLowerCase()}}></p>
 <p style="font-size: 14px; line-height: 1.2; mso-line-height-alt: 17px; margin: 0;">To: Chris Czach <contact@chrisczach.com></p>
 <p style="font-size: 14px; line-height: 1.2; mso-line-height-alt: 17px; margin: 0;" ${
-  phone ? `Phone : ${phone}` : ''
-}</p>
+      phone ? `Phone : ${phone}` : ''
+    }</p>
 <p style="font-size: 14px; line-height: 1.2; mso-line-height-alt: 17px; margin: 0;">Subject:  ${subject ||
       'Chris Czach - Contact Form Submission'}</p>
 <p style="font-size: 14px; line-height: 1.2; mso-line-height-alt: 17px; margin: 0;"> </p>
 ${message.split('\n').map(
-    paragraph => `
+  paragraph => `
 <p style="font-size: 14px; line-height: 1.2; mso-line-height-alt: 17px; margin: 0;">${paragraph}</p>
-`
-  )}
+`,
+)}
 </div>
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
@@ -242,9 +242,9 @@ ${message.split('\n').map(
 <!--[if (IE)]></div><![endif]-->
 </body>
 </html>
- `
-  }
-}
+ `,
+  };
+};
 
 // `
 // <html>
@@ -286,4 +286,7 @@ ${message.split('\n').map(
 // `
 
 const toTitleCase = str =>
-  str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
+  str.replace(
+    /\w\S*/g,
+    txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
+  );

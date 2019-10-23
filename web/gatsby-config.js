@@ -1,12 +1,13 @@
 // Load variables from `.env` as soon as possible
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV || 'development'}`
-})
-const proxy = require('http-proxy-middleware')
-const clientConfig = require('./client-config')
-const token = process.env.SANITY_READ_TOKEN
+  path: `.env.${process.env.NODE_ENV || 'development'}`,
+});
+const proxy = require('http-proxy-middleware');
+const clientConfig = require('./client-config');
 
-const isProd = process.env.NODE_ENV === 'production'
+const token = process.env.SANITY_READ_TOKEN;
+
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   developMiddleware: app => {
@@ -15,17 +16,17 @@ module.exports = {
       proxy({
         target: 'http://localhost:9000',
         pathRewrite: {
-          '/.netlify/functions/': ''
-        }
-      })
-    )
+          '/.netlify/functions/': '',
+        },
+      }),
+    );
   },
   plugins: [
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/containers/layout.js`)
-      }
+        component: require.resolve(`./src/containers/layout.js`),
+      },
     },
     `gatsby-plugin-force-trailing-slashes`,
     'gatsby-plugin-postcss',
@@ -36,9 +37,9 @@ module.exports = {
       resolve: `gatsby-plugin-material-ui`,
       options: {
         stylesProvider: {
-          injectFirst: true
-        }
-      }
+          injectFirst: true,
+        },
+      },
     },
     {
       resolve: 'gatsby-source-sanity',
@@ -47,16 +48,16 @@ module.exports = {
         ...clientConfig.sanity,
         token,
         watchMode: !isProd,
-        overlayDrafts: !isProd && token
-      }
+        overlayDrafts: !isProd && token,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images/`,
-        ignore: [`**/\.*`] // ignore files starting with a dot
-      }
-    }
-  ]
-}
+        ignore: [`**/\.*`], // ignore files starting with a dot
+      },
+    },
+  ],
+};

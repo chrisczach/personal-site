@@ -1,21 +1,15 @@
-import React, {useEffect, useState, useContext} from 'react'
+import React, { useEffect, useState, useContext } from 'react';
 import {
   AppBar,
-  Typography,
-  Toolbar,
   Fade,
-  Slide,
-  ListItemText,
-  Divider,
-  Grow,
-  ListItemIcon,
   ListItem,
-  Popover,
-  List
-} from '@material-ui/core'
-import {makeStyles} from '@material-ui/core/styles'
-import {Link} from 'gatsby'
-import {PortraitContext} from './layout'
+  ListItemIcon,
+  ListItemText,
+  Slide,
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'gatsby';
+import { PortraitContext } from './layout';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -33,58 +27,58 @@ const useStyles = makeStyles(theme => ({
     transition: 'all  3s ease !important',
     '&:hover': {
       background: `linear-gradient(to bottom right, ${theme.palette.primary.main}99, ${theme.palette.secondary.main}aa) !important`,
-      transition: 'all  3s ease !important'
-    }
+      transition: 'all  3s ease !important',
+    },
   },
   bottomNavItem: {
-    fontSize: '1em'
+    fontSize: '1em',
   },
   listItem: {
-    padding: theme.spacing(0, 1, 0, 0)
+    padding: theme.spacing(0, 1, 0, 0),
   },
   listIcon: {
-    padding: theme.spacing(0, 0, 0, 1)
-  }
-}))
+    padding: theme.spacing(0, 0, 0, 1),
+  },
+}));
 
-const footer = ({menuItems, ...props}) => {
-  const classes = useStyles(props)
-  const portrait = useContext(PortraitContext)
+const footer = ({ menuItems, ...props }) => {
+  const classes = useStyles(props);
+  const portrait = useContext(PortraitContext);
   return (
     <>
       {!portrait && (
-        <Slide in direction='up' timeout={500}>
+        <Slide in direction="up" timeout={500}>
           <Fade in timeout={300}>
-            <AppBar color='secondary' className={classes.appBar}>
+            <AppBar color="secondary" className={classes.appBar}>
               {menuItems.map(toBottomNav(classes))}
             </AppBar>
           </Fade>
         </Slide>
       )}
     </>
-  )
-}
+  );
+};
 
-const toBottomNav = classes => ({link, Icon, route, ...props}, index) => {
-  const LinkComponent = ({children}) =>
+const toBottomNav = classes => ({ link, Icon, route, ...props }, index) => {
+  const LinkComponent = ({ children }) =>
     route[0] === '/' ? (
       <Link to={route}>{children}</Link>
     ) : (
-      <a href={route} target='_blank'>
+      <a href={route} target="_blank">
         {children}
       </a>
-    )
+    );
   return (
     <LinkComponent>
       <ListItem button>
         <ListItemIcon className={classes.listIcon}>
-          <Icon fontSize='small' />
+          <Icon fontSize="small" />
         </ListItemIcon>
 
         <ListItemText primary={link} className={classes.listItem} />
       </ListItem>
     </LinkComponent>
-  )
-}
+  );
+};
 
-export default footer
+export default footer;

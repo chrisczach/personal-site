@@ -8,7 +8,7 @@
 export const onClientEntry = () => {
   // IntersectionObserver polyfill for gatsby-background-image (Safari, IE)
   if (typeof window.IntersectionObserver === `undefined`) {
-    import(`${__dirname}/node_modules/intersection-observer`)
-    console.log(`# IntersectionObserver is polyfilled!`)
+    import(`${__dirname}/node_modules/intersection-observer`);
+    console.log(`# IntersectionObserver is polyfilled!`);
   }
-}
+};

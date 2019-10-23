@@ -1,5 +1,5 @@
-import React, {useContext} from 'react'
-import {graphql} from 'gatsby'
+import React, { useContext } from 'react';
+import { graphql } from 'gatsby';
 import {
   Container,
   Paper,
@@ -10,19 +10,19 @@ import {
   Grow,
   Slide,
   Box,
-  Button
-} from '@material-ui/core'
-import SEO from '../components/seo'
-import {PortraitContext} from '../components/layout'
-import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL'
-import {ContainerWithHeading} from '../components/containerWithHeading'
-import ProjectLinks from '../components/project-links'
-import Img from 'gatsby-image'
-import {makeStyles} from '@material-ui/core/styles'
-import {LaunchRounded, CodeRounded} from '@material-ui/icons/'
-import MapTechToList from '../components/mapTechToList'
+  Button,
+} from '@material-ui/core';
+import Img from 'gatsby-image';
+import { makeStyles } from '@material-ui/core/styles';
+import { LaunchRounded, CodeRounded } from '@material-ui/icons/';
+import SEO from '../components/seo';
+import { PortraitContext } from '../components/layout';
+import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL';
+import { ContainerWithHeading } from '../components/containerWithHeading';
+import ProjectLinks from '../components/project-links';
+import MapTechToList from '../components/mapTechToList';
 
-const useStyles = ({portrait}) =>
+const useStyles = ({ portrait }) =>
   makeStyles(theme => ({
     paper: {
       display: 'flex',
@@ -34,7 +34,7 @@ const useStyles = ({portrait}) =>
         : `linear-gradient(to bottom right, ${theme.palette.primary.main}33, ${theme.palette.secondary.main}22) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
-      transition: 'all  3s ease !important'
+      transition: 'all  3s ease !important',
       // '&:hover': {
       //   background: `linear-gradient(to bottom right, ${theme.palette.primary.main}22, ${theme.palette.secondary.main}22) !important`,
       //   transition: 'all  3s ease !important'
@@ -42,17 +42,17 @@ const useStyles = ({portrait}) =>
     },
     heading: {
       color: theme.palette.secondary.light,
-      fontSize: '1.5em'
+      fontSize: '1.5em',
     },
     content: {
       flexBasis: '1fr',
       minWidth: '40%',
-      padding: theme.spacing(2)
+      padding: theme.spacing(2),
     },
     image: {
       position: 'relative',
       flexBasis: '2fr',
-      width: '100%'
+      width: '100%',
     },
     hoverOpen: {
       zIndex: 2,
@@ -63,7 +63,7 @@ const useStyles = ({portrait}) =>
       height: `100%`,
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
     },
     button: {
       transition: 'all  .3s ease',
@@ -76,31 +76,38 @@ const useStyles = ({portrait}) =>
         opacity: 1,
         background: `linear-gradient(to bottom right, ${theme.palette.primary.main}99, ${theme.palette.secondary.main}66) !important`,
         backdropFilter: 'blur(8px)',
-        webkitBackdropFilter: 'blur(8px)'
-      }
-    }
-  }))
+        webkitBackdropFilter: 'blur(8px)',
+      },
+    },
+  }));
 
-const ProjectTemplate = ({data, ...props}) => {
-  const project = data && data.project
-  const portrait = useContext(PortraitContext)
-  const classes = useStyles({portrait})(props)
+const ProjectTemplate = ({ data, ...props }) => {
+  const project = data && data.project;
+  const portrait = useContext(PortraitContext);
+  const classes = useStyles({ portrait })(props);
   return (
     <>
       <SEO title={project.title} />
-      <ContainerWithHeading heading={project.title} subHeading={project._rawExcerpt}>
+      <ContainerWithHeading
+        heading={project.title}
+        subHeading={project._rawExcerpt}
+      >
         <ProjectLinks link={project.link} repo={project.repo} />
 
         <Paper className={classes.paper}>
           <Box className={classes.content}>
-            <Typography variant='h5' className={classes.heading}>
+            <Typography variant="h5" className={classes.heading}>
               Technical Specs
             </Typography>
             <MapTechToList tech={project.tech} />
           </Box>
           <Box className={classes.image}>
             <Img fluid={project.mainImage.asset.fluid} />
-            <a href={project.link} target='_blank' className={classes.hoverOpen}>
+            <a
+              href={project.link}
+              target="_blank"
+              className={classes.hoverOpen}
+            >
               <Button endIcon={<LaunchRounded />} className={classes.button}>
                 Open Site
               </Button>
@@ -111,12 +118,12 @@ const ProjectTemplate = ({data, ...props}) => {
         <div>Body Text</div>
       </ContainerWithHeading>
     </>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query ProjectTemplateQuery($id: String!) {
-    project: sanityProject(id: {eq: $id}) {
+    project: sanityProject(id: { eq: $id }) {
       id
       link
       repo
@@ -149,6 +156,6 @@ export const query = graphql`
       _rawExcerpt
     }
   }
-`
+`;
 
-export default ErrorHandlerGraphQL(ProjectTemplate)
+export default ErrorHandlerGraphQL(ProjectTemplate);
