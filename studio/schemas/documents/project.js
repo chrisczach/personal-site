@@ -44,7 +44,7 @@ export default {
       name: 'tech',
       title: 'Languages / Frameworks',
       type: 'array',
-      of: [{type: 'reference', to: {type: 'tech'}}]
+      of: [{type: 'techList'}]
     },
     {
       name: 'body',
