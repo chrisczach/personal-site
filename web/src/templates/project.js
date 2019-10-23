@@ -20,6 +20,7 @@ import ProjectLinks from '../components/project-links'
 import Img from 'gatsby-image'
 import {makeStyles} from '@material-ui/core/styles'
 import {LaunchRounded, CodeRounded} from '@material-ui/icons/'
+import MapTechToList from '../components/mapTechToList'
 
 const useStyles = ({portrait}) =>
   makeStyles(theme => ({
@@ -44,11 +45,13 @@ const useStyles = ({portrait}) =>
       fontSize: '1.5em'
     },
     content: {
-      width: '100%',
+      flexBasis: '1fr',
+      minWidth: '40%',
       padding: theme.spacing(2)
     },
     image: {
       position: 'relative',
+      flexBasis: '2fr',
       width: '100%'
     },
     hoverOpen: {
@@ -93,13 +96,7 @@ const ProjectTemplate = ({data, ...props}) => {
             <Typography variant='h5' className={classes.heading}>
               Technical Specs
             </Typography>
-            <ul>
-              <li>Test</li>
-              <li>Test</li>
-              <li>Test</li>
-              <li>Test</li>
-              <li>Test</li>
-            </ul>
+            <MapTechToList tech={project.tech} />
           </Box>
           <Box className={classes.image}>
             <Img fluid={project.mainImage.asset.fluid} />
@@ -123,9 +120,19 @@ export const query = graphql`
       id
       link
       repo
-      categories {
-        _id
-        title
+      tech {
+        category
+        tech {
+          title
+          description
+          logo {
+            asset {
+              fluid(maxWidth: 3840) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+        }
       }
       mainImage {
         asset {

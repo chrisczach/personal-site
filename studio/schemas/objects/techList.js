@@ -24,7 +24,7 @@ export default {
       return {
         ...data,
         title: data.category
-        // subtitle: data.tech.map(field => JSON.stringify(field)).join(', ')
+        // subtitle: data.tech.map(field => JSON.stringify(field.title)).join(', ')
       }
     }
   }
