@@ -5,7 +5,6 @@ import {
   ListItem,
   ListItemText,
   Box,
-  Tooltip,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Img from 'gatsby-image';
@@ -22,7 +21,7 @@ const useStyles = portrait =>
       display: 'inline-flex',
       flexDirection: portrait ? 'column' : 'row',
       justifyContent: 'flex-start',
-      padding: theme.spacing(0, 0, portrait ? 1 : 2, 0),
+      padding: theme.spacing(0, 1, portrait ? 1 : 2, 0),
     },
     logo: {
       width: '40%',
@@ -33,8 +32,7 @@ const useStyles = portrait =>
     },
     listText: {
       whiteSpace: 'nowrap',
-      padding: 0,
-      margin: 0,
+      padding: theme.spacing(0, 2, 0, 0),
     },
     listIcon: {
       padding: 0,
@@ -57,18 +55,13 @@ const MapTechToList = ({ tech, ...props }) => {
                 ({
                   title,
                   description,
+                  experience,
                   logo: {
                     asset: { fluid },
                   },
                 }) => {
                   return (
-                    <Tooltip
-                      title={
-                        <TooltipContent {...{ title, description, fluid }} />
-                      }
-                      interactive
-                      className={classes.tooltip}
-                    >
+                    <TooltipContent { ...{ title, description, experience, fluid }}>
                       <ListItem className={classes.listItem} button>
                         <ListItemIcon className={classes.listIcon}>
                           <Img fluid={fluid} className={classes.logo} />
@@ -79,7 +72,7 @@ const MapTechToList = ({ tech, ...props }) => {
                           className={classes.listText}
                         />
                       </ListItem>
-                    </Tooltip>
+                    </TooltipContent>
                   );
                 },
               )}

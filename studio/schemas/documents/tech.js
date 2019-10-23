@@ -14,6 +14,16 @@ export default {
       title: 'Logo',
     },
     {
+      name: 'experience',
+      type: 'number',
+      description: 'From 1 to 5, floats allowed',
+      title: 'Experience',
+      validation: Rule =>
+        Rule.min(1)
+          .max(5)
+          .precision(1),
+    },
+    {
       name: 'description',
       type: 'text',
       title: 'Description',

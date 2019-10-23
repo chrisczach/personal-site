@@ -130,6 +130,7 @@ export const query = graphql`
         tech {
           title
           description
+          experience
           logo {
             asset {
               fluid(maxWidth: 3840) {
