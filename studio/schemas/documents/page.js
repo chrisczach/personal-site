@@ -1,5 +1,3 @@
-import {format} from 'date-fns'
-
 export default {
   name: 'page',
   title: 'Page',
@@ -8,37 +6,38 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      description: 'Some frontend will require a slug to be set to be able to show the project',
+      description:
+        'Some frontend will require a slug to be set to be able to show the project',
       options: {
         source: 'title',
-        maxLength: 96
-      }
+        maxLength: 96,
+      },
     },
     {
       name: 'mainImage',
       title: 'Main image',
-      type: 'figure'
+      type: 'figure',
     },
     {
       name: 'body',
       title: 'Body',
-      type: 'simplePortableText'
-    }
+      type: 'simplePortableText',
+    },
   ],
   preview: {
     select: {
-      title: 'title'
+      title: 'title',
     },
-    prepare ({title = 'No title'}) {
+    prepare({ title = 'No title' }) {
       return {
-        title
-      }
-    }
-  }
-}
+        title,
+      };
+    },
+  },
+};

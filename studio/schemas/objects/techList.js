@@ -6,26 +6,26 @@ export default {
     {
       title: 'Category',
       name: 'category',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'tech',
       title: 'Languages / Frameworks',
       type: 'array',
-      of: [{type: 'reference', to: {type: 'tech'}}]
-    }
+      of: [{ type: 'reference', to: { type: 'tech' } }],
+    },
   ],
   preview: {
     select: {
       category: 'category',
-      tech: 'tech'
+      tech: 'tech',
     },
-    prepare (data) {
+    prepare(data) {
       return {
         ...data,
-        title: data.category
+        title: data.category,
         // subtitle: data.tech.map(field => JSON.stringify(field.title)).join(', ')
-      }
-    }
-  }
-}
+      };
+    },
+  },
+};

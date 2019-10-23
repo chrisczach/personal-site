@@ -1,5 +1,3 @@
-import {format} from 'date-fns'
-
 export default {
   name: 'project',
   title: 'Project',
@@ -8,63 +6,64 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      description: 'Some frontend will require a slug to be set to be able to show the project',
+      description:
+        'Some frontend will require a slug to be set to be able to show the project',
       options: {
         source: 'title',
-        maxLength: 96
-      }
+        maxLength: 96,
+      },
     },
     {
       name: 'excerpt',
       title: 'Excerpt',
-      type: 'simplePortableText'
+      type: 'simplePortableText',
     },
     {
       name: 'link',
       title: 'Project Link',
-      type: 'url'
+      type: 'url',
     },
     {
       name: 'repo',
       title: 'Repository Link',
-      type: 'url'
+      type: 'url',
     },
     {
       name: 'mainImage',
       title: 'Main image',
-      type: 'figure'
+      type: 'figure',
     },
     {
       name: 'tech',
       title: 'Languages / Frameworks',
       type: 'array',
-      of: [{type: 'techList'}]
+      of: [{ type: 'techList' }],
     },
     {
       name: 'body',
       title: 'Body',
-      type: 'projectPortableText'
-    }
+      type: 'projectPortableText',
+    },
   ],
   preview: {
     select: {
       title: 'title',
       slug: 'slug',
-      media: 'mainImage'
+      media: 'mainImage',
     },
-    prepare ({title = 'No title', slug = {}, media}) {
-      const path = `/projects/${slug.current}/`
+    prepare({ title = 'No title', slug = {}, media }) {
+      const path = `/projects/${slug.current}/`;
       return {
         title,
         media,
-        subtitle: path
-      }
-    }
-  }
-}
+        subtitle: path,
+      };
+    },
+  },
+};
