@@ -61,7 +61,9 @@ const MapTechToList = ({ tech, ...props }) => {
                   },
                 }) => {
                   return (
-                    <TooltipContent { ...{ title, description, experience, fluid }}>
+                    <TooltipContent
+                      {...{ title, description, experience, fluid }}
+                    >
                       <ListItem className={classes.listItem} button>
                         <ListItemIcon className={classes.listIcon}>
                           <Img fluid={fluid} className={classes.logo} />

@@ -83,7 +83,12 @@ const TooltipContent = ({
             <Box className={classes.ratingStacking}>
               <Rating
                 className={classes.rating}
-                value={experience}
+                icon={<span>|</span>}
+                emptyIcon={
+                  <span style={{ opacity: 0.5, filter: 'saturate(0)' }}>|</span>
+                }
+                max={10}
+                value={experience * 2}
                 readOnly
                 precision={0.5}
                 size="small"
