@@ -5,16 +5,18 @@ import {
   ListItem,
   ListItemText,
   Box,
+  Tooltip,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Img from 'gatsby-image';
 
 import { PortraitContext } from './layout';
+import TooltipContent from './tooltip-content';
 
 const useStyles = portrait =>
   makeStyles(theme => ({
     wrapper: {
-      padding: theme.spacing(1, 3),
+      padding: theme.spacing(1, 3, 2, 3),
     },
     itemWrapper: {
       display: 'inline-flex',
@@ -39,6 +41,7 @@ const useStyles = portrait =>
       display: 'flex',
       justifyContent: 'center',
     },
+    tooltip: {},
   }));
 const MapTechToList = ({ tech, ...props }) => {
   const portrait = useContext(PortraitContext);
@@ -59,16 +62,24 @@ const MapTechToList = ({ tech, ...props }) => {
                   },
                 }) => {
                   return (
-                    <ListItem className={classes.listItem}>
-                      <ListItemIcon className={classes.listIcon}>
-                        <Img fluid={fluid} className={classes.logo} />
-                      </ListItemIcon>
+                    <Tooltip
+                      title={
+                        <TooltipContent {...{ title, description, fluid }} />
+                      }
+                      interactive
+                      className={classes.tooltip}
+                    >
+                      <ListItem className={classes.listItem} button>
+                        <ListItemIcon className={classes.listIcon}>
+                          <Img fluid={fluid} className={classes.logo} />
+                        </ListItemIcon>
 
-                      <ListItemText
-                        primary={title}
-                        className={classes.listText}
-                      />
-                    </ListItem>
+                        <ListItemText
+                          primary={title}
+                          className={classes.listText}
+                        />
+                      </ListItem>
+                    </Tooltip>
                   );
                 },
               )}
