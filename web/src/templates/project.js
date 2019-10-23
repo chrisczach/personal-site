@@ -26,7 +26,7 @@ const useStyles = ({ portrait }) =>
   makeStyles(theme => ({
     paper: {
       display: 'flex',
-      flexDirection: portrait ? 'column-reverse' : 'row',
+      flexDirection: portrait ? 'column-reverse' : 'column',
       justifyContent: portrait ? 'flex-start' : 'stretch',
       margin: theme.spacing(4, 0),
       background: portrait
@@ -45,13 +45,11 @@ const useStyles = ({ portrait }) =>
       fontSize: '1.5em',
     },
     content: {
-      flexBasis: '1fr',
-      minWidth: '40%',
+      width: '100%',
       padding: theme.spacing(2),
     },
     image: {
       position: 'relative',
-      flexBasis: '2fr',
       width: '100%',
     },
     hoverOpen: {
