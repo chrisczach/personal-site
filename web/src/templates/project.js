@@ -40,7 +40,8 @@ const useStyles = ({portrait}) =>
       // }
     },
     heading: {
-      color: theme.palette.secondary.light
+      color: theme.palette.secondary.light,
+      fontSize: '1.5em'
     },
     content: {
       width: '100%',
@@ -89,8 +90,8 @@ const ProjectTemplate = ({data, ...props}) => {
 
         <Paper className={classes.paper}>
           <Box className={classes.content}>
-            <Typography variant='h4' className={classes.heading}>
-              Tech Stack Used
+            <Typography variant='h5' className={classes.heading}>
+              Technical Specs
             </Typography>
             <ul>
               <li>Test</li>

@@ -41,10 +41,10 @@ export default {
       type: 'figure'
     },
     {
-      name: 'categories',
-      title: 'Categories',
+      name: 'tech',
+      title: 'Languages / Frameworks',
       type: 'array',
-      of: [{type: 'reference', to: {type: 'category'}}]
+      of: [{type: 'reference', to: {type: 'tech'}}]
     },
     {
       name: 'body',

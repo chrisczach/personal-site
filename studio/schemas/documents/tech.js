@@ -1,12 +1,17 @@
 export default {
-  name: 'category',
+  name: 'tech',
   type: 'document',
-  title: 'Category',
+  title: 'Languages / Frameworks',
   fields: [
     {
       name: 'title',
       type: 'string',
       title: 'Title'
+    },
+    {
+      name: 'logo',
+      type: 'image',
+      title: 'Logo'
     },
     {
       name: 'description',
