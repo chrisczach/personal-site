@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppBar, Typography, Toolbar, Fade, Slide } from '@material-ui/core';
 import { styled, makeStyles } from '@material-ui/core/styles';
+import { useTransition, animated, config } from 'react-spring';
 import nav from './nav';
 import { PortraitContext } from './layout';
 
@@ -32,6 +33,22 @@ const Header = ({
   const portrait = useContext(PortraitContext);
   const { menuButton, menuDrawer } = nav({ portrait, menuItems });
   const classes = useStyles(portrait)(props);
+  const [items, set] = useState([]);
+  const transitions = useTransition(items, item => item.key, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    delay: 5000,
+    config: config.molasses,
+  });
+
+  if (items.length === 0)
+    set(
+      'front end developer'.split('').map((text, key) => ({
+        text,
+        key,
+      })),
+    );
   return (
     <>
       <Slide in direction="down" timeout={500}>
@@ -42,7 +59,22 @@ const Header = ({
                 <Typography variant="h6">
                   Chris Czach{' '}
                   {!portrait && (
-                    <TransitionedTitle title="Front End Developer" />
+                    <span style={{ opacity: 0.5 }}>
+                      {transitions.map(({ item, props, key }) => (
+                        <AnimatedText
+                          variant="inherit"
+                          style={{
+                            ...props,
+                            display: 'inline',
+                            margin: 0,
+                            padding: 0,
+                          }}
+                          key={key}
+                        >
+                          {item.text}
+                        </AnimatedText>
+                      ))}
+                    </span>
                   )}
                 </Typography>
               </Fade>
@@ -56,20 +88,7 @@ const Header = ({
   );
 };
 
-const TransitionedTitle = ({ title, ...props }) => {
-  const characters = title.split('');
-  return (
-    <span style={{ opacity: 0.5 }}>
-      {characters.map((char, index) => (
-        <Fade in timeout={500 * (index + 1)} style={{ transitionDelay: 1500 }}>
-          <Typography style={{ display: 'inline' }} variant="inherit">
-            {char}
-          </Typography>
-        </Fade>
-      ))}
-    </span>
-  );
-};
+const AnimatedText = animated(Typography);
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',

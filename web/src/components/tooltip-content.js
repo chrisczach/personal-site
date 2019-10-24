@@ -88,7 +88,6 @@ const TooltipContent = ({
   };
   const springProps = useSpring({
     width: open ? experience * 2 : 0,
-    config: config.stiff,
   });
 
   const [ratingValue, setRatingValue] = useState(0);
