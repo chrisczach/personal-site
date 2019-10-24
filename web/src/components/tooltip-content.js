@@ -79,15 +79,21 @@ const TooltipContent = ({
   const portrait = useContext(PortraitContext);
   const classes = useStyles(portrait)(props);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => {
+    setValue({ value: experience * 2 });
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setValue({ value: 0 });
+    setOpen(false);
+  };
   const handleToggle = () => setOpen(state => !state);
 
-  const { value } = useSpring({
-    value: !open ? experience * 2 : 0,
+  const [{ value }, setValue] = useSpring(() => ({
+    value: 0,
     config: config.molasses,
-    delay: 500,
-  });
+  }));
+
   return (
     <Tooltip
       open={open}
