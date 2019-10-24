@@ -53,6 +53,7 @@ export const query = graphql`
         techList: tech {
           tech {
             title
+            id
             experience
             description: _rawDescription
             logo {
