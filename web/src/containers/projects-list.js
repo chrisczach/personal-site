@@ -3,7 +3,12 @@ import React from 'react';
 const ProjectsList = ({ projectNodes }) => {
   const projects = projectNodes.map(flattenTech);
   const techList = getFlatTechList(projects);
-  return <div>{JSON.stringify(techList.map(({ title }) => title))}</div>;
+  return (
+    <>
+      <div>{JSON.stringify(techList.map(({ title }) => title))}</div>
+      <div>{JSON.stringify(projects.map(({ title }) => title))}</div>
+    </>
+  );
 };
 
 const getFlatTechList = projects =>
