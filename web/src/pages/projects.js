@@ -58,6 +58,7 @@ export const query = graphql`
           current
         }
         techList: tech {
+          category
           tech {
             title
             id
