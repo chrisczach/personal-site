@@ -15,7 +15,7 @@ import { Link } from 'gatsby';
 import BlockText from './block-text';
 import { PortraitContext } from './layout';
 
-const useStyles = portrait =>
+const useStyles = (portrait, containerWidth = 1280) =>
   makeStyles(theme => ({
     card: {
       background: `${theme.palette.secondary.dark}aa`,
@@ -23,13 +23,14 @@ const useStyles = portrait =>
       webkitBackdropFilter: 'blur(8px)',
     },
     media: {
-      height: 140,
+      height: portrait ? `50vw` : `${Math.round(containerWidth / 6)}px`,
+      overflow: 'hidden',
     },
   }));
 
-const ProjectCard = ({ project, ...props }) => {
+const ProjectCard = ({ project, containerWidth, ...props }) => {
   const portrait = useContext(PortraitContext);
-  const classes = useStyles(portrait)(props);
+  const classes = useStyles(portrait, containerWidth)(props);
   const {
     title,
     excerpt,
@@ -43,11 +44,9 @@ const ProjectCard = ({ project, ...props }) => {
     <Card className={classes.card} raised>
       <Link to={`/projects/${current}/`}>
         <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            component={() => <Img {...{ fluid }} />}
-            title={title}
-          />
+          <CardMedia className={classes.media} title={title}>
+            <Img {...{ fluid }} />
+          </CardMedia>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {title}
