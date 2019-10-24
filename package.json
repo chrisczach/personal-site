@@ -12,6 +12,7 @@
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
     "start": "lerna run start --parallel",
+    "startpriority": "sudo nice -20 lerna run start --parallel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

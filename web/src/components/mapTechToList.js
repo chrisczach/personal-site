@@ -20,15 +20,17 @@ const useStyles = portrait =>
     itemWrapper: {
       display: 'inline-flex',
       flexDirection: portrait ? 'column' : 'row',
+      flexWrap: 'wrap',
       justifyContent: 'flex-start',
-      padding: theme.spacing(0, 1, portrait ? 1 : 2, 0),
+      padding: theme.spacing(0, 1, 0, 0),
     },
     logo: {
       width: '40%',
     },
     listItem: {
+      width: 'auto',
       padding: theme.spacing(1),
-      margin: 0,
+      margin: theme.spacing(0, 0, 1, 0),
     },
     listText: {
       whiteSpace: 'nowrap',

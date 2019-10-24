@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Tooltip, Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Rating } from '@material-ui/lab';
@@ -10,17 +10,19 @@ import BlockText from './block-text';
 const useStyles = portrait =>
   makeStyles(theme => ({
     tooltip: {
-      background: theme.palette.primary.main,
+      background: `${theme.palette.secondary.dark}cc`,
+      backdropFilter: 'blur(8px)',
+      webkitBackdropFilter: 'blur(8px)',
       padding: theme.spacing(2, portrait ? 1 : 2),
-      minWidth: portrait ? '50vw' : '25vw',
+      minWidth: portrait ? '75vw' : '50vw',
     },
     tooltipPlacementBottom: {
-      margin: '0',
+      margin: theme.spacing(0, portrait ? 0 : 2, 0, 0),
     },
     ratingWrapper: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'flex-start',
+      justifyContent: portrait ? 'space-around' : 'flex-start',
       alignItems: 'center',
     },
     rating: {
@@ -42,21 +44,21 @@ const useStyles = portrait =>
     },
     footLogo: {
       display: 'flex',
-      justifyContent: 'flex-end',
+      justifyContent: portrait ? 'space-between' : 'flex-end',
       flexDirection: 'row',
-      alignItems: 'flex-end',
+      alignItems: portrait ? 'flex-start' : 'flex-end',
       '&:hover': {
         filter: 'saturate(2)',
       },
     },
     footSize: {
-      width: '10%',
+      width: portrait ? '15%' : '5%',
       opacity: 0.75,
       filter: 'saturate(.5)',
     },
     footText: {
-      opacity: 0.5,
-      padding: theme.spacing(2, 1),
+      opacity: portrait ? 0.5 : 0.25,
+      padding: portrait ? 0 : theme.spacing(1),
     },
   }));
 
@@ -70,13 +72,21 @@ const TooltipContent = ({
 }) => {
   const portrait = useContext(PortraitContext);
   const classes = useStyles(portrait)(props);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const handleToggle = () => setOpen(state => !state);
   return (
     <Tooltip
+      open={open}
+      onOpen={handleOpen}
+      onClose={handleClose}
+      disableTouchListener
       placement="bottom-start"
       classes={classes}
       interactive
       title={
-        <>
+        <div onClick={handleClose} style={{ userSelect: 'none' }}>
           <Typography variant="subtitle2" className={classes.ratingWrapper}>
             {' '}
             Experience:{' '}
@@ -107,7 +117,7 @@ const TooltipContent = ({
             </Typography>
             <Img className={classes.footSize} fluid={fluid} />
           </Box>
-        </>
+        </div>
       }
     >
       {children}
