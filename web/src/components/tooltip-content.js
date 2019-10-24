@@ -3,7 +3,7 @@ import { Tooltip, Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Rating } from '@material-ui/lab';
 import Img from 'gatsby-image';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, config } from 'react-spring';
 
 import { PortraitContext } from './layout';
 import BlockText from './block-text';
@@ -83,7 +83,11 @@ const TooltipContent = ({
   const handleClose = () => setOpen(false);
   const handleToggle = () => setOpen(state => !state);
 
-  const { value } = useSpring({ value: !open ? experience * 2 : 0 });
+  const { value } = useSpring({
+    value: !open ? experience * 2 : 0,
+    config: config.molasses,
+    delay: 500,
+  });
   return (
     <Tooltip
       open={open}
