@@ -3,10 +3,11 @@ import { Tooltip, Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Rating } from '@material-ui/lab';
 import Img from 'gatsby-image';
+import {useSpring, animated} from 'react-spring'
 
 import { PortraitContext } from './layout';
 import BlockText from './block-text';
-
+const AnimatedRating = animated(Rating)
 const useStyles = portrait =>
   makeStyles(theme => ({
     tooltip: {
@@ -31,6 +32,10 @@ const useStyles = portrait =>
     experience: {
       opacity: 0.75,
       padding: portrait ? 0 : theme.spacing(0, 2, 0, 2),
+    },
+    ratingIcon: {
+      fontWeight: 'bold',
+      color: theme.palette.success.main
     },
     ratingStacking: {
       padding: portrait ? theme.spacing(0, 1, 0, 1) : theme.spacing(0, 1, 0, 2),
@@ -91,11 +96,11 @@ const TooltipContent = ({
             {' '}
             Experience:{' '}
             <Box className={classes.ratingStacking}>
-              <Rating
+              <AnimatedRating
                 className={classes.rating}
-                icon={<span>|</span>}
+                icon={<span className={classes.ratingIcon}>|</span>}
                 emptyIcon={
-                  <span style={{ opacity: 0.5, filter: 'saturate(0)' }}>|</span>
+                  <span className={ classes.ratingIcon } style={{ opacity: 0.5, filter: 'saturate(0)' }}>|</span>
                 }
                 max={10}
                 value={experience * 2}
