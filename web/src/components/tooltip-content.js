@@ -79,19 +79,19 @@ const TooltipContent = ({
   const portrait = useContext(PortraitContext);
   const classes = useStyles(portrait)(props);
   const [open, setOpen] = useState(false);
-  const [{ value }, setValue] = useSpring(() => ({
-    value: 0,
-    config: config.molasses,
-  }));
+
   const handleOpen = () => {
-    setValue({ value: experience * 2 });
     setOpen(true);
   };
   const handleClose = () => {
-    setValue({ value: 0 });
     setOpen(false);
   };
-  const handleToggle = () => setOpen(state => !state);
+  const springProps = useSpring({
+    width: open ? experience * 2 : 0,
+    config: config.stiff,
+  });
+
+  const [ratingValue, setRatingValue] = useState(0);
 
   return (
     <Tooltip
@@ -108,7 +108,7 @@ const TooltipContent = ({
             {' '}
             Experience:{' '}
             <Box className={classes.ratingStacking}>
-              <AnimatedRating
+              <Rating
                 className={classes.rating}
                 icon={<span className={classes.ratingIcon}>|</span>}
                 emptyIcon={
@@ -120,7 +120,7 @@ const TooltipContent = ({
                   </span>
                 }
                 max={10}
-                value={value.interpolate(value => Number(value))}
+                value={ratingValue}
                 readOnly
                 precision={0.5}
                 size="small"
@@ -134,6 +134,11 @@ const TooltipContent = ({
             <BlockText blocks={description} />
           </Typography>
           <Box className={classes.footLogo}>
+            <animated.div>
+              {springProps.width.interpolate(x => {
+                setRatingValue(x);
+              })}
+            </animated.div>{' '}
             <Typography variant="subtitle1" className={classes.footText}>
               {title}
             </Typography>
