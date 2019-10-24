@@ -47,6 +47,13 @@ export const query = graphql`
     projects: allSanityProject {
       nodes {
         title
+        mainImage {
+          asset {
+            fluid(maxWidth: 3840) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
         slug {
           current
         }
@@ -67,8 +74,8 @@ export const query = graphql`
         }
         link
         repo
-        _rawExcerpt
-        _rawBody
+        excerpt: _rawExcerpt
+        body: _rawBody
       }
     }
   }

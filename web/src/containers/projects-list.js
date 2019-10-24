@@ -1,4 +1,5 @@
 import React from 'react';
+import ProjectGrid from '../components/project-grid';
 
 const ProjectsList = ({ projectNodes }) => {
   const projects = projectNodes.map(flattenTech);
@@ -6,7 +7,7 @@ const ProjectsList = ({ projectNodes }) => {
   return (
     <>
       <div>{JSON.stringify(techList.map(({ title }) => title))}</div>
-      <div>{JSON.stringify(projects.map(({ title }) => title))}</div>
+      <ProjectGrid {...{ projects }} />
     </>
   );
 };
