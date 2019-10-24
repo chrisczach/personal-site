@@ -3,11 +3,12 @@ import { Tooltip, Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Rating } from '@material-ui/lab';
 import Img from 'gatsby-image';
-import {useSpring, animated} from 'react-spring'
+import { useSpring, animated } from 'react-spring';
 
 import { PortraitContext } from './layout';
 import BlockText from './block-text';
-const AnimatedRating = animated(Rating)
+
+const AnimatedRating = animated(Rating);
 const useStyles = portrait =>
   makeStyles(theme => ({
     tooltip: {
@@ -35,7 +36,7 @@ const useStyles = portrait =>
     },
     ratingIcon: {
       fontWeight: 'bold',
-      color: theme.palette.success.main
+      color: theme.palette.success.main,
     },
     ratingStacking: {
       padding: portrait ? theme.spacing(0, 1, 0, 1) : theme.spacing(0, 1, 0, 2),
@@ -81,6 +82,8 @@ const TooltipContent = ({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleToggle = () => setOpen(state => !state);
+
+  const { value } = useSpring({ value: !open ? experience * 2 : 0 });
   return (
     <Tooltip
       open={open}
@@ -100,10 +103,15 @@ const TooltipContent = ({
                 className={classes.rating}
                 icon={<span className={classes.ratingIcon}>|</span>}
                 emptyIcon={
-                  <span className={ classes.ratingIcon } style={{ opacity: 0.5, filter: 'saturate(0)' }}>|</span>
+                  <span
+                    className={classes.ratingIcon}
+                    style={{ opacity: 0.5, filter: 'saturate(0)' }}
+                  >
+                    |
+                  </span>
                 }
                 max={10}
-                value={experience * 2}
+                value={value.interpolate(value => Number(value))}
                 readOnly
                 precision={0.5}
                 size="small"
