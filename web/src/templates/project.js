@@ -16,6 +16,8 @@ import {
 import Img from 'gatsby-image';
 import { makeStyles } from '@material-ui/core/styles';
 import { LaunchRounded, CodeRounded } from '@material-ui/icons/';
+import useDimensions from 'react-use-dimensions';
+
 import SEO from '../components/seo';
 import { PortraitContext } from '../components/layout';
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL';
@@ -23,7 +25,7 @@ import { ContainerWithHeading } from '../components/containerWithHeading';
 import ProjectLinks from '../components/project-links';
 import MapTechToList from '../components/mapTechToList';
 
-const useStyles = ({ portrait }) =>
+const useStyles = ({ portrait, width }) =>
   makeStyles(theme => ({
     paper: {
       display: 'flex',
@@ -55,6 +57,8 @@ const useStyles = ({ portrait }) =>
     image: {
       position: 'relative',
       width: '100%',
+      height: Math.round(width / 2),
+      overflow: 'hidden',
     },
     hoverOpen: {
       zIndex: 2,
@@ -86,11 +90,14 @@ const useStyles = ({ portrait }) =>
 const ProjectTemplate = ({ data, ...props }) => {
   const project = data && data.project;
   const portrait = useContext(PortraitContext);
-  const classes = useStyles({ portrait })(props);
+  const [ref, { width }] = useDimensions();
+  const classes = useStyles({ portrait, width })(props);
+
   return (
     <>
       <SEO title={project.title} />
       <ContainerWithHeading
+        ref={ref}
         heading={project.title}
         subHeading={project._rawExcerpt}
       >
