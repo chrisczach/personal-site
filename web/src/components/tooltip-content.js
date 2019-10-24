@@ -8,7 +8,6 @@ import { useSpring, animated, config } from 'react-spring';
 import { PortraitContext } from './layout';
 import BlockText from './block-text';
 
-const AnimatedRating = animated(Rating);
 const useStyles = portrait =>
   makeStyles(theme => ({
     tooltip: {

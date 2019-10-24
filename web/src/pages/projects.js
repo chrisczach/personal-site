@@ -1,21 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { SendRounded, CloseRounded } from '@material-ui/icons/';
-import {
-  Container,
-  Paper,
-  Typography,
-  TextField,
-  Button,
-  Fade,
-  Slide,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import {
-  mapEdgesToNodes,
-  filterOutDocsWithoutSlugs,
-  filterOutDocsPublishedInTheFuture,
-} from '../lib/helpers';
+import ProjectsList from '../containers/projects-list';
 
 import SEO from '../components/seo';
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL';
@@ -24,6 +9,9 @@ import { ContainerWithHeading } from '../components/containerWithHeading';
 const Portfolio = ({ data, ...props }) => {
   const { site } = data || {};
   const { page } = data || {};
+  const {
+    projects: { nodes: projectNodes },
+  } = data || {};
   if (!site) {
     throw new Error(
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.',
@@ -37,7 +25,9 @@ const Portfolio = ({ data, ...props }) => {
         description={site.description}
         keywords={site.keywords}
       />
-      <ContainerWithHeading heading={page.title} subHeading={page._rawBody} />
+      <ContainerWithHeading heading={page.title} subHeading={page._rawBody}>
+        <ProjectsList {...{ projectNodes }} />
+      </ContainerWithHeading>
     </>
   );
 };
@@ -53,6 +43,32 @@ export const query = graphql`
       id
       title
       _rawBody
+    }
+    projects: allSanityProject {
+      nodes {
+        title
+        slug {
+          current
+        }
+        techList: tech {
+          tech {
+            title
+            experience
+            description: _rawDescription
+            logo {
+              asset {
+                fluid(maxWidth: 3840) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+          }
+        }
+        link
+        repo
+        _rawExcerpt
+        _rawBody
+      }
     }
   }
 `;
