@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import {
   Container,
   Paper,
@@ -9,6 +9,7 @@ import {
   Fade,
   Grow,
   Slide,
+  Breadcrumbs,
   Box,
   Button,
 } from '@material-ui/core';
@@ -28,7 +29,7 @@ const useStyles = ({ portrait }) =>
       display: 'flex',
       flexDirection: portrait ? 'column-reverse' : 'column',
       justifyContent: portrait ? 'flex-start' : 'stretch',
-      margin: theme.spacing(4, 0),
+      margin: theme.spacing(1, 0, 4, 0),
       background: portrait
         ? `linear-gradient(to bottom right, ${theme.palette.primary.main}66, ${theme.palette.secondary.main}44) !important`
         : `linear-gradient(to bottom right, ${theme.palette.primary.main}33, ${theme.palette.secondary.main}22) !important`,
@@ -39,6 +40,9 @@ const useStyles = ({ portrait }) =>
       //   background: `linear-gradient(to bottom right, ${theme.palette.primary.main}22, ${theme.palette.secondary.main}22) !important`,
       //   transition: 'all  3s ease !important'
       // }
+    },
+    breadcrumb: {
+      padding: theme.spacing(0, 2),
     },
     heading: {
       color: theme.palette.secondary.light,
@@ -91,7 +95,11 @@ const ProjectTemplate = ({ data, ...props }) => {
         subHeading={project._rawExcerpt}
       >
         <ProjectLinks link={project.link} repo={project.repo} />
-
+        <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
+          <Link to="/">Home</Link>
+          <Link to="/projects/">Projects</Link>
+          <Link to={`/projects/${project.slug.current}/`}>{project.title}</Link>
+        </Breadcrumbs>
         <Paper className={classes.paper}>
           <Box className={classes.content}>
             <Typography variant="h5" className={classes.heading}>
