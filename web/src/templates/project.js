@@ -131,34 +131,10 @@ const ProjectTemplate = ({ data, ...props }) => {
             <MapTechToList tech={project.tech} />
           </Box>
           <Box className={classes.mobileShot}>
-            {/* <Box
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: `100%`,
-                height: `100%`,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-end',
-                alignItems: 'center',
-              }}
-            >
-              <Img
-                fluid={project.mobileImage.asset.fluid}
-                style={{ width: '100%' }}
-              />
-            </Box> */}
-            {/* WIP I don't know what's wrong here, need to fix */}
-            <BackgroundImage
-              style={{
-                height: '100%',
-                width: '100%',
-                backgroundPosition: 'top center',
-                backgroundSize: 'cover',
-              }}
-              fluid={project.mobileImage.asset.fluid}
-            />
+            <Box>
+              {/* need to fix this */}
+              <Img fluid={project.mobileImage.asset.fluid} />
+            </Box>
             <a
               href={project.link}
               target="_blank"
