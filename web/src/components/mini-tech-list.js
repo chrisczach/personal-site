@@ -36,6 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
   subTitle: {
     fontSize: '1.1em',
+    margin: '0 auto',
   },
   iconButton: {
     width: '1em',
@@ -52,13 +53,23 @@ const useStyles = makeStyles(theme => ({
   },
   rating: {
     // transform: 'translateY(25%)',
+    margin: '0 auto',
+  },
+  tipTitle: {
+    margin: '0 auto',
+    opacity: 0.5,
+    color: theme.palette.success.main,
   },
   experience: {
     opacity: 0.75,
     padding: 0,
+
+    margin: '0 auto',
   },
   ratingIcon: {
     fontWeight: 'bold',
+    fontSize: '1.5em',
+    margin: theme.spacing(0, 0, 1, 0),
     color: theme.palette.success.main,
   },
 }));
@@ -89,17 +100,31 @@ const MiniTechList = ({ tech, ...props }) => {
                     classes={classes}
                     title={
                       <Box className={classes.miniTip}>
-                        {title}
+                        <Typography
+                          variant="subtitle1"
+                          className={classes.tipTitle}
+                        >
+                          {' '}
+                          {title}
+                        </Typography>
                         <Rating
                           className={classes.rating}
-                          icon={<span className={classes.ratingIcon}>|</span>}
+                          icon={
+                            <Typography
+                              variant="body2"
+                              className={classes.ratingIcon}
+                            >
+                              |
+                            </Typography>
+                          }
                           emptyIcon={
-                            <span
+                            <Typography
+                              variant="body2"
                               className={classes.ratingIcon}
                               style={{ opacity: 0.5, filter: 'saturate(0)' }}
                             >
                               |
-                            </span>
+                            </Typography>
                           }
                           max={10}
                           value={experience * 2}
@@ -107,9 +132,12 @@ const MiniTechList = ({ tech, ...props }) => {
                           precision={0.5}
                           size="small"
                         />
-                        <span className={classes.experience}>
+                        <Typography
+                          variant="body2"
+                          className={classes.experience}
+                        >
                           {getFriendlyRating(experience)}
-                        </span>
+                        </Typography>
                       </Box>
                     }
                   >
