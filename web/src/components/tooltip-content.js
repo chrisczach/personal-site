@@ -150,7 +150,7 @@ const TooltipContent = ({
   );
 };
 
-const getFriendlyRating = num => {
+export const getFriendlyRating = num => {
   const ratings = [
     'Novice',
     'Advanced Beginner',
