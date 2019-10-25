@@ -24,6 +24,7 @@ import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL';
 import { ContainerWithHeading } from '../components/containerWithHeading';
 import ProjectLinks from '../components/project-links';
 import MapTechToList from '../components/mapTechToList';
+import BlockContent from '../components/block-content';
 
 const useStyles = ({ portrait, width }) =>
   makeStyles(theme => ({
@@ -37,11 +38,17 @@ const useStyles = ({ portrait, width }) =>
         : `linear-gradient(to bottom right, ${theme.palette.primary.main}33, ${theme.palette.secondary.main}22) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
-      transition: 'all  3s ease !important',
-      // '&:hover': {
-      //   background: `linear-gradient(to bottom right, ${theme.palette.primary.main}22, ${theme.palette.secondary.main}22) !important`,
-      //   transition: 'all  3s ease !important'
-      // }
+      transition: theme.transitions.create('all', {
+        duration: theme.transitions.duration.short,
+      }),
+      '&:hover': {
+        background: portrait
+          ? `linear-gradient(to bottom right, ${theme.palette.primary.main}bb, ${theme.palette.secondary.main}99) !important`
+          : `linear-gradient(to bottom right, ${theme.palette.primary.main}88, ${theme.palette.secondary.main}77) !important`,
+      },
+      transition: theme.transitions.create('all', {
+        duration: theme.transitions.duration.longest,
+      }),
     },
     breadcrumb: {
       padding: theme.spacing(0, 2),
@@ -56,7 +63,7 @@ const useStyles = ({ portrait, width }) =>
     },
     image: {
       position: 'relative',
-      width: '100%',
+      margin: portrait ? theme.spacing(12, 0) : theme.spacing(2, 0),
       height: Math.round(width / 2),
       overflow: 'hidden',
     },
@@ -77,13 +84,16 @@ const useStyles = ({ portrait, width }) =>
       height: `100%`,
       borderRadius: 0,
       fontSize: '1.25em',
-      opacity: 0,
+      opacity: portrait ? 0.5 : 0,
       '&:hover': {
         opacity: 1,
         background: `linear-gradient(to bottom right, ${theme.palette.primary.main}99, ${theme.palette.secondary.main}66) !important`,
         backdropFilter: 'blur(8px)',
         webkitBackdropFilter: 'blur(8px)',
       },
+    },
+    blockWrapper: {
+      margin: portrait ? theme.spacing(6, 2) : theme.spacing(4),
     },
   }));
 
@@ -102,11 +112,11 @@ const ProjectTemplate = ({ data, ...props }) => {
         subHeading={project._rawExcerpt}
       >
         <ProjectLinks link={project.link} repo={project.repo} />
-        <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
+        {/* <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
           <Link to="/">Home</Link>
           <Link to="/projects/">Projects</Link>
           <Link to={`/projects/${project.slug.current}/`}>{project.title}</Link>
-        </Breadcrumbs>
+        </Breadcrumbs> */}
         <Paper className={classes.paper}>
           <Box className={classes.content}>
             <Typography variant="h5" className={classes.heading}>
@@ -114,21 +124,18 @@ const ProjectTemplate = ({ data, ...props }) => {
             </Typography>
             <MapTechToList tech={project.tech} />
           </Box>
-          <Box className={classes.image}>
-            <Img fluid={project.mainImage.asset.fluid} />
-            <a
-              href={project.link}
-              target="_blank"
-              className={classes.hoverOpen}
-            >
-              <Button endIcon={<LaunchRounded />} className={classes.button}>
-                Open Site
-              </Button>
-            </a>
-          </Box>
         </Paper>
-
-        <div>Body Text</div>
+        <Box className={classes.blockWrapper}>
+          <BlockContent blocks={project._rawBody} />
+        </Box>
+        <Box className={classes.image}>
+          <Img fluid={project.mainImage.asset.fluid} />
+          <a href={project.link} target="_blank" className={classes.hoverOpen}>
+            <Button endIcon={<LaunchRounded />} className={classes.button}>
+              Open Site
+            </Button>
+          </a>
+        </Box>
       </ContainerWithHeading>
     </>
   );
