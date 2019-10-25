@@ -40,6 +40,11 @@ export default {
       type: 'figure',
     },
     {
+      name: 'mobileImage',
+      title: 'Mobile Image',
+      type: 'figure',
+    },
+    {
       name: 'tech',
       title: 'Languages / Frameworks',
       type: 'array',

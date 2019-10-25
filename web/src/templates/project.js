@@ -17,6 +17,7 @@ import Img from 'gatsby-image';
 import { makeStyles } from '@material-ui/core/styles';
 import { LaunchRounded, CodeRounded } from '@material-ui/icons/';
 import useDimensions from 'react-use-dimensions';
+import BackgroundImage from 'gatsby-background-image';
 
 import SEO from '../components/seo';
 import { PortraitContext } from '../components/layout';
@@ -30,7 +31,7 @@ const useStyles = ({ portrait, width }) =>
   makeStyles(theme => ({
     paper: {
       display: 'flex',
-      flexDirection: portrait ? 'column-reverse' : 'column',
+      flexDirection: portrait ? 'column-reverse' : 'row',
       justifyContent: portrait ? 'flex-start' : 'stretch',
       margin: theme.spacing(1, 0, 4, 0),
       background: portrait
@@ -39,12 +40,11 @@ const useStyles = ({ portrait, width }) =>
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       transition: theme.transitions.create('all', {
-        duration: theme.transitions.duration.short,
+        duration: theme.transitions.duration.longest,
       }),
       '&:hover': {
-        background: portrait
-          ? `linear-gradient(to bottom right, ${theme.palette.primary.main}bb, ${theme.palette.secondary.main}99) !important`
-          : `linear-gradient(to bottom right, ${theme.palette.primary.main}88, ${theme.palette.secondary.main}77) !important`,
+        backdropFilter: 'blur(10px) brightness(.9)',
+        webkitBackdropFilter: 'blur(10px)  brightness(.9)',
       },
       transition: theme.transitions.create('all', {
         duration: theme.transitions.duration.longest,
@@ -95,6 +95,12 @@ const useStyles = ({ portrait, width }) =>
     blockWrapper: {
       margin: portrait ? theme.spacing(6, 2) : theme.spacing(4),
     },
+    mobileShot: {
+      position: 'relative',
+      maxHeight: portrait ? '100vw' : '100%',
+      width: portrait ? '100%' : '50%',
+      overflow: 'hidden',
+    },
   }));
 
 const ProjectTemplate = ({ data, ...props }) => {
@@ -123,6 +129,45 @@ const ProjectTemplate = ({ data, ...props }) => {
               Technical Specs
             </Typography>
             <MapTechToList tech={project.tech} />
+          </Box>
+          <Box className={classes.mobileShot}>
+            {/* <Box
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: `100%`,
+                height: `100%`,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+                alignItems: 'center',
+              }}
+            >
+              <Img
+                fluid={project.mobileImage.asset.fluid}
+                style={{ width: '100%' }}
+              />
+            </Box> */}
+            {/* WIP I don't know what's wrong here, need to fix */}
+            <BackgroundImage
+              style={{
+                height: '100%',
+                width: '100%',
+                backgroundPosition: 'top center',
+                backgroundSize: 'cover',
+              }}
+              fluid={project.mobileImage.asset.fluid}
+            />
+            <a
+              href={project.link}
+              target="_blank"
+              className={classes.hoverOpen}
+            >
+              <Button endIcon={<LaunchRounded />} className={classes.button}>
+                Open Site
+              </Button>
+            </a>
           </Box>
         </Paper>
         <Box className={classes.blockWrapper}>
@@ -163,6 +208,13 @@ export const query = graphql`
         }
       }
       mainImage {
+        asset {
+          fluid(maxWidth: 3840) {
+            ...GatsbySanityImageFluid
+          }
+        }
+      }
+      mobileImage {
         asset {
           fluid(maxWidth: 3840) {
             ...GatsbySanityImageFluid
