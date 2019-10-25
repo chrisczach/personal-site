@@ -10,7 +10,8 @@ const useStyles = portrait =>
   makeStyles(theme => ({
     wrapper: {
       display: `grid`,
-      margin: theme.spacing(2, 0),
+      // Change bottom margin later
+      margin: theme.spacing(2, 0, 6, 0),
       gridTemplateColumns: `repeat(${portrait ? 1 : 3}, 1fr )`,
       gridColumnGap: theme.spacing(2),
       gridRowGap: theme.spacing(2),
@@ -20,11 +21,11 @@ const useStyles = portrait =>
 const ProjectGrid = ({ projects, ...props }) => {
   const portrait = useContext(PortraitContext);
   const classes = useStyles(portrait)(props);
-  const [ref, {width }] = useDimensions();
+  const [ref, { width }] = useDimensions();
   return (
     <Box ref={ref} className={classes.wrapper}>
       {projects.map(project => (
-        <ProjectCard project={ project } containerWidth={ width }/>
+        <ProjectCard project={project} containerWidth={width} />
       ))}
     </Box>
   );
