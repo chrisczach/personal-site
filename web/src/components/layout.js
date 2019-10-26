@@ -1,6 +1,4 @@
 import React, { useState, useEffect, createContext } from 'react';
-import Header from './header';
-import Footer from './footer';
 
 import '../styles/globals.css';
 import {
@@ -14,6 +12,8 @@ import {
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline, Box, Fade } from '@material-ui/core';
+import Footer from './footer';
+import Header from './header';
 import theme from '../styles/theme';
 import Background from './background';
 
@@ -58,11 +58,11 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => {
             onShowNav={onShowNav}
             showNav={showNav}
           />
-          <Background scroll={scroll}>
-            <Fade in timeout={150}>
-              <Box component="div">{children}</Box>
-            </Fade>
-          </Background>
+          {/* <Background scroll={scroll}> */}
+          <Fade in timeout={150}>
+            <Box component="div">{children}</Box>
+          </Fade>
+          {/* </Background> */}
           <Footer menuItems={menuItems} />
         </ScrollContext.Provider>
       </PortraitContext.Provider>
