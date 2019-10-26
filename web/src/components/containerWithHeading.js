@@ -35,7 +35,7 @@ export const ContainerWithHeading = ({
   const portrait = useContext(PortraitContext);
   const classes = useStyles({ portrait })(props);
   return (
-    <Container maxWidth="lg" className={classes.container}>
+    <Container maxWidth="lg" className={classes.container} {...props}>
       <Fade in timeout={150}>
         <Slide in direction="down" timeout={300}>
           <Typography

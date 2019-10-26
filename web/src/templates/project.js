@@ -16,7 +16,7 @@ import {
 import Img from 'gatsby-image';
 import { makeStyles } from '@material-ui/core/styles';
 import { LaunchRounded, CodeRounded } from '@material-ui/icons/';
-import useDimensions from 'react-use-dimensions';
+import useResizeAware from 'react-resize-aware';
 import BackgroundImage from 'gatsby-background-image';
 
 import SEO from '../components/seo';
@@ -64,7 +64,7 @@ const useStyles = ({ portrait, width }) =>
     image: {
       position: 'relative',
       margin: portrait ? theme.spacing(12, 0) : theme.spacing(2, 0),
-      height: Math.round(width / 2),
+      height: `${Math.round(width / 2)}px`,
       overflow: 'hidden',
     },
     hoverOpen: {
@@ -106,17 +106,18 @@ const useStyles = ({ portrait, width }) =>
 const ProjectTemplate = ({ data, ...props }) => {
   const project = data && data.project;
   const portrait = useContext(PortraitContext);
-  const [ref, { width }] = useDimensions();
+  const [resizeListener, { width, height }] = useResizeAware();
   const classes = useStyles({ portrait, width })(props);
 
   return (
     <>
       <SEO title={project.title} />
       <ContainerWithHeading
-        ref={ref}
         heading={project.title}
         subHeading={project._rawExcerpt}
       >
+        {resizeListener}
+
         <ProjectLinks link={project.link} repo={project.repo} />
         {/* <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
           <Link to="/">Home</Link>
@@ -130,21 +131,23 @@ const ProjectTemplate = ({ data, ...props }) => {
             </Typography>
             <MapTechToList tech={project.tech} />
           </Box>
-          <Box className={classes.mobileShot}>
-            <Box>
-              {/* need to fix this */}
-              <Img fluid={project.mobileImage.asset.fluid} />
+          {portrait && (
+            <Box className={classes.mobileShot}>
+              <Box>
+                {/* need to fix this */}
+                <Img fluid={project.mobileImage.asset.fluid} />
+              </Box>
+              <a
+                href={project.link}
+                target="_blank"
+                className={classes.hoverOpen}
+              >
+                <Button endIcon={<LaunchRounded />} className={classes.button}>
+                  Open Site
+                </Button>
+              </a>
             </Box>
-            <a
-              href={project.link}
-              target="_blank"
-              className={classes.hoverOpen}
-            >
-              <Button endIcon={<LaunchRounded />} className={classes.button}>
-                Open Site
-              </Button>
-            </a>
-          </Box>
+          )}
         </Paper>
         <Box className={classes.blockWrapper}>
           <BlockContent blocks={project._rawBody} />

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
-
 import BackgroundImage from 'gatsby-background-image';
 
 const useStyles = makeStyles(theme => ({
