@@ -98,6 +98,7 @@ const useStyles = ({ portrait, width }) =>
     mobileShot: {
       position: 'relative',
       maxHeight: portrait ? '100vw' : '100%',
+      minHeight: portrait ? '50vw' : 'auto',
       width: portrait ? '100%' : '50%',
       overflow: 'hidden',
     },
@@ -107,6 +108,10 @@ const ProjectTemplate = ({ data, ...props }) => {
   const project = data && data.project;
   const portrait = useContext(PortraitContext);
   const [resizeListener, { width, height }] = useResizeAware();
+  const [
+    resizeImageListener,
+    { width: imageWidth, height: imageHeight },
+  ] = useResizeAware();
   const classes = useStyles({ portrait, width })(props);
 
   return (
@@ -119,11 +124,7 @@ const ProjectTemplate = ({ data, ...props }) => {
         {resizeListener}
 
         <ProjectLinks link={project.link} repo={project.repo} />
-        {/* <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
-          <Link to="/">Home</Link>
-          <Link to="/projects/">Projects</Link>
-          <Link to={`/projects/${project.slug.current}/`}>{project.title}</Link>
-        </Breadcrumbs> */}
+
         <Paper className={classes.paper}>
           <Box className={classes.content}>
             <Typography variant="h5" className={classes.heading}>
@@ -131,23 +132,29 @@ const ProjectTemplate = ({ data, ...props }) => {
             </Typography>
             <MapTechToList tech={project.tech} />
           </Box>
-          {portrait && (
-            <Box className={classes.mobileShot}>
-              <Box>
-                {/* need to fix this */}
-                <Img fluid={project.mobileImage.asset.fluid} />
-              </Box>
-              <a
-                href={project.link}
-                target="_blank"
-                className={classes.hoverOpen}
-              >
-                <Button endIcon={<LaunchRounded />} className={classes.button}>
-                  Open Site
-                </Button>
-              </a>
-            </Box>
-          )}
+
+          <Box className={classes.mobileShot}>
+            {resizeImageListener}
+            <div
+              style={{
+                position: 'absolute',
+                width: imageWidth,
+                height: imageHeight,
+                overflow: 'hidden',
+              }}
+            >
+              <Img fluid={project.mainImage.asset.fluid} />
+            </div>
+            <a
+              href={project.link}
+              target="_blank"
+              className={classes.hoverOpen}
+            >
+              <Button endIcon={<LaunchRounded />} className={classes.button}>
+                Open Site
+              </Button>
+            </a>
+          </Box>
         </Paper>
         <Box className={classes.blockWrapper}>
           <BlockContent blocks={project._rawBody} />
