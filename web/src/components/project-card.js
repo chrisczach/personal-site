@@ -45,6 +45,7 @@ const useStyles = (portrait, containerWidth = 1280) =>
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
+      alignItems: 'flex-end',
     },
     tooltip: {
       background: `${theme.palette.primary.dark}88`,
@@ -97,25 +98,29 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
         </CardActionArea>
       </Link>
       <CardActions className={classes.actionArea}>
-        <Tooltip
-          placement="right"
-          title={
-            <Typography variant="body2" color="textSecondary">
-              {showDetails ? 'Hide Details' : 'See Details'}
-            </Typography>
-          }
-          classes={classes}
-        >
-          <IconButton
-            aria-label={showDetails ? 'Hide Details' : 'See Details'}
-            size="small"
-            style={{ pointerEvents: showDetails ? 'none' : 'auto' }}
-            className={showDetails ? classes.expanded : classes.collapsed}
-            onClick={handleToggleShow}
+        {!portrait ? (
+          <Tooltip
+            placement="right"
+            title={
+              <Typography variant="body2" color="textSecondary">
+                {showDetails ? 'Hide Details' : 'See Details'}
+              </Typography>
+            }
+            classes={classes}
           >
-            <ExpandMoreRounded />
-          </IconButton>
-        </Tooltip>
+            <IconButton
+              aria-label={showDetails ? 'Hide Details' : 'See Details'}
+              size="small"
+              style={{ pointerEvents: showDetails ? 'none' : 'auto' }}
+              className={showDetails ? classes.expanded : classes.collapsed}
+              onClick={handleToggleShow}
+            >
+              <ExpandMoreRounded />
+            </IconButton>
+          </Tooltip>
+        ) : (
+          <div />
+        )}
         <Link to={`/projects/${current}/`}>
           <Tooltip
             placement="left"

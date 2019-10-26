@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     background: `${theme.palette.secondary.main}cc`,
     backdropFilter: 'blur(8px)',
     webkitBackdropFilter: 'blur(8px)',
-    margin: theme.spacing(0, 0, 8, 0),
+    margin: theme.spacing(0),
   },
 }));
 const SlideDrawer = ({ show, handleToggle, children, ...props }) => {

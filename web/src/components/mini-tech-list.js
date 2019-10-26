@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(2),
   },
   wrapper: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(1, 1, 2, 1),
     overflow: 'hidden',
   },
   innerWrapper: {
