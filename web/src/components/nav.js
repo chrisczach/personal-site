@@ -84,7 +84,7 @@ const nav = ({ portrait, menuItems, ...props }) => {
 const toMenu = (open, handleOpen, size) => ({ link, Icon, route }, index) => {
   const LinkComponent = ({ children }) =>
     route[0] === '/' ? (
-      <Link to={route}>{children}</Link>
+      <Link to={ route } key={ link}>{children}</Link>
     ) : (
       <a href={route} target="_blank">
         {children}

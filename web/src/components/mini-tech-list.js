@@ -82,7 +82,7 @@ const MiniTechList = ({ tech, ...props }) => {
       </Typography>
       <Box className={classes.innerWrapper}>
         {tech.map(({ category, tech }) => (
-          <>
+          <div key={category}>
             <Typography variant="subtitle1" className={classes.subTitle}>
               {category}
             </Typography>
@@ -92,11 +92,13 @@ const MiniTechList = ({ tech, ...props }) => {
                   title,
                   experience,
                   description,
+                  id,
                   logo: {
                     asset: { fluid },
                   },
                 }) => (
                   <Tooltip
+                    key={id}
                     classes={classes}
                     title={
                       <Box className={classes.miniTip}>
@@ -151,7 +153,7 @@ const MiniTechList = ({ tech, ...props }) => {
                 ),
               )}
             </Box>
-          </>
+          </div>
         ))}
       </Box>
     </Box>

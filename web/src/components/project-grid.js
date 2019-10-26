@@ -25,7 +25,11 @@ const ProjectGrid = ({ projects, ...props }) => {
   return (
     <Box ref={ref} className={classes.wrapper}>
       {projects.map(project => (
-        <ProjectCard project={project} containerWidth={width} />
+        <ProjectCard
+          key={project.id}
+          project={project}
+          containerWidth={width}
+        />
       ))}
     </Box>
   );

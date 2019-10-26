@@ -46,6 +46,7 @@ export const query = graphql`
     }
     projects: allSanityProject {
       nodes {
+        id
         title
         mainImage {
           asset {
@@ -57,9 +58,10 @@ export const query = graphql`
         slug {
           current
         }
-        techList: tech {
+        techList: tech {  
           category
           tech {
+            id
             title
             id
             experience

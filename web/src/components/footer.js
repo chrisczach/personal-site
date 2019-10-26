@@ -69,7 +69,7 @@ const toBottomNav = classes => ({ link, Icon, route, ...props }, index) => {
       </a>
     );
   return (
-    <LinkComponent>
+    <LinkComponent key={ link }>
       <ListItem button>
         <ListItemIcon className={classes.listIcon}>
           <Icon fontSize="small" />
