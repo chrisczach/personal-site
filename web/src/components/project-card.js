@@ -98,7 +98,7 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
         </CardActionArea>
       </Link>
       <CardActions className={classes.actionArea}>
-        {!portrait ? (
+   
           <Tooltip
             placement="right"
             title={
@@ -118,9 +118,7 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
               <ExpandMoreRounded />
             </IconButton>
           </Tooltip>
-        ) : (
-          <div />
-        )}
+
         <Link to={`/projects/${current}/`}>
           <Tooltip
             placement="left"

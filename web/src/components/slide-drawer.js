@@ -30,10 +30,20 @@ const SlideDrawer = ({ show, handleToggle, children, ...props }) => {
   const classes = useStyles(props);
   const anchor = useRef(null);
 
+  useEffect(()=>{
+    if(!show) return
+    
+    window.addEventListener('scroll', handleToggle)
+  return ()=>{
+window.removeEventListener('scroll', handleToggle)
+  }
+},[show])
+
   return (
     <>
       <Box ref={anchor} className={classes.anchor} />
       <Popover
+      disableScrollLock
         PaperProps={{
           className: classes.pop,
           style: {

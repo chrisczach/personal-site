@@ -58,12 +58,11 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => {
             onShowNav={onShowNav}
             showNav={showNav}
           />
-          {/* <Background scroll={scroll}> */}
           <Fade in timeout={150}>
-            <Box component="div">{children}</Box>
+            <Box style={{ background: 'transparent' }}>{children}</Box>
           </Fade>
-          {/* </Background> */}
-          <Footer menuItems={menuItems} />
+          <Footer menuItems={ menuItems } />
+          <Background/>
         </ScrollContext.Provider>
       </PortraitContext.Provider>
     </ThemeProvider>
@@ -78,12 +77,12 @@ const menuItems = [
     route: '/about/',
     title: 'About Me',
   },
-  {
-    link: 'Experience',
-    Icon: WorkRounded,
-    route: '/work/',
-    title: 'Work Experience',
-  },
+  // {
+  //   link: 'Experience',
+  //   Icon: WorkRounded,
+  //   route: '/work/',
+  //   title: 'Work Experience',
+  // },
   {
     link: 'Projects',
     Icon: DeveloperModeRounded,
