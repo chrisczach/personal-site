@@ -39,16 +39,13 @@ const useStyles = ({ portrait, width }) =>
         : `linear-gradient(to bottom right, ${theme.palette.primary.main}33, ${theme.palette.secondary.main}22) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
-      transition: theme.transitions.create('all', {
-        duration: theme.transitions.duration.longest,
-      }),
+      // transition: theme.transitions.create('all', {
+      //   duration: theme.transitions.duration.shortest,
+      // }),
       '&:hover': {
         backdropFilter: 'blur(10px) brightness(.9)',
         webkitBackdropFilter: 'blur(10px)  brightness(.9)',
       },
-      transition: theme.transitions.create('all', {
-        duration: theme.transitions.duration.longest,
-      }),
     },
     breadcrumb: {
       padding: theme.spacing(0, 2),
@@ -98,7 +95,7 @@ const useStyles = ({ portrait, width }) =>
     mobileShot: {
       position: 'relative',
       maxHeight: portrait ? '100vw' : '100%',
-      minHeight: portrait ? '50vw' : 'auto',
+      minHeight: portrait ? '50vw' : '50vh',
       width: portrait ? '100%' : '50%',
       overflow: 'hidden',
     },
@@ -143,7 +140,7 @@ const ProjectTemplate = ({ data, ...props }) => {
                 overflow: 'hidden',
               }}
             >
-              <Img fluid={project.mainImage.asset.fluid} />
+              <Img fluid={project.mobileImage.asset.fluid} />
             </div>
             <a
               href={project.link}
