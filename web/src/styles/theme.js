@@ -59,7 +59,7 @@ const theme = {
     background: {
       ...rawTheme.palette.background,
       // default: rawTheme.palette.primary.dark,
-      default: '#4d4233',
+      default: '#2e281f',
       placeholder: grey[200],
     },
   },

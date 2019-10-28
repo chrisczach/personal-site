@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   Box,
   ClickAwayListener,
@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 const SlideDrawer = ({ show, handleToggle, children, ...props }) => {
   const classes = useStyles(props);
   const anchor = useRef(null);
+
   return (
     <>
       <Box ref={anchor} className={classes.anchor} />
@@ -55,7 +56,9 @@ const SlideDrawer = ({ show, handleToggle, children, ...props }) => {
       >
         <Collapse in={show} mountOnEnter unmountOnExit>
           {/* <ClickAwayListener onClickAway={handleToggle}> */}
-          <Box className={classes.drawer}>{children}</Box>
+          <Box className={classes.drawer} onClick={handleToggle}>
+            {children}
+          </Box>
           {/* </ClickAwayListener> */}
         </Collapse>
       </Popover>
