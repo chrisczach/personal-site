@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   ClickAwayListener,
@@ -12,6 +12,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { Rating } from '@material-ui/lab';
 import Img from 'gatsby-image';
+import { useSpring, animated, config } from 'react-spring';
 
 import { getFriendlyRating } from './tooltip-content';
 
@@ -87,76 +88,89 @@ const MiniTechList = ({ tech, ...props }) => {
               {category}
             </Typography>
             <Box className={classes.wrapper}>
-              {tech.map(
-                ({
-                  title,
-                  experience,
-                  description,
-                  id,
-                  logo: {
-                    asset: { fluid },
-                  },
-                }) => (
-                  <Tooltip
-                    key={id}
-                    classes={classes}
-                    title={
-                      <Box className={classes.miniTip}>
-                        <Typography
-                          variant="subtitle1"
-                          className={classes.tipTitle}
-                        >
-                          {' '}
-                          {title}
-                        </Typography>
-                        <Rating
-                          className={classes.rating}
-                          icon={
-                            <Typography
-                              variant="body2"
-                              className={classes.ratingIcon}
-                            >
-                              |
-                            </Typography>
-                          }
-                          emptyIcon={
-                            <Typography
-                              variant="body2"
-                              className={classes.ratingIcon}
-                              style={{ opacity: 0.5, filter: 'saturate(0)' }}
-                            >
-                              |
-                            </Typography>
-                          }
-                          max={10}
-                          value={experience * 2}
-                          readOnly
-                          precision={0.5}
-                          size="small"
-                        />
-                        <Typography
-                          variant="body2"
-                          className={classes.experience}
-                        >
-                          {getFriendlyRating(experience)}
-                        </Typography>
-                      </Box>
-                    }
-                  >
-                    <IconButton>
-                      <Box className={classes.imageWrap}>
-                        <Img fluid={fluid} />
-                        {/* NEED TO WORK ON THIS */}
-                      </Box>
-                    </IconButton>
-                  </Tooltip>
-                ),
-              )}
+              {tech.map(toMiniRatings(classes))}
             </Box>
           </div>
         ))}
       </Box>
     </Box>
+  );
+};
+
+const toMiniRatings = classes => ({
+  title,
+  experience,
+  description,
+  id,
+  logo: {
+    asset: { fluid },
+  },
+}) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const springProps = useSpring({
+    width: open ? experience * 2 : 0,
+  });
+
+  const [ratingValue, setRatingValue] = useState(0);
+  return (
+    <Tooltip
+      onOpen={handleOpen}
+      onClose={handleClose}
+      open={open}
+      key={id}
+      classes={classes}
+      title={
+        <Box className={classes.miniTip}>
+          <Typography variant="subtitle1" className={classes.tipTitle}>
+            {' '}
+            {title}
+          </Typography>
+          <Rating
+            className={classes.rating}
+            icon={
+              <Typography variant="body2" className={classes.ratingIcon}>
+                |
+              </Typography>
+            }
+            emptyIcon={
+              <Typography
+                variant="body2"
+                className={classes.ratingIcon}
+                style={{ opacity: 0.5, filter: 'saturate(0)' }}
+              >
+                |
+              </Typography>
+            }
+            max={10}
+            value={ratingValue}
+            readOnly
+            precision={0.5}
+            size="small"
+          />
+          <Typography variant="body2" className={classes.experience}>
+            {getFriendlyRating(experience)}
+          </Typography>
+          <animated.div>
+            {springProps.width.interpolate(x => {
+              setRatingValue(x);
+            })}
+          </animated.div>
+        </Box>
+      }
+    >
+      <IconButton>
+        <Box className={classes.imageWrap}>
+          <Img fluid={fluid} />
+        </Box>
+      </IconButton>
+    </Tooltip>
   );
 };
 
