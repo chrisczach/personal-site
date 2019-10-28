@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
   top: {
     position: 'absolute',
     top: 0,
-    height: '75vh',
+    height: '90vh',
     width: '100%',
     background: `linear-gradient(to top left, transparent 50%, ${theme.palette.secondary.light}55), linear-gradient(to top right, transparent 50%, ${theme.palette.primary.light}55)`,
     zIndex: -50,
@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   bottom: {
     position: 'absolute',
     bottom: 0,
-    height: '75vh',
+    height: '90vh',
     width: '100%',
     background: `linear-gradient(to bottom right, transparent 50%, ${theme.palette.secondary.dark}55), linear-gradient(to bottom left, transparent 50%, ${theme.palette.secondary.main}55)`,
     zIndex: -50,
