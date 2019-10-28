@@ -18,7 +18,7 @@ import { getFriendlyRating } from './tooltip-content';
 
 const useStyles = makeStyles(theme => ({
   tooltip: {
-    background: `${theme.palette.primary.main}cc`,
+    background: `${theme.palette.primary.dark}dd`,
     backdropFilter: 'blur(8px)',
     webkitBackdropFilter: 'blur(8px)',
     margin: theme.spacing(2),
@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
   tipTitle: {
     margin: '0 auto',
     opacity: 0.5,
-    color: '#C0B3A0',
+    color: '#b6da84',
   },
   experience: {
     opacity: 0.75,
@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
     fontSize: '1.5em',
     margin: theme.spacing(0, 0, 1, 0),
-    color: '#C0B3A0',
+    color: '#b6da84',
   },
 }));
 const MiniTechList = ({ tech, ...props }) => {

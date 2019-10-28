@@ -31,11 +31,12 @@ const useStyles = portrait =>
     },
     experience: {
       opacity: 0.75,
+      color: '#cfe7ad',
       padding: portrait ? 0 : theme.spacing(0, 2, 0, 2),
     },
     ratingIcon: {
       fontWeight: 'bold',
-      color: '#C0B3A0',
+      color: '#b6da84',
     },
     ratingStacking: {
       padding: portrait ? theme.spacing(0, 1, 0, 1) : theme.spacing(0, 1, 0, 2),

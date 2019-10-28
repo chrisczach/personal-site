@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     width: '100%',
-    background: `${theme.palette.secondary.main}cc`,
+    background: `${theme.palette.secondary.dark}dd`,
     backdropFilter: 'blur(8px)',
     webkitBackdropFilter: 'blur(8px)',
     margin: theme.spacing(0),
@@ -30,20 +30,20 @@ const SlideDrawer = ({ show, handleToggle, children, ...props }) => {
   const classes = useStyles(props);
   const anchor = useRef(null);
 
-  useEffect(()=>{
-    if(!show) return
-    
-    window.addEventListener('scroll', handleToggle)
-  return ()=>{
-window.removeEventListener('scroll', handleToggle)
-  }
-},[show])
+  useEffect(() => {
+    if (!show) return;
+
+    window.addEventListener('scroll', handleToggle);
+    return () => {
+      window.removeEventListener('scroll', handleToggle);
+    };
+  }, [show]);
 
   return (
     <>
       <Box ref={anchor} className={classes.anchor} />
       <Popover
-      disableScrollLock
+        disableScrollLock
         PaperProps={{
           className: classes.pop,
           style: {
