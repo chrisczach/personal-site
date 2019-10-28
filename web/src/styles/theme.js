@@ -11,17 +11,17 @@ const rawTheme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      light: '#f2e5ff',
-      main: '#161636',
-      dark: '#070712',
+      light: '#d3dcde',
+      main: '#21464f',
+      dark: '#112D32',
     },
     secondary: {
-      light: '#ddddff',
-      main: '#251d2f',
-      dark: '#0c0a10',
+      light: '#e2e0de',
+      main: '#585246',
+      dark: '#4f4a41',
     },
     warning: {
-      main: inspo.coral,
+      main: '#FFCB9A',
       dark: '#9a1928',
     },
     error: {
@@ -59,7 +59,7 @@ const theme = {
     background: {
       ...rawTheme.palette.background,
       // default: rawTheme.palette.primary.dark,
-      default: '#2e281f',
+      default: '#6d9796',
       placeholder: grey[200],
     },
   },

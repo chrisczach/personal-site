@@ -35,8 +35,8 @@ const useStyles = ({ portrait, width }) =>
       justifyContent: portrait ? 'flex-start' : 'stretch',
       margin: theme.spacing(2, 0, 4, 0),
       background: portrait
-        ? `linear-gradient(to bottom right, ${theme.palette.primary.main}66, ${theme.palette.secondary.main}44) !important`
-        : `linear-gradient(to bottom right, ${theme.palette.primary.main}33, ${theme.palette.secondary.main}22) !important`,
+        ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}aa, ${theme.palette.secondary.dark}88) !important`
+        : `linear-gradient(to bottom right, ${theme.palette.primary.dark}55, ${theme.palette.secondary.dark}33) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       // transition: theme.transitions.create('all', {
