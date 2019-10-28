@@ -15,7 +15,7 @@ const useStyles = ({ portrait }) =>
       padding: theme.spacing(2, 2, 0, 2),
     },
     subHeading: {
-      padding: theme.spacing(0, 2, 1, portrait ? 2 : 4),
+      padding: theme.spacing(2, 2, 2, portrait ? 2 : 4),
       fontSize: '1.5em',
     },
     paper: {

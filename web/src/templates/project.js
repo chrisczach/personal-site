@@ -33,7 +33,7 @@ const useStyles = ({ portrait, width }) =>
       display: 'flex',
       flexDirection: portrait ? 'column-reverse' : 'row',
       justifyContent: portrait ? 'flex-start' : 'stretch',
-      margin: theme.spacing(1, 0, 4, 0),
+      margin: theme.spacing(2, 0, 4, 0),
       background: portrait
         ? `linear-gradient(to bottom right, ${theme.palette.primary.main}66, ${theme.palette.secondary.main}44) !important`
         : `linear-gradient(to bottom right, ${theme.palette.primary.main}33, ${theme.palette.secondary.main}22) !important`,

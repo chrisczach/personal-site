@@ -94,7 +94,7 @@ const ContactForm = props => {
           <Button
             type="submit"
             variant="contained"
-            color="primary"
+            color="secondary"
             size="large"
             className={sending ? classes.submitted : classes.submit}
             style={sending ? { pointerEvents: 'none' } : {}}
