@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
   tipTitle: {
     margin: '0 auto',
     opacity: 0.5,
-    color: theme.palette.success.main,
+    color: '#C0B3A0',
   },
   experience: {
     opacity: 0.75,
@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
     fontSize: '1.5em',
     margin: theme.spacing(0, 0, 1, 0),
-    color: theme.palette.success.main,
+    color: '#C0B3A0',
   },
 }));
 const MiniTechList = ({ tech, ...props }) => {

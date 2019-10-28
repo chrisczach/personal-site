@@ -1,18 +1,24 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import { green, grey, red } from '@material-ui/core/colors';
 
+const inspo = {
+  coral: '#E14658',
+  navy: '#222252',
+  mountain: '#3F3250',
+  scrub: '#C0B3A0',
+};
 const rawTheme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      light: '#E5E9EA',
-      main: '#1B0E1C',
-      dark: '#1b0f1c',
+      light: '#f2e5ff',
+      main: '#161636',
+      dark: '#070712',
     },
     secondary: {
-      light: '#8B9CA2',
-      main: '#483c51',
-      dark: '#322A38',
+      light: '#ddddff',
+      main: '#251d2f',
+      dark: '#0c0a10',
     },
     warning: {
       main: '#798262',
@@ -53,7 +59,7 @@ const theme = {
     background: {
       ...rawTheme.palette.background,
       // default: rawTheme.palette.primary.dark,
-      default: '#1c180e',
+      default: '#4d4233',
       placeholder: grey[200],
     },
   },

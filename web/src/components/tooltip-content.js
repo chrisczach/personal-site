@@ -35,7 +35,7 @@ const useStyles = portrait =>
     },
     ratingIcon: {
       fontWeight: 'bold',
-      color: theme.palette.success.main,
+      color: '#C0B3A0',
     },
     ratingStacking: {
       padding: portrait ? theme.spacing(0, 1, 0, 1) : theme.spacing(0, 1, 0, 2),
