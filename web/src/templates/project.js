@@ -61,7 +61,7 @@ const useStyles = ({ portrait, width }) =>
     image: {
       position: 'relative',
       margin: portrait ? theme.spacing(12, 0) : theme.spacing(2, 0),
-      height: `${Math.round(width / 2)}px`,
+      maxHeight: Math.round(width / 2),
       overflow: 'hidden',
     },
     hoverOpen: {

@@ -11,7 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   anchor: {
     width: '100%',
-    position: 'absolute',
+    // position: 'absolute',
+    height: 0,
     bottom: 0,
   },
   pop: {
