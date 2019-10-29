@@ -18,10 +18,11 @@ import { getFriendlyRating } from './tooltip-content';
 
 const useStyles = makeStyles(theme => ({
   tooltip: {
-    background: `${theme.palette.primary.dark}dd`,
-    backdropFilter: 'blur(8px)',
-    webkitBackdropFilter: 'blur(8px)',
+    background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}11, ${theme.palette.primary.dark}33) 50%`,
+    backdropFilter: 'blur(8px) brightness(.8)',
+    webkitBackdropFilter: 'blur(8px) brightness(.8)',
     margin: theme.spacing(2),
+    boxShadow: theme.shadows[6],
   },
   wrapper: {
     padding: theme.spacing(1, 1, 2, 1),

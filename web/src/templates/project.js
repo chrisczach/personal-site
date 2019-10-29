@@ -58,6 +58,9 @@ const useStyles = ({ portrait, width }) =>
       width: '100%',
       padding: theme.spacing(2),
     },
+    imageWrap: {
+      boxShadow: theme.shadows[3],
+    },
     image: {
       position: 'relative',
       margin: portrait ? theme.spacing(12, 0) : theme.spacing(2, 0),
@@ -156,13 +159,19 @@ const ProjectTemplate = ({ data, ...props }) => {
         <Box className={classes.blockWrapper}>
           <BlockContent blocks={project._rawBody} />
         </Box>
-        <Box className={classes.image}>
-          <Img fluid={project.mainImage.asset.fluid} />
-          <a href={project.link} target="_blank" className={classes.hoverOpen}>
-            <Button endIcon={<LaunchRounded />} className={classes.button}>
-              Open Site
-            </Button>
-          </a>
+        <Box className={classes.imageWrap}>
+          <Box className={classes.image}>
+            <Img fluid={project.mainImage.asset.fluid} />
+            <a
+              href={project.link}
+              target="_blank"
+              className={classes.hoverOpen}
+            >
+              <Button endIcon={<LaunchRounded />} className={classes.button}>
+                Open Site
+              </Button>
+            </a>
+          </Box>
         </Box>
       </ContainerWithHeading>
     </>

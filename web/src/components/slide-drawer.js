@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     width: '100%',
-    background: `${theme.palette.secondary.dark}dd`,
+    background: `linear-graident(to bottom right, ${theme.palette.secondary.main}44, ${theme.palette.secondary.dark}aa)`,
     backdropFilter: 'blur(8px)',
     webkitBackdropFilter: 'blur(8px)',
     margin: theme.spacing(0),

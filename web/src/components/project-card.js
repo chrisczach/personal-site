@@ -28,7 +28,7 @@ import MiniTechList from './mini-tech-list';
 const useStyles = (portrait, containerWidth = 1280) =>
   makeStyles(theme => ({
     card: {
-      background: `${theme.palette.secondary.dark}aa`,
+      background: `radial-gradient(bottom right, ${theme.palette.secondary.dark}bb,${theme.palette.secondary.main}66)`,
       backdropFilter: 'blur(8px)',
       webkitBackdropFilter: 'blur(8px)',
       position: 'relative',
@@ -98,26 +98,25 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
         </CardActionArea>
       </Link>
       <CardActions className={classes.actionArea}>
-   
-          <Tooltip
-            placement="right"
-            title={
-              <Typography variant="body2" color="textSecondary">
-                {showDetails ? 'Hide Details' : 'See Details'}
-              </Typography>
-            }
-            classes={classes}
+        <Tooltip
+          placement="right"
+          title={
+            <Typography variant="body2" color="textSecondary">
+              {showDetails ? 'Hide Details' : 'See Details'}
+            </Typography>
+          }
+          classes={classes}
+        >
+          <IconButton
+            aria-label={showDetails ? 'Hide Details' : 'See Details'}
+            size="small"
+            style={{ pointerEvents: showDetails ? 'none' : 'auto' }}
+            className={showDetails ? classes.expanded : classes.collapsed}
+            onClick={handleToggleShow}
           >
-            <IconButton
-              aria-label={showDetails ? 'Hide Details' : 'See Details'}
-              size="small"
-              style={{ pointerEvents: showDetails ? 'none' : 'auto' }}
-              className={showDetails ? classes.expanded : classes.collapsed}
-              onClick={handleToggleShow}
-            >
-              <ExpandMoreRounded />
-            </IconButton>
-          </Tooltip>
+            <ExpandMoreRounded />
+          </IconButton>
+        </Tooltip>
 
         <Link to={`/projects/${current}/`}>
           <Tooltip

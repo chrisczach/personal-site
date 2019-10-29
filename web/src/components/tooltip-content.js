@@ -11,11 +11,12 @@ import BlockText from './block-text';
 const useStyles = portrait =>
   makeStyles(theme => ({
     tooltip: {
-      background: `${theme.palette.secondary.dark}cc`,
-      backdropFilter: 'blur(8px)',
-      webkitBackdropFilter: 'blur(8px)',
+      background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}33, ${theme.palette.primary.dark}) 50%`,
+      backdropFilter: 'blur(8px) brightness(.8)',
+      webkitBackdropFilter: 'blur(8px) brightness(.8)',
       padding: theme.spacing(2, portrait ? 1 : 2),
       minWidth: portrait ? '75vw' : '50vw',
+      boxShadow: theme.shadows[6],
     },
     tooltipPlacementBottom: {
       margin: theme.spacing(0, portrait ? 0 : 2, 0, 0),
