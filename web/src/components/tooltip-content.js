@@ -10,12 +10,15 @@ import BlockText from './block-text';
 
 const useStyles = portrait =>
   makeStyles(theme => ({
-    tooltip: {
+    popper: {
       background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}33, ${theme.palette.primary.dark}) 50%`,
       backdropFilter: 'blur(8px) brightness(.8)',
       webkitBackdropFilter: 'blur(8px) brightness(.8)',
-      minWidth: portrait ? '75vw' : '50vw',
       boxShadow: theme.shadows[6],
+    },
+    tooltip: {
+      background: 'transparent',
+      minWidth: portrait ? '75vw' : '50vw',
     },
     tipWrapper: {
       padding: theme.spacing(2, portrait ? 1 : 2),

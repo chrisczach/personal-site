@@ -17,13 +17,17 @@ import { useSpring, animated, config } from 'react-spring';
 import { getFriendlyRating } from './tooltip-content';
 
 const useStyles = makeStyles(theme => ({
-  tooltip: {
+  popper: {
     background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}11, ${theme.palette.primary.dark}33) 50%`,
     backdropFilter: 'blur(8px) brightness(.8)',
     webkitBackdropFilter: 'blur(8px) brightness(.8)',
+    boxShadow: theme.shadows[6],
+  },
+  tooltip: {
+    background: 'transparent',
     margin: theme.spacing(2),
     padding: 0,
-    boxShadow: theme.shadows[6],
+
     overflow: 'hidden',
   },
   wrapper: {
@@ -51,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     height: '1em',
   },
   miniTip: {
-    margin: theme.spacing(1),
+    marg: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
   },
