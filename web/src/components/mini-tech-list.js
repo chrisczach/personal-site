@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     height: '1em',
   },
   miniTip: {
-    padding: theme.spacing(1),
+    margin: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
   },
@@ -128,6 +128,7 @@ const toMiniRatings = classes => ({
       onClose={handleClose}
       open={open}
       key={id}
+      interactive
       classes={classes}
       title={
         <Box className={classes.miniTip}>
@@ -168,16 +169,18 @@ const toMiniRatings = classes => ({
         </Box>
       }
     >
-      <IconButton
-        onClick={e => {
-          e.stopPropagation();
-          handleOpen();
-        }}
-      >
-        <Box className={classes.imageWrap}>
-          <Img fluid={fluid} />
-        </Box>
-      </IconButton>
+      <ClickAwayListener onClickAway={handleClose}>
+        <IconButton
+          onClick={e => {
+            e.stopPropagation();
+            handleOpen();
+          }}
+        >
+          <Box className={classes.imageWrap}>
+            <Img fluid={fluid} />
+          </Box>
+        </IconButton>
+      </ClickAwayListener>
     </Tooltip>
   );
 };
