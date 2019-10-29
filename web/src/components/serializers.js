@@ -11,7 +11,6 @@ const serializers = {
         <code>{props.node.code}</code>
       </pre>
     ),
-    li: console.log,
   },
 };
 

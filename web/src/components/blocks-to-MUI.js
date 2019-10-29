@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
+import classes from './blocks-to-MUI.module.css';
 
 const BlocksToMUI = props => {
   const style = props.node.style || 'normal';
@@ -11,7 +12,9 @@ const BlocksToMUI = props => {
   return style === 'blockquote' ? (
     <Typography variant="caption">{props.children}</Typography>
   ) : (
-    <Typography variant="body1">{props.children}</Typography>
+    <Typography variant="body1" className={classes.blockBody}>
+      {props.children}
+    </Typography>
   );
 };
 
