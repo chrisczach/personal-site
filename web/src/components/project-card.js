@@ -32,7 +32,7 @@ const useStyles = (portrait, containerWidth = 1280) =>
       backdropFilter: 'blur(8px)',
       webkitBackdropFilter: 'blur(8px)',
       position: 'relative',
-      overflow: 'visible',
+      overflow: 'hidden',
     },
     media: {
       height: portrait ? `50vw` : `${Math.round(containerWidth / 6)}px`,

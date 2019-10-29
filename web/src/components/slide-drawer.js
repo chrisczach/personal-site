@@ -11,9 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   anchor: {
     width: '100%',
-    // position: 'absolute',
+    position: 'absolute',
     height: 0,
-    bottom: 0,
+    bottom: '4px',
   },
   pop: {
     width: '100%',
@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     backdropFilter: 'blur(8px)',
     webkitBackdropFilter: 'blur(8px)',
     margin: theme.spacing(0),
+    overflow: 'hidden',
   },
 }));
 const SlideDrawer = ({ show, handleToggle, children, ...props }) => {

@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
     webkitBackdropFilter: 'blur(8px) brightness(.8)',
     margin: theme.spacing(2),
     boxShadow: theme.shadows[6],
+    overflow: 'hidden',
   },
   wrapper: {
     padding: theme.spacing(1, 1, 2, 1),
