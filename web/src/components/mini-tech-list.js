@@ -166,7 +166,7 @@ const toMiniRatings = classes => ({
         </Box>
       }
     >
-      <IconButton>
+      <IconButton onClick={e => e.stopPropagation()}>
         <Box className={classes.imageWrap}>
           <Img fluid={fluid} />
         </Box>
