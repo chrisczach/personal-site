@@ -32,7 +32,28 @@ export default {
           { title: 'Code', value: 'code' },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
-        annotations: [],
+        annotations: [
+          {
+            name: 'link',
+            type: 'object',
+            title: 'External link',
+            fields: [
+              {
+                name: 'href',
+                type: 'url',
+                title: 'URL',
+                validation: Rule =>
+                  Rule.uri({ scheme: ['http', 'https', 'mailto', 'tel'] }),
+              },
+              {
+                title: 'Open in new tab',
+                name: 'blank',
+                description: 'Read https://css-tricks.com/use-target_blank/',
+                type: 'boolean',
+              },
+            ],
+          },
+        ],
       },
     },
   ],
