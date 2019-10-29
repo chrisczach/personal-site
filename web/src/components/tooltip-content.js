@@ -14,9 +14,11 @@ const useStyles = portrait =>
       background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}33, ${theme.palette.primary.dark}) 50%`,
       backdropFilter: 'blur(8px) brightness(.8)',
       webkitBackdropFilter: 'blur(8px) brightness(.8)',
-      padding: theme.spacing(2, portrait ? 1 : 2),
       minWidth: portrait ? '75vw' : '50vw',
       boxShadow: theme.shadows[6],
+    },
+    tipWrapper: {
+      padding: theme.spacing(2, portrait ? 1 : 2),
     },
     tooltipPlacementBottom: {
       margin: theme.spacing(0, portrait ? 0 : 2, 0, 0),
@@ -104,7 +106,11 @@ const TooltipContent = ({
       classes={classes}
       interactive
       title={
-        <div onClick={handleClose} style={{ userSelect: 'none' }}>
+        <div
+          onClick={handleClose}
+          style={{ userSelect: 'none' }}
+          className={classes.tipWrapper}
+        >
           <Typography variant="subtitle2" className={classes.ratingWrapper}>
             {' '}
             Experience:{' '}

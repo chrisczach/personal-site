@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
     backdropFilter: 'blur(8px) brightness(.8)',
     webkitBackdropFilter: 'blur(8px) brightness(.8)',
     margin: theme.spacing(2),
+    padding: 0,
     boxShadow: theme.shadows[6],
     overflow: 'hidden',
   },
@@ -167,7 +168,12 @@ const toMiniRatings = classes => ({
         </Box>
       }
     >
-      <IconButton onClick={e => e.stopPropagation()}>
+      <IconButton
+        onClick={e => {
+          e.stopPropagation();
+          handleOpen();
+        }}
+      >
         <Box className={classes.imageWrap}>
           <Img fluid={fluid} />
         </Box>
