@@ -161,7 +161,7 @@ const ProjectTemplate = ({ data, ...props }) => {
           <BlockContent blocks={project._rawBody} />
         </Box>
         <Box className={classes.imageWrap}>
-          <Box className={classes.image}>
+          <Paper className={classes.image}>
             <Img fluid={project.mainImage.asset.fluid} />
             <a
               href={project.link}
@@ -172,7 +172,7 @@ const ProjectTemplate = ({ data, ...props }) => {
                 Open Site
               </Button>
             </a>
-          </Box>
+          </Paper>
         </Box>
       </ContainerWithHeading>
     </>
