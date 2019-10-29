@@ -14,7 +14,7 @@ import { PortraitContext } from '../../components/layout';
 const useStyles = portrait =>
   makeStyles(theme => ({
     paper: {
-      background: `linear-gradient(${theme.palette.primary.main}aa, ${theme.palette.secondary.dark}aa)`,
+      background: `linear-gradient(to bottom right, ${theme.palette.secondary.main}44, ${theme.palette.primary.main}44, ${theme.palette.primary.dark}aa), linear-gradient(to bottom left, transparent, ${theme.palette.primary.main}44, ${theme.palette.primary.dark}aa)`,
       margin: theme.spacing(3, portrait ? 1 : 2, 8, portrait ? 1 : 2),
       overflow: 'hidden',
       backdropFilter: 'blur(5px)',

@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   paper: {
-    background: `linear-gradient(${theme.palette.primary.main}aa, ${theme.palette.secondary.dark}aa)`,
+    background: `linear-gradient(to bottom right, ${ theme.palette.secondary.main }44, ${ theme.palette.primary.main }44, ${ theme.palette.primary.dark }aa), linear-gradient(to bottom left, transparent, ${ theme.palette.primary.main }44, ${ theme.palette.primary.dark }aa)`,
     padding: theme.spacing(4),
     outline: 'none',
     overflow: 'hidden',

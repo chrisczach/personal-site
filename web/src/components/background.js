@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     height: '90vh',
     width: '100%',
-    background: `linear-gradient(to top left, transparent 50%, ${theme.palette.secondary.light}55), linear-gradient(to top right, transparent 50%, ${theme.palette.primary.light}55)`,
+    background: `linear-gradient(to top left, transparent 50%, ${theme.palette.secondary.light}99), linear-gradient(to top right, transparent 50%, ${theme.palette.primary.main}66)`,
     zIndex: -50,
   },
   bottom: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     bottom: 0,
     height: '90vh',
     width: '100%',
-    background: `linear-gradient(to bottom right, transparent 50%, ${theme.palette.secondary.dark}55), linear-gradient(to bottom left, transparent 50%, ${theme.palette.secondary.main}55)`,
+    background: `linear-gradient(to bottom right, transparent 50%, ${theme.palette.primary.dark}cc), linear-gradient(to bottom left, transparent 50%, ${theme.palette.primary.main}aa)`,
     zIndex: -50,
   },
 }));
