@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Box,
   ClickAwayListener,
@@ -15,9 +15,11 @@ import Img from 'gatsby-image';
 import { useSpring, animated, config } from 'react-spring';
 
 import { getFriendlyRating } from './tooltip-content';
+import { PortraitContext } from './layout';
 
 const useStyles = makeStyles(theme => ({
   popper: {
+    margin: theme.spacing(1),
     background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}11, ${theme.palette.primary.dark}33) 50%`,
     backdropFilter: 'blur(8px) brightness(.8)',
     webkitBackdropFilter: 'blur(8px) brightness(.8)',
@@ -82,6 +84,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 const MiniTechList = ({ tech, ...props }) => {
+  const portrait = useContext(PortraitContext);
   const classes = useStyles(props);
   return (
     <Box className={classes.wrapper}>
@@ -95,7 +98,7 @@ const MiniTechList = ({ tech, ...props }) => {
               {category}
             </Typography>
             <Box className={classes.wrapper}>
-              {tech.map(toMiniRatings(classes))}
+              {tech.map(toMiniRatings(portrait, classes))}
             </Box>
           </div>
         ))}
@@ -104,7 +107,7 @@ const MiniTechList = ({ tech, ...props }) => {
   );
 };
 
-const toMiniRatings = classes => ({
+const toMiniRatings = (portrait, classes) => ({
   title,
   experience,
   description,
@@ -128,11 +131,13 @@ const toMiniRatings = classes => ({
   const [ratingValue, setRatingValue] = useState(0);
   return (
     <Tooltip
+      enterDelay={50}
+      disableTouchListener
       onOpen={handleOpen}
       onClose={handleClose}
+      interactive
       open={open}
       key={id}
-      interactive
       classes={classes}
       title={
         <Box className={classes.miniTip}>
@@ -173,18 +178,31 @@ const toMiniRatings = classes => ({
         </Box>
       }
     >
-      <ClickAwayListener onClickAway={handleClose}>
+      {portrait ? (
+        <ClickAwayListener onClickAway={handleClose}>
+          <IconButton
+            onClick={e => {
+              e.stopPropagation();
+              handleOpen();
+            }}
+          >
+            <Box className={classes.imageWrap}>
+              <Img fluid={fluid} />
+            </Box>
+          </IconButton>
+        </ClickAwayListener>
+      ) : (
         <IconButton
-          onClick={e => {
-            e.stopPropagation();
-            handleOpen();
-          }}
+        // onClick={e => {
+        //   e.stopPropagation();
+        //   handleOpen();
+        // }}
         >
           <Box className={classes.imageWrap}>
             <Img fluid={fluid} />
           </Box>
         </IconButton>
-      </ClickAwayListener>
+      )}
     </Tooltip>
   );
 };
