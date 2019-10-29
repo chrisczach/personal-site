@@ -132,6 +132,7 @@ const toMiniRatings = (portrait, classes) => ({
   return (
     <Tooltip
       enterDelay={50}
+      // leaveDelay={50}
       disableTouchListener
       onOpen={handleOpen}
       onClose={handleClose}

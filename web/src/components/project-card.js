@@ -28,6 +28,9 @@ import MiniTechList from './mini-tech-list';
 const useStyles = (portrait, containerWidth = 1280) =>
   makeStyles(theme => ({
     card: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'stretch',
       background: `radial-gradient(bottom right, ${theme.palette.secondary.dark}bb,${theme.palette.secondary.main}66)`,
       backdropFilter: 'blur(8px)',
       webkitBackdropFilter: 'blur(8px)',
@@ -62,6 +65,11 @@ const useStyles = (portrait, containerWidth = 1280) =>
         duration: theme.transitions.duration.shortest,
       }),
     },
+    cardMedia: {
+      flexGrow: 1,
+      padding: 0,
+      margin: 0,
+    },
   }));
 
 const ProjectCard = ({ project, containerWidth, ...props }) => {
@@ -82,7 +90,7 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
   } = project;
   return (
     <Card className={classes.card} raised>
-      <Link to={`/projects/${current}/`}>
+      <Link className={classes.cardMedia} to={`/projects/${current}/`}>
         <CardActionArea>
           <CardMedia className={classes.media} title={title}>
             <Img {...{ fluid }} />

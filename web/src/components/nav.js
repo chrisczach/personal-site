@@ -17,14 +17,16 @@ import { MenuRounded, CloseRounded } from '@material-ui/icons/';
 const useStyles = makeStyles(theme => ({
   drawer: {
     overflow: 'hidden',
-    background: `${theme.palette.secondary.dark}88`,
+    background: `${theme.palette.secondary.main}22`,
     backdropFilter: 'blur(3px)',
     webkitBackdropFilter: 'blur(3px)',
   },
   navBar: {
     overflow: 'hidden',
     padding: theme.spacing(0, 0, 18, 0),
-    background: theme.palette.secondary.dark,
+    background: `${theme.palette.secondary.dark}55`,
+    backdropFilter: 'blur(5px)',
+    webkitBackdropFilter: 'blur(5px)',
     height: '100%',
   },
   close: {
@@ -64,7 +66,7 @@ const nav = ({ portrait, menuItems, ...props }) => {
             button
             autoFocus
             onClick={handleOpen(!open)}
-            background={theme.palette.secondary.dark}
+            background={`${theme.palette.primary.dark}55`}
           >
             <ListItemText
               primary="Chris Czach "
@@ -84,7 +86,9 @@ const nav = ({ portrait, menuItems, ...props }) => {
 const toMenu = (open, handleOpen, size) => ({ link, Icon, route }, index) => {
   const LinkComponent = ({ children }) =>
     route[0] === '/' ? (
-      <Link to={ route } key={ link}>{children}</Link>
+      <Link to={route} key={link}>
+        {children}
+      </Link>
     ) : (
       <a href={route} target="_blank">
         {children}

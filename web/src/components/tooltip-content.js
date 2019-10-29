@@ -101,6 +101,7 @@ const TooltipContent = ({
   return (
     <Tooltip
       enterDelay={50}
+      // leaveDelay={50}
       open={open}
       onOpen={handleOpen}
       onClose={handleClose}
