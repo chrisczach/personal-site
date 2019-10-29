@@ -1,6 +1,13 @@
 import React, { useContext } from 'react';
 
-import { Container, Typography, Zoom, Fade, Slide } from '@material-ui/core';
+import {
+  Container,
+  Typography,
+  Zoom,
+  Fade,
+  Slide,
+  Paper,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { PortraitContext } from './layout';
 import BlockContent from './block-content';
@@ -23,11 +30,27 @@ const useStyles = ({ portrait }) =>
       flexDirection: 'column',
       padding: theme.spacing(3, 2),
     },
+    darkPaper: {
+      padding: theme.spacing(2),
+      background: portrait
+        ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}aa, ${theme.palette.secondary.dark}88) !important`
+        : `linear-gradient(to bottom right, ${theme.palette.primary.dark}55, ${theme.palette.secondary.dark}33) !important`,
+      backdropFilter: 'blur(5px)',
+      webkitBackdropFilter: 'blur(5px)',
+      // transition: theme.transitions.create('all', {
+      //   duration: theme.transitions.duration.shortest,
+      // }),
+      '&:hover': {
+        backdropFilter: 'blur(10px) brightness(.9)',
+        webkitBackdropFilter: 'blur(10px)  brightness(.9)',
+      },
+    },
   }));
 
 export const ContainerWithHeading = ({
   heading,
   subHeading,
+  darkBody = false,
   avatar = null,
   children = null,
   ...props
@@ -49,17 +72,21 @@ export const ContainerWithHeading = ({
       </Fade>
       <Fade in timeout={600}>
         <Zoom in timeout={1200}>
-          <Typography
-            variant="subtitle1"
-            color="textPrimary"
-            className={classes.subHeading}
-          >
-            {typeof subHeading === 'string' ? (
-              subHeading
-            ) : (
+          {typeof subHeading === 'string' ? (
+            <Typography
+              variant="subtitle1"
+              color="textPrimary"
+              className={classes.subHeading}
+            >
+              {subHeading}
+            </Typography>
+          ) : darkBody ? (
+            <Paper className={classes.darkPaper}>
               <BlockContent blocks={subHeading} />
-            )}
-          </Typography>
+            </Paper>
+          ) : (
+            <BlockContent blocks={subHeading} />
+          )}
         </Zoom>
       </Fade>
 

@@ -27,7 +27,7 @@ export default {
     {
       name: 'body',
       title: 'Body',
-      type: 'simplePortableText',
+      type: 'projectPortableText',
     },
   ],
   preview: {

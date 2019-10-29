@@ -12,12 +12,12 @@ export default ({ node }) => {
 
   const fluidProps = getFluidGatsbyImage(
     node.asset._ref,
-    { maxWidth: 675 },
+    { maxWidth: 1200 },
     clientConfig.sanity,
   );
 
   return (
-    <figure>
+    <figure style={{ margin: 0, padding: 0 }}>
       <Img fluid={fluidProps} alt={node.alt} />
       {node.caption && <figcaption>{node.caption}</figcaption>}
     </figure>

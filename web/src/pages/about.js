@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import SEO from '../components/seo';
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL';
 import { ContainerWithHeading } from '../components/containerWithHeading';
+import AvatarWrapper from '../components/avatar-wrapper'
 
 const About = ({ data }) => {
   const { site } = data || {};
@@ -21,7 +22,11 @@ const About = ({ data }) => {
         description={site.description}
         keywords={site.keywords}
       />
-      <ContainerWithHeading heading={page.title} subHeading={page._rawBody} />
+      <ContainerWithHeading
+        heading={ <AvatarWrapper node={ page.mainImage}/>}
+        darkBody
+        subHeading={page._rawBody}
+      />
     </>
   );
 };
@@ -36,6 +41,12 @@ export const query = graphql`
     page: sanityPage(slug: { current: { eq: "about" } }) {
       id
       title
+      mainImage{
+        asset {
+          _id
+        }
+        caption
+      }
       _rawBody
     }
   }

@@ -11,6 +11,7 @@ import project from './documents/project';
 import siteSettings from './documents/siteSettings';
 import page from './documents/page';
 // Object types
+import avatar from './objects/avatar';
 import bioPortableText from './objects/bioPortableText';
 import figure from './objects/figure';
 import projectMember from './objects/projectMember';
@@ -28,6 +29,7 @@ export default createSchema({
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     bioPortableText,
+    avatar,
     figure,
     projectMember,
     projectPortableText,
