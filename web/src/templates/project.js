@@ -31,6 +31,7 @@ const useStyles = ({ portrait, width }) =>
   makeStyles(theme => ({
     paper: {
       display: 'flex',
+      overflow: 'hidden',
       flexDirection: portrait ? 'column-reverse' : 'row',
       justifyContent: portrait ? 'flex-start' : 'stretch',
       margin: theme.spacing(2, 0, 4, 0),
