@@ -38,7 +38,9 @@ const About = ({ data }) => {
               )
               .map(({ category, tech }) => ({
                 category,
-                tech: tech.sort(({ sort: a }, { sort: b }) => a - b),
+                tech: tech
+                  .filter(({ sort }) => sort)
+                  .sort(({ sort: a }, { sort: b }) => a - b),
               }))}
           />
         }

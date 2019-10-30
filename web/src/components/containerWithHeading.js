@@ -32,10 +32,19 @@ const useStyles = ({ portrait }) =>
       padding: theme.spacing(3, 2),
     },
     regularWrap: {
-      padding: theme.spacing(0, portrait ? 2 : 4),
+      display: 'flex',
+      flexDirection: portrait ? 'column' : 'row',
+      justifyContent: 'stretch',
+      alignItems: 'stretch',
+      overflow: 'hidden',
     },
     darkPaper: {
-      padding: theme.spacing(2),
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: portrait ? 'column' : 'row',
+      justifyContent: 'stretch',
+      alignItems: 'stretch',
+
       background: portrait
         ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}aa, ${theme.palette.secondary.dark}88) !important`
         : `linear-gradient(to bottom right, ${theme.palette.primary.dark}55, ${theme.palette.secondary.dark}33) !important`,
@@ -49,12 +58,24 @@ const useStyles = ({ portrait }) =>
         webkitBackdropFilter: 'blur(10px)  brightness(.9)',
       },
     },
+    bodyBox: {
+      padding: theme.spacing(0, portrait ? 2 : 4),
+      width: '100%',
+    },
+    techBox: {
+      width: portrait ? '100%' : '80%',
+      background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}99, ${theme.palette.secondary.dark}55)`,
+    },
+    skills: {
+      padding: theme.spacing(1, 0, 0, 2),
+      color: `${theme.palette.secondary.light}55`,
+    },
   }));
 
 export const ContainerWithHeading = ({
   heading,
   subHeading,
-  TechHeading,
+  TechHeading = false,
   darkBody = false,
   avatar = null,
   children = null,
@@ -92,13 +113,32 @@ export const ContainerWithHeading = ({
         <Zoom in timeout={1200}>
           {darkBody ? (
             <Paper className={classes.darkPaper}>
-              {TechHeading}
-              <BlockContent blocks={subHeading} />
+              <Box className={classes.bodyBox}>
+                <BlockContent blocks={subHeading} />
+              </Box>
+              {TechHeading && (
+                <Box className={classes.techBox}>
+                  <Typography variant="h4" className={classes.skills}>
+                    Key Skills
+                  </Typography>
+                  {TechHeading}
+                </Box>
+              )}
             </Paper>
           ) : (
             <Box className={classes.regularWrap}>
-              {TechHeading}
-              <BlockContent blocks={subHeading} />
+              <Box className={classes.bodyBox}>
+                <BlockContent blocks={subHeading} />
+              </Box>
+
+              {TechHeading && (
+                <Box className={classes.techBox}>
+                  <Typography variant="h4" className={classes.skills}>
+                    Key Skills
+                  </Typography>
+                  {TechHeading}
+                </Box>
+              )}
             </Box>
           )}
         </Zoom>
