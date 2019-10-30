@@ -31,10 +31,15 @@ const About = ({ data }) => {
         darkBody
         TechHeading={
           <MapTechToList
-            tech={tech.sort(
-              ({ tech: a }, { tech: b }) =>
-                a[0].category.sort - b[0].category.sort,
-            )}
+            tech={tech
+              .sort(
+                ({ tech: a }, { tech: b }) =>
+                  a[0].category.sort - b[0].category.sort,
+              )
+              .map(({ category, tech }) => ({
+                category,
+                tech: tech.sort(({ sort: a }, { sort: b }) => a - b),
+              }))}
           />
         }
         subHeading={page._rawBody}
@@ -66,6 +71,7 @@ export const query = graphql`
       group(field: category___title) {
         category: fieldValue
         tech: nodes {
+          sort
           title
           category {
             sort

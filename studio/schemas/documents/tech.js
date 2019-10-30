@@ -34,5 +34,9 @@ export default {
       type: 'simplePortableText',
       title: 'Description',
     },
+    {
+      name: 'sort',
+      type: 'number'
+    }
   ],
 };
