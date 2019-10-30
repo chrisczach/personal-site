@@ -21,6 +21,8 @@ const useStyles = ({ portrait }) =>
     },
     heading: {
       padding: theme.spacing(2, 2, 0, 2),
+      color: theme.palette.warning.main,
+      opacity: '0.9 !important',
     },
     subHeading: {
       padding: theme.spacing(2, 2, 2, portrait ? 4 : 6),

@@ -70,6 +70,10 @@ const useStyles = (portrait, containerWidth = 1280) =>
       padding: 0,
       margin: 0,
     },
+    coloredCardHeading: {
+      color: theme.palette.warning.main,
+      opacity: 0.9,
+    },
   }));
 
 const ProjectCard = ({ project, containerWidth, ...props }) => {
@@ -96,7 +100,12 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
             <Img {...{ fluid }} />
           </CardMedia>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h2"
+              className={classes.coloredCardHeading}
+            >
               {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">

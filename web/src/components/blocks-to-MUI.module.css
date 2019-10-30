@@ -4,6 +4,11 @@
 
 .blockBody{
     margin: 1em 0;
+    
+}
+
+.blockBody > strong {
+    color: #f0db4f ;
 }
 
 .blockBody > a{

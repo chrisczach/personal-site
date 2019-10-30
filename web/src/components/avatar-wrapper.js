@@ -13,7 +13,7 @@ const useStyles = portrait =>
   makeStyles(theme => ({
     wrapper: {
       padding: 0,
-      margin: theme.spacing(0, 0, 2, portrait ? 0 : 4),
+      margin: theme.spacing(0, 0, portrait ? 2 : 4, portrait ? 0 : 4),
       display: 'flex',
       justifyContent: portrait ? 'center' : 'flex-start',
       alignItems: 'center',
@@ -28,13 +28,20 @@ const useStyles = portrait =>
         duration: theme.transitions.duration.shortest,
       }),
       boxShadow: theme.shadows[4],
-      '&:hover': {
-        boxShadow: theme.shadows[2],
+      '&>div': {
+        transition: theme.transitions.create('all', {
+          duration: theme.transitions.duration.longest,
+        }),
+      },
+      '&:hover>div': {
+        transform: 'scale(1.15) rotate(-4deg)',
       },
     },
+
     heading: {
+      opacity: 0.9,
       margin: theme.spacing(2),
-      fontSize: '.75em',
+      color: theme.palette.warning.main,
       fontWeight: 'lighter',
       // fontWeight: '100',
     },
@@ -60,7 +67,7 @@ export default ({ node }) => {
       </div>
 
       {node.caption && (
-        <Typography variant="h1" className={classes.heading}>
+        <Typography variant="h2" className={classes.heading}>
           <figcaption>{node.caption}</figcaption>
         </Typography>
       )}
