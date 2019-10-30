@@ -35,7 +35,8 @@ const useStyles = portrait =>
     heading: {
       margin: theme.spacing(2),
       fontSize: '.75em',
-      fontWeight: '100',
+      fontWeight: 'lighter',
+      // fontWeight: '100',
     },
   }));
 
