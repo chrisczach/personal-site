@@ -40,9 +40,8 @@ const useStyles = portrait =>
 
     heading: {
       opacity: 0.9,
-      margin: theme.spacing(2),
+      margin: theme.spacing(2, portrait ? 0 : 2),
       color: theme.palette.warning.main,
-      fontWeight: 'lighter',
       // fontWeight: '100',
     },
   }));

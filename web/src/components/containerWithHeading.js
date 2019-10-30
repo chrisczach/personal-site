@@ -62,7 +62,7 @@ const useStyles = ({ portrait }) =>
     },
     bodyBox: {
       padding: theme.spacing(0, portrait ? 2 : 4),
-      width: '100%',
+      width: portrait ? '100%' : '60%',
     },
     techBox: {
       width: portrait ? '100%' : '80%',

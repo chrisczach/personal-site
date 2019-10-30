@@ -36,12 +36,12 @@ const rawTheme = createMuiTheme({
     },
   },
   typography: {
-    fontFamily: "'Roboto', sans-serif",
+    fontFamily: "'Open Sans', sans-serif",
     fontSize: 14,
     fontWeightLight: 100, // Work Sans
     fontWeightRegular: 300, // Work Sans
     fontWeightMedium: 400, // Playfair Display Condensed
-    fontFamilySecondary: "'Open Sans', sans-serif",
+    fontFamilySecondary: "'Raleway', sans-serif",
   },
 });
 
