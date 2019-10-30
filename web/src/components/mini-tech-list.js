@@ -77,8 +77,9 @@ const useStyles = makeStyles(theme => ({
     margin: '0 auto',
   },
   ratingIcon: {
-    fontWeight: 'bold',
+    fontWeight: 400,
     fontSize: '1.5em',
+    letterSpacing: theme.spacing(-1),
     margin: theme.spacing(0, 0, 1, 0),
     color: '#b6da84',
   },

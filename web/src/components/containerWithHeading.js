@@ -62,6 +62,10 @@ const useStyles = ({ portrait }) =>
     },
     bodyBox: {
       padding: theme.spacing(0, portrait ? 2 : 4),
+      width: '100%',
+    },
+    ogBodyBox: {
+      padding: theme.spacing(0, portrait ? 2 : 4),
       width: portrait ? '100%' : '60%',
     },
     techBox: {
@@ -129,7 +133,7 @@ export const ContainerWithHeading = ({
             </Paper>
           ) : (
             <Box className={classes.regularWrap}>
-              <Box className={classes.bodyBox}>
+              <Box className={classes.ogBodyBox}>
                 <BlockContent blocks={subHeading} />
               </Box>
 
