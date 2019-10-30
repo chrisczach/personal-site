@@ -11,7 +11,7 @@ import { ContainerWithHeading } from '../../components/containerWithHeading';
 const useStyles = makeStyles(theme => ({
   paper: {
     background: `linear-gradient(to bottom right, ${theme.palette.secondary.main}44, ${theme.palette.primary.main}44, ${theme.palette.primary.dark}aa), linear-gradient(to bottom left, transparent, ${theme.palette.primary.main}44, ${theme.palette.primary.dark}aa)`,
-    margin: theme.spacing(3, 2, 8, 2),
+    margin: theme.spacing(3, 2, 2, 2),
     overflow: 'hidden',
     backdropFilter: 'blur(5px)',
     webkitBackdropFilter: 'blur(5px)',

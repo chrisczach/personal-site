@@ -6,6 +6,7 @@ import {
   Zoom,
   Fade,
   Slide,
+  Box,
   Paper,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,20 +16,23 @@ import BlockContent from './block-content';
 const useStyles = ({ portrait }) =>
   makeStyles(theme => ({
     container: {
-      padding: portrait ? theme.spacing(2) : theme.spacing(10, 2),
+      padding: portrait ? theme.spacing(2, 2, 10, 2) : theme.spacing(10, 2),
       minHeight: '100vh',
     },
     heading: {
       padding: theme.spacing(2, 2, 0, 2),
     },
     subHeading: {
-      padding: theme.spacing(2, 2, 2, portrait ? 2 : 4),
+      padding: theme.spacing(2, 2, 2, portrait ? 4 : 6),
       fontSize: '1.5em',
     },
     paper: {
       display: 'flex',
       flexDirection: 'column',
       padding: theme.spacing(3, 2),
+    },
+    regularWrap: {
+      padding: theme.spacing(0, portrait ? 2 : 4),
     },
     darkPaper: {
       padding: theme.spacing(2),
@@ -72,20 +76,14 @@ export const ContainerWithHeading = ({
       </Fade>
       <Fade in timeout={600}>
         <Zoom in timeout={1200}>
-          {typeof subHeading === 'string' ? (
-            <Typography
-              variant="subtitle1"
-              color="textPrimary"
-              className={classes.subHeading}
-            >
-              {subHeading}
-            </Typography>
-          ) : darkBody ? (
+          {darkBody ? (
             <Paper className={classes.darkPaper}>
               <BlockContent blocks={subHeading} />
             </Paper>
           ) : (
-            <BlockContent blocks={subHeading} />
+            <Box className={classes.regularWrap}>
+              <BlockContent blocks={subHeading} />
+            </Box>
           )}
         </Zoom>
       </Fade>
