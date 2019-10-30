@@ -120,7 +120,7 @@ export const ContainerWithHeading = ({
           {darkBody ? (
             <Paper className={classes.darkPaper}>
               <Box className={classes.bodyBox}>
-                <BlockContent blocks={subHeading} />
+                { typeof subHeading !== 'string' ? <BlockContent blocks={ subHeading } /> : <Typography variant='body1'>{subHeading}</Typography>}
               </Box>
               {TechHeading && (
                 <Box className={classes.techBox}>
@@ -134,7 +134,7 @@ export const ContainerWithHeading = ({
           ) : (
             <Box className={classes.regularWrap}>
               <Box className={classes.ogBodyBox}>
-                <BlockContent blocks={subHeading} />
+                  { typeof subHeading !== 'string' ? <BlockContent blocks={ subHeading } /> : <Typography variant='body1'>{ subHeading }</Typography> }
               </Box>
 
               {TechHeading && (
