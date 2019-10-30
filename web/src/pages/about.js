@@ -4,11 +4,15 @@ import { graphql } from 'gatsby';
 import SEO from '../components/seo';
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL';
 import { ContainerWithHeading } from '../components/containerWithHeading';
-import AvatarWrapper from '../components/avatar-wrapper'
+import AvatarWrapper from '../components/avatar-wrapper';
+import MapTechToList from '../components/mapTechToList';
 
 const About = ({ data }) => {
   const { site } = data || {};
   const { page } = data || {};
+  const {
+    techList: { group: tech },
+  } = data || {};
   if (!site) {
     throw new Error(
       'Missing "Site settings". Open the studio at http://localhost:3333 and add some content to "Site settings" and restart the development server.',
@@ -23,8 +27,16 @@ const About = ({ data }) => {
         keywords={site.keywords}
       />
       <ContainerWithHeading
-        heading={ <AvatarWrapper node={ page.mainImage}/>}
+        heading={<AvatarWrapper node={page.mainImage} />}
         darkBody
+        TechHeading={
+          <MapTechToList
+            tech={tech.sort(
+              ({ tech: a }, { tech: b }) =>
+                a[0].category.sort - b[0].category.sort,
+            )}
+          />
+        }
         subHeading={page._rawBody}
       />
     </>
@@ -41,13 +53,34 @@ export const query = graphql`
     page: sanityPage(slug: { current: { eq: "about" } }) {
       id
       title
-      mainImage{
+      mainImage {
         asset {
           _id
         }
         caption
       }
       _rawBody
+    }
+
+    techList: allSanityTech {
+      group(field: category___title) {
+        category: fieldValue
+        tech: nodes {
+          title
+          category {
+            sort
+          }
+          description: _rawDescription
+          experience
+          logo {
+            asset {
+              fluid(maxWidth: 3840) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;

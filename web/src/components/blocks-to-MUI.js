@@ -6,7 +6,7 @@ const BlocksToMUI = props => {
   const style = props.node.style || 'normal';
   if (/^h\d/.test(style)) {
     const level = style.replace(/[^\d]/g, '');
-    return <Typography variant={`h${level}`}>{props.children}</Typography>;
+    return <Typography variant={`h${level}`} className={classes.blockHeading}>{props.children}</Typography>;
   }
 
   return style === 'blockquote' ? (

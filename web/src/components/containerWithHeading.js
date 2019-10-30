@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import {
   Container,
@@ -54,6 +54,7 @@ const useStyles = ({ portrait }) =>
 export const ContainerWithHeading = ({
   heading,
   subHeading,
+  TechHeading,
   darkBody = false,
   avatar = null,
   children = null,
@@ -61,8 +62,21 @@ export const ContainerWithHeading = ({
 }) => {
   const portrait = useContext(PortraitContext);
   const classes = useStyles({ portrait })(props);
+  const [width, setWidth] = useState(1920);
+  const updateWidth = () => setWidth(window.innerWidth);
+  useEffect(() => {
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => {
+      window.addEventListener('resize', updateWidth);
+    };
+  }, [updateWidth]);
   return (
-    <Container maxWidth="lg" className={classes.container} {...props}>
+    <Container
+      maxWidth={width < 1500 ? 'md' : width > 2000 ? 'xl' : 'lg'}
+      className={classes.container}
+      {...props}
+    >
       <Fade in timeout={150}>
         <Slide in direction="down" timeout={300}>
           <Typography
@@ -78,10 +92,12 @@ export const ContainerWithHeading = ({
         <Zoom in timeout={1200}>
           {darkBody ? (
             <Paper className={classes.darkPaper}>
+              {TechHeading}
               <BlockContent blocks={subHeading} />
             </Paper>
           ) : (
             <Box className={classes.regularWrap}>
+              {TechHeading}
               <BlockContent blocks={subHeading} />
             </Box>
           )}
