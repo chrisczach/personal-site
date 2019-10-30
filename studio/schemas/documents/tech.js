@@ -9,6 +9,12 @@ export default {
       title: 'Title',
     },
     {
+      name: 'category',
+      type: 'reference',
+      title: 'About me Tech Category',
+      to: { type: 'techCategory' },
+    },
+    {
       name: 'logo',
       type: 'image',
       title: 'Logo',

@@ -10,6 +10,8 @@ import person from './documents/person';
 import project from './documents/project';
 import siteSettings from './documents/siteSettings';
 import page from './documents/page';
+import techCategory from './documents/tech-category'
+
 // Object types
 import avatar from './objects/avatar';
 import bioPortableText from './objects/bioPortableText';
@@ -18,6 +20,7 @@ import projectMember from './objects/projectMember';
 import projectPortableText from './objects/projectPortableText';
 import simplePortableText from './objects/simplePortableText';
 import techList from './objects/techList';
+
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -38,6 +41,7 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     tech,
+    techCategory,
     person,
     project,
     page,
