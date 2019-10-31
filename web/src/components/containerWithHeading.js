@@ -61,7 +61,7 @@ const useStyles = ({ portrait }) =>
       },
     },
     bodyBox: {
-      padding: theme.spacing(0, portrait ? 2 : 4),
+      padding: theme.spacing(2, portrait ? 2 : 4),
       width: '100%',
     },
     ogBodyBox: {

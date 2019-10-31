@@ -8,7 +8,7 @@ const serializers = {
     figure: Figure,
     avatar: Avatar,
     block: BlocksToMUI,
-    code: props => (
+    myCode: props => (
       <pre data-language={props.node.language}>
         <code>{props.node.code}</code>
       </pre>
