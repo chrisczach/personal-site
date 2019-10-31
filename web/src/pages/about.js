@@ -66,7 +66,7 @@ export const query = graphql`
         }
         caption
       }
-      _rawBody
+      _rawBody(resolveReferences: {maxDepth: 10})
     }
 
     techList: allSanityTech {
@@ -78,7 +78,7 @@ export const query = graphql`
           category {
             sort
           }
-          description: _rawDescription
+          description: _rawDescription(resolveReferences: {maxDepth: 10})
           experience
           logo {
             asset {

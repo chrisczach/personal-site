@@ -57,7 +57,7 @@ export const query = graphql`
     page: sanityPage(slug: { current: { eq: "contact" } }) {
       id
       title
-      _rawBody
+      _rawBody(resolveReferences: {maxDepth: 10})
     }
   }
 `;

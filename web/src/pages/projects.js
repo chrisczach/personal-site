@@ -42,7 +42,7 @@ export const query = graphql`
     page: sanityPage(slug: { current: { eq: "projects" } }) {
       id
       title
-      _rawBody
+      _rawBody(resolveReferences: {maxDepth: 10})
     }
     projects: allSanityProject {
       nodes {
@@ -65,7 +65,7 @@ export const query = graphql`
             title
             id
             experience
-            description: _rawDescription
+            description: _rawDescription(resolveReferences: {maxDepth: 10})
             logo {
               asset {
                 fluid(maxWidth: 3840) {
@@ -77,8 +77,8 @@ export const query = graphql`
         }
         link
         repo
-        excerpt: _rawExcerpt
-        body: _rawBody
+        excerpt: _rawExcerpt(resolveReferences: {maxDepth: 10})
+        body: _rawBody(resolveReferences: {maxDepth: 10})
       }
     }
   }

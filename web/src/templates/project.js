@@ -189,7 +189,7 @@ export const query = graphql`
         category
         tech {
           title
-          description: _rawDescription
+          description: _rawDescription(resolveReferences: {maxDepth: 10})
           experience
           logo {
             asset {
@@ -218,8 +218,8 @@ export const query = graphql`
       slug {
         current
       }
-      _rawBody
-      _rawExcerpt
+      _rawBody(resolveReferences: {maxDepth: 10})
+      _rawExcerpt(resolveReferences: {maxDepth: 10})
     }
   }
 `;

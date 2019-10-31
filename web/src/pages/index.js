@@ -36,7 +36,7 @@ export const query = graphql`
     page: sanityPage(slug: { current: { eq: "index" } }) {
       id
       title
-      _rawBody
+      _rawBody(resolveReferences: {maxDepth: 10})
     }
   }
 `;

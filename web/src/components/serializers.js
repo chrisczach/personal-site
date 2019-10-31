@@ -7,6 +7,7 @@ import Figure from './figure';
 import Avatar from './avatar-wrapper';
 import { PortraitContext } from './layout';
 import BlockContent from './block-content';
+import InternalLink from './internal-link'
 
 const serializers = {
   types: {
@@ -32,6 +33,8 @@ const serializers = {
     //   </pre>
     // ),
   },
+  marks: {
+    internalLink: InternalLink
+  },
 };
-
 export default serializers;

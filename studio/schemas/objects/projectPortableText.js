@@ -30,6 +30,23 @@ export default {
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
+            name: 'internalLink',
+            type: 'object',
+            title: 'Internal link',
+            fields: [
+              {
+                name: 'reference',
+                type: 'reference',
+                title: 'Reference',
+                to: [
+                  { type: 'page' },
+                  { type: 'project' },
+                  // other types you may want to link to
+                ],
+              },
+            ],
+          },
+          {
             name: 'link',
             type: 'object',
             title: 'External link',
@@ -64,11 +81,8 @@ export default {
     {
       type: 'portraitSnippet',
     },
-    // {
-    //   name: 'myCode',
-    //   title: 'Code editor (default)',
-    //   description: 'Code editor',
-    //   type: 'code',
-    // },
+    {
+      type: 'myCode',
+    },
   ],
 };

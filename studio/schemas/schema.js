@@ -10,7 +10,7 @@ import person from './documents/person';
 import project from './documents/project';
 import siteSettings from './documents/siteSettings';
 import page from './documents/page';
-import techCategory from './documents/tech-category'
+import techCategory from './documents/tech-category';
 
 // Object types
 import avatar from './objects/avatar';
@@ -21,6 +21,7 @@ import projectPortableText from './objects/projectPortableText';
 import simplePortableText from './objects/simplePortableText';
 import techList from './objects/techList';
 import portraitSnippet from './objects/portraitSnippet.js';
+import myCode from './objects/myCode';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -32,6 +33,7 @@ export default createSchema({
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     portraitSnippet,
+    myCode,
     bioPortableText,
     avatar,
     figure,
