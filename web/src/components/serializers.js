@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import BlocksToMUI from './blocks-to-MUI';
 import Figure from './figure';
 import Avatar from './avatar-wrapper';
+import { PortraitContext } from './layout';
+import BlockContent from './block-content';
 
 const serializers = {
   types: {
@@ -12,10 +14,18 @@ const serializers = {
     avatar: Avatar,
     block: BlocksToMUI,
     myCode: props => (
-      <SyntaxHighlighter language={props.node.language} style={xonokai}>
+      <SyntaxHighlighter
+        language={props.node.language}
+        style={xonokai}
+        showLineNumbers
+      >
         {props.node.code}
       </SyntaxHighlighter>
     ),
+    portraitSnippet: ({ node: { portrait, landscape } }) => {
+      const isPortrait = useContext(PortraitContext);
+      return <BlockContent blocks={isPortrait ? portrait : landscape} />;
+    },
     // myCode: props => (
     //   <pre data-language={props.node.language}>
     //     <code>{props.node.code}</code>

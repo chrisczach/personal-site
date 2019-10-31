@@ -65,7 +65,25 @@ export default {
       name: 'myCode',
       title: 'Code editor (default)',
       description: 'Code editor',
-      type: 'code'
-    }
+      type: 'code',
+    },
+    {
+      name: 'portraitSnippet',
+      title: 'Portrait Snippet',
+      description: 'Snippet with portrait and landscape options',
+      type: 'object',
+      fields: [
+        {
+          name: 'portrait',
+          title: 'Portrait',
+          type: 'simplePortableText',
+        },
+        {
+          name: 'landscape',
+          title: 'Landscape',
+          type: 'simplePortableText',
+        },
+      ],
+    },
   ],
 };

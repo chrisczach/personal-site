@@ -10,7 +10,7 @@ const BlocksToMUI = props => {
   }
 
   return style === 'blockquote' ? (
-    <Typography variant="caption">{props.children}</Typography>
+    <Typography variant="caption" className={classes.caption}>{props.children}</Typography>
   ) : (
     <Typography variant="body1" className={classes.blockBody}>
       {props.children}
