@@ -119,6 +119,7 @@ const ProjectTemplate = ({ data, ...props }) => {
     <>
       <SEO title={project.title} />
       <ContainerWithHeading
+        projectPage
         heading={project.title}
         subHeading={project._rawExcerpt}
       >
