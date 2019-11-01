@@ -21,16 +21,24 @@ const useStyles = makeStyles(theme => ({
   text: {
     opacity: 0.75,
     padding: 0,
-
     margin: '0 auto',
+  },
+  link: {
+    textDecoration: 'underline',
   },
 }));
 
-const InternalLink = ({ mark, children }) => {
-  const { reference: { slug: { current: slug }, title } = {} } = mark;
-  const classes = useStyles();
+const InternalLink = ({ mark, children, ...props }) => {
+  const {
+    reference: {
+      slug: { current: slug },
+      title,
+    },
+  } = mark;
+  const classes = useStyles(props);
   return (
     <Tooltip
+      placement="bottom-start"
       classes={classes}
       title={
         <Typography variant="body2" className={classes.text}>
@@ -38,7 +46,9 @@ const InternalLink = ({ mark, children }) => {
         </Typography>
       }
     >
-      <Link to={`/${slug}/`}>{children}</Link>
+      <Link to={`/${slug}/`} className={classes.link}>
+        {children}
+      </Link>
     </Tooltip>
   );
 };

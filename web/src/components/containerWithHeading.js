@@ -16,13 +16,13 @@ import BlockContent from './block-content';
 const useStyles = ({ portrait }) =>
   makeStyles(theme => ({
     container: {
-      padding: portrait ? theme.spacing(2, 2, 10, 2) : theme.spacing(10, 2),
+      padding: portrait ? theme.spacing(2, 2, 7, 2) : theme.spacing(7, 2),
       minHeight: '100vh',
     },
     heading: {
       padding: theme.spacing(2, 2, 0, 2),
       color: theme.palette.warning.main,
-      opacity: '0.9 !important',
+      opacity: 0.9,
     },
     subHeading: {
       padding: theme.spacing(2, 2, 2, portrait ? 4 : 6),
