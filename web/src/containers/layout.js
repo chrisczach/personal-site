@@ -23,15 +23,15 @@ const LayoutContainer = props => {
     setShowNav(false);
   };
 
-  const [showSplash, setShowSplash] = useState(!!window);
+  const [showSplash, setShowSplash] = useState(isWindow());
   const hideSplash = () => setShowSplash(false);
 
   useEffect(() => {
-    if ( showSplash ) {
-      setTimeout( hideSplash, 4000 )
-      window.addEventListener( 'scroll', hideSplash )
-      return ()=> window.removeEventListener('scroll', hideSplash)
-    };
+    if (showSplash) {
+      setTimeout(hideSplash, 4000);
+      window.addEventListener('scroll', hideSplash);
+      return () => window.removeEventListener('scroll', hideSplash);
+    }
   }, [showSplash]);
 
   return (
@@ -45,8 +45,6 @@ const LayoutContainer = props => {
         }
         return (
           <ThemeProvider theme={theme}>
-            <Splash show={showSplash} hideSplash={hideSplash} />
-
             <Layout
               {...props}
               showNav={showNav}
@@ -54,11 +52,22 @@ const LayoutContainer = props => {
               onHideNav={handleHideNav}
               onShowNav={handleShowNav}
             />
+            <Splash show={showSplash} hideSplash={hideSplash} />
           </ThemeProvider>
         );
       }}
     />
   );
+};
+
+const isWindow = () => {
+  let answer;
+  try {
+    if (window) answer = true;
+  } catch (e) {
+    answer = false;
+  }
+  return answer;
 };
 
 export default LayoutContainer;
