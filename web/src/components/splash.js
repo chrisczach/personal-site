@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Slide, Box, Fade, Portal } from '@material-ui/core';
+import { useTransition, animated, config } from 'react-spring';
 
 const useStyles = makeStyles(theme => ({
   wrapper: {
@@ -33,6 +34,21 @@ const useStyles = makeStyles(theme => ({
 }));
 const Splash = ({ show, hideSplash }) => {
   const classes = useStyles({});
+  const [items, set] = useState([]);
+  const transitions = useTransition(items, item => item.key, {
+    from: { opacity: 0, transform: 'translate3d(0,-40px,0)' },
+    enter: { opacity: 1, transform: 'translate3d(0,0px,0)' },
+    leave: { opacity: 0, transform: 'translate3d(0,-40px,0)' },
+    trail: 100,
+  });
+
+  if (items.length === 0)
+    set(
+      'hello'.split('').map((text, key) => ({
+        text,
+        key,
+      })),
+    );
   return (
     <Portal>
       <Slide
@@ -44,7 +60,20 @@ const Splash = ({ show, hideSplash }) => {
       >
         <Fade in enter={false} appear={false}>
           <Box onClick={hideSplash} className={classes.wrapper}>
-            <Typography variant="h1">Hello</Typography>
+            {transitions.map(({ item, props, key }) => (
+              <AnimatedText
+                variant="h1"
+                style={{
+                  ...props,
+                  display: 'inline',
+                  margin: 0,
+                  padding: 0,
+                }}
+                key={key}
+              >
+                {item.text}
+              </AnimatedText>
+            ))}
             <svg
               className={classes.topSvg}
               xmlns="http://www.w3.org/2000/svg"
@@ -73,5 +102,7 @@ const Splash = ({ show, hideSplash }) => {
     </Portal>
   );
 };
+
+const AnimatedText = animated(Typography);
 
 export default Splash;

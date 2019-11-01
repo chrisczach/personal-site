@@ -29,6 +29,7 @@ const Header = ({
   showNav,
   siteTitle,
   menuItems,
+  showSplash,
   ...props
 }) => {
   const portrait = useContext(PortraitContext);
@@ -36,10 +37,11 @@ const Header = ({
   const classes = useStyles(portrait)(props);
   const [items, set] = useState([]);
   const transitions = useTransition(items, item => item.key, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
+    from: { opacity: 0, transform: 'translate3d(0,-80px,0)' },
+    enter: { opacity: 1, transform: 'translate3d(0,0px,0)' },
+    leave: { opacity: 0, transform: 'translate3d(0,-80px,0)' },
     delay: 5000,
+    trail: 200,
     config: config.molasses,
   });
 
@@ -61,20 +63,21 @@ const Header = ({
                   Chris Czach{' '}
                   {!portrait && (
                     <span style={{ opacity: 0.5 }}>
-                      {transitions.map(({ item, props, key }) => (
-                        <AnimatedText
-                          variant="inherit"
-                          style={{
-                            ...props,
-                            display: 'inline',
-                            margin: 0,
-                            padding: 0,
-                          }}
-                          key={key}
-                        >
-                          {item.text}
-                        </AnimatedText>
-                      ))}
+                      {!showSplash &&
+                        transitions.map(({ item, props, key }) => (
+                          <AnimatedText
+                            variant="inherit"
+                            style={{
+                              ...props,
+                              display: 'inline',
+                              margin: 0,
+                              padding: 0,
+                            }}
+                            key={key}
+                          >
+                            {item.text}
+                          </AnimatedText>
+                        ))}
                     </span>
                   )}
                 </Typography>
@@ -94,7 +97,7 @@ const AnimatedText = animated(Typography);
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
   minHeight: 0,
-  padding: theme.spacing(0,0,0,2),
+  padding: theme.spacing(0, 0, 0, 2),
   flexDirection: 'row',
   justifyContent: 'space-between',
   background: 'transparent',

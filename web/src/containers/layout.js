@@ -28,7 +28,7 @@ const LayoutContainer = props => {
 
   useEffect(() => {
     if (showSplash) {
-      setTimeout(hideSplash, 4000);
+      setTimeout(hideSplash, 2000);
       window.addEventListener('scroll', hideSplash);
       return () => window.removeEventListener('scroll', hideSplash);
     }
@@ -46,7 +46,8 @@ const LayoutContainer = props => {
         return (
           <ThemeProvider theme={theme}>
             <Layout
-              {...props}
+              { ...props }
+              showSplash={ showSplash}
               showNav={showNav}
               siteTitle={data.site.title}
               onHideNav={handleHideNav}

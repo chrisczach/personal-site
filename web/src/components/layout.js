@@ -20,7 +20,7 @@ import Background from './background';
 export const PortraitContext = createContext(false);
 export const ScrollContext = createContext(0);
 
-const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => {
+const Layout = ( { children, onHideNav, onShowNav, showNav, siteTitle, showSplash }) => {
   const [portrait, setPortrait] = useState(false);
   const [scroll, setScroll] = useState(0);
   const updateOrientation = () => {
@@ -52,6 +52,7 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => {
         <ScrollContext.Provider value={scroll}>
           <CssBaseline />
           <Header
+          showSplash={ showSplash}
             menuItems={menuItems}
             siteTitle={siteTitle}
             onHideNav={onHideNav}
