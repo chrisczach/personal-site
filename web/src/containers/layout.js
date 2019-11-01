@@ -1,6 +1,10 @@
 import { graphql, StaticQuery } from 'gatsby';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ThemeProvider } from '@material-ui/core/styles';
+
+import theme from '../styles/theme';
 import Layout from '../components/layout';
+import Splash from '../components/splash';
 
 const query = graphql`
   query SiteTitleQuery {
@@ -18,6 +22,18 @@ const LayoutContainer = props => {
   const handleHideNav = () => {
     setShowNav(false);
   };
+
+  const [showSplash, setShowSplash] = useState(!!window);
+  const hideSplash = () => setShowSplash(false);
+
+  useEffect(() => {
+    if ( showSplash ) {
+      setTimeout( hideSplash, 4000 )
+      window.addEventListener( 'scroll', hideSplash )
+      return ()=> window.removeEventListener('scroll', hideSplash)
+    };
+  }, [showSplash]);
+
   return (
     <StaticQuery
       query={query}
@@ -28,13 +44,17 @@ const LayoutContainer = props => {
           );
         }
         return (
-          <Layout
-            {...props}
-            showNav={showNav}
-            siteTitle={data.site.title}
-            onHideNav={handleHideNav}
-            onShowNav={handleShowNav}
-          />
+          <ThemeProvider theme={theme}>
+            <Splash show={showSplash} hideSplash={hideSplash} />
+
+            <Layout
+              {...props}
+              showNav={showNav}
+              siteTitle={data.site.title}
+              onHideNav={handleHideNav}
+              onShowNav={handleShowNav}
+            />
+          </ThemeProvider>
         );
       }}
     />

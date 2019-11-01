@@ -10,11 +10,11 @@ import {
   GitHub,
 } from '@material-ui/icons/';
 
-import { ThemeProvider } from '@material-ui/core/styles';
+
 import { CssBaseline, Box, Fade } from '@material-ui/core';
 import Footer from './footer';
 import Header from './header';
-import theme from '../styles/theme';
+
 import Background from './background';
 
 export const PortraitContext = createContext(false);
@@ -47,7 +47,7 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => {
     };
   }, []);
   return (
-    <ThemeProvider theme={theme}>
+    
       <PortraitContext.Provider value={portrait}>
         <ScrollContext.Provider value={scroll}>
           <CssBaseline />
@@ -65,7 +65,6 @@ const Layout = ({ children, onHideNav, onShowNav, showNav, siteTitle }) => {
           <Background/>
         </ScrollContext.Provider>
       </PortraitContext.Provider>
-    </ThemeProvider>
   );
 };
 
