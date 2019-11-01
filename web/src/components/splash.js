@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 1000000,
     position: 'fixed',
     top: 0,
-    background: `linear-gradient(to top left, ${theme.palette.primary.dark}, ${theme.palette.secondary.light}), linear-gradient(to top right, ${theme.palette.primary.main} 50%, ${theme.palette.primary.dark})`,
+    background: `linear-gradient(to top left, ${theme.palette.primary.dark}, ${theme.palette.secondary.light}), linear-gradient(to top right, ${theme.palette.secondary.dark} 50%, ${theme.palette.primary.dark})`,
     color: 'white',
     height: '100vh',
     width: '100vw',
@@ -31,14 +31,30 @@ const useStyles = makeStyles(theme => ({
   path: {
     fill: `${theme.palette.secondary.dark}77`,
   },
+  splashText: {
+    color: theme.palette.warning.main,
+    fontSize: '6em',
+  },
 }));
 const Splash = ({ show, hideSplash }) => {
   const classes = useStyles({});
   const [items, set] = useState([]);
   const transitions = useTransition(items, item => item.key, {
-    from: { opacity: 0, transform: 'translate3d(0,-40px,0)' },
-    enter: { opacity: 1, transform: 'translate3d(0,0px,0)' },
-    leave: { opacity: 0, transform: 'translate3d(0,-40px,0)' },
+    from: {
+      opacity: 0,
+      transform: 'translate3d(0,-40px,0)',
+      filter: 'saturate(0)',
+    },
+    enter: {
+      opacity: 1,
+      transform: 'translate3d(0,0px,0)',
+      filter: 'saturate(1)',
+    },
+    leave: {
+      opacity: 0,
+      transform: 'translate3d(0,-40px,0)',
+      filter: 'saturate(0)',
+    },
     trail: 100,
   });
 
@@ -70,6 +86,7 @@ const Splash = ({ show, hideSplash }) => {
                   padding: 0,
                 }}
                 key={key}
+                className={classes.splashText}
               >
                 {item.text}
               </AnimatedText>

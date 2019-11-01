@@ -37,9 +37,9 @@ const Header = ({
   const classes = useStyles(portrait)(props);
   const [items, set] = useState([]);
   const transitions = useTransition(items, item => item.key, {
-    from: { opacity: 0, transform: 'translate3d(0,-80px,0)' },
-    enter: { opacity: 1, transform: 'translate3d(0,0px,0)' },
-    leave: { opacity: 0, transform: 'translate3d(0,-80px,0)' },
+    from: { opacity: 0, transform: 'translateX(200px)' },
+    enter: { opacity: 1, transform: 'translateX(0)' },
+    leave: { opacity: 0, transform: 'translateX(200px)' },
     delay: 5000,
     trail: 200,
     config: config.molasses,

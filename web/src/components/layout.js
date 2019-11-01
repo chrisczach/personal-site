@@ -10,7 +10,6 @@ import {
   GitHub,
 } from '@material-ui/icons/';
 
-
 import { CssBaseline, Box, Fade } from '@material-ui/core';
 import Footer from './footer';
 import Header from './header';
@@ -20,7 +19,14 @@ import Background from './background';
 export const PortraitContext = createContext(false);
 export const ScrollContext = createContext(0);
 
-const Layout = ( { children, onHideNav, onShowNav, showNav, siteTitle, showSplash }) => {
+const Layout = ({
+  children,
+  onHideNav,
+  onShowNav,
+  showNav,
+  siteTitle,
+  showSplash,
+}) => {
   const [portrait, setPortrait] = useState(false);
   const [scroll, setScroll] = useState(0);
   const updateOrientation = () => {
@@ -47,25 +53,26 @@ const Layout = ( { children, onHideNav, onShowNav, showNav, siteTitle, showSplas
     };
   }, []);
   return (
-    
-      <PortraitContext.Provider value={portrait}>
-        <ScrollContext.Provider value={scroll}>
-          <CssBaseline />
-          <Header
-          showSplash={ showSplash}
-            menuItems={menuItems}
-            siteTitle={siteTitle}
-            onHideNav={onHideNav}
-            onShowNav={onShowNav}
-            showNav={showNav}
-          />
-          <Fade in timeout={150}>
-            <Box style={{ background: 'transparent' }}>{children}</Box>
-          </Fade>
-          <Footer menuItems={ menuItems } />
-          <Background/>
-        </ScrollContext.Provider>
-      </PortraitContext.Provider>
+    <PortraitContext.Provider value={portrait}>
+      <ScrollContext.Provider value={scroll}>
+        <CssBaseline />
+        <Header
+          showSplash={showSplash}
+          menuItems={menuItems}
+          siteTitle={siteTitle}
+          onHideNav={onHideNav}
+          onShowNav={onShowNav}
+          showNav={showNav}
+        />
+        <Fade in timeout={150}>
+          <Box style={{ background: 'transparent', overflow: 'hidden' }}>
+            {children}
+          </Box>
+        </Fade>
+        <Footer menuItems={menuItems} />
+        <Background />
+      </ScrollContext.Provider>
+    </PortraitContext.Provider>
   );
 };
 

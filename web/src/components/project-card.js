@@ -31,6 +31,7 @@ const useStyles = (portrait, containerWidth = 1280) =>
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'stretch',
+      height: '100%',
       background: `radial-gradient(bottom right, ${theme.palette.secondary.dark}bb,${theme.palette.secondary.main}66)`,
       backdropFilter: 'blur(8px)',
       webkitBackdropFilter: 'blur(8px)',
@@ -93,7 +94,7 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
     slug: { current },
   } = project;
   return (
-    <Card className={classes.card} raised>
+    <Card className={classes.card} raised {...props}>
       <Link className={classes.cardMedia} to={`/projects/${current}/`}>
         <CardActionArea>
           <CardMedia className={classes.media} title={title}>
