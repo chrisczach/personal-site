@@ -58,7 +58,7 @@ const nav = ({ portrait, menuItems, ...props }) => {
         open={open}
         onOpen={handleOpen(true)}
         onClose={handleOpen(false)}
-        swipeAreaWidth={50}
+        // swipeAreaWidth={50}
       >
         <List className={classes.navBar}>
           <FirstItem

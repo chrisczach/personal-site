@@ -8,6 +8,7 @@ import { PortraitContext } from './layout';
 const useStyles = portrait =>
   makeStyles(theme => ({
     header: {
+      minHeight: 0,
       position: 'fixed',
       bottom: portrait ? 0 : 'auto',
       top: portrait ? 'auto' : 0,
@@ -92,6 +93,8 @@ const AnimatedText = animated(Typography);
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
+  minHeight: 0,
+  padding: theme.spacing(0,0,0,2),
   flexDirection: 'row',
   justifyContent: 'space-between',
   background: 'transparent',

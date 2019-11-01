@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     position: 'fixed',
     padding: theme.spacing(0, 2),
+    minHeight: 0,
     top: 'auto',
     background: `linear-gradient(to bottom right, ${theme.palette.primary.main}99, ${theme.palette.secondary.main}99) !important`,
     backdropFilter: 'blur(5px)',
@@ -32,12 +33,16 @@ const useStyles = makeStyles(theme => ({
   },
   bottomNavItem: {
     fontSize: '1em',
+    padding: theme.spacing(0),
   },
   listItem: {
     padding: theme.spacing(0, 1, 0, 0),
   },
   listIcon: {
     padding: theme.spacing(0, 0, 0, 1),
+  },
+  button: {
+    padding: theme.spacing(0.5, 2),
   },
 }));
 
@@ -69,8 +74,8 @@ const toBottomNav = classes => ({ link, Icon, route, ...props }, index) => {
       </a>
     );
   return (
-    <LinkComponent key={ link }>
-      <ListItem button>
+    <LinkComponent key={link}>
+      <ListItem button className={classes.button}>
         <ListItemIcon className={classes.listIcon}>
           <Icon fontSize="small" />
         </ListItemIcon>
