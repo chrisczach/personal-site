@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Box } from '@material-ui/core';
+import { Box, Fade, Slide } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import useDimensions from 'react-use-dimensions';
 import { useTransition, animated, config } from 'react-spring';
@@ -44,11 +44,19 @@ const ProjectGrid = ({ projects, ...props }) => {
       filter: 'saturate(0)',
     },
     delay: 500,
-    trail: 500,
+    trail: 250,
     config: portrait ? config.slow : config.stiff,
   });
 
-  return (
+  return portrait ? (
+    <Fade in timeout={1000}>
+      <Slide in direction="up" timeout={500}>
+        <Box ref={ref} className={classes.wrapper}>
+          {projectCards}
+        </Box>
+      </Slide>
+    </Fade>
+  ) : (
     <Box ref={ref} className={classes.wrapper}>
       {transitions.map(({ item, props, key }) => (
         <animated.div style={{ margin: 0, padding: 0, ...props }} key={key}>
