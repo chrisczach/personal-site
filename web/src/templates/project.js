@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby';
 import {
   Container,
   Paper,
+  Collapse,
   Typography,
   TextField,
   Zoom,
@@ -103,6 +104,7 @@ const useStyles = ({ portrait, width }) =>
       width: portrait ? '100%' : '50%',
       overflow: 'hidden',
     },
+    
   }));
 
 const ProjectTemplate = ({ data, ...props }) => {
@@ -126,38 +128,45 @@ const ProjectTemplate = ({ data, ...props }) => {
         {resizeListener}
 
         <ProjectLinks link={project.link} repo={project.repo} />
+        <Fade in timeout={500}>
+          <Grow in timeout={500}>
+            <Paper className={classes.paper}>
+              <Box className={classes.content}>
+                <Typography variant="h5" className={classes.heading}>
+                  Technical Specs
+                </Typography>
+                <MapTechToList tech={project.tech} />
+              </Box>
 
-        <Paper className={classes.paper}>
-          <Box className={classes.content}>
-            <Typography variant="h5" className={classes.heading}>
-              Technical Specs
-            </Typography>
-            <MapTechToList tech={project.tech} />
-          </Box>
+              <Box className={classes.mobileShot}>
+                {resizeImageListener}
+                <div
+                  style={{
+                    position: 'absolute',
+                    width: imageWidth,
+                    height: imageHeight,
+                    overflow: 'hidden',
+                  }}
+                >
+                  <Img fluid={project.mobileImage.asset.fluid} />
+                </div>
+                <a
+                  href={project.link}
+                  target="_blank"
+                  className={classes.hoverOpen}
+                >
+                  <Button
+                    endIcon={<LaunchRounded />}
+                    className={classes.button}
+                  >
+                    Open Site
+                  </Button>
+                </a>
+              </Box>
+            </Paper>
+          </Grow>
+        </Fade>
 
-          <Box className={classes.mobileShot}>
-            {resizeImageListener}
-            <div
-              style={{
-                position: 'absolute',
-                width: imageWidth,
-                height: imageHeight,
-                overflow: 'hidden',
-              }}
-            >
-              <Img fluid={project.mobileImage.asset.fluid} />
-            </div>
-            <a
-              href={project.link}
-              target="_blank"
-              className={classes.hoverOpen}
-            >
-              <Button endIcon={<LaunchRounded />} className={classes.button}>
-                Open Site
-              </Button>
-            </a>
-          </Box>
-        </Paper>
         <Box className={classes.blockWrapper}>
           <BlockContent blocks={project._rawBody} />
         </Box>
@@ -190,7 +199,7 @@ export const query = graphql`
         category
         tech {
           title
-          description: _rawDescription(resolveReferences: {maxDepth: 10})
+          description: _rawDescription(resolveReferences: { maxDepth: 10 })
           experience
           logo {
             asset {
@@ -219,8 +228,8 @@ export const query = graphql`
       slug {
         current
       }
-      _rawBody(resolveReferences: {maxDepth: 10})
-      _rawExcerpt(resolveReferences: {maxDepth: 10})
+      _rawBody(resolveReferences: { maxDepth: 10 })
+      _rawExcerpt(resolveReferences: { maxDepth: 10 })
     }
   }
 `;

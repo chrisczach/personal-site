@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
   path: {
-    fill: `${theme.palette.secondary.dark}77`,
+    fill: `${theme.palette.secondary.dark}22`,
   },
   splashText: {
     color: theme.palette.warning.main,

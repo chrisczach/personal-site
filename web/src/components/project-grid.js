@@ -29,23 +29,23 @@ const ProjectGrid = ({ projects, ...props }) => {
   console.log(projectCards);
   const transitions = useTransition(projectCards, item => item.key, {
     from: {
-      opacity: 0.5,
-      transform: 'translate3d(0,50%,0) scale(0)',
+      opacity: 0,
+      transform: 'translate3d(0,50%,0)',
       filter: 'saturate(0)',
     },
     enter: {
       opacity: 1,
-      transform: 'translate3d(0,0,0)  scale(1)',
+      transform: 'translate3d(0,0,0) ',
       filter: 'saturate(1)',
     },
     leave: {
-      opacity: 0.5,
-      transform: 'translate3d(0,50%,0)  scale(0)',
+      opacity: 0,
+      transform: 'translate3d(0,50%,0)',
       filter: 'saturate(0)',
     },
-    delay: 500,
+    delay: 250,
     trail: 250,
-    config: portrait ? config.slow : config.stiff,
+    config: config.default,
   });
 
   return portrait ? (
