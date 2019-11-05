@@ -11,14 +11,14 @@ const rawTheme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      light: '#d3dcde',
-      main: '#21464f',
-      dark: '#112D32',
+      light: '#E2E1D7',
+      main: '#8692A8',
+      dark: '#2E253A',
     },
     secondary: {
-      light: '#e2e0de',
+      light: '#D4DBBD',
       main: '#585246',
-      dark: '#4f4a41',
+      dark: '#3A4224',
     },
     warning: {
       main: '#f0db4f',
@@ -59,7 +59,7 @@ const theme = {
     background: {
       ...rawTheme.palette.background,
       // default: rawTheme.palette.primary.dark,
-      default: '#577978',
+      default: '#8692A8',
       placeholder: grey[200],
     },
   },
