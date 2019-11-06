@@ -12,12 +12,16 @@ const useStyles = portrait =>
       position: 'fixed',
       bottom: portrait ? 0 : 'auto',
       top: portrait ? 'auto' : 0,
-      background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}99, ${theme.palette.primary.main}99) !important`,
+      background: portrait
+        ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}bb, ${theme.palette.primary.dark}ff) !important`
+        : `linear-gradient(to bottom right, ${theme.palette.primary.dark}77, ${theme.palette.primary.dark}88) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       transition: 'all  1s ease !important',
       '&:hover': {
-        background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}aa, ${theme.palette.primary.main}be) !important`,
+        background: portrait
+          ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}77, ${theme.palette.primary.dark}ff) !important`
+          : `linear-gradient(to bottom right, ${theme.palette.primary.dark}88, ${theme.palette.primary.dark}aa) !important`,
         transition: 'all  1s ease !important',
       },
     },

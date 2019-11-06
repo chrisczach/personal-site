@@ -31,7 +31,7 @@ const useStyles = ({ portrait, wrapHeading }) =>
       margin:
         wrapHeading && !portrait
           ? theme.spacing(-12, 0, 0, 0)
-          : theme.spacing(0),
+          : theme.spacing(0,2),
     },
     subHeading: {
       padding: theme.spacing(2, 2, 2, portrait ? 4 : 6),
