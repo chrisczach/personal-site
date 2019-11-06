@@ -30,7 +30,7 @@ const ProjectGrid = ({ projects, ...props }) => {
   const transitions = useTransition(projectCards, item => item.key, {
     from: {
       opacity: 0,
-      transform: 'translate3d(0,50%,0)',
+      transform: 'translate3d(0,12px,0)',
       filter: 'saturate(0)',
     },
     enter: {
@@ -40,11 +40,11 @@ const ProjectGrid = ({ projects, ...props }) => {
     },
     leave: {
       opacity: 0,
-      transform: 'translate3d(0,50%,0)',
+      transform: 'translate3d(0,4px,0)',
       filter: 'saturate(0)',
     },
-    delay: 250,
-    trail: 250,
+    delay: 200,
+    trail: 400,
     config: config.default,
   });
 

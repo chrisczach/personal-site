@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
 function SEO({ description, lang, meta, keywords, title }) {
+  const [animatedTitle, setAnimatedTitle] = useState();
+
+  const scroll = () => {
+    // change this
+    setAnimatedTitle(state => {
+      const [first, ...rest] = state.split(' | ');
+      return [...rest, first].join(' | ');
+    });
+  };
+
+  useEffect(() => {
+    const animate = setInterval(scroll, 1000);
+    return () => {
+      clearInterval(animate);
+    };
+  }, [scroll]);
   return (
     <StaticQuery
       query={detailsQuery}
@@ -13,11 +29,17 @@ function SEO({ description, lang, meta, keywords, title }) {
         const siteTitle = (data.site && data.site.title) || '';
         const siteAuthor =
           (data.site && data.site.author && data.site.author.name) || '';
+
+        if (!animatedTitle)
+          setAnimatedTitle(
+            title === siteTitle ? title : `${title} | ${siteTitle} | `,
+          );
+
         return (
           <Helmet
             htmlAttributes={{ lang }}
-            title={title}
-            titleTemplate={title === siteTitle ? '%s' : `%s | ${siteTitle}`}
+            title={animatedTitle}
+            titleTemplate="%s"
             meta={[
               {
                 name: 'description',
