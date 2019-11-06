@@ -33,9 +33,11 @@ const InternalLink = ({ mark, children, ...props }) => {
     reference: {
       slug: { current: slug },
       title,
+      _type,
     },
   } = mark;
   const classes = useStyles(props);
+  console.log(mark.reference);
   return (
     // <Tooltip
     //   placement="bottom-start"
@@ -46,7 +48,7 @@ const InternalLink = ({ mark, children, ...props }) => {
     //     </Typography>
     //   }
     // >
-    <Link to={`/${slug}/`} className={classes.link}>
+    <Link to={ `${ _type === 'project' ? '/projects' : ''}/${slug}/`} className={classes.link}>
       {children}
     </Link>
     // </Tooltip>

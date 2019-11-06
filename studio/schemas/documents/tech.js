@@ -31,7 +31,7 @@ export default {
     },
     {
       name: 'description',
-      type: 'simplePortableText',
+      type: 'projectPortableText',
       title: 'Description',
     },
     {
