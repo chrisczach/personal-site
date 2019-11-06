@@ -13,16 +13,25 @@ import { makeStyles } from '@material-ui/core/styles';
 import { PortraitContext } from './layout';
 import BlockContent from './block-content';
 
-const useStyles = ({ portrait }) =>
+const useStyles = ({ portrait, wrapHeading }) =>
   makeStyles(theme => ({
     container: {
-      padding: portrait ? theme.spacing(2, 2, 7, 2) : theme.spacing(7, 2),
+      padding: portrait
+        ? theme.spacing(4, 2, 7, 2)
+        : theme.spacing(wrapHeading && !portrait ? 20 : 7, 2, 7, 2),
       minHeight: '100vh',
     },
     heading: {
       padding: theme.spacing(2, 2, 0, 2),
       color: theme.palette.warning.main,
       opacity: 0.9,
+    },
+    wrappedHeading: {
+      color: theme.palette.warning.main,
+      margin:
+        wrapHeading && !portrait
+          ? theme.spacing(-12, 0, 0, 0)
+          : theme.spacing(0),
     },
     subHeading: {
       padding: theme.spacing(2, 2, 2, portrait ? 4 : 6),
@@ -38,10 +47,10 @@ const useStyles = ({ portrait }) =>
       flexDirection: portrait ? 'column' : 'row',
       justifyContent: 'stretch',
       alignItems: 'stretch',
-      overflow: 'hidden',
+      // overflow: 'hidden',
     },
     darkPaper: {
-      overflow: 'hidden',
+      // overflow: 'hidden',
       display: 'flex',
       flexDirection: portrait ? 'column' : 'row',
       justifyContent: 'stretch',
@@ -86,10 +95,11 @@ export const ContainerWithHeading = ({
   avatar = null,
   projectPage = false,
   children = null,
+  wrapHeading = false,
   ...props
 }) => {
   const portrait = useContext(PortraitContext);
-  const classes = useStyles({ portrait })(props);
+  const classes = useStyles({ portrait, wrapHeading })(props);
   const [width, setWidth] = useState(1920);
   const updateWidth = () => setWidth(window.innerWidth);
   useEffect(() => {
@@ -105,22 +115,37 @@ export const ContainerWithHeading = ({
       className={classes.container}
       {...props}
     >
-      <Fade in timeout={150}>
-        <Slide in direction="down" timeout={300}>
-          <Typography
-            variant="h2"
-            color="textSecondary"
-            className={classes.heading}
-          >
-            {heading}
-          </Typography>
-        </Slide>
-      </Fade>
+      {(!wrapHeading || portrait) && (
+        <Fade in timeout={150}>
+          <Slide in direction="down" timeout={300}>
+            <Typography
+              variant="h2"
+              color="textSecondary"
+              className={classes.wrappedHeading}
+            >
+              {heading}
+            </Typography>
+          </Slide>
+        </Fade>
+      )}
       <Fade in timeout={600}>
         <Zoom in timeout={1200}>
           {darkBody ? (
             <Paper className={classes.darkPaper}>
               <Box className={classes.bodyBox}>
+                {wrapHeading && !portrait && (
+                  <Fade in timeout={150}>
+                    <Slide in direction="down" timeout={300}>
+                      <Typography
+                        variant="h2"
+                        color="textSecondary"
+                        className={classes.wrappedHeading}
+                      >
+                        {heading}
+                      </Typography>
+                    </Slide>
+                  </Fade>
+                )}
                 {typeof subHeading !== 'string' ? (
                   <BlockContent blocks={subHeading} />
                 ) : (
@@ -141,6 +166,19 @@ export const ContainerWithHeading = ({
               <Box
                 className={projectPage ? classes.ogBodyBox : classes.bodyBox}
               >
+                {wrapHeading && !portrait && (
+                  <Fade in timeout={150}>
+                    <Slide in direction="down" timeout={300}>
+                      <Typography
+                        variant="h2"
+                        color="textSecondary"
+                        className={classes.heading}
+                      >
+                        {heading}
+                      </Typography>
+                    </Slide>
+                  </Fade>
+                )}
                 {typeof subHeading !== 'string' ? (
                   <BlockContent blocks={subHeading} />
                 ) : (

@@ -29,6 +29,7 @@ const About = ({ data }) => {
       <ContainerWithHeading
         heading={<AvatarWrapper node={page.mainImage} />}
         darkBody
+        wrapHeading
         TechHeading={
           <MapTechToList
             tech={tech

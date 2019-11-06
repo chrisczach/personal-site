@@ -13,16 +13,16 @@ const useStyles = portrait =>
   makeStyles(theme => ({
     wrapper: {
       padding: 0,
-      margin: theme.spacing(0, 0, portrait ? 2 : 4, portrait ? 0 : 4),
+      margin: theme.spacing(0, 0, portrait ? 2 : 4, 0),
       display: 'flex',
       justifyContent: portrait ? 'center' : 'flex-start',
-      alignItems: 'center',
+      alignItems: portrait ? 'center' : 'flex-start',
       flexDirection: portrait ? 'column' : 'row',
     },
     imageWrapper: {
       width: portrait ? '35vw' : '15vh',
       height: portrait ? '35vw' : '15vh',
-      borderRadius: '100%',
+      borderRadius: theme.spacing(4),
       overflow: 'hidden',
       transition: theme.transitions.create('all', {
         duration: theme.transitions.duration.shortest,
