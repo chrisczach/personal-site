@@ -32,7 +32,7 @@ function SEO({ description, lang, meta, keywords, title }) {
 
         if (!animatedTitle)
           setAnimatedTitle(
-            title === siteTitle ? title : `${title} | ${siteTitle} `,
+            title === siteTitle ? title : `👋 ${title} | ${siteTitle} `,
           );
 
         return (
