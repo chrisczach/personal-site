@@ -7,12 +7,12 @@ export default {
     {
       name: 'portrait',
       title: 'Portrait',
-      type: 'simplePortableText',
+      type: 'projectPortableText',
     },
     {
       name: 'landscape',
       title: 'Landscape',
-      type: 'simplePortableText',
+      type: 'projectPortableText',
     },
   ],
 };

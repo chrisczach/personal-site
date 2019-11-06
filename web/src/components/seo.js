@@ -15,7 +15,7 @@ function SEO({ description, lang, meta, keywords, title }) {
   };
 
   useEffect(() => {
-    const animate = setInterval(scroll, 1000);
+    const animate = setInterval(scroll, 2000);
     return () => {
       clearInterval(animate);
     };
@@ -32,7 +32,7 @@ function SEO({ description, lang, meta, keywords, title }) {
 
         if (!animatedTitle)
           setAnimatedTitle(
-            title === siteTitle ? title : `${title} | ${siteTitle} | `,
+            title === siteTitle ? title : `${title} | ${siteTitle} `,
           );
 
         return (

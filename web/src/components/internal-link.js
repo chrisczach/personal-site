@@ -37,19 +37,19 @@ const InternalLink = ({ mark, children, ...props }) => {
   } = mark;
   const classes = useStyles(props);
   return (
-    <Tooltip
-      placement="bottom-start"
-      classes={classes}
-      title={
-        <Typography variant="body2" className={classes.text}>
-          {title}
-        </Typography>
-      }
-    >
-      <Link to={`/${slug}/`} className={classes.link}>
-        {children}
-      </Link>
-    </Tooltip>
+    // <Tooltip
+    //   placement="bottom-start"
+    //   classes={classes}
+    //   title={
+    //     <Typography variant="body2" className={classes.text}>
+    //       {title}
+    //     </Typography>
+    //   }
+    // >
+    <Link to={`/${slug}/`} className={classes.link}>
+      {children}
+    </Link>
+    // </Tooltip>
   );
 };
 

@@ -7,14 +7,22 @@
     
 }
 
-.blockBody > strong {
+.blockBody strong {
     color: #f0db4f;
-    font-weight: bold;
-
+    /* font-weight: bold; */
 }
 
-.blockBody > a{
+.blockBody a{
     text-decoration: underline;
-    
+    cursor: pointer;
+}
+
+.caption strong {
+    color: #f0db4f;
+    /* font-weight: bold; */
+}
+
+.caption a{
+    text-decoration: underline;
     cursor: pointer;
 }

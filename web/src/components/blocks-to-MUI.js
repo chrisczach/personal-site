@@ -7,7 +7,7 @@ import classes from './blocks-to-MUI.module.css';
 const useStyles = makeStyles(theme => ({
   caption: {
     opacity: 0.8,
-    display: 'flex',
+    // display: 'flex',
     margin: theme.spacing(4, 1),
     padding: theme.spacing(1, 5),
     borderRadius: theme.spacing(2),
@@ -29,7 +29,10 @@ const BlocksToMUI = props => {
   }
 
   return style === 'blockquote' ? (
-    <Typography variant="body1" className={styledClasses.caption}>
+    <Typography
+      variant="body1"
+      className={`${styledClasses.caption} ${classes.caption}`}
+    >
       {props.children}
     </Typography>
   ) : (
