@@ -1,9 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Paper, Button, Box } from '@material-ui/core';
+import { Paper, Button, Box, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ExpandMoreRounded } from '@material-ui/icons';
 
-import { PortraitContext, ShowSplashContext } from './layout';
+import {
+  PortraitContext,
+  ShowSplashContext,
+  CurrentTooltipContext,
+} from './layout';
 
 const useStyles = portrait =>
   makeStyles(theme => ({
@@ -34,13 +38,16 @@ const useStyles = portrait =>
 const Hero = props => {
   const portrait = useContext(PortraitContext);
   const showSpash = useContext(ShowSplashContext);
+  const [tooltipValue, setTooltipValue] = useContext(CurrentTooltipContext);
   const classes = useStyles(portrait)(props);
   const [animating, setAnimating] = useState(true);
   const [current, setCurrent] = useState();
   const [items, setItems] = useState(animationScreens);
   const stopAnimation = () => {
     setAnimating(false);
-    setCurrent(item('stopped', 'animation stopped'));
+    const end = item('stopped', 'animation stopped');
+    setCurrent(end);
+    setTooltipValue(end.name);
   };
   const scrollDown = () => {
     stopAnimation();
@@ -51,6 +58,7 @@ const Hero = props => {
       setItems(state => {
         const [next, ...rest] = state;
         setCurrent(next);
+        setTooltipValue(next.name);
         return rest;
       });
     } else {
@@ -90,11 +98,11 @@ const Hero = props => {
 const item = (name, text) => ({ name, text });
 
 const animationScreens = [
-  item('home', `Hello I'm Chris`),
-  item('about', 'Find out about me'),
-  item('projects', `See what I've done`),
-  item('github', 'See some code'),
-  item('contact', 'say hello'),
+  item('Home', `Hello I'm Chris`),
+  item('About', 'Find out about me'),
+  item('Projects', `See what I've done`),
+  item('GitHub', 'See some code'),
+  item('Contact', 'say hello'),
 ];
 
 export default Hero;

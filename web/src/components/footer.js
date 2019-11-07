@@ -5,11 +5,12 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Tooltip,
   Slide,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
-import { PortraitContext } from './layout';
+import { PortraitContext, CurrentTooltipContext } from './layout';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -65,6 +66,7 @@ const footer = ({ menuItems, ...props }) => {
 };
 
 const toBottomNav = classes => ({ link, Icon, route, ...props }, index) => {
+  const [tooltipValue, _] = useContext(CurrentTooltipContext);
   const LinkComponent = ({ children }) =>
     route[0] === '/' ? (
       <Link to={route}>{children}</Link>
@@ -75,13 +77,15 @@ const toBottomNav = classes => ({ link, Icon, route, ...props }, index) => {
     );
   return (
     <LinkComponent key={link}>
-      <ListItem button className={classes.button}>
-        <ListItemIcon className={classes.listIcon}>
-          <Icon fontSize="small" />
-        </ListItemIcon>
+      <Tooltip open={link === tooltipValue} title="test">
+        <ListItem button className={classes.button}>
+          <ListItemIcon className={classes.listIcon}>
+            <Icon fontSize="small" />
+          </ListItemIcon>
 
-        <ListItemText primary={link} className={classes.listItem} />
-      </ListItem>
+          <ListItemText primary={link} className={classes.listItem} />
+        </ListItem>
+      </Tooltip>
     </LinkComponent>
   );
 };

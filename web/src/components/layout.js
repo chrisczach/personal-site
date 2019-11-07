@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useReducer } from 'react';
 
 import '../styles/globals.css';
 import {
@@ -19,7 +19,8 @@ import Background from './background';
 export const PortraitContext = createContext(false);
 export const ScrollContext = createContext(0);
 export const ShowSplashContext = createContext(false);
-
+export const CurrentTooltipContext = createContext(false);
+export const CurrentTooltipDispatchContext = createContext(false);
 const Layout = ({
   children,
   onHideNav,
@@ -33,7 +34,10 @@ const Layout = ({
   const updateOrientation = () => {
     setPortrait(window.innerWidth < window.innerHeight);
   };
-
+  const [tooltipValue, setTooltipValue] = useReducer(
+    (state, value) => value,
+    '',
+  );
   const updateScroll = () =>
     requestAnimationFrame(() => {
       const posY = window.scrollY;
@@ -57,22 +61,26 @@ const Layout = ({
     <PortraitContext.Provider value={portrait}>
       <ScrollContext.Provider value={scroll}>
         <ShowSplashContext.Provider value={showSplash}>
-          <CssBaseline />
-          <Header
-            showSplash={showSplash}
-            menuItems={menuItems}
-            siteTitle={siteTitle}
-            onHideNav={onHideNav}
-            onShowNav={onShowNav}
-            showNav={showNav}
-          />
-          <Fade in timeout={150}>
-            <Box style={{ background: 'transparent', overflow: 'hidden' }}>
-              {children}
-            </Box>
-          </Fade>
-          <Footer menuItems={menuItems} />
-          <Background />
+          <CurrentTooltipContext.Provider
+            value={[tooltipValue, setTooltipValue]}
+          >
+            <CssBaseline />
+            <Header
+              showSplash={showSplash}
+              menuItems={menuItems}
+              siteTitle={siteTitle}
+              onHideNav={onHideNav}
+              onShowNav={onShowNav}
+              showNav={showNav}
+            />
+            <Fade in timeout={150}>
+              <Box style={{ background: 'transparent', overflow: 'hidden' }}>
+                {children}
+              </Box>
+            </Fade>
+            <Footer menuItems={menuItems} />
+            <Background />
+          </CurrentTooltipContext.Provider>
         </ShowSplashContext.Provider>
       </ScrollContext.Provider>
     </PortraitContext.Provider>
