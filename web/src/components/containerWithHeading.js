@@ -18,7 +18,7 @@ const useStyles = ({ portrait, wrapHeading }) =>
     container: {
       padding: portrait
         ? theme.spacing(4, 2, 7, 2)
-        : theme.spacing(wrapHeading && !portrait ? 20 : 7, 2, 7, 2),
+        : theme.spacing(wrapHeading && !portrait ? 20 : 9, 2, 7, 2),
       minHeight: '100vh',
     },
     heading: {
@@ -31,7 +31,7 @@ const useStyles = ({ portrait, wrapHeading }) =>
       margin:
         wrapHeading && !portrait
           ? theme.spacing(-12, 0, 0, 0)
-          : theme.spacing(0,2),
+          : theme.spacing(0, 2),
     },
     subHeading: {
       padding: theme.spacing(2, 2, 2, portrait ? 4 : 6),
