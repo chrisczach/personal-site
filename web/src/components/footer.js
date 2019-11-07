@@ -5,14 +5,22 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Typography,
   Tooltip,
   Slide,
+  Paper,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
 import { PortraitContext, CurrentTooltipContext } from './layout';
 
 const useStyles = makeStyles(theme => ({
+  tooltip: {
+    background: 'transparent',
+    margin: theme.spacing(0, 2),
+    padding: 0,
+    overflow: 'hidden',
+  },
   appBar: {
     bottom: 0,
     display: 'flex',
@@ -44,6 +52,9 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     padding: theme.spacing(0.5, 2),
+  },
+  tipPaper: {
+    padding: theme.spacing(2),
   },
 }));
 
@@ -80,7 +91,16 @@ const toBottomNav = classes => (
     );
   return (
     <LinkComponent key={link}>
-      <Tooltip open={link === tooltipValue} title={tooltip}>
+      <Tooltip
+        placement="top"
+        open={link === tooltipValue}
+        title={
+          <Paper className={classes.tipPaper}>
+            <Typography varian="h2">{tooltip}</Typography>
+          </Paper>
+        }
+        classes={classes}
+      >
         <ListItem button className={classes.button}>
           <ListItemIcon className={classes.listIcon}>
             <Icon fontSize="small" />

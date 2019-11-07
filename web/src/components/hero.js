@@ -98,7 +98,7 @@ const Hero = props => {
 const item = (name, text) => ({ name, text });
 
 const animationScreens = [
-  item('Home', `Hello I'm Chris`),
+  item(`don't display`, `Hello I'm Chris`),
   item('About', 'Find out about me'),
   item('Projects', `See what I've done`),
   item('GitHub', 'See some code'),
