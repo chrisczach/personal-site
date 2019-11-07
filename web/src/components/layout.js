@@ -18,6 +18,7 @@ import Background from './background';
 
 export const PortraitContext = createContext(false);
 export const ScrollContext = createContext(0);
+export const ShowSplashContext = createContext(false);
 
 const Layout = ({
   children,
@@ -55,22 +56,24 @@ const Layout = ({
   return (
     <PortraitContext.Provider value={portrait}>
       <ScrollContext.Provider value={scroll}>
-        <CssBaseline />
-        <Header
-          showSplash={showSplash}
-          menuItems={menuItems}
-          siteTitle={siteTitle}
-          onHideNav={onHideNav}
-          onShowNav={onShowNav}
-          showNav={showNav}
-        />
-        <Fade in timeout={150}>
-          <Box style={{ background: 'transparent', overflow: 'hidden' }}>
-            {children}
-          </Box>
-        </Fade>
-        <Footer menuItems={menuItems} />
-        <Background />
+        <ShowSplashContext.Provider value={showSplash}>
+          <CssBaseline />
+          <Header
+            showSplash={showSplash}
+            menuItems={menuItems}
+            siteTitle={siteTitle}
+            onHideNav={onHideNav}
+            onShowNav={onShowNav}
+            showNav={showNav}
+          />
+          <Fade in timeout={150}>
+            <Box style={{ background: 'transparent', overflow: 'hidden' }}>
+              {children}
+            </Box>
+          </Fade>
+          <Footer menuItems={menuItems} />
+          <Background />
+        </ShowSplashContext.Provider>
       </ScrollContext.Provider>
     </PortraitContext.Provider>
   );
@@ -109,4 +112,5 @@ const menuItems = [
     title: 'Contact Me',
   },
 ];
+
 export default Layout;

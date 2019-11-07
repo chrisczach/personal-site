@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
+
 import SEO from '../components/seo';
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL';
 import { ContainerWithHeading } from '../components/containerWithHeading';
@@ -26,6 +27,7 @@ const About = ({ data }) => {
         description={site.description}
         keywords={site.keywords}
       />
+
       <ContainerWithHeading
         heading={<AvatarWrapper node={page.mainImage} />}
         darkBody
@@ -67,7 +69,7 @@ export const query = graphql`
         }
         caption
       }
-      _rawBody(resolveReferences: {maxDepth: 10})
+      _rawBody(resolveReferences: { maxDepth: 10 })
     }
 
     techList: allSanityTech {
@@ -79,7 +81,7 @@ export const query = graphql`
           category {
             sort
           }
-          description: _rawDescription(resolveReferences: {maxDepth: 10})
+          description: _rawDescription(resolveReferences: { maxDepth: 10 })
           experience
           logo {
             asset {

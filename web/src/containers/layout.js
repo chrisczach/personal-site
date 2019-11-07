@@ -61,7 +61,7 @@ const LayoutContainer = props => {
   );
 };
 
-const isWindow = () => {
+export const isWindow = () => {
   let answer;
   try {
     if (window) answer = true;

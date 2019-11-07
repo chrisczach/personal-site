@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import SEO from '../components/seo';
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL';
 import { ContainerWithHeading } from '../components/containerWithHeading';
+import Hero from '../components/hero';
 
 const IndexPage = ({ data }) => {
   const { site } = data || {};
@@ -21,6 +22,7 @@ const IndexPage = ({ data }) => {
         description={site.description}
         keywords={site.keywords}
       />
+      <Hero />
       <ContainerWithHeading heading={page.title} subHeading={page._rawBody} />
     </>
   );
@@ -36,7 +38,7 @@ export const query = graphql`
     page: sanityPage(slug: { current: { eq: "index" } }) {
       id
       title
-      _rawBody(resolveReferences: {maxDepth: 10})
+      _rawBody(resolveReferences: { maxDepth: 10 })
     }
   }
 `;
