@@ -94,6 +94,7 @@ const menuItems = [
     Icon: FormatListBulletedRounded,
     route: '/about/',
     title: 'About Me',
+    tooltip: 'Find out more about me here!',
   },
   // {
   //   link: 'Experience',
@@ -106,18 +107,21 @@ const menuItems = [
     Icon: DeveloperModeRounded,
     route: '/projects/',
     title: 'Portfolio / Projects',
+    tooltip: `See some of the projects that I've done here!`,
   },
   {
     link: 'GitHub',
     Icon: GitHub,
     route: 'https://github.com/chrisczach',
     title: 'GitHub',
+    tooltip: 'Checkout my GitHub',
   },
   {
     link: 'Contact',
     Icon: ContactMailRounded,
     route: '/contact/',
     title: 'Contact Me',
+    tooltip: `Come here to say hello!`,
   },
 ];
 

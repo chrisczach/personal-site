@@ -65,7 +65,10 @@ const footer = ({ menuItems, ...props }) => {
   );
 };
 
-const toBottomNav = classes => ({ link, Icon, route, ...props }, index) => {
+const toBottomNav = classes => (
+  { link, Icon, route, tooltip, ...props },
+  index,
+) => {
   const [tooltipValue, _] = useContext(CurrentTooltipContext);
   const LinkComponent = ({ children }) =>
     route[0] === '/' ? (
@@ -77,7 +80,7 @@ const toBottomNav = classes => ({ link, Icon, route, ...props }, index) => {
     );
   return (
     <LinkComponent key={link}>
-      <Tooltip open={link === tooltipValue} title="test">
+      <Tooltip open={link === tooltipValue} title={tooltip}>
         <ListItem button className={classes.button}>
           <ListItemIcon className={classes.listIcon}>
             <Icon fontSize="small" />

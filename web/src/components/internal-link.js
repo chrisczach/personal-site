@@ -37,7 +37,7 @@ const InternalLink = ({ mark, children, ...props }) => {
     },
   } = mark;
   const classes = useStyles(props);
-  console.log(mark.reference);
+
   return (
     // <Tooltip
     //   placement="bottom-start"

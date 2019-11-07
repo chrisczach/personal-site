@@ -26,7 +26,7 @@ const ProjectGrid = ({ projects, ...props }) => {
   const projectCards = projects.map(project => (
     <ProjectCard key={project.id} project={project} containerWidth={width} />
   ));
-  console.log(projectCards);
+
   const transitions = useTransition(projectCards, item => item.key, {
     from: {
       opacity: 0,

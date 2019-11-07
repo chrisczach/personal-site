@@ -69,9 +69,9 @@ const ContactForm = props => {
     sendMessage(
       formValues,
       body => {
-        console.log(body);
+
         navigate('/contact/thanks/', { state: body });
-        console.log(JSON.stringify(formValues, null, 2));
+
         setSending(false);
         setFormValues({});
       },
