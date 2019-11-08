@@ -16,10 +16,22 @@ import { PortraitContext, CurrentTooltipContext } from './layout';
 
 const useStyles = makeStyles(theme => ({
   tooltip: {
+    position: 'relative',
     background: 'transparent',
-    margin: theme.spacing(0, 2),
-    padding: 0,
+    margin: theme.spacing(0, 1),
+    padding: theme.spacing(0, 6, 4, 0),
     overflow: 'hidden',
+    maxWidth: 'none',
+  },
+  tipPaper: {
+    padding: theme.spacing(2),
+    margin: theme.spacing(0, 2, 0, 0),
+    background: theme.palette.primary.dark,
+  },
+  pointer: {
+    position: 'absolute',
+    bottom: theme.spacing(1),
+    right: theme.spacing(3),
   },
   appBar: {
     bottom: 0,
@@ -53,12 +65,9 @@ const useStyles = makeStyles(theme => ({
   button: {
     padding: theme.spacing(0.5, 2),
   },
-  tipPaper: {
-    padding: theme.spacing(2),
-  },
 }));
 
-const footer = ({ menuItems, ...props }) => {
+const footer = ({ menuItems, location: { pathname }, ...props }) => {
   const classes = useStyles(props);
   const portrait = useContext(PortraitContext);
   return (
@@ -67,7 +76,7 @@ const footer = ({ menuItems, ...props }) => {
         <Slide in direction="up" timeout={500}>
           <Fade in timeout={300}>
             <AppBar color="secondary" className={classes.appBar}>
-              {menuItems.map(toBottomNav(classes))}
+              {menuItems.map(toBottomNav(classes, pathname))}
             </AppBar>
           </Fade>
         </Slide>
@@ -76,7 +85,7 @@ const footer = ({ menuItems, ...props }) => {
   );
 };
 
-const toBottomNav = classes => (
+const toBottomNav = (classes, pathname) => (
   { link, Icon, route, tooltip, ...props },
   index,
 ) => {
@@ -92,11 +101,16 @@ const toBottomNav = classes => (
   return (
     <LinkComponent key={link}>
       <Tooltip
-        placement="top"
-        open={link === tooltipValue}
+        placement="top-end"
+        open={link === tooltipValue && pathname === '/'}
         title={
           <Paper className={classes.tipPaper}>
             <Typography variant="h5">{tooltip}</Typography>
+            <Fade in timeout={500} mountOnEnter unmountOnExit>
+              <Typography variant="h4" className={classes.pointer}>
+                👇
+              </Typography>
+            </Fade>
           </Paper>
         }
         classes={classes}

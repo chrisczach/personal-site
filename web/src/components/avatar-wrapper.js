@@ -24,6 +24,7 @@ const useStyles = portrait =>
       height: portrait ? '35vw' : '15vh',
       borderRadius: theme.spacing(4),
       overflow: 'hidden',
+      background: theme.palette.primary.dark,
       transition: theme.transitions.create('all', {
         duration: theme.transitions.duration.shortest,
       }),

@@ -57,8 +57,8 @@ const useStyles = ({ portrait, wrapHeading }) =>
       alignItems: 'stretch',
 
       background: portrait
-        ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}aa, ${theme.palette.secondary.dark}88) !important`
-        : `linear-gradient(to bottom right, ${theme.palette.primary.dark}55, ${theme.palette.secondary.dark}33) !important`,
+        ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}dd, #222d) !important`
+        : `linear-gradient(to bottom right, ${theme.palette.primary.dark}aa, #222a) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       // transition: theme.transitions.create('all', {
@@ -79,7 +79,7 @@ const useStyles = ({ portrait, wrapHeading }) =>
     },
     techBox: {
       width: portrait ? '100%' : '80%',
-      background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}99, ${theme.palette.secondary.dark}55)`,
+      background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}99, ${theme.palette.primary.dark}bb)`,
     },
     skills: {
       padding: theme.spacing(1, 0, 0, 2),

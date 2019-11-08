@@ -28,6 +28,8 @@ const Layout = ({
   showNav,
   siteTitle,
   showSplash,
+  location,
+  ...props
 }) => {
   const [portrait, setPortrait] = useState(false);
   const [scroll, setScroll] = useState(0);
@@ -78,7 +80,7 @@ const Layout = ({
                 {children}
               </Box>
             </Fade>
-            <Footer menuItems={menuItems} />
+            <Footer menuItems={menuItems} location={location} />
             <Background />
           </CurrentTooltipContext.Provider>
         </ShowSplashContext.Provider>
