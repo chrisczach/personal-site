@@ -96,7 +96,7 @@ const toBottomNav = classes => (
         open={link === tooltipValue}
         title={
           <Paper className={classes.tipPaper}>
-            <Typography varian="h2">{tooltip}</Typography>
+            <Typography variant="h5">{tooltip}</Typography>
           </Paper>
         }
         classes={classes}

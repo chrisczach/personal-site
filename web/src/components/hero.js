@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Paper, Button, Box, Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ExpandMoreRounded } from '@material-ui/icons';
+import Div100vh from 'react-div-100vh';
 
 import {
   PortraitContext,
@@ -12,13 +13,12 @@ import {
 const useStyles = portrait =>
   makeStyles(theme => ({
     wrapper: {
-      height: '100vh',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-end',
       background: 'transparent',
       alignItems: 'center',
-      backdropFilter: 'brightness(.85) blur(8px)',
+      backdropFilter: 'brightness(.8) saturate(2.5) blur(2px)',
       boxShadow: theme.shadows[8],
       positon: 'relative',
     },
@@ -81,7 +81,10 @@ const Hero = props => {
   }, [nextItem, showSpash, stopAnimation]);
 
   return (
-    <Paper className={classes.wrapper}>
+    <Paper
+      component={({ inputMode, ...props }) => <Div100vh {...props} />}
+      className={classes.wrapper}
+    >
       <Box className={classes.inner} onClick={nextItem}>
         {current && current.text}
       </Box>
