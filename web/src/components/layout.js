@@ -10,7 +10,7 @@ import {
   GitHub,
 } from '@material-ui/icons/';
 
-import { CssBaseline, Box, Fade } from '@material-ui/core';
+import { CssBaseline, Box, Fade, Slide } from '@material-ui/core';
 import Footer from './footer';
 import Header from './header';
 
@@ -19,7 +19,7 @@ import Background from './background';
 export const PortraitContext = createContext(false);
 export const ScrollContext = createContext(0);
 export const ShowSplashContext = createContext(false);
-export const CurrentTooltipContext = createContext(false);
+export const CurrentTooltipContext = createContext([]);
 export const CurrentTooltipDispatchContext = createContext(false);
 const Layout = ({
   children,

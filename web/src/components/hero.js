@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Paper, Button, Box, Tooltip } from '@material-ui/core';
+import { Paper, Button, Box, Tooltip, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ExpandMoreRounded } from '@material-ui/icons';
 import Div100vh from 'react-div-100vh';
+import { Link } from 'gatsby';
 
 import {
   PortraitContext,
@@ -69,7 +70,7 @@ const Hero = props => {
   useEffect(() => {
     if (showSpash) return;
     if (!current) nextItem();
-    const loop = setInterval(nextItem, 3000);
+    const loop = setInterval(nextItem, 3500);
     if (!animating) {
       return clearInterval(loop);
     }
@@ -100,12 +101,66 @@ const Hero = props => {
 };
 const item = (name, text) => ({ name, text });
 
+const screenFrom = ({
+  name,
+  header,
+  content,
+  link = null,
+  linkText = null,
+}) => {
+  return {
+    name,
+    text: (
+      <Box>
+        <Typography variant="h3">{header}</Typography>
+        <Typography variant="body1">{content}</Typography>
+        {link &&
+          (link.substring(0, 1) === '/' ? (
+            <Link to={link}>{linkText}</Link>
+          ) : (
+            <a href={link} target="_blank">
+              {linkText}
+            </a>
+          ))}
+      </Box>
+    ),
+  };
+};
+
 const animationScreens = [
-  item(`don't display`, `Hello I'm Chris`),
-  item('About', 'Find out about me'),
-  item('Projects', `See what I've done`),
-  item('GitHub', 'See some code'),
-  item('Contact', 'say hello'),
+  screenFrom({
+    name: `don't display`,
+    header: 'hello',
+    content: `I'm Chris Czach a front end developer`,
+  }),
+  screenFrom({
+    name: `About`,
+    header: 'About',
+    content: `find out more about me`,
+    link: '/about/',
+    linkText: 'see about me',
+  }),
+  screenFrom({
+    name: `Projects`,
+    header: 'Projects',
+    content: `see some projects that I've done.`,
+    link: '/projects/',
+    linkText: 'go to projects',
+  }),
+  screenFrom({
+    name: `GitHub`,
+    header: 'GitHub',
+    content: `see my code`,
+    link: 'https://github.com/chrisczach',
+    linkText: 'open github',
+  }),
+  screenFrom({
+    name: `Contact`,
+    header: 'Contact',
+    content: `come say hello`,
+    link: '/contact/',
+    linkText: 'go to contact form',
+  }),
 ];
 
 export default Hero;

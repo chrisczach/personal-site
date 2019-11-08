@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     margin: '0 auto',
   },
   link: {
-    textDecoration: 'underline',
+    textDecoration: 'underline #f0db4f !important',
   },
 }));
 
@@ -48,7 +48,10 @@ const InternalLink = ({ mark, children, ...props }) => {
     //     </Typography>
     //   }
     // >
-    <Link to={ `${ _type === 'project' ? '/projects' : ''}/${slug}/`} className={classes.link}>
+    <Link
+      to={`${_type === 'project' ? '/projects' : ''}/${slug}/`}
+      className={classes.link}
+    >
       {children}
     </Link>
     // </Tooltip>
