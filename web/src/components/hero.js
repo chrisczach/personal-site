@@ -1,5 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Paper, Button, Box, Tooltip, Typography } from '@material-ui/core';
+import {
+  Paper,
+  Button,
+  Box,
+  Tooltip,
+  Typography,
+  Fade,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ExpandMoreRounded } from '@material-ui/icons';
 import Div100vh from 'react-div-100vh';
@@ -46,7 +53,11 @@ const Hero = props => {
   const [items, setItems] = useState(animationScreens);
   const stopAnimation = () => {
     setAnimating(false);
-    const end = item('stopped', 'animation stopped');
+    const end = screenFrom({
+      name: 'stopped',
+      header: 'stopped',
+      content: 'animation stopped',
+    });
     setCurrent(end);
     setTooltipValue(end.name);
   };
@@ -99,7 +110,6 @@ const Hero = props => {
     </Paper>
   );
 };
-const item = (name, text) => ({ name, text });
 
 const screenFrom = ({
   name,
@@ -113,7 +123,9 @@ const screenFrom = ({
     text: (
       <Box>
         <Typography variant="h3">{header}</Typography>
-        <Typography variant="body1">{content}</Typography>
+        <Typography variant="body1" style={{ whiteSpace: 'nowrap' }}>
+          {content}
+        </Typography>
         {link &&
           (link.substring(0, 1) === '/' ? (
             <Link to={link}>{linkText}</Link>
