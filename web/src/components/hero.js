@@ -42,6 +42,12 @@ const useStyles = portrait =>
       padding: theme.spacing(1, 4),
       fontSize: '1.25em',
     },
+    heading: {
+      color: theme.palette.warning.main,
+    },
+    content: {
+      whiteSpace: 'nowrap',
+    },
   }));
 const Hero = props => {
   const portrait = useContext(PortraitContext);
@@ -53,11 +59,11 @@ const Hero = props => {
   const [items, setItems] = useState(animationScreens);
   const stopAnimation = () => {
     setAnimating(false);
-    const end = screenFrom({
+    const end = {
       name: 'stopped',
       header: 'stopped',
       content: 'animation stopped',
-    });
+    };
     setCurrent(end);
     setTooltipValue(end.name);
   };
@@ -98,7 +104,7 @@ const Hero = props => {
       className={classes.wrapper}
     >
       <Box className={classes.inner} onClick={nextItem}>
-        {current && current.text}
+        {current && ScreenFrom(classes)(current)}
       </Box>
       <Button
         onClick={scrollDown}
@@ -111,68 +117,68 @@ const Hero = props => {
   );
 };
 
-const screenFrom = ({
+const ScreenFrom = classes => ({
   name,
   header,
   content,
   link = null,
   linkText = null,
+  ...props
 }) => {
-  return {
-    name,
-    text: (
-      <Box>
-        <Typography variant="h3">{header}</Typography>
-        <Typography variant="body1" style={{ whiteSpace: 'nowrap' }}>
-          {content}
-        </Typography>
-        {link &&
-          (link.substring(0, 1) === '/' ? (
-            <Link to={link}>{linkText}</Link>
-          ) : (
-            <a href={link} target="_blank">
-              {linkText}
-            </a>
-          ))}
-      </Box>
-    ),
-  };
+  return (
+    <Box>
+      <Typography variant="h3" className={classes.heading}>
+        {header}
+      </Typography>
+      <Typography variant="body1" className={classes.content}>
+        {content}
+      </Typography>
+      {link &&
+        (link.substring(0, 1) === '/' ? (
+          <Link to={link}>{linkText}</Link>
+        ) : (
+          <a href={link} target="_blank">
+            {linkText}
+          </a>
+        ))}
+    </Box>
+  );
 };
 
 const animationScreens = [
-  screenFrom({
+  {
     name: `don't display`,
     header: 'hello',
     content: `I'm Chris Czach a front end developer`,
-  }),
-  screenFrom({
+  },
+  {
     name: `About`,
     header: 'About',
     content: `find out more about me`,
     link: '/about/',
     linkText: 'see about me',
-  }),
-  screenFrom({
+  },
+  {
     name: `Projects`,
     header: 'Projects',
     content: `see some projects that I've done.`,
     link: '/projects/',
     linkText: 'go to projects',
-  }),
-  screenFrom({
+  },
+  {
     name: `GitHub`,
     header: 'GitHub',
     content: `see my code`,
     link: 'https://github.com/chrisczach',
     linkText: 'open github',
-  }),
-  screenFrom({
+  },
+  {
     name: `Contact`,
     header: 'Contact',
     content: `come say hello`,
     link: '/contact/',
     linkText: 'go to contact form',
-  }),
+  },
 ];
 
 export default Hero;
