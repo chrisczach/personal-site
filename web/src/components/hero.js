@@ -1,34 +1,28 @@
 import React, { useContext, useState, useEffect } from 'react';
-import {
-  Paper,
-  Button,
-  Box,
-  Tooltip,
-  Typography,
-  Fade,
-} from '@material-ui/core';
+import { Paper, Button, Box, Tooltip, Fade } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ExpandMoreRounded } from '@material-ui/icons';
 import Div100vh from 'react-div-100vh';
-import { Link } from 'gatsby';
 
 import {
   PortraitContext,
   ShowSplashContext,
   CurrentTooltipContext,
 } from './layout';
+import { ScreenFrom } from './ScreenFrom';
 
 const useStyles = portrait =>
   makeStyles(theme => ({
     wrapper: {
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'flex-end',
+      justifyContent: 'center',
       background: 'transparent',
       alignItems: 'center',
       backdropFilter: 'brightness(.8) saturate(2.5) blur(2px)',
       boxShadow: theme.shadows[8],
       positon: 'relative',
+      padding: theme.spacing(2),
     },
     inner: {
       flexGrow: 1,
@@ -43,11 +37,21 @@ const useStyles = portrait =>
       fontSize: '1.25em',
     },
     heading: {
+      display: 'inline-block',
       color: theme.palette.warning.main,
     },
     content: {
-      whiteSpace: 'nowrap',
+      margin: theme.spacing(4),
     },
+    linkWrap: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+    },
+    contentLink: {
+      justifySelf: 'flex-end',
+    },
+    contentButton: {},
   }));
 const Hero = props => {
   const portrait = useContext(PortraitContext);
@@ -87,7 +91,7 @@ const Hero = props => {
   useEffect(() => {
     if (showSpash) return;
     if (!current) nextItem();
-    const loop = setInterval(nextItem, 3500);
+    const loop = setInterval(nextItem, 4000);
     if (!animating) {
       return clearInterval(loop);
     }
@@ -114,34 +118,6 @@ const Hero = props => {
         Scroll
       </Button>
     </Paper>
-  );
-};
-
-const ScreenFrom = classes => ({
-  name,
-  header,
-  content,
-  link = null,
-  linkText = null,
-  ...props
-}) => {
-  return (
-    <Box>
-      <Typography variant="h3" className={classes.heading}>
-        {header}
-      </Typography>
-      <Typography variant="body1" className={classes.content}>
-        {content}
-      </Typography>
-      {link &&
-        (link.substring(0, 1) === '/' ? (
-          <Link to={link}>{linkText}</Link>
-        ) : (
-          <a href={link} target="_blank">
-            {linkText}
-          </a>
-        ))}
-    </Box>
   );
 };
 
