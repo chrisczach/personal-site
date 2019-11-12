@@ -93,13 +93,17 @@ const Hero = props => {
     }
   };
   useInterval(nextItem, animating ? 5000 : null);
+
+  const handleScroll = ({currentTarget:{scrollY}}) => {
+    if (scrollY > 100) stopAnimation();
+  };
   useEffect(() => {
     if (!current) nextItem();
-    window.addEventListener('scroll', stopAnimation);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', stopAnimation);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [nextItem, showSpash, stopAnimation, animating]);
+  }, [nextItem, showSpash, handleScroll, animating]);
   return (
     <Paper
       component={({ inputMode, ...props }) => <Div100vh {...props} />}

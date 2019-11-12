@@ -57,8 +57,8 @@ const useStyles = ({ portrait, wrapHeading }) =>
       alignItems: 'stretch',
 
       background: portrait
-        ? `linear-gradient(to bottom right, ${theme.palette.primary.main}aa, #222a) !important`
-        : `linear-gradient(to bottom right, ${theme.palette.primary.main}44, #2223) !important`,
+        ? `linear-gradient(to bottom right, ${theme.palette.primary.main}11, #2224) !important`
+        : `linear-gradient(to bottom right, ${theme.palette.primary.main}22, #2223) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       // transition: theme.transitions.create('all', {
@@ -94,6 +94,7 @@ export const ContainerWithHeading = ({
   darkBody = false,
   avatar = null,
   projectPage = false,
+  direction = 'down',
   children = null,
   wrapHeading = false,
   ...props
@@ -117,7 +118,7 @@ export const ContainerWithHeading = ({
     >
       {(!wrapHeading || portrait) && (
         <Fade in timeout={150}>
-          <Slide in direction="down" timeout={300}>
+          <Slide in direction={direction} timeout={300}>
             <Typography
               variant="h2"
               color="textSecondary"

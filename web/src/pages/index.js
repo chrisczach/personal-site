@@ -23,7 +23,11 @@ const IndexPage = ({ data }) => {
         keywords={site.keywords}
       />
       <Hero />
-      <ContainerWithHeading heading={page.title} subHeading={page._rawBody} />
+      <ContainerWithHeading
+        direction="right"
+        heading={page.title}
+        subHeading={page._rawBody}
+      />
     </>
   );
 };
