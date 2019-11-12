@@ -42,6 +42,7 @@ const useStyles = portrait =>
     },
     content: {
       margin: theme.spacing(4),
+      fontSize: '2em',
     },
     linkWrap: {
       display: 'flex',
@@ -62,21 +63,19 @@ const Hero = props => {
   const [current, setCurrent] = useState();
   const [items, setItems] = useState(animationScreens);
   const stopAnimation = () => {
-    setAnimating(false);
-    const end = {
-      name: 'stopped',
-      header: 'stopped',
-      content: 'animation stopped',
-    };
-    setCurrent(end);
-    setTooltipValue(end.name);
+    if (animating && items.length > 1) {
+      setAnimating(false);
+      const end = [...items].pop();
+      setCurrent(end);
+      setTooltipValue(end.name);
+    }
   };
   const scrollDown = () => {
     stopAnimation();
     window.scrollTo({ left: 0, top: window.innerHeight, behavior: 'smooth' });
   };
   const nextItem = () => {
-    if (items.length) {
+    if (items.length > 1) {
       setItems(state => {
         const [next, ...rest] = state;
         setCurrent(next);
@@ -89,19 +88,21 @@ const Hero = props => {
   };
 
   useEffect(() => {
-    if (showSpash) return;
     if (!current) nextItem();
     const loop = setInterval(nextItem, 4000);
-    if (!animating) {
-      return clearInterval(loop);
-    }
     window.addEventListener('scroll', stopAnimation);
+    if (showSpash || !animating) {
+      return () => {
+        clearInterval(loop);
+        window.removeEventListener('scroll', stopAnimation);
+      };
+    }
+
     return () => {
       clearInterval(loop);
       window.removeEventListener('scroll', stopAnimation);
     };
   }, [nextItem, showSpash, stopAnimation]);
-
   return (
     <Paper
       component={({ inputMode, ...props }) => <Div100vh {...props} />}
@@ -154,6 +155,11 @@ const animationScreens = [
     content: `come say hello`,
     link: '/contact/',
     linkText: 'go to contact form',
+  },
+  {
+    name: `don't display`,
+    header: 'last',
+    content: `item`,
   },
 ];
 
