@@ -46,8 +46,8 @@ const LayoutContainer = props => {
         return (
           <ThemeProvider theme={theme}>
             <Layout
-              { ...props }
-              showSplash={ showSplash}
+              {...props}
+              showSplash={showSplash}
               showNav={showNav}
               siteTitle={data.site.title}
               onHideNav={handleHideNav}

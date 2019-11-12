@@ -65,7 +65,11 @@ const Hero = props => {
   const stopAnimation = () => {
     if (animating && items.length > 1) {
       setAnimating(false);
-      const end = [...items].pop();
+      const end = {
+        name: `don't display`,
+        header: 'last',
+        content: `item`,
+      };
       setCurrent(end);
       setTooltipValue(end.name);
     }
@@ -75,7 +79,7 @@ const Hero = props => {
     window.scrollTo({ left: 0, top: window.innerHeight, behavior: 'smooth' });
   };
   const nextItem = () => {
-    if (items.length > 1) {
+    if (items.length) {
       setItems(state => {
         const [next, ...rest] = state;
         setCurrent(next);

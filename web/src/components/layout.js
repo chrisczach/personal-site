@@ -52,11 +52,11 @@ const Layout = ({
     updateOrientation();
     window.addEventListener('resize', updateOrientation);
     window.addEventListener('orientationchange', updateOrientation);
-    window.addEventListener('scroll', updateScroll);
+    // window.addEventListener('scroll', updateScroll);
     return () => {
       window.removeEventListener('resize', updateOrientation);
       window.removeEventListener('orientationchange', updateOrientation);
-      window.removeEventListener('scroll', updateScroll);
+      // window.removeEventListener('scroll', updateScroll);
     };
   }, []);
   return (
