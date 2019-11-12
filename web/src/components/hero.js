@@ -63,6 +63,8 @@ const Hero = props => {
   const [animating, setAnimating] = useState(true);
   const [current, setCurrent] = useState();
   const [items, setItems] = useState(animationScreens);
+  const defaultDelay = 5000;
+  const [delay, setDelay] = useState(defaultDelay);
   const stopAnimation = () => {
     if (animating) {
       setAnimating(false);
@@ -71,6 +73,7 @@ const Hero = props => {
         header: 'Chris Czach',
         content: `front end developer`,
       };
+
       setCurrent(end);
       setTooltipValue(end.name);
     }
@@ -84,6 +87,7 @@ const Hero = props => {
       setItems(state => {
         const [next, ...rest] = state;
         setCurrent(next);
+        setDelay(next.delay || defaultDelay);
         setTooltipValue(next.name);
         return rest;
       });
@@ -92,9 +96,9 @@ const Hero = props => {
       scrollDown();
     }
   };
-  useInterval(nextItem, animating ? 5000 : null);
+  useInterval(nextItem, animating ? delay : null);
 
-  const handleScroll = ({currentTarget:{scrollY}}) => {
+  const handleScroll = ({ currentTarget: { scrollY } }) => {
     if (scrollY > 100) stopAnimation();
   };
   useEffect(() => {
@@ -128,6 +132,7 @@ const animationScreens = [
     name: `don't display`,
     header: 'hello',
     content: `I'm Chris Czach a front end developer`,
+    delay: 3000,
   },
   {
     name: `About`,
@@ -142,6 +147,7 @@ const animationScreens = [
     content: `see some projects that I've done.`,
     link: '/projects/',
     linkText: 'go to projects',
+    delay: 7000,
   },
   {
     name: `GitHub`,
@@ -149,6 +155,7 @@ const animationScreens = [
     content: `see my code`,
     link: 'https://github.com/chrisczach',
     linkText: 'open github',
+    delay: 7000,
   },
   {
     name: `Contact`,

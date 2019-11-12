@@ -26,13 +26,14 @@ const useStyles = makeStyles(theme => ({
   tipPaper: {
     padding: theme.spacing(2),
     margin: theme.spacing(0, 2, 0, 0),
-    background: theme.palette.primary.dark,
+    background: theme.palette.secondary.main,
   },
   pointer: {
     position: 'absolute',
     bottom: theme.spacing(1),
     right: theme.spacing(3),
   },
+  toolTipType: {},
   appBar: {
     bottom: 0,
     display: 'flex',
@@ -105,7 +106,9 @@ const toBottomNav = (classes, pathname) => (
         open={link === tooltipValue && pathname === '/'}
         title={
           <Paper className={classes.tipPaper}>
-            <Typography variant="h5">{tooltip}</Typography>
+            <Typography variant="h5" className={classes.toolTipType}>
+              {tooltip}
+            </Typography>
             <Fade in timeout={500} mountOnEnter unmountOnExit>
               <Typography variant="h4" className={classes.pointer}>
                 👇
