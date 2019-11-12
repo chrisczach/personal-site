@@ -57,8 +57,8 @@ const useStyles = ({ portrait, wrapHeading }) =>
       alignItems: 'stretch',
 
       background: portrait
-        ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}dd, #222d) !important`
-        : `linear-gradient(to bottom right, ${theme.palette.primary.dark}aa, #222a) !important`,
+        ? `linear-gradient(to bottom right, ${theme.palette.primary.main}aa, #222a) !important`
+        : `linear-gradient(to bottom right, ${theme.palette.primary.main}44, #2223) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       // transition: theme.transitions.create('all', {

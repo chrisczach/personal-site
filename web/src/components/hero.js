@@ -19,7 +19,7 @@ const useStyles = portrait =>
       justifyContent: 'center',
       background: 'transparent',
       alignItems: 'center',
-      backdropFilter: 'brightness(.8) saturate(2.5) blur(2px)',
+      backdropFilter: 'brightness(.8) saturate(1.25) blur(2px)',
       boxShadow: theme.shadows[8],
       positon: 'relative',
       padding: theme.spacing(2),
