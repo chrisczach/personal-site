@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Paper, Button, Box, Tooltip, Fade } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ExpandMoreRounded } from '@material-ui/icons';
@@ -35,6 +35,7 @@ const useStyles = portrait =>
       margin: theme.spacing(2, 2, 6, 2),
       padding: theme.spacing(1, 4),
       fontSize: '1.25em',
+      opacity: 0.25,
     },
     heading: {
       display: 'inline-block',
@@ -63,12 +64,12 @@ const Hero = props => {
   const [current, setCurrent] = useState();
   const [items, setItems] = useState(animationScreens);
   const stopAnimation = () => {
-    if (animating && items.length > 1) {
+    if (animating) {
       setAnimating(false);
       const end = {
         name: `don't display`,
-        header: 'last',
-        content: `item`,
+        header: 'Chris Czach',
+        content: `front end developer`,
       };
       setCurrent(end);
       setTooltipValue(end.name);
@@ -87,26 +88,18 @@ const Hero = props => {
         return rest;
       });
     } else {
+      stopAnimation();
       scrollDown();
     }
   };
-
+  useInterval(nextItem, animating ? 5000 : null);
   useEffect(() => {
     if (!current) nextItem();
-    const loop = setInterval(nextItem, 4000);
     window.addEventListener('scroll', stopAnimation);
-    if (showSpash || !animating) {
-      return () => {
-        clearInterval(loop);
-        window.removeEventListener('scroll', stopAnimation);
-      };
-    }
-
     return () => {
-      clearInterval(loop);
       window.removeEventListener('scroll', stopAnimation);
     };
-  }, [nextItem, showSpash, stopAnimation]);
+  }, [nextItem, showSpash, stopAnimation, animating]);
   return (
     <Paper
       component={({ inputMode, ...props }) => <Div100vh {...props} />}
@@ -134,37 +127,52 @@ const animationScreens = [
   },
   {
     name: `About`,
-    header: 'About',
+    header: 'about',
     content: `find out more about me`,
     link: '/about/',
     linkText: 'see about me',
   },
   {
     name: `Projects`,
-    header: 'Projects',
+    header: 'projects',
     content: `see some projects that I've done.`,
     link: '/projects/',
     linkText: 'go to projects',
   },
   {
     name: `GitHub`,
-    header: 'GitHub',
+    header: 'github',
     content: `see my code`,
     link: 'https://github.com/chrisczach',
     linkText: 'open github',
   },
   {
     name: `Contact`,
-    header: 'Contact',
+    header: 'contact',
     content: `come say hello`,
     link: '/contact/',
     linkText: 'go to contact form',
   },
-  {
-    name: `don't display`,
-    header: 'last',
-    content: `item`,
-  },
 ];
+
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      const id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
 
 export default Hero;

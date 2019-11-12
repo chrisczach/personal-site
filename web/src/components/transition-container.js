@@ -25,6 +25,8 @@ const TransitionContainer = ({ children }) => {
     trail: portrait ? 200 : 75,
     config: portrait ? config.gentle : config.default,
   });
+
+  if (portrait) return children;
   return transitions.map(({ item, props, key }) => (
     <animated.div style={props} key={key}>
       {item}
