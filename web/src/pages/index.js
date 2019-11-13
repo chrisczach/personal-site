@@ -6,7 +6,7 @@ import SEO from '../components/seo';
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL';
 import { ContainerWithHeading } from '../components/containerWithHeading';
 import Hero from '../components/hero';
-import AvatarWrapper from '../components/avatar-wrapper';
+
 
 const IndexPage = ({ data }) => {
   const { site } = data || {};
