@@ -140,7 +140,7 @@ const toMiniRatings = (portrait, classes) => ({
       interactive
       open={open}
       key={id}
-      classes={classes}
+      classes={{ tooltip: classes.tooltip, popper: classes.popper }}
       title={
         <Box className={classes.miniTip}>
           <Typography variant="subtitle1" className={classes.tipTitle}>
@@ -158,8 +158,7 @@ const toMiniRatings = (portrait, classes) => ({
               <Typography
                 variant="body2"
                 className={classes.ratingIcon}
-                style={{ opacity: 0.5, filter: 'saturate(0)' }}
-              >
+                style={{ opacity: 0.5, filter: 'saturate(0)' }}>
                 |
               </Typography>
             }
@@ -178,16 +177,14 @@ const toMiniRatings = (portrait, classes) => ({
             })}
           </animated.div>
         </Box>
-      }
-    >
+      }>
       {portrait ? (
         <ClickAwayListener onClickAway={handleClose}>
           <IconButton
             onClick={e => {
               e.stopPropagation();
               handleOpen();
-            }}
-          >
+            }}>
             <Box className={classes.imageWrap}>
               <Img fluid={fluid} />
             </Box>

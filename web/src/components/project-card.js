@@ -105,8 +105,7 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
               gutterBottom
               variant="h5"
               component="h2"
-              className={classes.coloredCardHeading}
-            >
+              className={classes.coloredCardHeading}>
               {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
@@ -123,15 +122,13 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
               {showDetails ? 'Hide Details' : 'See Details'}
             </Typography>
           }
-          classes={classes}
-        >
+          classes={{ tooltip: classes.tooltip }}>
           <IconButton
             aria-label={showDetails ? 'Hide Details' : 'See Details'}
             size="small"
             style={{ pointerEvents: showDetails ? 'none' : 'auto' }}
             className={showDetails ? classes.expanded : classes.collapsed}
-            onClick={handleToggleShow}
-          >
+            onClick={handleToggleShow}>
             <ExpandMoreRounded />
           </IconButton>
         </Tooltip>
@@ -144,13 +141,11 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
                 Open Project Page
               </Typography>
             }
-            classes={classes}
-          >
+            classes={{tooltip: classes.tooltip}}>
             <Button
               endIcon={<LaunchRounded />}
               size="small"
-              className={classes.projectButton}
-            >
+              className={classes.projectButton}>
               Open
             </Button>
           </Tooltip>
@@ -159,8 +154,7 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
       <SlideDrawer
         show={showDetails}
         handleToggle={handleToggleShow}
-        onClick={handleToggleShow}
-      >
+        onClick={handleToggleShow}>
         <MiniTechList tech={techList} />
       </SlideDrawer>
     </Card>

@@ -41,7 +41,7 @@ const ButtonLinks = ({ node: { link }, ...props }) => {
   return (
     <Box className={classes.wrapper}>
       {!portrait && <Box style={{ width: '66%' }} />}
-      {links.map(({ _type, key, link, linkName }) => {
+      {links.map(({ _type, key, link, linkName }, index) => {
         const isInternal = _type === 'internalLink';
         const LinkComponent = ({ children, ...props }) =>
           isInternal ? (
@@ -56,7 +56,7 @@ const ButtonLinks = ({ node: { link }, ...props }) => {
             </a>
           );
         return (
-          <LinkComponent className={classes.link}>
+          <LinkComponent className={classes.link} key={'' + link + index}>
             <Button
               variant={isInternal ? 'contained' : 'outlined'}
               color={isInternal ? 'secondary' : 'default'}

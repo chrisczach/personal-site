@@ -46,8 +46,7 @@ const nav = ({ portrait, menuItems, ...props }) => {
         variant="text"
         onClick={handleOpen(!open)}
         fullWidth={false}
-        endIcon
-      >
+        endIcon>
         <MenuRounded fontSize="large" />
       </Button>
     ),
@@ -58,16 +57,15 @@ const nav = ({ portrait, menuItems, ...props }) => {
         open={open}
         onOpen={handleOpen(true)}
         onClose={handleOpen(false)}
-        swipeAreaWidth={5}
-      >
+        swipeAreaWidth={5}>
         <List className={classes.navBar}>
           <FirstItem
             divider
             button
             autoFocus
+            key="ChrisCzach"
             onClick={handleOpen(!open)}
-            background={`${theme.palette.primary.dark}55`}
-          >
+            background={`${theme.palette.primary.dark}55`}>
             <ListItemText
               primary="Chris Czach "
               secondary="Front End Developer"
@@ -84,24 +82,23 @@ const nav = ({ portrait, menuItems, ...props }) => {
 };
 
 const toMenu = (open, handleOpen, size) => ({ link, Icon, route }, index) => {
-  const LinkComponent = ({ children }) =>
+  const LinkComponent = ({ children, ...props }) =>
     route[0] === '/' ? (
-      <Link to={route} key={link}>
+      <Link to={route} {...props}>
         {children}
       </Link>
     ) : (
-      <a href={route} target="_blank">
+      <a href={route} target="_blank" {...props}>
         {children}
       </a>
     );
   return (
     <>
-      <LinkComponent>
+      <LinkComponent key={link}>
         <Grow
           in={open}
           style={{ transformOrigin: '0 0 0' }}
-          {...(open ? { timeout: index * 150 } : {})}
-        >
+          {...(open ? { timeout: index * 150 } : {})}>
           <ListItem button autoFocus onClick={handleOpen(!open)}>
             <ListItemIcon>
               <Icon fontSize={size} />
@@ -110,8 +107,7 @@ const toMenu = (open, handleOpen, size) => ({ link, Icon, route }, index) => {
               direction="left"
               in={open}
               style={{ transformOrigin: '0 0 0' }}
-              {...(open ? { timeout: index * 150 + 50 } : {})}
-            >
+              {...(open ? { timeout: index * 150 + 50 } : {})}>
               <ListItemText primary={link} />
             </Slide>
           </ListItem>
@@ -121,8 +117,7 @@ const toMenu = (open, handleOpen, size) => ({ link, Icon, route }, index) => {
         direction="left"
         in={open}
         style={{ transformOrigin: '0 0 0' }}
-        {...(open ? { timeout: index * 200 + 150 } : {})}
-      >
+        {...(open ? { timeout: index * 200 + 150 } : {})}>
         <Divider variant="inset" component="li" />
       </Slide>
     </>

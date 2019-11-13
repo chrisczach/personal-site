@@ -116,8 +116,7 @@ const toBottomNav = (classes, pathname) => (
             </Fade>
           </Paper>
         }
-        classes={classes}
-      >
+        classes={{ tooltip: classes.tooltip }}>
         <ListItem button className={classes.button}>
           <ListItemIcon className={classes.listIcon}>
             <Icon fontSize="small" />

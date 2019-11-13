@@ -6,7 +6,7 @@ import Img from 'gatsby-image';
 import { useSpring, animated, config } from 'react-spring';
 
 import { PortraitContext } from './layout';
-import BlockText from './block-text';
+import BlockContent from './block-content';
 
 const useStyles = portrait =>
   makeStyles(theme => ({
@@ -110,14 +110,13 @@ const TooltipContent = ({
       onClose={handleClose}
       disableTouchListener
       placement="bottom-start"
-      classes={classes}
+      classes={{ tooltip: classes.tooltip, popper: classes.popper }}
       interactive
       title={
         <div
           onClick={handleClose}
           style={{ userSelect: 'none' }}
-          className={classes.tipWrapper}
-        >
+          className={classes.tipWrapper}>
           <Typography variant="subtitle2" className={classes.ratingWrapper}>
             {' '}
             Experience:{' '}
@@ -128,8 +127,7 @@ const TooltipContent = ({
                 emptyIcon={
                   <span
                     className={classes.ratingIcon}
-                    style={{ opacity: 0.5, filter: 'saturate(0)' }}
-                  >
+                    style={{ opacity: 0.5, filter: 'saturate(0)' }}>
                     |
                   </span>
                 }
@@ -145,7 +143,7 @@ const TooltipContent = ({
             </Box>
           </Typography>
           <Typography variant="body2" className={classes.description}>
-            <BlockText blocks={description} />
+            <BlockContent blocks={description} />
           </Typography>
           <Box className={classes.footLogo}>
             <animated.div>
@@ -159,8 +157,7 @@ const TooltipContent = ({
             <Img className={classes.footSize} fluid={fluid} />
           </Box>
         </div>
-      }
-    >
+      }>
       {children}
     </Tooltip>
   );

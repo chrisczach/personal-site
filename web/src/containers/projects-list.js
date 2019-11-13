@@ -6,7 +6,7 @@ const ProjectsList = ({ projectNodes }) => {
   const techList = getFlatTechList(projects);
   return (
     <>
-      <div>{JSON.stringify(techList.map(({ title }) => title))}</div>
+      {/* <div>{JSON.stringify(techList.map(({ title }) => title))}</div> */}
       <ProjectGrid {...{ projects }} />
     </>
   );
