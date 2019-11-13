@@ -22,6 +22,9 @@ import simplePortableText from './objects/simplePortableText';
 import techList from './objects/techList';
 import portraitSnippet from './objects/portraitSnippet.js';
 import myCode from './objects/myCode';
+import internalLink from './objects/internalLink';
+import link from './objects/link';
+import buttonLinks from './objects/buttonLinks';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -34,6 +37,8 @@ export default createSchema({
     // { type: 'typename' } in other document schemas
     portraitSnippet,
     myCode,
+    internalLink,
+    link,
     bioPortableText,
     avatar,
     figure,
@@ -41,6 +46,7 @@ export default createSchema({
     projectPortableText,
     simplePortableText,
     techList,
+    buttonLinks,
     // The following are document types which will appear
     // in the studio.
     tech,

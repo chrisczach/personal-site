@@ -32,41 +32,10 @@ export default {
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
-            name: 'internalLink',
-            type: 'object',
-            title: 'Internal link',
-            fields: [
-              {
-                name: 'reference',
-                type: 'reference',
-                title: 'Reference',
-                to: [
-                  { type: 'page' },
-                  { type: 'project' },
-                  // other types you may want to link to
-                ],
-              },
-            ],
+            type: 'internalLink',
           },
           {
-            name: 'link',
-            type: 'object',
-            title: 'External link',
-            fields: [
-              {
-                name: 'href',
-                type: 'url',
-                title: 'URL',
-                validation: Rule =>
-                  Rule.uri({ scheme: ['http', 'https', 'mailto', 'tel'] }),
-              },
-              {
-                title: 'Open in new tab',
-                name: 'blank',
-                description: 'Read https://css-tricks.com/use-target_blank/',
-                type: 'boolean',
-              },
-            ],
+            type: 'link',
           },
         ],
       },
@@ -85,6 +54,9 @@ export default {
     },
     {
       type: 'myCode',
+    },
+    {
+      type: 'buttonLinks',
     },
   ],
 };
