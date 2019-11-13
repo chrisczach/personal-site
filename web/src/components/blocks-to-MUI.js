@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: theme.spacing(2),
     boxShadow: theme.shadows[2],
     justifyContent: 'center',
-    background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}88, ${theme.palette.secondary.dark}55) !important`,
+    background: `linear-gradient(to bottom right, ${theme.palette.secondary.main}aa, ${theme.palette.secondary.dark}88) !important`,
   },
 }));
 const BlocksToMUI = props => {
@@ -31,8 +31,7 @@ const BlocksToMUI = props => {
   return style === 'blockquote' ? (
     <Typography
       variant="body1"
-      className={`${styledClasses.caption} ${classes.caption}`}
-    >
+      className={`${styledClasses.caption} ${classes.caption}`}>
       {props.children}
     </Typography>
   ) : (
