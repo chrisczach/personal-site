@@ -27,7 +27,7 @@ const IndexPage = ({ data }) => {
       <Hero />
       <ContainerWithHeading
         direction="right"
-        heading={<AvatarWrapper node={page.mainImage} />}
+        heading={page.title}
         subHeading={page._rawBody}
       />
     </>
