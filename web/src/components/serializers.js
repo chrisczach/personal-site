@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-import ButtonLinks from './button-links'
+import ButtonLinks from './button-links';
 import BlocksToMUI from './blocks-to-MUI';
 import Figure from './figure';
 import Avatar from './avatar-wrapper';
@@ -21,8 +21,7 @@ const serializers = {
       <SyntaxHighlighter
         language={props.node.language}
         style={xonokai}
-        showLineNumbers
-      >
+        showLineNumbers>
         {props.node.code}
       </SyntaxHighlighter>
     ),

@@ -64,9 +64,9 @@ const Header = ({
             <StyledToolbar>
               <Fade in mountOnEnter unmountOnExit timeout={500}>
                 <Typography variant="h6">
-                  Chris Czach{' '}
+                  <span key="nameSpan">Chris Czach </span>
                   {!portrait && (
-                    <span style={{ opacity: 0.5 }}>
+                    <span style={{ opacity: 0.5 }} key="titleSpan">
                       {!showSplash &&
                         transitions.map(({ item, props, key }) => (
                           <AnimatedText
@@ -77,8 +77,7 @@ const Header = ({
                               margin: 0,
                               padding: 0,
                             }}
-                            key={key}
-                          >
+                            key={key}>
                             {item.text}
                           </AnimatedText>
                         ))}

@@ -42,11 +42,7 @@ const nav = ({ portrait, menuItems, ...props }) => {
   const classes = useStyles(props);
   return {
     menuButton: (
-      <Button
-        variant="text"
-        onClick={handleOpen(!open)}
-        fullWidth={false}
-        endIcon>
+      <Button variant="text" onClick={handleOpen(!open)} fullWidth={false}>
         <MenuRounded fontSize="large" />
       </Button>
     ),
@@ -58,7 +54,7 @@ const nav = ({ portrait, menuItems, ...props }) => {
         onOpen={handleOpen(true)}
         onClose={handleOpen(false)}
         swipeAreaWidth={5}>
-        <List className={classes.navBar}>
+        <List className={classes.navBar} key="navBar">
           <FirstItem
             divider
             button
@@ -115,6 +111,7 @@ const toMenu = (open, handleOpen, size) => ({ link, Icon, route }, index) => {
       </LinkComponent>
       <Slide
         direction="left"
+        key={'bottomBorder' + link}
         in={open}
         style={{ transformOrigin: '0 0 0' }}
         {...(open ? { timeout: index * 200 + 150 } : {})}>

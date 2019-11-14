@@ -11,9 +11,14 @@ const useStyles = portrait =>
     wrapper: {
       display: 'flex',
       flexDirection: portrait ? 'column' : 'row',
-      justifyContent: 'stretch',
+      justifyContent: 'flex-end',
       alignItems: 'center',
-      margin: theme.spacing(portrait ? 2 : 4, 0, portrait ? 8 : 10, 0),
+      margin: theme.spacing(
+        portrait ? 2 : 4,
+        portrait ? 0 : 16,
+        portrait ? 8 : 10,
+        0,
+      ),
     },
     link: {
       margin: theme.spacing(1),
@@ -40,7 +45,7 @@ const ButtonLinks = ({ node: { link }, ...props }) => {
 
   return (
     <Box className={classes.wrapper}>
-      {!portrait && <Box style={{ width: '66%' }} />}
+      {/* {!portrait && <Box style={{ width: '75%' }} />} */}
       {links.map(({ _type, key, link, linkName }, index) => {
         const isInternal = _type === 'internalLink';
         const LinkComponent = ({ children, ...props }) =>
@@ -70,7 +75,7 @@ const ButtonLinks = ({ node: { link }, ...props }) => {
           </LinkComponent>
         );
       })}
-      {!portrait && <Box style={{ width: '33%' }} />}
+      {/* {!portrait && <Box style={{ width: '25%' }} />} */}
     </Box>
   );
 };
