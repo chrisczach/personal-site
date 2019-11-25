@@ -103,7 +103,7 @@ const TooltipContent = ({
 
   return (
     <Tooltip
-      enterDelay={50}
+      enterDelay={150}
       // leaveDelay={50}
       open={open}
       onOpen={handleOpen}
@@ -111,7 +111,7 @@ const TooltipContent = ({
       disableTouchListener
       placement="bottom-start"
       classes={{ tooltip: classes.tooltip, popper: classes.popper }}
-      interactive
+      interactive={portrait}
       title={
         <div
           onClick={handleClose}

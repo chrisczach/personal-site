@@ -137,7 +137,7 @@ const toMiniRatings = (portrait, classes) => ({
       disableTouchListener
       onOpen={handleOpen}
       onClose={handleClose}
-      interactive
+      interactive={portrait}
       open={open}
       key={id}
       classes={{ tooltip: classes.tooltip, popper: classes.popper }}
