@@ -38,6 +38,6 @@ const serializers = {
   marks: {
     internalLink: InternalLink,
   },
-  container: TransitionContainer,
+  // container: TransitionContainer, Remove transition animation for now. Too much of a performance hit
 };
 export default serializers;
