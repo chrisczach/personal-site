@@ -146,7 +146,7 @@ const animationScreens = [
   {
     name: `Projects`,
     header: 'projects',
-    content: `see some projects that I've done.`,
+    content: `see some projects that I've done`,
     link: '/projects/',
     linkText: 'go to projects',
     delay: 7000,
