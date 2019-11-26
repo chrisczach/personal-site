@@ -23,7 +23,7 @@ const BlocksToMUI = props => {
     const level = style.replace(/[^\d]/g, '');
     return (
       <Typography
-        variant={`h${parseInt(level) + 2}`}
+        variant={`h${parseInt(level) + 1}`}
         className={classes.blockHeading}>
         {props.children}
       </Typography>
