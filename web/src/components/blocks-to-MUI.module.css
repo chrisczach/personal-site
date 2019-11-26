@@ -2,6 +2,28 @@
   margin: 0.25em 0;
 }
 
+h1.blockHeading {
+  font-size: 3em;
+}
+
+h2.blockHeading {
+  font-size: 2.5em;
+}
+
+h3.blockHeading {
+  font-size: 2.0em;
+}
+
+h4.blockHeading {
+  font-size: 1.85em;
+}
+
+h5.blockHeading {
+  font-size: 1.65em;
+}
+h6.blockHeading {
+  font-size: 1.5em;
+}
 .blockBody {
   margin: 1em 0;
   font-size: 1.5em;
