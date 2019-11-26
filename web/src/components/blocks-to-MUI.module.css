@@ -1,28 +1,28 @@
-.blockHeading{
-        margin: 0.25em 0;
+.blockHeading {
+  margin: 0.25em 0;
 }
 
-.blockBody{
-    margin: 1em 0;
-    
+.blockBody {
+  margin: 1em 0;
+  font-size: 1.5em;
 }
 
 .blockBody strong {
-    color: #f0db4f;
-    /* font-weight: bold; */
+  color: #f0db4f;
+  /* font-weight: bold; */
 }
 
-.blockBody a{
-    text-decoration: underline #f0db4f;
-    cursor: pointer;
+.blockBody a {
+  text-decoration: underline #f0db4f;
+  cursor: pointer;
 }
 
 .caption strong {
-    color: #f0db4f;
-    /* font-weight: bold; */
+  color: #f0db4f;
+  /* font-weight: bold; */
 }
 
-.caption a{
-    text-decoration: underline;
-    cursor: pointer;
+.caption a {
+  text-decoration: underline;
+  cursor: pointer;
 }
