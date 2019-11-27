@@ -66,7 +66,7 @@ const useStyles = ({ portrait, width }) =>
     image: {
       position: 'relative',
       margin: portrait ? theme.spacing(12, 0) : theme.spacing(2, 0),
-      maxHeight: `${Math.round(width / 2)}px`,
+      maxHeight: `${Math.round(portrait ? width : width / 3)}px`,
       overflow: 'hidden',
     },
     hoverOpen: {
@@ -104,7 +104,6 @@ const useStyles = ({ portrait, width }) =>
       width: portrait ? '100%' : '50%',
       overflow: 'hidden',
     },
-    
   }));
 
 const ProjectTemplate = ({ data, ...props }) => {
@@ -123,8 +122,7 @@ const ProjectTemplate = ({ data, ...props }) => {
       <ContainerWithHeading
         projectPage
         heading={project.title}
-        subHeading={project._rawExcerpt}
-      >
+        subHeading={project._rawExcerpt}>
         {resizeListener}
 
         <ProjectLinks link={project.link} repo={project.repo} />
@@ -146,19 +144,16 @@ const ProjectTemplate = ({ data, ...props }) => {
                     width: imageWidth,
                     height: imageHeight,
                     overflow: 'hidden',
-                  }}
-                >
+                  }}>
                   <Img fluid={project.mobileImage.asset.fluid} />
                 </div>
                 <a
                   href={project.link}
                   target="_blank"
-                  className={classes.hoverOpen}
-                >
+                  className={classes.hoverOpen}>
                   <Button
                     endIcon={<LaunchRounded />}
-                    className={classes.button}
-                  >
+                    className={classes.button}>
                     Open Site
                   </Button>
                 </a>
@@ -176,8 +171,7 @@ const ProjectTemplate = ({ data, ...props }) => {
             <a
               href={project.link}
               target="_blank"
-              className={classes.hoverOpen}
-            >
+              className={classes.hoverOpen}>
               <Button endIcon={<LaunchRounded />} className={classes.button}>
                 Open Site
               </Button>
