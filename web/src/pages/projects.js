@@ -44,7 +44,7 @@ export const query = graphql`
       title
       _rawBody(resolveReferences: {maxDepth: 10})
     }
-    projects: allSanityProject {
+    projects: allSanityProject(sort: {fields: [sort], order: [ASC]} ) {
       nodes {
         id
         title
