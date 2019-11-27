@@ -19,6 +19,11 @@ export default {
         maxLength: 96,
       },
     },
+        {
+      name: 'sort',
+      type: 'number',
+      title: 'Sort Order',
+    },
     {
       name: 'excerpt',
       title: 'Excerpt',
