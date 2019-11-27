@@ -11,7 +11,7 @@ h2.blockHeading {
 }
 
 h3.blockHeading {
-  font-size: 2.0em;
+  font-size: 2em;
 }
 
 h4.blockHeading {
@@ -47,4 +47,9 @@ h6.blockHeading {
 .caption a {
   text-decoration: underline;
   cursor: pointer;
+}
+
+li {
+  font-size: inherit;
+  margin: 0.25em 0;
 }

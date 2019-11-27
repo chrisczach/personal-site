@@ -10,6 +10,8 @@ import { PortraitContext } from './layout';
 import BlockContent from './block-content';
 import InternalLink from './internal-link';
 import TransitionContainer from './transition-container';
+import { ListItem, List } from '@material-ui/core';
+import BlockContainer from './block-container';
 
 const serializers = {
   types: {
@@ -21,7 +23,8 @@ const serializers = {
       <SyntaxHighlighter
         language={props.node.language}
         style={xonokai}
-        showLineNumbers>
+        showLineNumbers
+      >
         {props.node.code}
       </SyntaxHighlighter>
     ),
@@ -39,5 +42,6 @@ const serializers = {
     internalLink: InternalLink,
   },
   // container: TransitionContainer, Remove transition animation for now. Too much of a performance hit
+  container: BlockContainer,
 };
 export default serializers;
