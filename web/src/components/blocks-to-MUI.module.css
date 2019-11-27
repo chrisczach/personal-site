@@ -53,3 +53,8 @@ li {
   font-size: inherit;
   margin: 0.25em 0;
 }
+
+li strong {
+  color: #f0db4f;
+  /* font-weight: bold; */
+}
