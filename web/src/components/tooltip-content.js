@@ -111,7 +111,7 @@ const TooltipContent = ({
       disableTouchListener
       placement="bottom-start"
       classes={{ tooltip: classes.tooltip, popper: classes.popper }}
-      interactive={portrait}
+      interactive
       title={
         <div
           onClick={handleClose}
