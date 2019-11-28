@@ -59,5 +59,18 @@ module.exports = {
         ignore: [`**/\.*`], // ignore files starting with a dot
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Chris Czach - Front End Developer`,
+        short_name: `ChrisCzachDeveloper`,
+        icon: `src/images/icon.png`,
+        start_url: `/`,
+        background_color: `#2E253A`,
+        theme_color: `#585246`,
+        display: `standalone`,
+      },
+    },
+    `gatsby-plugin-offline`,
   ],
 };
