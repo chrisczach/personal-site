@@ -11,7 +11,7 @@ import BlockContent from './block-content';
 const useStyles = portrait =>
   makeStyles(theme => ({
     popper: {
-      background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}33, ${theme.palette.primary.dark}) 50%`,
+      background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}f1, ${theme.palette.primary.dark}f7) 50%`,
       backdropFilter: 'blur(8px) brightness(.8)',
       webkitBackdropFilter: 'blur(8px) brightness(.8)',
       boxShadow: theme.shadows[6],
@@ -116,7 +116,8 @@ const TooltipContent = ({
         <div
           onClick={handleClose}
           style={{ userSelect: 'none' }}
-          className={classes.tipWrapper}>
+          className={classes.tipWrapper}
+        >
           <Typography variant="subtitle2" className={classes.ratingWrapper}>
             {' '}
             Experience:{' '}
@@ -127,7 +128,8 @@ const TooltipContent = ({
                 emptyIcon={
                   <span
                     className={classes.ratingIcon}
-                    style={{ opacity: 0.5, filter: 'saturate(0)' }}>
+                    style={{ opacity: 0.5, filter: 'saturate(0)' }}
+                  >
                     |
                   </span>
                 }
@@ -157,7 +159,8 @@ const TooltipContent = ({
             <Img className={classes.footSize} fluid={fluid} />
           </Box>
         </div>
-      }>
+      }
+    >
       {children}
     </Tooltip>
   );

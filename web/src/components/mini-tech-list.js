@@ -20,7 +20,7 @@ import { PortraitContext } from './layout';
 const useStyles = makeStyles(theme => ({
   popper: {
     margin: theme.spacing(1),
-    background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}11, ${theme.palette.primary.dark}33) 50%`,
+    background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}f1, ${theme.palette.primary.dark}f7) 50%`,
     backdropFilter: 'blur(8px) brightness(.8)',
     webkitBackdropFilter: 'blur(8px) brightness(.8)',
     boxShadow: theme.shadows[6],
@@ -158,7 +158,8 @@ const toMiniRatings = (portrait, classes) => ({
               <Typography
                 variant="body2"
                 className={classes.ratingIcon}
-                style={{ opacity: 0.5, filter: 'saturate(0)' }}>
+                style={{ opacity: 0.5, filter: 'saturate(0)' }}
+              >
                 |
               </Typography>
             }
@@ -177,14 +178,16 @@ const toMiniRatings = (portrait, classes) => ({
             })}
           </animated.div>
         </Box>
-      }>
+      }
+    >
       {portrait ? (
         <ClickAwayListener onClickAway={handleClose}>
           <IconButton
             onClick={e => {
               e.stopPropagation();
               handleOpen();
-            }}>
+            }}
+          >
             <Box className={classes.imageWrap}>
               <Img fluid={fluid} />
             </Box>
