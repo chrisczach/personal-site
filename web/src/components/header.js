@@ -13,15 +13,15 @@ const useStyles = portrait =>
       bottom: portrait ? 0 : 'auto',
       top: portrait ? 'auto' : 0,
       background: portrait
-        ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}bb, ${theme.palette.primary.dark}ff) !important`
-        : `linear-gradient(to bottom right, ${theme.palette.primary.dark}77, ${theme.palette.primary.dark}88) !important`,
+        ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}dd, ${theme.palette.primary.dark}ff) !important`
+        : `linear-gradient(to bottom right, ${theme.palette.primary.dark}f1, ${theme.palette.primary.dark}ff) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       transition: 'all  1s ease !important',
       '&:hover': {
         background: portrait
-          ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}77, ${theme.palette.primary.dark}ff) !important`
-          : `linear-gradient(to bottom right, ${theme.palette.primary.dark}88, ${theme.palette.primary.dark}aa) !important`,
+          ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}ee, ${theme.palette.primary.dark}ff) !important`
+          : `linear-gradient(to bottom right, ${theme.palette.primary.dark}ff, ${theme.palette.primary.dark}ff) !important`,
         transition: 'all  1s ease !important',
       },
     },
@@ -77,7 +77,8 @@ const Header = ({
                               margin: 0,
                               padding: 0,
                             }}
-                            key={key}>
+                            key={key}
+                          >
                             {item.text}
                           </AnimatedText>
                         ))}
