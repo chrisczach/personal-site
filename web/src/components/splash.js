@@ -81,7 +81,7 @@ const Splash = ({ show, hideSplash }) => {
                 {item.text}
               </AnimatedText>
             ))}
-            <svg
+            {/* <svg
               className={classes.topSvg}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1440 320"
@@ -102,7 +102,7 @@ const Splash = ({ show, hideSplash }) => {
                 fillOpacity="1"
                 d="M0,0L80,42.7C160,85,320,171,480,192C640,213,800,171,960,176C1120,181,1280,235,1360,261.3L1440,288L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
               />
-            </svg>
+            </svg> */}
           </Box>
         </Fade>
       </Slide>
