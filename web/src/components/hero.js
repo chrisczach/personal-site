@@ -17,9 +17,9 @@ const useStyles = portrait =>
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      background: 'transparent',
+      background: `${theme.palette.primary.dark}88`,
       alignItems: 'center',
-      backdropFilter: 'brightness(.8) saturate(1.25) blur(2px)',
+      backdropFilter: 'blur(2px)',
       boxShadow: theme.shadows[8],
       positon: 'relative',
       padding: theme.spacing(2),
@@ -112,7 +112,8 @@ const Hero = props => {
   return (
     <Paper
       component={({ inputMode, ...props }) => <Div100vh {...props} />}
-      className={classes.wrapper}>
+      className={classes.wrapper}
+    >
       <Box
         className={classes.inner}
         // onClick={ nextItem }
@@ -122,7 +123,8 @@ const Hero = props => {
       <Button
         onClick={scrollDown}
         className={classes.scrollButton}
-        endIcon={<ExpandMoreRounded />}>
+        endIcon={<ExpandMoreRounded />}
+      >
         Scroll
       </Button>
     </Paper>
