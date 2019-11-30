@@ -122,7 +122,8 @@ const ProjectTemplate = ({ data, ...props }) => {
       <ContainerWithHeading
         projectPage
         heading={project.title}
-        subHeading={project._rawExcerpt}>
+        subHeading={project._rawExcerpt}
+      >
         {resizeListener}
 
         <ProjectLinks link={project.link} repo={project.repo} />
@@ -141,19 +142,22 @@ const ProjectTemplate = ({ data, ...props }) => {
                 <div
                   style={{
                     position: 'absolute',
-                    width: imageWidth,
-                    height: imageHeight,
+                    width: '100%',
+                    height: portrait ? imageHeight : height,
                     overflow: 'hidden',
-                  }}>
+                  }}
+                >
                   <Img fluid={project.mobileImage.asset.fluid} />
                 </div>
                 <a
                   href={project.link}
                   target="_blank"
-                  className={classes.hoverOpen}>
+                  className={classes.hoverOpen}
+                >
                   <Button
                     endIcon={<LaunchRounded />}
-                    className={classes.button}>
+                    className={classes.button}
+                  >
                     Open Site
                   </Button>
                 </a>
@@ -171,7 +175,8 @@ const ProjectTemplate = ({ data, ...props }) => {
             <a
               href={project.link}
               target="_blank"
-              className={classes.hoverOpen}>
+              className={classes.hoverOpen}
+            >
               <Button endIcon={<LaunchRounded />} className={classes.button}>
                 Open Site
               </Button>
