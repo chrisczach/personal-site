@@ -16,7 +16,7 @@ const query = graphql`
 `;
 
 const LayoutContainer = props => {
-  smoothscroll.polyfill()
+  if(window) smoothscroll.polyfill()
   const [showNav, setShowNav] = useState(false);
   const handleShowNav = () => {
     setShowNav(true);
