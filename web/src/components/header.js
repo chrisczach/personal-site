@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AppBar, Typography, Toolbar, Fade, Slide } from '@material-ui/core';
 import { styled, makeStyles } from '@material-ui/core/styles';
 import { useTransition, animated, config } from 'react-spring';
+import hexToRgba from 'hex-to-rgba'
 import nav from './nav';
 import { PortraitContext } from './layout';
 
@@ -13,15 +14,15 @@ const useStyles = portrait =>
       bottom: portrait ? 0 : 'auto',
       top: portrait ? 'auto' : 0,
       background: portrait
-        ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}dd, ${theme.palette.primary.dark}ff) !important`
-        : `linear-gradient(to bottom right, ${theme.palette.primary.dark}f1, ${theme.palette.primary.dark}ff) !important`,
+        ? `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark + 'dd')}, ${hexToRgba(theme.palette.primary.dark + 'ff')}) !important`
+        : `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark+'f1')}, ${hexToRgba(theme.palette.primary.dark+'ff')}) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       transition: 'all  1s ease !important',
       '&:hover': {
         background: portrait
-          ? `linear-gradient(to bottom right, ${theme.palette.primary.dark}ee, ${theme.palette.primary.dark}ff) !important`
-          : `linear-gradient(to bottom right, ${theme.palette.primary.dark}ff, ${theme.palette.primary.dark}ff) !important`,
+          ? `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark+'ee')}, ${hexToRgba(theme.palette.primary.dark + 'ee')}) !important`
+          : `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark +'ff')}, ${hexToRgba(theme.palette.primary.dark +'ff')}) !important`,
         transition: 'all  1s ease !important',
       },
     },

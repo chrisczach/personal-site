@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import hexToRgba from 'hex-to-rgba'
 
 import {
   Container,
@@ -57,8 +58,8 @@ const useStyles = ({ portrait, wrapHeading }) =>
       alignItems: 'stretch',
 
       background: portrait
-        ? `linear-gradient(to bottom right, ${theme.palette.primary.main}11, #2224) !important`
-        : `linear-gradient(to bottom right, ${theme.palette.primary.main}22, #2223) !important`,
+        ? `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.main +'11')}, ${hexToRgba('#2224')}) !important`
+        : `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.main +'22')}, ${hexToRgba('#2223')}) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       // transition: theme.transitions.create('all', {
@@ -79,11 +80,11 @@ const useStyles = ({ portrait, wrapHeading }) =>
     },
     techBox: {
       width: portrait ? '100%' : '80%',
-      background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}99, ${theme.palette.primary.dark}bb)`,
+      background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark +'99')}, ${hexToRgba(theme.palette.primary.dark + 'bb')})`,
     },
     skills: {
       padding: theme.spacing(1, 0, 0, 2),
-      color: `${theme.palette.secondary.light}55`,
+      color: `${hexToRgba(theme.palette.secondary.light + '55')}`,
     },
   }));
 

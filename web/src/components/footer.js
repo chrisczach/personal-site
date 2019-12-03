@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import hexToRgba from 'hex-to-rgba'
 import {
   AppBar,
   Fade,
@@ -44,12 +45,12 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 2),
     minHeight: 0,
     top: 'auto',
-    background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}e1, ${theme.palette.secondary.dark}f7) !important`,
+    background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark +'e1')}, ${hexToRgba(theme.palette.secondary.dark + 'f7')}) !important`,
     backdropFilter: 'blur(5px)',
     webkitBackdropFilter: 'blur(5px)',
     transition: 'all  .3s ease !important',
     '&:hover': {
-      background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}ee, ${theme.palette.secondary.dark}f7) !important`,
+      background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark + 'ee')}, ${hexToRgba(theme.palette.secondary.dark + 'f7')}) !important`,
       transition: 'all  .3s ease !important',
     },
   },

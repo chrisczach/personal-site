@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { Tooltip, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import hexToRgba from 'hex-to-rgba'
 
 const useStyles = makeStyles(theme => ({
   popper: {
     margin: theme.spacing(1),
-    background: `linear-gradient(to bottom right, ${theme.palette.primary.dark}11, ${theme.palette.primary.dark}33) 50%`,
+    background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark + '11')}, ${hexToRgba(theme.palette.primary.dark + '33')}) 50%`,
     backdropFilter: 'blur(8px) brightness(.8)',
     webkitBackdropFilter: 'blur(8px) brightness(.8)',
     boxShadow: theme.shadows[6],

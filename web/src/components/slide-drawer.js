@@ -7,6 +7,7 @@ import {
   Popover,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import hexToRgba from 'hex-to-rgba'
 
 const useStyles = makeStyles(theme => ({
   anchor: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     width: '100%',
-    background: `linear-graident(to bottom right, ${theme.palette.secondary.main}44, ${theme.palette.secondary.dark}aa)`,
+    background: `linear-graident(to bottom right, ${hexToRgba(theme.palette.secondary.main + '44')}, ${hexToRgba(theme.palette.secondary.dark + 'aa')})`,
     backdropFilter: 'blur(8px)',
     webkitBackdropFilter: 'blur(8px)',
     margin: theme.spacing(0),

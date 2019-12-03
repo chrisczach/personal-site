@@ -1,4 +1,5 @@
 import React from 'react';
+import hexToRgba from 'hex-to-rgba'
 
 import {
   TextField,
@@ -22,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   paper: {
-    background: `linear-gradient(to bottom right, ${ theme.palette.secondary.main }44, ${ theme.palette.primary.main }44, ${ theme.palette.primary.dark }aa), linear-gradient(to bottom left, transparent, ${ theme.palette.primary.main }44, ${ theme.palette.primary.dark }aa)`,
+    background: `linear-gradient(to bottom right, ${ hexToRgba(theme.palette.secondary.main +'44') }, ${ hexToRgba(theme.palette.primary.main + '44') }, ${ hexToRgba(theme.palette.primary.dark +'aa') }), linear-gradient(to bottom left, transparent, ${ hexToRgba(theme.palette.primary.main +'44')}, ${ hexToRgba(theme.palette.primary.dark + 'aa') })`,
     padding: theme.spacing(4),
     outline: 'none',
     overflow: 'hidden',

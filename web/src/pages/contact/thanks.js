@@ -3,6 +3,7 @@ import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { graphql } from 'gatsby';
 import { navigate } from '@reach/router';
+import hexToRgba from 'hex-to-rgba'
 
 import SEO from '../../components/seo';
 import ErrorHandlerGraphQL from '../../HOF/errorHandlerGraphQL';
@@ -14,7 +15,7 @@ import { PortraitContext } from '../../components/layout';
 const useStyles = portrait =>
   makeStyles(theme => ({
     paper: {
-      background: `linear-gradient(to bottom right, ${theme.palette.secondary.main}44, ${theme.palette.primary.main}44, ${theme.palette.primary.dark}aa), linear-gradient(to bottom left, transparent, ${theme.palette.primary.main}44, ${theme.palette.primary.dark}aa)`,
+      background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.secondary.main +'44')}, ${hexToRgba(theme.palette.primary.main + '44')}, ${hexToRgba(theme.palette.primary.dark + 'aa')}), linear-gradient(to bottom left, transparent, ${hexToRgba(theme.palette.primary.main +'44')}, ${hexToRgba(theme.palette.primary.dark + 'aa')})`,
       margin: theme.spacing(3, portrait ? 1 : 2, 8, portrait ? 1 : 2),
       overflow: 'hidden',
       backdropFilter: 'blur(5px)',

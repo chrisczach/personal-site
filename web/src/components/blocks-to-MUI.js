@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import hexToRgba from 'hex-to-rgba'
 
 import classes from './blocks-to-MUI.module.css';
 
@@ -13,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: theme.spacing(2),
     boxShadow: theme.shadows[2],
     justifyContent: 'center',
-    background: `linear-gradient(to bottom right, ${theme.palette.secondary.main}aa, ${theme.palette.secondary.dark}88) !important`,
+    background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.secondary.main +'aa')}, ${hexToRgba(theme.palette.secondary.dark + '88')}) !important`,
   },
 }));
 const BlocksToMUI = props => {

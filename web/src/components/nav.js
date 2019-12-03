@@ -13,18 +13,19 @@ import {
 } from '@material-ui/core';
 import { styled, useTheme, makeStyles } from '@material-ui/core/styles';
 import { MenuRounded, CloseRounded } from '@material-ui/icons/';
+import hexToRgba from 'hex-to-rgba'
 
 const useStyles = makeStyles(theme => ({
   drawer: {
     overflow: 'hidden',
-    background: `${theme.palette.secondary.main}22`,
+    background: `${hexToRgba(theme.palette.secondary.main +'22')}`,
     backdropFilter: 'blur(3px)',
     webkitBackdropFilter: 'blur(3px)',
   },
   navBar: {
     overflow: 'hidden',
     padding: theme.spacing(0, 0, 18, 0),
-    background: `${theme.palette.secondary.dark}55`,
+    background: `${hexToRgba(theme.palette.secondary.dark + '55')}`,
     backdropFilter: 'blur(5px)',
     webkitBackdropFilter: 'blur(5px)',
     height: '100%',
@@ -61,7 +62,7 @@ const nav = ({ portrait, menuItems, ...props }) => {
             autoFocus
             key="ChrisCzach"
             onClick={handleOpen(!open)}
-            background={`${theme.palette.primary.dark}55`}>
+            background={`${hexToRgba(theme.palette.primary.dark + '55')}`}>
             <ListItemText
               primary="Chris Czach "
               secondary="Front End Developer"

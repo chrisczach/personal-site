@@ -19,6 +19,7 @@ import {
   CodeRounded,
   ExpandMoreRounded,
 } from '@material-ui/icons/';
+import hexToRgba from 'hex-to-rgba'
 
 import BlockText from './block-text';
 import { PortraitContext } from './layout';
@@ -32,7 +33,7 @@ const useStyles = (portrait, containerWidth = 1280) =>
       flexDirection: 'column',
       justifyContent: 'stretch',
       height: '100%',
-      background: `radial-gradient(bottom right, ${theme.palette.secondary.dark}bb,${theme.palette.secondary.main}66)`,
+      background: `radial-gradient(bottom right, ${hexToRgba(theme.palette.secondary.dark + 'bb')},${hexToRgba(theme.palette.secondary.main + '66')})`,
       backdropFilter: 'blur(8px)',
       webkitBackdropFilter: 'blur(8px)',
       position: 'relative',
@@ -52,7 +53,7 @@ const useStyles = (portrait, containerWidth = 1280) =>
       alignItems: 'flex-end',
     },
     tooltip: {
-      background: `${theme.palette.primary.dark}88`,
+      background: `${hexToRgba(theme.palette.primary.dark + '88')}`,
     },
     collapsed: {
       transform: 'rotate(0deg)',
