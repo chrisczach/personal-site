@@ -1,10 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { Tooltip, Typography, Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import {
+  Tooltip,
+  Typography,
+  Box,
+  makeStyles,
+  fade,
+  darken,
+} from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import Img from 'gatsby-image';
 import { useSpring, animated, config } from 'react-spring';
-import hexToRgba from 'hex-to-rgba'
+// import hexToRgba from 'hex-to-rgba'
 
 import { PortraitContext } from './layout';
 import BlockContent from './block-content';
@@ -12,7 +18,10 @@ import BlockContent from './block-content';
 const useStyles = portrait =>
   makeStyles(theme => ({
     popper: {
-      background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark + 'f1')}, ${hexToRgba(theme.palette.primary.dark + 'f7')}) 50%`,
+      background: `linear-gradient(to bottom right, ${darken(
+        fade(theme.palette.primary.dark, 0.5),
+        0.5,
+      )}, ${darken(fade(theme.palette.primary.dark, 0.75), 0.5)}) 50%`,
       backdropFilter: 'blur(8px) brightness(.8)',
       webkitBackdropFilter: 'blur(8px) brightness(.8)',
       boxShadow: theme.shadows[6],

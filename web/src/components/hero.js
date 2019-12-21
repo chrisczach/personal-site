@@ -1,9 +1,16 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { Paper, Button, Box, Tooltip, Fade } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import {
+  Paper,
+  Button,
+  Box,
+  Tooltip,
+  Fade,
+  makeStyles,
+  fade,
+} from '@material-ui/core';
 import { ExpandMoreRounded } from '@material-ui/icons';
 import Div100vh from 'react-div-100vh';
-import hexToRgba from 'hex-to-rgba'
+// import hexToRgba from 'hex-to-rgba';
 
 import {
   PortraitContext,
@@ -18,9 +25,10 @@ const useStyles = portrait =>
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      background: `${hexToRgba(theme.palette.primary.dark + '88')}`,
+      background: `${fade(theme.palette.primary.dark, 0.45)}`,
       alignItems: 'center',
       backdropFilter: 'blur(2px)',
+      WebkitBackdropFilter: 'blur(2px)',
       boxShadow: theme.shadows[8],
       positon: 'relative',
       padding: theme.spacing(2),
@@ -81,11 +89,11 @@ const Hero = props => {
   };
   const scrollDown = () => {
     stopAnimation();
-    window.scrollTo( {
+    window.scrollTo({
       left: 0,
       top: window.innerHeight,
-      behavior: 'smooth'
-    } );
+      behavior: 'smooth',
+    });
   };
   const nextItem = () => {
     if (items.length) {

@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from 'react';
-import hexToRgba from 'hex-to-rgba'
+import React, { useContext } from 'react';
+// import hexToRgba from 'hex-to-rgba'
 import {
   AppBar,
   Fade,
@@ -10,6 +10,7 @@ import {
   Tooltip,
   Slide,
   Paper,
+  fade,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
@@ -45,12 +46,18 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 2),
     minHeight: 0,
     top: 'auto',
-    background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark +'e1')}, ${hexToRgba(theme.palette.secondary.dark + 'f7')}) !important`,
+    background: `linear-gradient(to bottom right, ${fade(
+      theme.palette.primary.dark,
+      0.8,
+    )}, ${fade(theme.palette.secondary.dark, 0.85)}) !important`,
     backdropFilter: 'blur(5px)',
     webkitBackdropFilter: 'blur(5px)',
     transition: 'all  .3s ease !important',
     '&:hover': {
-      background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark + 'ee')}, ${hexToRgba(theme.palette.secondary.dark + 'f7')}) !important`,
+      background: `linear-gradient(to bottom right, ${fade(
+        theme.palette.primary.dark,
+        0.75,
+      )}, ${fade(theme.palette.secondary.dark, 85)}) !important`,
       transition: 'all  .3s ease !important',
     },
   },

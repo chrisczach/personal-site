@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
-import { makeStyles } from '@material-ui/core/styles';
-import BackgroundImage from 'gatsby-background-image';
-import hexToRgba from 'hex-to-rgba'
+// import { graphql, useStaticQuery } from 'gatsby';
+import { makeStyles, fade } from '@material-ui/core';
+// import BackgroundImage from 'gatsby-background-image';
+// import hexToRgba from 'hex-to-rgba'
 
 const useStyles = makeStyles(theme => ({
   top: {
@@ -10,7 +10,13 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     height: '90vh',
     width: '100%',
-    background: `linear-gradient(to top left, transparent 50%, ${hexToRgba(theme.palette.primary.dark + '55')}), linear-gradient(to top right, transparent 50%, ${hexToRgba(theme.palette.primary.dark +'33')})`,
+    background: `linear-gradient(to top left, transparent 50%, ${fade(
+      theme.palette.primary.dark,
+      0.25,
+    )}), linear-gradient(to top right, transparent 50%, ${fade(
+      theme.palette.primary.dark,
+      0.2,
+    )})`,
     zIndex: -50,
   },
   bottom: {
@@ -18,7 +24,13 @@ const useStyles = makeStyles(theme => ({
     bottom: 0,
     height: '90vh',
     width: '100%',
-    background: `linear-gradient(to bottom right, transparent 50%, ${hexToRgba(theme.palette.secondary.dark +'11')}), linear-gradient(to bottom left, transparent 50%, ${hexToRgba(theme.palette.primary.dark + '77')})`,
+    background: `linear-gradient(to bottom right, transparent 50%, ${fade(
+      theme.palette.secondary.dark,
+      0.1,
+    )}), linear-gradient(to bottom left, transparent 50%, ${fade(
+      theme.palette.primary.dark,
+      0.3,
+    )})`,
     zIndex: -50,
   },
 }));

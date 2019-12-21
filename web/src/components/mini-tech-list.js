@@ -8,12 +8,14 @@ import {
   IconButton,
   Tooltip,
   Typography,
+  makeStyles,
+  fade,
+  darken,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { Rating } from '@material-ui/lab';
 import Img from 'gatsby-image';
 import { useSpring, animated, config } from 'react-spring';
-import hexToRgba from 'hex-to-rgba'
+// import hexToRgba from 'hex-to-rgba';
 
 import { getFriendlyRating } from './tooltip-content';
 import { PortraitContext } from './layout';
@@ -21,7 +23,10 @@ import { PortraitContext } from './layout';
 const useStyles = makeStyles(theme => ({
   popper: {
     margin: theme.spacing(1),
-    background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark +'f1')}, ${hexToRgba(theme.palette.primary.dark +'f7')}) 50%`,
+    background: `linear-gradient(to bottom right, ${darken(
+      fade(theme.palette.primary.dark, 0.5),
+      0.5,
+    )}, ${darken(fade(theme.palette.primary.dark, 0.75), 0.5)}) 50%`,
     backdropFilter: 'blur(8px) brightness(.8)',
     webkitBackdropFilter: 'blur(8px) brightness(.8)',
     boxShadow: theme.shadows[6],

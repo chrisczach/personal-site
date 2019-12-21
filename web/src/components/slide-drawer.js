@@ -5,9 +5,10 @@ import {
   Grow,
   Collapse,
   Popover,
+  makeStyles,
+  fade,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import hexToRgba from 'hex-to-rgba'
+// import hexToRgba from 'hex-to-rgba'
 
 const useStyles = makeStyles(theme => ({
   anchor: {
@@ -21,7 +22,10 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     width: '100%',
-    background: `linear-graident(to bottom right, ${hexToRgba(theme.palette.secondary.main + '44')}, ${hexToRgba(theme.palette.secondary.dark + 'aa')})`,
+    background: `linear-graident(to bottom right, ${fade(
+      theme.palette.secondary.main,
+      0.2,
+    )}, ${fade(theme.palette.secondary.dark, 0.5)})`,
     backdropFilter: 'blur(8px)',
     webkitBackdropFilter: 'blur(8px)',
     margin: theme.spacing(0),

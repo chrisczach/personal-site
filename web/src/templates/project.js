@@ -13,13 +13,14 @@ import {
   Breadcrumbs,
   Box,
   Button,
+  makeStyles,
+  fade,
 } from '@material-ui/core';
 import Img from 'gatsby-image';
-import { makeStyles } from '@material-ui/core/styles';
 import { LaunchRounded, CodeRounded } from '@material-ui/icons/';
 import useResizeAware from 'react-resize-aware';
 import BackgroundImage from 'gatsby-background-image';
-import hexToRgba from 'hex-to-rgba'
+// import hexToRgba from 'hex-to-rgba'
 
 import SEO from '../components/seo';
 import { PortraitContext } from '../components/layout';
@@ -38,8 +39,14 @@ const useStyles = ({ portrait, width }) =>
       justifyContent: portrait ? 'flex-start' : 'stretch',
       margin: theme.spacing(2, 0, 4, 0),
       background: portrait
-        ? `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark + 'aa')}, ${hexToRgba(theme.palette.secondary.dark +'aa')}) !important`
-        : `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark + '55')}, ${hexToRgba(theme.palette.secondary.dark + '33')}) !important`,
+        ? `linear-gradient(to bottom right, ${fade(
+            theme.palette.primary.dark,
+            0.5,
+          )}, ${fade(theme.palette.secondary.dark, 0.5)}) !important`
+        : `linear-gradient(to bottom right, ${fade(
+            theme.palette.primary.dark,
+            0.3,
+          )}, ${fade(theme.palette.secondary.dark, 0.2)}) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       // transition: theme.transitions.create('all', {
@@ -90,7 +97,10 @@ const useStyles = ({ portrait, width }) =>
       opacity: portrait ? 0.5 : 0,
       '&:hover': {
         opacity: 1,
-        background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.main +'99')}, ${hexToRgba(theme.palette.secondary.main +'66')}) !important`,
+        background: `linear-gradient(to bottom right, ${fade(
+          theme.palette.primary.main,
+          0.45,
+        )}, ${fade(theme.palette.secondary.main, 0.3)}) !important`,
         backdropFilter: 'blur(8px)',
         webkitBackdropFilter: 'blur(8px)',
       },

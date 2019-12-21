@@ -1,8 +1,7 @@
 import React from 'react';
-import { Paper } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Paper, makeStyles, fade } from '@material-ui/core';
 import { graphql } from 'gatsby';
-import hexToRgba from 'hex-to-rgba'
+// import hexToRgba from 'hex-to-rgba';
 import SEO from '../../components/seo';
 import ErrorHandlerGraphQL from '../../HOF/errorHandlerGraphQL';
 import ContactForm from '../../components/contact-form';
@@ -10,7 +9,16 @@ import { ContainerWithHeading } from '../../components/containerWithHeading';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.secondary.main + '44')}, ${hexToRgba(theme.palette.primary.main + '44')}, ${hexToRgba(theme.palette.primary.dark + 'aa')}), linear-gradient(to bottom left, transparent, ${hexToRgba(theme.palette.primary.main + '44')}, ${hexToRgba(theme.palette.primary.dark + 'aa')})`,
+    background: `linear-gradient(to bottom right, ${fade(
+      theme.palette.secondary.main,
+      0.25,
+    )}, ${fade(theme.palette.primary.main, 0.25)}, ${fade(
+      theme.palette.primary.dark,
+      0.5,
+    )}), linear-gradient(to bottom left, transparent, ${fade(
+      theme.palette.primary.main,
+      0.25,
+    )}, ${fade(theme.palette.primary.dark, 0.5)})`,
     margin: theme.spacing(3, 2, 2, 2),
     overflow: 'hidden',
     backdropFilter: 'blur(5px)',
@@ -57,7 +65,7 @@ export const query = graphql`
     page: sanityPage(slug: { current: { eq: "contact" } }) {
       id
       title
-      _rawBody(resolveReferences: {maxDepth: 10})
+      _rawBody(resolveReferences: { maxDepth: 10 })
     }
   }
 `;

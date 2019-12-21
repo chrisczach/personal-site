@@ -1,11 +1,12 @@
 import React from 'react';
-import hexToRgba from 'hex-to-rgba'
+// import hexToRgba from 'hex-to-rgba'
 
 import {
   TextField,
   Fade,
   Slide,
   makeStyles,
+  fade,
   Button,
   Typography,
   Box,
@@ -23,7 +24,16 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   paper: {
-    background: `linear-gradient(to bottom right, ${ hexToRgba(theme.palette.secondary.main +'44') }, ${ hexToRgba(theme.palette.primary.main + '44') }, ${ hexToRgba(theme.palette.primary.dark +'aa') }), linear-gradient(to bottom left, transparent, ${ hexToRgba(theme.palette.primary.main +'44')}, ${ hexToRgba(theme.palette.primary.dark + 'aa') })`,
+    background: `linear-gradient(to bottom right, ${fade(
+      theme.palette.secondary.main,
+      0.2,
+    )}, ${fade(theme.palette.primary.main, 0.2)}, ${fade(
+      theme.palette.primary.dark,
+      0.5,
+    )}), linear-gradient(to bottom left, transparent, ${fade(
+      theme.palette.primary.main,
+      0.2,
+    )}, ${fade(theme.palette.primary.dark, 0.5)})`,
     padding: theme.spacing(4),
     outline: 'none',
     overflow: 'hidden',

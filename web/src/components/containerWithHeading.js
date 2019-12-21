@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import hexToRgba from 'hex-to-rgba'
+import hexToRgba from 'hex-to-rgba';
 
 import {
   Container,
@@ -9,6 +9,7 @@ import {
   Slide,
   Box,
   Paper,
+  fade,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { PortraitContext } from './layout';
@@ -58,8 +59,14 @@ const useStyles = ({ portrait, wrapHeading }) =>
       alignItems: 'stretch',
 
       background: portrait
-        ? `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.main +'11')}, ${hexToRgba('#2224')}) !important`
-        : `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.main +'22')}, ${hexToRgba('#2223')}) !important`,
+        ? `linear-gradient(to bottom right, ${fade(
+            theme.palette.primary.main,
+            0.1,
+          )}, ${hexToRgba('#2224')}) !important`
+        : `linear-gradient(to bottom right, ${fade(
+            theme.palette.primary.main,
+            0.15,
+          )}, ${hexToRgba('#2223')}) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       // transition: theme.transitions.create('all', {
@@ -80,11 +87,14 @@ const useStyles = ({ portrait, wrapHeading }) =>
     },
     techBox: {
       width: portrait ? '100%' : '80%',
-      background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.primary.dark +'99')}, ${hexToRgba(theme.palette.primary.dark + 'bb')})`,
+      background: `linear-gradient(to bottom right, ${fade(
+        theme.palette.primary.dark,
+        0.45,
+      )}, ${fade(theme.palette.primary.dark, 0.55)})`,
     },
     skills: {
       padding: theme.spacing(1, 0, 0, 2),
-      color: `${hexToRgba(theme.palette.secondary.light + '55')}`,
+      color: `${fade(theme.palette.secondary.light, 0.3)}`,
     },
   }));
 

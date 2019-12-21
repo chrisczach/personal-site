@@ -1,7 +1,6 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import hexToRgba from 'hex-to-rgba'
+import { Typography, makeStyles, fade } from '@material-ui/core';
+// import hexToRgba from 'hex-to-rgba'
 
 import classes from './blocks-to-MUI.module.css';
 
@@ -14,7 +13,10 @@ const useStyles = makeStyles(theme => ({
     borderRadius: theme.spacing(2),
     boxShadow: theme.shadows[2],
     justifyContent: 'center',
-    background: `linear-gradient(to bottom right, ${hexToRgba(theme.palette.secondary.main +'aa')}, ${hexToRgba(theme.palette.secondary.dark + '88')}) !important`,
+    background: `linear-gradient(to bottom right, ${fade(
+      theme.palette.secondary.main,
+      0.5,
+    )}, ${fade(theme.palette.secondary.dark, 0.4)}) !important`,
   },
 }));
 const BlocksToMUI = props => {
@@ -25,7 +27,8 @@ const BlocksToMUI = props => {
     return (
       <Typography
         variant={`h${parseInt(level)}`}
-        className={classes.blockHeading}>
+        className={classes.blockHeading}
+      >
         {props.children}
       </Typography>
     );
@@ -34,7 +37,8 @@ const BlocksToMUI = props => {
   return style === 'blockquote' ? (
     <Typography
       variant="body1"
-      className={`${styledClasses.caption} ${classes.caption}`}>
+      className={`${styledClasses.caption} ${classes.caption}`}
+    >
       {props.children}
     </Typography>
   ) : (

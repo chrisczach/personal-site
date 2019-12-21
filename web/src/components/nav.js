@@ -10,22 +10,25 @@ import {
   ListItemText,
   Slide,
   SwipeableDrawer,
+  styled,
+  useTheme,
+  makeStyles,
+  fade,
 } from '@material-ui/core';
-import { styled, useTheme, makeStyles } from '@material-ui/core/styles';
 import { MenuRounded, CloseRounded } from '@material-ui/icons/';
-import hexToRgba from 'hex-to-rgba'
+// import hexToRgba from 'hex-to-rgba';
 
 const useStyles = makeStyles(theme => ({
   drawer: {
     overflow: 'hidden',
-    background: `${hexToRgba(theme.palette.secondary.main +'22')}`,
+    background: `${fade(theme.palette.secondary.main, 0.15)}`,
     backdropFilter: 'blur(3px)',
     webkitBackdropFilter: 'blur(3px)',
   },
   navBar: {
     overflow: 'hidden',
     padding: theme.spacing(0, 0, 18, 0),
-    background: `${hexToRgba(theme.palette.secondary.dark + '55')}`,
+    background: `${fade(theme.palette.secondary.dark, 0.2)}`,
     backdropFilter: 'blur(5px)',
     webkitBackdropFilter: 'blur(5px)',
     height: '100%',
@@ -54,7 +57,8 @@ const nav = ({ portrait, menuItems, ...props }) => {
         open={open}
         onOpen={handleOpen(true)}
         onClose={handleOpen(false)}
-        swipeAreaWidth={5}>
+        swipeAreaWidth={5}
+      >
         <List className={classes.navBar} key="navBar">
           <FirstItem
             divider
@@ -62,7 +66,8 @@ const nav = ({ portrait, menuItems, ...props }) => {
             autoFocus
             key="ChrisCzach"
             onClick={handleOpen(!open)}
-            background={`${hexToRgba(theme.palette.primary.dark + '55')}`}>
+            background={`${fade(theme.palette.primary.dark, 0.25)}`}
+          >
             <ListItemText
               primary="Chris Czach "
               secondary="Front End Developer"
@@ -95,7 +100,8 @@ const toMenu = (open, handleOpen, size) => ({ link, Icon, route }, index) => {
         <Grow
           in={open}
           style={{ transformOrigin: '0 0 0' }}
-          {...(open ? { timeout: index * 150 } : {})}>
+          {...(open ? { timeout: index * 150 } : {})}
+        >
           <ListItem button autoFocus onClick={handleOpen(!open)}>
             <ListItemIcon>
               <Icon fontSize={size} />
@@ -104,7 +110,8 @@ const toMenu = (open, handleOpen, size) => ({ link, Icon, route }, index) => {
               direction="left"
               in={open}
               style={{ transformOrigin: '0 0 0' }}
-              {...(open ? { timeout: index * 150 + 50 } : {})}>
+              {...(open ? { timeout: index * 150 + 50 } : {})}
+            >
               <ListItemText primary={link} />
             </Slide>
           </ListItem>
@@ -115,7 +122,8 @@ const toMenu = (open, handleOpen, size) => ({ link, Icon, route }, index) => {
         key={'bottomBorder' + link}
         in={open}
         style={{ transformOrigin: '0 0 0' }}
-        {...(open ? { timeout: index * 200 + 150 } : {})}>
+        {...(open ? { timeout: index * 200 + 150 } : {})}
+      >
         <Divider variant="inset" component="li" />
       </Slide>
     </>

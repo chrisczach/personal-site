@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
   CardActionArea,
@@ -11,6 +10,8 @@ import {
   Button,
   Typography,
   Tooltip,
+  makeStyles,
+  fade,
 } from '@material-ui/core';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
@@ -19,7 +20,7 @@ import {
   CodeRounded,
   ExpandMoreRounded,
 } from '@material-ui/icons/';
-import hexToRgba from 'hex-to-rgba'
+// import hexToRgba from 'hex-to-rgba'
 
 import BlockText from './block-text';
 import { PortraitContext } from './layout';
@@ -33,7 +34,10 @@ const useStyles = (portrait, containerWidth = 1280) =>
       flexDirection: 'column',
       justifyContent: 'stretch',
       height: '100%',
-      background: `radial-gradient(bottom right, ${hexToRgba(theme.palette.secondary.dark + 'bb')},${hexToRgba(theme.palette.secondary.main + '66')})`,
+      background: `radial-gradient(bottom right, ${fade(
+        theme.palette.secondary.dark,
+        0.55,
+      )},${fade(theme.palette.secondary.main, 0.3)})`,
       backdropFilter: 'blur(8px)',
       webkitBackdropFilter: 'blur(8px)',
       position: 'relative',
@@ -53,7 +57,7 @@ const useStyles = (portrait, containerWidth = 1280) =>
       alignItems: 'flex-end',
     },
     tooltip: {
-      background: `${hexToRgba(theme.palette.primary.dark + '88')}`,
+      background: `${fade(theme.palette.primary.dark, 0.45)}`,
     },
     collapsed: {
       transform: 'rotate(0deg)',
@@ -106,7 +110,8 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
               gutterBottom
               variant="h5"
               component="h2"
-              className={classes.coloredCardHeading}>
+              className={classes.coloredCardHeading}
+            >
               {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
@@ -123,13 +128,15 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
               {showDetails ? 'Hide Details' : 'See Details'}
             </Typography>
           }
-          classes={{ tooltip: classes.tooltip }}>
+          classes={{ tooltip: classes.tooltip }}
+        >
           <IconButton
             aria-label={showDetails ? 'Hide Details' : 'See Details'}
             size="small"
             style={{ pointerEvents: showDetails ? 'none' : 'auto' }}
             className={showDetails ? classes.expanded : classes.collapsed}
-            onClick={handleToggleShow}>
+            onClick={handleToggleShow}
+          >
             <ExpandMoreRounded />
           </IconButton>
         </Tooltip>
@@ -142,11 +149,13 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
                 Open Project Page
               </Typography>
             }
-            classes={{tooltip: classes.tooltip}}>
+            classes={{ tooltip: classes.tooltip }}
+          >
             <Button
               endIcon={<LaunchRounded />}
               size="small"
-              className={classes.projectButton}>
+              className={classes.projectButton}
+            >
               Open
             </Button>
           </Tooltip>
@@ -155,7 +164,8 @@ const ProjectCard = ({ project, containerWidth, ...props }) => {
       <SlideDrawer
         show={showDetails}
         handleToggle={handleToggleShow}
-        onClick={handleToggleShow}>
+        onClick={handleToggleShow}
+      >
         <MiniTechList tech={techList} />
       </SlideDrawer>
     </Card>
