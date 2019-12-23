@@ -40,23 +40,25 @@ const useStyles = portrait =>
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       transition: 'all  1s ease !important',
-      '&:hover': {
-        background: portrait
-          ? `linear-gradient(to bottom right, ${darken(
-              fade(theme.palette.primary.dark, 0.75),
-              0.5,
-            )}, ${darken(
-              fade(theme.palette.primary.dark, 0.75),
-              0.5,
-            )}) !important`
-          : `linear-gradient(to bottom right, ${darken(
-              fade(theme.palette.primary.dark, 0.85),
-              0.5,
-            )}, ${darken(
-              fade(theme.palette.primary.dark, 0.85),
-              0.5,
-            )}) !important`,
-        transition: 'all  1s ease !important',
+      '@media (hover:hover)': {
+        '&:hover': {
+          background: portrait
+            ? `linear-gradient(to bottom right, ${darken(
+                fade(theme.palette.primary.dark, 0.75),
+                0.5,
+              )}, ${darken(
+                fade(theme.palette.primary.dark, 0.75),
+                0.5,
+              )}) !important`
+            : `linear-gradient(to bottom right, ${darken(
+                fade(theme.palette.primary.dark, 0.85),
+                0.5,
+              )}, ${darken(
+                fade(theme.palette.primary.dark, 0.85),
+                0.5,
+              )}) !important`,
+          transition: 'all  1s ease !important',
+        },
       },
     },
   }));

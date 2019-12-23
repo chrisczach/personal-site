@@ -12,6 +12,7 @@ import {
   Tooltip,
   makeStyles,
   fade,
+  darken,
 } from '@material-ui/core';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
@@ -57,7 +58,7 @@ const useStyles = (portrait, containerWidth = 1280) =>
       alignItems: 'flex-end',
     },
     tooltip: {
-      background: `${fade(theme.palette.primary.dark, 0.45)}`,
+      background: `${darken(fade(theme.palette.primary.dark, 0.9),.25)}`,
     },
     collapsed: {
       transform: 'rotate(0deg)',

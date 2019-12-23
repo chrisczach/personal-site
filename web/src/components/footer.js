@@ -62,15 +62,17 @@ const useStyles = makeStyles(theme => ({
     backdropFilter: 'blur(5px)',
     webkitBackdropFilter: 'blur(5px)',
     transition: 'all  .3s ease !important',
-    '&:hover': {
-      background: `linear-gradient(to bottom right, ${darken(
-        fade(theme.palette.primary.dark, 0.8),
-        0.1,
-      )}, ${darken(
-        fade(theme.palette.primary.dark, 0.85),
-        0.3,
-      )} 50%) !important`,
-      transition: 'all  .3s ease !important',
+    '@media (hover:hover)': {
+      '&:hover': {
+        background: `linear-gradient(to bottom right, ${darken(
+          fade(theme.palette.primary.dark, 0.8),
+          0.1,
+        )}, ${darken(
+          fade(theme.palette.primary.dark, 0.85),
+          0.3,
+        )} 50%) !important`,
+        transition: 'all  .3s ease !important',
+      },
     },
   },
   bottomNavItem: {

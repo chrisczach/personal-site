@@ -72,8 +72,10 @@ const useStyles = portrait =>
       justifyContent: portrait ? 'space-between' : 'flex-end',
       flexDirection: 'row',
       alignItems: portrait ? 'flex-start' : 'flex-end',
-      '&:hover': {
-        filter: 'saturate(2)',
+      '@media (hover:hover)': {
+        '&:hover': {
+          filter: 'saturate(2)',
+        },
       },
     },
     footSize: {

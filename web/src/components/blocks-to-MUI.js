@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, makeStyles, fade } from '@material-ui/core';
+import { Typography, makeStyles, fade, darken } from '@material-ui/core';
 // import hexToRgba from 'hex-to-rgba'
 
 import classes from './blocks-to-MUI.module.css';
@@ -11,12 +11,12 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(4, 1),
     padding: theme.spacing(1, 5),
     borderRadius: theme.spacing(2),
-    boxShadow: theme.shadows[2],
+    boxShadow: theme.shadows[3],
     justifyContent: 'center',
-    background: `linear-gradient(to bottom right, ${fade(
-      theme.palette.secondary.main,
-      0.5,
-    )}, ${fade(theme.palette.secondary.dark, 0.4)}) !important`,
+    background: `linear-gradient(to bottom right, ${darken(
+      fade(theme.palette.secondary.main, 0.9),
+      0.25,
+    )}, ${darken(fade(theme.palette.secondary.dark, 0.8), 0.25)}) !important`,
   },
 }));
 const BlocksToMUI = props => {

@@ -34,8 +34,10 @@ const useStyles = portrait =>
           duration: theme.transitions.duration.longest,
         }),
       },
-      '&:hover>div': {
-        transform: 'scale(1.15) rotate(-4deg)',
+      '@media (hover:hover)': {
+        '&:hover>div': {
+          transform: 'scale(1.15) rotate(-4deg)',
+        },
       },
     },
 
@@ -47,12 +49,12 @@ const useStyles = portrait =>
     },
   }));
 
-export default ({ node }) => {
+export default ({ node, ...props }) => {
   if (!node.asset) {
     return null;
   }
   const portrait = useContext(PortraitContext);
-  const classes = useStyles(portrait)();
+  const classes = useStyles(portrait)(props);
   const imageRef = node.asset._ref || node.asset._id;
   const fluidProps = getFluidGatsbyImage(
     imageRef,

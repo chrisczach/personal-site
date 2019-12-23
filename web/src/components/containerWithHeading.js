@@ -74,9 +74,11 @@ const useStyles = ({ portrait, wrapHeading }) =>
       // transition: theme.transitions.create('all', {
       //   duration: theme.transitions.duration.shortest,
       // }),
-      '&:hover': {
-        backdropFilter: 'blur(10px) brightness(.9)',
-        webkitBackdropFilter: 'blur(10px)  brightness(.9)',
+      '@media (hover:hover)': {
+        '&:hover': {
+          backdropFilter: 'blur(10px) brightness(.9)',
+          webkitBackdropFilter: 'blur(10px)  brightness(.9)',
+        },
       },
     },
     bodyBox: {
