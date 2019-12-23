@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, makeStyles, fade } from '@material-ui/core';
+import { Paper, makeStyles, fade, lighten } from '@material-ui/core';
 import { graphql } from 'gatsby';
 // import hexToRgba from 'hex-to-rgba';
 import SEO from '../../components/seo';
@@ -9,16 +9,16 @@ import { ContainerWithHeading } from '../../components/containerWithHeading';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    background: `linear-gradient(to bottom right, ${fade(
-      theme.palette.secondary.main,
-      0.25,
-    )}, ${fade(theme.palette.primary.main, 0.25)}, ${fade(
+    background: `linear-gradient(to bottom right, ${lighten(
+      fade(theme.palette.primary.dark, 0.65),
+      0.1,
+    )}, ${lighten(fade(theme.palette.primary.dark, 0.75), 0.15)}, ${fade(
       theme.palette.primary.dark,
-      0.5,
+      0.85,
     )}), linear-gradient(to bottom left, transparent, ${fade(
-      theme.palette.primary.main,
-      0.25,
-    )}, ${fade(theme.palette.primary.dark, 0.5)})`,
+      theme.palette.primary.dark,
+      0.75,
+    )}, ${lighten(fade(theme.palette.primary.dark, 0.65), 0.15)})`,
     margin: theme.spacing(3, 2, 2, 2),
     overflow: 'hidden',
     backdropFilter: 'blur(5px)',

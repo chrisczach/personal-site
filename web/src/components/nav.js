@@ -9,7 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
   Slide,
-  SwipeableDrawer,
+  Drawer,
   styled,
   useTheme,
   makeStyles,
@@ -51,13 +51,13 @@ const nav = ({ portrait, menuItems, ...props }) => {
       </Button>
     ),
     menuDrawer: (
-      <SwipeableDrawer
+      <Drawer
         className={classes.drawer}
         anchor={portrait ? 'bottom' : 'right'}
         open={open}
-        onOpen={handleOpen(true)}
+        // onOpen={handleOpen(true)}
         onClose={handleOpen(false)}
-        swipeAreaWidth={5}
+        // swipeAreaWidth={5}
       >
         <List className={classes.navBar} key="navBar">
           <FirstItem
@@ -78,7 +78,7 @@ const nav = ({ portrait, menuItems, ...props }) => {
           </FirstItem>
           {menuItems.map(toMenu(open, handleOpen, size))}
         </List>
-      </SwipeableDrawer>
+      </Drawer>
     ),
   };
 };

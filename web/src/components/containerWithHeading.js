@@ -10,6 +10,8 @@ import {
   Box,
   Paper,
   fade,
+  lighten,
+  darken,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { PortraitContext } from './layout';
@@ -59,12 +61,12 @@ const useStyles = ({ portrait, wrapHeading }) =>
       alignItems: 'stretch',
 
       background: portrait
-        ? `linear-gradient(to bottom right, ${fade(
-            theme.palette.primary.main,
-            0.1,
+        ? `linear-gradient(to bottom right, ${lighten(
+            fade(theme.palette.primary.dark, 0.7),
+            0.15,
           )}, ${hexToRgba('#2224')}) !important`
-        : `linear-gradient(to bottom right, ${fade(
-            theme.palette.primary.main,
+        : `linear-gradient(to bottom right, ${lighten(
+            fade(theme.palette.primary.dark, 0.85),
             0.15,
           )}, ${hexToRgba('#2223')}) !important`,
       backdropFilter: 'blur(5px)',
@@ -89,12 +91,12 @@ const useStyles = ({ portrait, wrapHeading }) =>
       width: portrait ? '100%' : '80%',
       background: `linear-gradient(to bottom right, ${fade(
         theme.palette.primary.dark,
-        0.45,
-      )}, ${fade(theme.palette.primary.dark, 0.55)})`,
+        0.8,
+      )}, ${darken(fade(theme.palette.primary.dark, 0.9), 0.25)})`,
     },
     skills: {
       padding: theme.spacing(1, 0, 0, 2),
-      color: `${fade(theme.palette.secondary.light, 0.3)}`,
+      color: `${fade(theme.palette.secondary.main, 0.6)}`,
     },
   }));
 

@@ -24,9 +24,9 @@ const useStyles = makeStyles(theme => ({
   popper: {
     margin: theme.spacing(1),
     background: `linear-gradient(to bottom right, ${darken(
-      fade(theme.palette.primary.dark, 0.5),
+      fade(theme.palette.primary.dark, 0.95),
       0.5,
-    )}, ${darken(fade(theme.palette.primary.dark, 0.75), 0.5)}) 50%`,
+    )}, ${darken(theme.palette.primary.dark, 0.5)}) 50%`,
     backdropFilter: 'blur(8px) brightness(.8)',
     webkitBackdropFilter: 'blur(8px) brightness(.8)',
     boxShadow: theme.shadows[6],

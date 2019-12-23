@@ -15,6 +15,7 @@ import {
   Button,
   makeStyles,
   fade,
+  darken,
 } from '@material-ui/core';
 import Img from 'gatsby-image';
 import { LaunchRounded, CodeRounded } from '@material-ui/icons/';
@@ -41,12 +42,15 @@ const useStyles = ({ portrait, width }) =>
       background: portrait
         ? `linear-gradient(to bottom right, ${fade(
             theme.palette.primary.dark,
-            0.5,
-          )}, ${fade(theme.palette.secondary.dark, 0.5)}) !important`
-        : `linear-gradient(to bottom right, ${fade(
-            theme.palette.primary.dark,
+            0.9,
+          )}, ${fade(theme.palette.primary.dark, 0.95)}) !important`
+        : `linear-gradient(to bottom right, ${darken(
+            fade(theme.palette.primary.dark, 0.3),
+            0.15,
+          )}, ${darken(
+            fade(theme.palette.primary.dark, 0.9),
             0.3,
-          )}, ${fade(theme.palette.secondary.dark, 0.2)}) !important`,
+          )}) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
       // transition: theme.transitions.create('all', {

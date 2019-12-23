@@ -10,7 +10,10 @@ import {
   Tooltip,
   Slide,
   Paper,
+  Hidden,
   fade,
+  darken,
+  useMediaQuery,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
@@ -28,7 +31,10 @@ const useStyles = makeStyles(theme => ({
   tipPaper: {
     padding: theme.spacing(2),
     margin: theme.spacing(0, 2, 0, 0),
-    background: theme.palette.secondary.main,
+    background: `linear-gradient(to bottom right, ${
+      theme.palette.secondary.dark
+    } 25%, ${darken(theme.palette.secondary.dark, 0.35)})`,
+    boxShadow: theme.shadows[4],
   },
   pointer: {
     position: 'absolute',
@@ -46,18 +52,24 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 2),
     minHeight: 0,
     top: 'auto',
-    background: `linear-gradient(to bottom right, ${fade(
-      theme.palette.primary.dark,
-      0.8,
-    )}, ${fade(theme.palette.secondary.dark, 0.85)}) !important`,
+    background: `linear-gradient(to bottom right, ${darken(
+      fade(theme.palette.primary.dark, 0.8),
+      0.15,
+    )}, ${darken(
+      fade(theme.palette.primary.dark, 0.85),
+      0.35,
+    )} 50%) !important`,
     backdropFilter: 'blur(5px)',
     webkitBackdropFilter: 'blur(5px)',
     transition: 'all  .3s ease !important',
     '&:hover': {
-      background: `linear-gradient(to bottom right, ${fade(
-        theme.palette.primary.dark,
-        0.75,
-      )}, ${fade(theme.palette.secondary.dark, 85)}) !important`,
+      background: `linear-gradient(to bottom right, ${darken(
+        fade(theme.palette.primary.dark, 0.8),
+        0.1,
+      )}, ${darken(
+        fade(theme.palette.primary.dark, 0.85),
+        0.3,
+      )} 50%) !important`,
       transition: 'all  .3s ease !important',
     },
   },
@@ -109,34 +121,38 @@ const toBottomNav = (classes, pathname) => (
         {children}
       </a>
     );
+  // @ts-ignore
+  const mdUp = useMediaQuery(theme => theme.breakpoints.up('md'));
   return (
-    <LinkComponent key={link}>
-      <Tooltip
-        placement="top-end"
-        open={link === tooltipValue && pathname === '/'}
-        title={
-          <Paper className={classes.tipPaper}>
-            <Typography variant="h5" className={classes.toolTipType}>
-              {tooltip}
-            </Typography>
-            <Fade in timeout={500} mountOnEnter unmountOnExit>
-              <Typography variant="h4" className={classes.pointer}>
-                👇
+    <Hidden implementation="css" smDown>
+      <LinkComponent key={link}>
+        <Tooltip
+          placement="top-end"
+          open={link === tooltipValue && pathname === '/' && mdUp}
+          title={
+            <Paper className={classes.tipPaper}>
+              <Typography variant="h5" className={classes.toolTipType}>
+                {tooltip}
               </Typography>
-            </Fade>
-          </Paper>
-        }
-        classes={{ tooltip: classes.tooltip }}
-      >
-        <ListItem button className={classes.button}>
-          <ListItemIcon className={classes.listIcon}>
-            <Icon fontSize="small" />
-          </ListItemIcon>
+              <Fade in timeout={500} mountOnEnter unmountOnExit>
+                <Typography variant="h4" className={classes.pointer}>
+                  👇
+                </Typography>
+              </Fade>
+            </Paper>
+          }
+          classes={{ tooltip: classes.tooltip }}
+        >
+          <ListItem button className={classes.button}>
+            <ListItemIcon className={classes.listIcon}>
+              <Icon fontSize="small" />
+            </ListItemIcon>
 
-          <ListItemText primary={link} className={classes.listItem} />
-        </ListItem>
-      </Tooltip>
-    </LinkComponent>
+            <ListItemText primary={link} className={classes.listItem} />
+          </ListItem>
+        </Tooltip>
+      </LinkComponent>
+    </Hidden>
   );
 };
 

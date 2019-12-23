@@ -7,6 +7,7 @@ import {
   Fade,
   makeStyles,
   fade,
+  darken,
 } from '@material-ui/core';
 import { ExpandMoreRounded } from '@material-ui/icons';
 import Div100vh from 'react-div-100vh';
@@ -25,10 +26,10 @@ const useStyles = portrait =>
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      background: `${fade(theme.palette.primary.dark, 0.45)}`,
+      background: `${darken(fade(theme.palette.primary.dark, 0.5), 0.25)}`,
       alignItems: 'center',
-      backdropFilter: 'blur(2px)',
-      WebkitBackdropFilter: 'blur(2px)',
+      backdropFilter: 'blur(4px)',
+      WebkitBackdropFilter: 'blur(4px)',
       boxShadow: theme.shadows[8],
       positon: 'relative',
       padding: theme.spacing(2),
