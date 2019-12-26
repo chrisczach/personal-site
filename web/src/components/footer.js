@@ -94,19 +94,20 @@ const footer = ({ menuItems, location: { pathname }, ...props }) => {
   const portrait = useContext(PortraitContext);
   const classes = useStyles(props);
   return (
-    <>
-      <Slide in direction="up" timeout={500}>
+
+          <Hidden implementation="css" smDown>
+      <Slide in={!portrait} direction="up" timeout={500}>
         <Fade in timeout={300}>
           <AppBar
             color="secondary"
             className={classes.appBar}
-            style={{ opacity: portrait ? 0 : 1 }}
           >
             {menuItems.map(toBottomNav(classes, pathname))}
           </AppBar>
         </Fade>
-      </Slide>
-    </>
+        </Slide>
+        </Hidden>
+   
   );
 };
 
@@ -126,7 +127,6 @@ const toBottomNav = (classes, pathname) => (
   // @ts-ignore
   const mdUp = useMediaQuery(theme => theme.breakpoints.up('md'));
   return (
-    <Hidden implementation="css" smDown>
       <LinkComponent key={link}>
         <Tooltip
           placement="top-end"
@@ -154,7 +154,6 @@ const toBottomNav = (classes, pathname) => (
           </ListItem>
         </Tooltip>
       </LinkComponent>
-    </Hidden>
   );
 };
 
