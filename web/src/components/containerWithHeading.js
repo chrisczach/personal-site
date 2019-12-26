@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import hexToRgba from 'hex-to-rgba';
-
+import {Link as GatsbyLink} from 'gatsby'
 import {
   Container,
   Typography,
@@ -8,11 +8,13 @@ import {
   Fade,
   Slide,
   Box,
+  Link,
   Paper,
   fade,
   lighten,
   darken,
 } from '@material-ui/core';
+import { ArrowBackRounded } from '@material-ui/icons/';
 import { makeStyles } from '@material-ui/core/styles';
 import { PortraitContext } from './layout';
 import BlockContent from './block-content';
@@ -100,6 +102,18 @@ const useStyles = ({ portrait, wrapHeading }) =>
       padding: theme.spacing(1, 0, 0, 2),
       color: `${fade(theme.palette.secondary.main, 0.6)}`,
     },
+    backLink: {
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      margin: theme.spacing( -1, 0, 1, 1 ),
+      opacity: .6,
+      '@media (hover:hover)': {
+        '&:hover': {
+          opacity: .75
+        }
+      },
+    }
   }));
 
 export const ContainerWithHeading = ({
@@ -131,9 +145,11 @@ export const ContainerWithHeading = ({
       className={classes.container}
       {...props}
     >
-      {(!wrapHeading || portrait) && (
+      { ( !wrapHeading || portrait ) && (
+        <>
+          { projectPage && <Link component={ GatsbyLink } to='projects' underline='none'><Typography variant='body1' className={ classes.backLink}><ArrowBackRounded fontSize='inherit'/> back to projects</Typography></Link>}
         <Fade in timeout={150}>
-          <Slide in direction={direction} timeout={300}>
+          <Slide in direction={ direction } timeout={ 300 }>
             <Typography
               variant="h2"
               color="textSecondary"
@@ -142,7 +158,8 @@ export const ContainerWithHeading = ({
               {heading}
             </Typography>
           </Slide>
-        </Fade>
+          </Fade>
+          </>
       )}
       <Fade in timeout={600}>
         <Zoom in timeout={1200}>
