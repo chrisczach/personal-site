@@ -93,10 +93,8 @@ const useStyles = makeStyles(theme => ({
 const footer = ({ menuItems, location: { pathname }, ...props }) => {
   const portrait = useContext(PortraitContext);
   const classes = useStyles(props);
-  return (
-
-          <Hidden implementation="css" smDown>
-      <Slide in={!portrait} direction="up" timeout={500}>
+  return (<Hidden implementation="css" smDown>
+      <Slide in direction="up" timeout={500}>
         <Fade in timeout={300}>
           <AppBar
             color="secondary"
@@ -107,7 +105,6 @@ const footer = ({ menuItems, location: { pathname }, ...props }) => {
         </Fade>
         </Slide>
         </Hidden>
-   
   );
 };
 
