@@ -24,18 +24,18 @@ const useStyles = portrait =>
       top: portrait ? 'auto' : 0,
       background: portrait
         ? `linear-gradient(to bottom right, ${darken(
-            fade(theme.palette.primary.dark, 0.6),
-            0.5,
+            fade(theme.palette.primary.main, 0.6),
+            0.6,
           )}, ${darken(
-            fade(theme.palette.primary.dark, 0.85),
-            0.5,
+            fade(theme.palette.primary.main, 0.85),
+            0.6,
           )}) !important`
         : `linear-gradient(to bottom right, ${darken(
-            fade(theme.palette.primary.dark, 0.8),
-            0.5,
+            fade(theme.palette.primary.main, 0.8),
+            0.6,
           )}, ${darken(
-            fade(theme.palette.primary.dark, 0.85),
-            0.5,
+            fade(theme.palette.primary.main, 0.85),
+            0.6,
           )}) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
@@ -44,17 +44,17 @@ const useStyles = portrait =>
         '&:hover': {
           background: portrait
             ? `linear-gradient(to bottom right, ${darken(
-                fade(theme.palette.primary.dark, 0.75),
+                fade(theme.palette.primary.main, 0.75),
                 0.5,
               )}, ${darken(
-                fade(theme.palette.primary.dark, 0.75),
+                fade(theme.palette.primary.main, 0.75),
                 0.5,
               )}) !important`
             : `linear-gradient(to bottom right, ${darken(
-                fade(theme.palette.primary.dark, 0.85),
+                fade(theme.palette.primary.main, 0.85),
                 0.5,
               )}, ${darken(
-                fade(theme.palette.primary.dark, 0.85),
+                fade(theme.palette.primary.main, 0.85),
                 0.5,
               )}) !important`,
           transition: 'all  1s ease !important',
