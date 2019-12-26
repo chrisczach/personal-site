@@ -32,10 +32,10 @@ const useStyles = portrait =>
           )}) !important`
         : `linear-gradient(to bottom right, ${darken(
             fade(theme.palette.primary.main, 0.8),
-            0.6,
+            0.65,
           )}, ${darken(
-            fade(theme.palette.primary.main, 0.85),
-            0.6,
+            fade(theme.palette.primary.main, 0.95),
+            .7,
           )}) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
@@ -52,10 +52,10 @@ const useStyles = portrait =>
               )}) !important`
             : `linear-gradient(to bottom right, ${darken(
                 fade(theme.palette.primary.main, 0.85),
-                0.5,
+                0.55,
               )}, ${darken(
-                fade(theme.palette.primary.main, 0.85),
-                0.5,
+                fade(theme.palette.primary.main, 0.95),
+                0.7,
               )}) !important`,
           transition: 'all  1s ease !important',
         },
