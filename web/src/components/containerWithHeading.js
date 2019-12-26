@@ -107,10 +107,10 @@ const useStyles = ({ portrait, wrapHeading }) =>
       justifyContent: 'flex-start',
       alignItems: 'center',
       margin: theme.spacing( -1, 0, 1, 1 ),
-      opacity: .6,
+       color: fade(theme.palette.text.primary,.6),
       '@media (hover:hover)': {
         '&:hover': {
-          opacity: .75
+        color: fade(theme.palette.text.primary,.75)
         }
       },
     }
@@ -147,7 +147,7 @@ export const ContainerWithHeading = ({
     >
       { ( !wrapHeading || portrait ) && (
         <>
-          { projectPage && <Link component={ GatsbyLink } to='projects' underline='none'><Typography variant='body1' className={ classes.backLink}><ArrowBackRounded fontSize='inherit'/> back to projects</Typography></Link>}
+          { projectPage && <Link component={ GatsbyLink } to='projects' underline='none'><Fade in timeout={ 1500 }><Typography variant='body1' className={ classes.backLink}><ArrowBackRounded fontSize='inherit'/> back to projects</Typography></Fade></Link>}
         <Fade in timeout={150}>
           <Slide in direction={ direction } timeout={ 300 }>
             <Typography
