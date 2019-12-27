@@ -108,15 +108,14 @@ const TooltipContent = ({
     setOpen(false);
   };
   const springProps = useSpring({
-    width: experience * 2,
-    config: config.molasses,
+    width: open ? experience * 2 : 0,
   });
 
   const [ratingValue, setRatingValue] = useState(0);
 
   return (
     <Tooltip
-      enterDelay={150}
+      enterDelay={50}
       // leaveDelay={50}
       open={open}
       onOpen={handleOpen}
@@ -161,13 +160,11 @@ const TooltipContent = ({
             <BlockContent blocks={description} />
           </Typography>
           <Box className={classes.footLogo}>
-            {open && (
-              <animated.div>
-                {springProps.width.interpolate(x => {
-                  setRatingValue(x);
-                })}
-              </animated.div>
-            )}
+            <animated.div>
+              {springProps.width.interpolate(x => {
+                setRatingValue(x);
+              })}
+            </animated.div>
             <Typography variant="subtitle1" className={classes.footText}>
               {title}
             </Typography>
