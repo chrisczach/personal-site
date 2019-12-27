@@ -1,11 +1,5 @@
 export default {
   widgets: [
-    {
-      name: 'sanity-tutorials',
-      options: {
-        templateRepoId: 'sanity-io/sanity-template-gatsby-portfolio',
-      },
-    },
     { name: 'structure-menu' },
     {
       name: 'project-info',
@@ -41,7 +35,7 @@ export default {
           },
           {
             title: 'Frontend',
-            value: 'https://personal-site-web.netlify.com',
+            value: 'https://www.chrisczach.com',
             category: 'apps',
           },
         ],
