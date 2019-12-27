@@ -58,7 +58,7 @@ const useStyles = (portrait, containerWidth = 1280) =>
       alignItems: 'flex-end',
     },
     tooltip: {
-      background: `${darken(fade(theme.palette.primary.dark, 0.9),.25)}`,
+      background: `${darken(fade(theme.palette.primary.dark, 0.9), 0.25)}`,
     },
     collapsed: {
       transform: 'rotate(0deg)',

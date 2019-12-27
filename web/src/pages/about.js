@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-
 import SEO from '../components/seo';
 import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL';
 import { ContainerWithHeading } from '../components/containerWithHeading';

@@ -52,7 +52,8 @@ const ButtonLinks = ({ node: { link }, ...props }) => {
           isInternal ? (
             <Link
               to={`${_type === 'project' ? '/projects' : ''}/${link}/`}
-              {...props}>
+              {...props}
+            >
               {children}
             </Link>
           ) : (
@@ -61,15 +62,14 @@ const ButtonLinks = ({ node: { link }, ...props }) => {
             </a>
           );
         return (
-          <LinkComponent className={classes.link} key={'' + link + index}>
+          <LinkComponent className={classes.link} key={`${link}${index}`}>
             <Button
               variant={isInternal ? 'contained' : 'outlined'}
               color={isInternal ? 'secondary' : 'default'}
               key={key}
               className={classes.button}
-              endIcon={
-                isInternal ? <ChevronRightRounded /> : <LaunchRounded />
-              }>
+              endIcon={isInternal ? <ChevronRightRounded /> : <LaunchRounded />}
+            >
               {linkName}
             </Button>
           </LinkComponent>

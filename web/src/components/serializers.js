@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+import { ListItem, List } from '@material-ui/core';
 import ButtonLinks from './button-links';
 import BlocksToMUI from './blocks-to-MUI';
 import Figure from './figure';
@@ -10,7 +11,6 @@ import { PortraitContext } from './layout';
 import BlockContent from './block-content';
 import InternalLink from './internal-link';
 import TransitionContainer from './transition-container';
-import { ListItem, List } from '@material-ui/core';
 import BlockContainer from './block-container';
 
 const serializers = {

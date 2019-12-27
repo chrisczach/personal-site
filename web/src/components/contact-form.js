@@ -88,7 +88,8 @@ const ContactForm = props => {
         <Fade
           in
           style={{ transitionDelay: 550 }}
-          timeout={{ appear: 600, enter: 600, exit: 200 }}>
+          timeout={{ appear: 600, enter: 600, exit: 200 }}
+        >
           <Button
             type="submit"
             variant="contained"
@@ -96,7 +97,8 @@ const ContactForm = props => {
             size="large"
             className={sending ? classes.submitted : classes.submit}
             style={sending ? { pointerEvents: 'none' } : {}}
-            endIcon={<SendRounded />}>
+            endIcon={<SendRounded />}
+          >
             <Fade in={sending} style={{ transitionDelay: 150 }} timeout={300}>
               <LinearProgress color="secondary" className={classes.progress} />
             </Fade>
@@ -127,7 +129,8 @@ const toFields = ({ formValues, handleChange, sending }) => (
     }}
     in
     timeout={900 * index}
-    mountOnEnter>
+    mountOnEnter
+  >
     <Slide in direction="up" timeout={index * 150 + 150}>
       <TextValidator
         // autoComplete={false}

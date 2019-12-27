@@ -42,9 +42,9 @@ export const query = graphql`
     page: sanityPage(slug: { current: { eq: "projects" } }) {
       id
       title
-      _rawBody(resolveReferences: {maxDepth: 10})
+      _rawBody(resolveReferences: { maxDepth: 10 })
     }
-    projects: allSanityProject(sort: {fields: [sort], order: [ASC]} ) {
+    projects: allSanityProject(sort: { fields: [sort], order: [ASC] }) {
       nodes {
         id
         title
@@ -58,14 +58,14 @@ export const query = graphql`
         slug {
           current
         }
-        techList: tech {  
+        techList: tech {
           category
           tech {
             id
             title
             id
             experience
-            description: _rawDescription(resolveReferences: {maxDepth: 10})
+            description: _rawDescription(resolveReferences: { maxDepth: 10 })
             logo {
               asset {
                 fluid(maxWidth: 3840) {
@@ -77,8 +77,8 @@ export const query = graphql`
         }
         link
         repo
-        excerpt: _rawExcerpt(resolveReferences: {maxDepth: 10})
-        body: _rawBody(resolveReferences: {maxDepth: 10})
+        excerpt: _rawExcerpt(resolveReferences: { maxDepth: 10 })
+        body: _rawBody(resolveReferences: { maxDepth: 10 })
       }
     }
   }

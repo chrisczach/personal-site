@@ -64,7 +64,8 @@ const Layout = ({
       <ScrollContext.Provider value={scroll}>
         <ShowSplashContext.Provider value={showSplash}>
           <CurrentTooltipContext.Provider
-            value={[tooltipValue, setTooltipValue]}>
+            value={[tooltipValue, setTooltipValue]}
+          >
             <CssBaseline key="baseline" />
             <Header
               showSplash={showSplash}
@@ -78,7 +79,8 @@ const Layout = ({
             <Fade in timeout={150} key="layoutWrapper">
               <Box
                 key="layoutWrap"
-                style={{ background: 'transparent', overflow: 'hidden' }}>
+                style={{ background: 'transparent', overflow: 'hidden' }}
+              >
                 {children}
               </Box>
             </Fade>

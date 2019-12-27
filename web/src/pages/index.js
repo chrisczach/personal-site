@@ -7,7 +7,6 @@ import ErrorHandlerGraphQL from '../HOF/errorHandlerGraphQL';
 import { ContainerWithHeading } from '../components/containerWithHeading';
 import Hero from '../components/hero';
 
-
 const IndexPage = ({ data }) => {
   const { site } = data || {};
   const { page } = data || {};

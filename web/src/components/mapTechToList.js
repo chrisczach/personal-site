@@ -51,12 +51,10 @@ const MapTechToList = ({ tech, ...props }) => {
       {tech.map(({ category, tech }) => {
         return (
           <Box className={classes.wrapper} key={category}>
-            <Typography
-              variant="subtitle1"
-              key={'category' + category + 'subtitle'}>
+            <Typography variant="subtitle1" key={`category${category}subtitle`}>
               {category}
             </Typography>
-            <Box className={classes.itemWrapper} key={'list' + category}>
+            <Box className={classes.itemWrapper} key={`list${category}`}>
               {tech.map(
                 (
                   {
@@ -73,7 +71,8 @@ const MapTechToList = ({ tech, ...props }) => {
                   return (
                     <TooltipContent
                       key={id}
-                      {...{ title, description, experience, fluid }}>
+                      {...{ title, description, experience, fluid }}
+                    >
                       <ListItem className={classes.listItem} button key={id}>
                         <ListItemIcon className={classes.listIcon}>
                           <Img fluid={fluid} className={classes.logo} />

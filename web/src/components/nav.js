@@ -119,7 +119,7 @@ const toMenu = (open, handleOpen, size) => ({ link, Icon, route }, index) => {
       </LinkComponent>
       <Slide
         direction="left"
-        key={'bottomBorder' + link}
+        key={`bottomBorder${link}`}
         in={open}
         style={{ transformOrigin: '0 0 0' }}
         {...(open ? { timeout: index * 200 + 150 } : {})}

@@ -5,6 +5,7 @@
   "author": "Sanity <hello@sanity.io>",
   "scripts": {
     "develop": "gatsby develop",
+    "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "start": "run-p start:**",
     "start:app": "npm run develop",
     "start:lambda": "netlify-lambda serve src/lambda",

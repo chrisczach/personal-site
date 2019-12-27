@@ -1,7 +1,7 @@
 import { graphql, StaticQuery } from 'gatsby';
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import smoothscroll from 'smoothscroll-polyfill'
+import smoothscroll from 'smoothscroll-polyfill';
 
 import theme from '../styles/theme';
 import Layout from '../components/layout';
@@ -17,11 +17,11 @@ const query = graphql`
 
 const LayoutContainer = props => {
   try {
-    if ( window ) smoothscroll.polyfill()
-  } catch ( e ) {
-  console.log('prevent build error for smoothscroll polyfill')
+    if (window) smoothscroll.polyfill();
+  } catch (e) {
+    console.log('prevent build error for smoothscroll polyfill');
   }
-  
+
   const [showNav, setShowNav] = useState(false);
   const handleShowNav = () => {
     setShowNav(true);

@@ -93,18 +93,16 @@ const useStyles = makeStyles(theme => ({
 const footer = ({ menuItems, location: { pathname }, ...props }) => {
   const portrait = useContext(PortraitContext);
   const classes = useStyles(props);
-  return (<Hidden implementation="css" smDown>
+  return (
+    <Hidden implementation="css" smDown>
       <Slide in direction="up" timeout={500}>
         <Fade in timeout={300}>
-          <AppBar
-            color="secondary"
-            className={classes.appBar}
-          >
+          <AppBar color="secondary" className={classes.appBar}>
             {menuItems.map(toBottomNav(classes, pathname))}
           </AppBar>
         </Fade>
-        </Slide>
-        </Hidden>
+      </Slide>
+    </Hidden>
   );
 };
 
@@ -124,33 +122,33 @@ const toBottomNav = (classes, pathname) => (
   // @ts-ignore
   const mdUp = useMediaQuery(theme => theme.breakpoints.up('md'));
   return (
-      <LinkComponent key={link}>
-        <Tooltip
-          placement="top-end"
-          open={link === tooltipValue && pathname === '/' && mdUp}
-          title={
-            <Paper className={classes.tipPaper}>
-              <Typography variant="h5" className={classes.toolTipType}>
-                {tooltip}
+    <LinkComponent key={link}>
+      <Tooltip
+        placement="top-end"
+        open={link === tooltipValue && pathname === '/' && mdUp}
+        title={
+          <Paper className={classes.tipPaper}>
+            <Typography variant="h5" className={classes.toolTipType}>
+              {tooltip}
+            </Typography>
+            <Fade in timeout={500} mountOnEnter unmountOnExit>
+              <Typography variant="h4" className={classes.pointer}>
+                👇
               </Typography>
-              <Fade in timeout={500} mountOnEnter unmountOnExit>
-                <Typography variant="h4" className={classes.pointer}>
-                  👇
-                </Typography>
-              </Fade>
-            </Paper>
-          }
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <ListItem button className={classes.button}>
-            <ListItemIcon className={classes.listIcon}>
-              <Icon fontSize="small" />
-            </ListItemIcon>
+            </Fade>
+          </Paper>
+        }
+        classes={{ tooltip: classes.tooltip }}
+      >
+        <ListItem button className={classes.button}>
+          <ListItemIcon className={classes.listIcon}>
+            <Icon fontSize="small" />
+          </ListItemIcon>
 
-            <ListItemText primary={link} className={classes.listItem} />
-          </ListItem>
-        </Tooltip>
-      </LinkComponent>
+          <ListItemText primary={link} className={classes.listItem} />
+        </ListItem>
+      </Tooltip>
+    </LinkComponent>
   );
 };
 

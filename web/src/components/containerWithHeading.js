@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import hexToRgba from 'hex-to-rgba';
-import {Link as GatsbyLink} from 'gatsby'
+import { Link as GatsbyLink } from 'gatsby';
 import {
   Container,
   Typography,
@@ -106,14 +106,14 @@ const useStyles = ({ portrait, wrapHeading }) =>
       display: 'flex',
       justifyContent: 'flex-start',
       alignItems: 'center',
-      margin: theme.spacing( -1, 0, 1, 1 ),
-       color: fade(theme.palette.text.primary,.6),
+      margin: theme.spacing(-1, 0, 1, 1),
+      color: fade(theme.palette.text.primary, 0.6),
       '@media (hover:hover)': {
         '&:hover': {
-        color: fade(theme.palette.text.primary,.75)
-        }
+          color: fade(theme.palette.text.primary, 0.75),
+        },
       },
-    }
+    },
   }));
 
 export const ContainerWithHeading = ({
@@ -145,21 +145,29 @@ export const ContainerWithHeading = ({
       className={classes.container}
       {...props}
     >
-      { ( !wrapHeading || portrait ) && (
+      {(!wrapHeading || portrait) && (
         <>
-          { projectPage && <Link component={ GatsbyLink } to='projects' underline='none'><Fade in timeout={ 1500 }><Typography variant='body1' className={ classes.backLink}><ArrowBackRounded fontSize='inherit'/> back to projects</Typography></Fade></Link>}
-        <Fade in timeout={150}>
-          <Slide in direction={ direction } timeout={ 300 }>
-            <Typography
-              variant="h2"
-              color="textSecondary"
-              className={classes.wrappedHeading}
-            >
-              {heading}
-            </Typography>
-          </Slide>
+          {projectPage && (
+            <Link component={GatsbyLink} to="projects" underline="none">
+              <Fade in timeout={1500}>
+                <Typography variant="body1" className={classes.backLink}>
+                  <ArrowBackRounded fontSize="inherit" /> back to projects
+                </Typography>
+              </Fade>
+            </Link>
+          )}
+          <Fade in timeout={150}>
+            <Slide in direction={direction} timeout={300}>
+              <Typography
+                variant="h2"
+                color="textSecondary"
+                className={classes.wrappedHeading}
+              >
+                {heading}
+              </Typography>
+            </Slide>
           </Fade>
-          </>
+        </>
       )}
       <Fade in timeout={600}>
         <Zoom in timeout={1200}>

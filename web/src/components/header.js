@@ -35,7 +35,7 @@ const useStyles = portrait =>
             0.65,
           )}, ${darken(
             fade(theme.palette.primary.main, 0.95),
-            .7,
+            0.7,
           )}) !important`,
       backdropFilter: 'blur(5px)',
       webkitBackdropFilter: 'blur(5px)',
