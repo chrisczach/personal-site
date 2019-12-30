@@ -89,7 +89,8 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(0, 0, 1, 0),
     color: '#b6da84',
   },
-}));
+} ) );
+
 const MiniTechList = ({ tech, ...props }) => {
   const portrait = useContext(PortraitContext);
   const classes = useStyles(props);
@@ -105,7 +106,15 @@ const MiniTechList = ({ tech, ...props }) => {
               {category}
             </Typography>
             <Box className={classes.wrapper}>
-              {tech.map(toMiniRatings(portrait, classes))}
+              {tech.map(props => (
+                <ToMiniRatings
+                  {...{
+                    portrait,
+                    classes,
+                    ...props,
+                  }}
+                />
+              ))}
             </Box>
           </div>
         ))}
@@ -114,7 +123,9 @@ const MiniTechList = ({ tech, ...props }) => {
   );
 };
 
-const toMiniRatings = (portrait, classes) => ({
+const ToMiniRatings = ({
+  portrait,
+  classes,
   title,
   experience,
   description,
@@ -214,5 +225,7 @@ const toMiniRatings = (portrait, classes) => ({
     </Tooltip>
   );
 };
+
+// MiniTechList.whyDidYouRender = true;
 
 export default MiniTechList;

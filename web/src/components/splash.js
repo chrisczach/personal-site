@@ -26,8 +26,8 @@ const useStyles = makeStyles(theme => ({
     fontSize: '6em',
   },
 }));
-const Splash = ({ show, hideSplash }) => {
-  const classes = useStyles({});
+const Splash = ({ show, hideSplash, ...props }) => {
+  const classes = useStyles(props);
   const [items, set] = useState([]);
   const transitions = useTransition(items, item => item.key, {
     from: {
