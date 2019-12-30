@@ -31,7 +31,7 @@ import ProjectLinks from '../components/project-links';
 import MapTechToList from '../components/mapTechToList';
 import BlockContent from '../components/block-content';
 
-const useStyles = ({ portrait, width }) =>
+const useStyles = ({ portrait }) =>
   makeStyles(theme => ({
     paper: {
       display: 'flex',
@@ -77,12 +77,6 @@ const useStyles = ({ portrait, width }) =>
     imageWrap: {
       boxShadow: theme.shadows[3],
     },
-    image: {
-      position: 'relative',
-      margin: portrait ? theme.spacing(12, 0) : theme.spacing(2, 0),
-      maxHeight: `${Math.round(portrait ? width : width / 3)}px`,
-      overflow: 'hidden',
-    },
     hoverOpen: {
       zIndex: 2,
       position: 'absolute',
@@ -123,6 +117,16 @@ const useStyles = ({ portrait, width }) =>
     },
   }));
 
+const useImageStyle = ({ portrait, width }) =>
+  makeStyles(theme => ({
+    image: {
+      position: 'relative',
+      margin: portrait ? theme.spacing(12, 0) : theme.spacing(2, 0),
+      maxHeight: `${Math.round(portrait ? width : width / 3)}px`,
+      overflow: 'hidden',
+    },
+  }));
+
 const ProjectTemplate = ({ data, ...props }) => {
   const project = data && data.project;
   const portrait = useContext(PortraitContext);
@@ -131,8 +135,8 @@ const ProjectTemplate = ({ data, ...props }) => {
     resizeImageListener,
     { width: imageWidth, height: imageHeight },
   ] = useResizeAware();
-  const classes = useStyles({ portrait, width })(props);
-
+  const classes = useStyles({ portrait })(props);
+  const imageClasses = useImageStyle({ portrait, width })(props);
   return (
     <>
       <SEO title={project.title} />
@@ -187,7 +191,7 @@ const ProjectTemplate = ({ data, ...props }) => {
           <BlockContent blocks={project._rawBody} />
         </Box>
         <Box className={classes.imageWrap}>
-          <Paper className={classes.image}>
+          <Paper className={imageClasses.image}>
             <Img fluid={project.mainImage.asset.fluid} />
             <a
               href={project.link}
