@@ -80,7 +80,7 @@ const useStyles = ({ portrait, width }) =>
     image: {
       position: 'relative',
       margin: portrait ? theme.spacing(12, 0) : theme.spacing(2, 0),
-      maxHeight: `${Math.round(portrait ? width : width / 3)}px`,
+      maxHeight: `${Math.round(portrait ? width : width / 2)}px`,
       overflow: 'hidden',
     },
     hoverOpen: {
@@ -141,8 +141,6 @@ const ProjectTemplate = ({ data, ...props }) => {
         heading={project.title}
         subHeading={project._rawExcerpt}
       >
-        {resizeListener}
-
         <ProjectLinks link={project.link} repo={project.repo} />
         <Fade in timeout={500}>
           <Grow in timeout={500}>
@@ -160,7 +158,7 @@ const ProjectTemplate = ({ data, ...props }) => {
                   style={{
                     position: 'absolute',
                     width: '100%',
-                    height: portrait ? imageHeight : height,
+                    height: portrait ? imageHeight : '100%',
                     overflow: 'hidden',
                   }}
                 >
@@ -198,6 +196,7 @@ const ProjectTemplate = ({ data, ...props }) => {
                 Open Site
               </Button>
             </a>
+            {resizeListener}
           </Paper>
         </Box>
       </ContainerWithHeading>
