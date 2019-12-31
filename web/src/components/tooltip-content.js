@@ -163,7 +163,7 @@ const TooltipContent = ({
           <Box className={classes.footLogo}>
             <animated.div>
               {springProps.width.interpolate(x => {
-                setRatingValue(x);
+                requestAnimationFrame(() => setRatingValue(x));
               })}
             </animated.div>
             <Typography variant="subtitle1" className={classes.footText}>

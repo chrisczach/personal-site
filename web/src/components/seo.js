@@ -7,14 +7,16 @@ function SEO({ description, lang, meta, keywords, title }) {
   const [animatedTitle, setAnimatedTitle] = useState();
 
   const scroll = () => {
-    // change this
-    setAnimatedTitle(state => {
-      const [first, ...rest] = state.split(' | ');
-      return [...rest, first].join(' | ');
-    });
+    requestAnimationFrame(() =>
+      setAnimatedTitle(state => {
+        const [first, ...rest] = state.split(' | ');
+        return [...rest, first].join(' | ');
+      }),
+    );
   };
 
   useEffect(() => {
+    if (!isWindow()) return;
     const animate = setInterval(scroll, 2000);
     return () => {
       clearInterval(animate);
@@ -89,6 +91,16 @@ function SEO({ description, lang, meta, keywords, title }) {
     />
   );
 }
+
+export const isWindow = () => {
+  let answer;
+  try {
+    if (window) answer = true;
+  } catch (e) {
+    answer = false;
+  }
+  return answer;
+};
 
 SEO.defaultProps = {
   lang: 'en',

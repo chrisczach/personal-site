@@ -180,7 +180,7 @@ const toMiniRatings = (portrait, classes) => ({
           </Typography>
           <animated.div>
             {springProps.width.interpolate(x => {
-              setRatingValue(x);
+              requestAnimationFrame(()=>setRatingValue(x));
             })}
           </animated.div>
         </Box>
