@@ -93,6 +93,7 @@ const TooltipContent = ({
   title,
   experience,
   description,
+  excerpt,
   fluid,
   children,
   ...props
@@ -157,7 +158,7 @@ const TooltipContent = ({
             </Box>
           </Typography>
           <Typography variant="body2" className={classes.description}>
-            <BlockContent blocks={description} />
+            <BlockContent blocks={portrait ? excerpt : description} />
           </Typography>
           <Box className={classes.footLogo}>
             <animated.div>

@@ -30,13 +30,18 @@ export default {
           .precision(1),
     },
     {
+      name: 'excerpt',
+      type: 'projectPortableText',
+      title: 'Excerpt',
+    },
+    {
       name: 'description',
       type: 'projectPortableText',
       title: 'Description',
     },
     {
       name: 'sort',
-      type: 'number'
-    }
+      type: 'number',
+    },
   ],
 };

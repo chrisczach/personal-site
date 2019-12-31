@@ -205,48 +205,53 @@ const ProjectTemplate = ({ data, ...props }) => {
 };
 
 export const query = graphql`
-  query ProjectTemplateQuery($id: String!) {
-    project: sanityProject(id: { eq: $id }) {
-      id
-      link
-      repo
-      tech {
-        category
-        tech {
-          title
-          description: _rawDescription(resolveReferences: { maxDepth: 10 })
-          experience
-          logo {
-            asset {
-              fluid(maxWidth: 3840) {
-                ...GatsbySanityImageFluid
-              }
-            }
-          }
-        }
-      }
-      mainImage {
-        asset {
-          fluid(maxWidth: 3840) {
-            ...GatsbySanityImageFluid
-          }
-        }
-      }
-      mobileImage {
-        asset {
-          fluid(maxWidth: 3840) {
-            ...GatsbySanityImageFluid
-          }
-        }
-      }
-      title
-      slug {
-        current
-      }
-      _rawBody(resolveReferences: { maxDepth: 10 })
-      _rawExcerpt(resolveReferences: { maxDepth: 10 })
-    }
-  }
-`;
+         query ProjectTemplateQuery($id: String!) {
+           project: sanityProject(id: { eq: $id }) {
+             id
+             link
+             repo
+             tech {
+               category
+               tech {
+                 title
+                 description: _rawDescription(
+                   resolveReferences: { maxDepth: 10 }
+                 )
+                 excerpt: _rawExcerpt(
+                   resolveReferences: { maxDepth: 10 }
+                 )
+                 experience
+                 logo {
+                   asset {
+                     fluid(maxWidth: 3840) {
+                       ...GatsbySanityImageFluid
+                     }
+                   }
+                 }
+               }
+             }
+             mainImage {
+               asset {
+                 fluid(maxWidth: 3840) {
+                   ...GatsbySanityImageFluid
+                 }
+               }
+             }
+             mobileImage {
+               asset {
+                 fluid(maxWidth: 3840) {
+                   ...GatsbySanityImageFluid
+                 }
+               }
+             }
+             title
+             slug {
+               current
+             }
+             _rawBody(resolveReferences: { maxDepth: 10 })
+             _rawExcerpt(resolveReferences: { maxDepth: 10 })
+           }
+         }
+       `;
 
 export default ErrorHandlerGraphQL(ProjectTemplate);

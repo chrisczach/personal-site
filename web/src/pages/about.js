@@ -81,6 +81,7 @@ export const query = graphql`
             sort
           }
           description: _rawDescription(resolveReferences: { maxDepth: 10 })
+          excerpt: _rawExcerpt(resolveReferences: { maxDepth: 10 })
           experience
           logo {
             asset {
