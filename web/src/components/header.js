@@ -87,7 +87,7 @@ const Header = ({
 
   if (items.length === 0)
     set(
-      'front end developer'.split('').map((text, key) => ({
+      'software engineer'.split('').map((text, key) => ({
         text,
         key,
       })),
