@@ -149,7 +149,7 @@ const animationScreens = [
   {
     name: `don't display`,
     header: 'hello',
-    content: `I'm Chris Czach a front end developer`,
+    content: `I'm Chris Czach a software engineer`,
     delay: 3000,
   },
   {
