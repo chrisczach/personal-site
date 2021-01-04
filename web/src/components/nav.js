@@ -70,7 +70,7 @@ const nav = ({ portrait, menuItems, ...props }) => {
           >
             <ListItemText
               primary="Chris Czach "
-              secondary="Front End Developer"
+              secondary="Full Stack Developer"
             />
             <ListItemIcon className={classes.close}>
               <CloseRounded fontSize="large" />
