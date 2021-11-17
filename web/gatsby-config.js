@@ -62,7 +62,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Chris Czach - Front End Developer`,
+        name: `Chris Czach - Full Stack Developer`,
         short_name: `ChrisCzachDeveloper`,
         icon: `src/images/icon.png`,
         start_url: `/`,
