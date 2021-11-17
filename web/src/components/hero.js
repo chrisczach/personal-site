@@ -81,7 +81,7 @@ const Hero = props => {
       const end = {
         name: `don't display`,
         header: 'Chris Czach',
-        content: `front end developer`,
+        content: `full stack developer`,
       };
 
       setCurrent(end);
